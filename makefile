@@ -1,20 +1,14 @@
-# Location of your OpenAPI spec
+# Makefile (repo root)
+
 SPEC_URL=https://app.vouchsafe.id/openapi/swagger.json
 
-# Options for PHP generator
-GEN_OPTIONS= \
+GEN_OPTS= \
   -g php \
-  -o . \
-  -p packageName=Vouchsafe,invokerPackage=Vouchsafe,srcBasePath=src \
+  -o src/openapi \
+  -p packageName=Vouchsafe,invokerPackage=Vouchsafe\\OpenAPI,srcBasePath=src \
   --skip-validate-spec
 
-# Default target: regenerate SDK
 generate:
-	openapi-generator generate -i $(SPEC_URL) $(GEN_OPTIONS)
+	openapi-generator generate -i $(SPEC_URL) $(GEN_OPTS)
 	composer dump-autoload
-	@echo "✅ PHP client regenerated and autoload refreshed"
-
-# Optional cleanup target
-clean:
-	rm -rf src/ docs/ test/ composer.lock vendor/
-	@echo "🧹 Cleaned generated files (run make generate to rebuild)"
+	@echo "✅ Regenerated into src/openapi"

@@ -1,0 +1,12 @@
+# prevent nested Composer/project files in this subfolder
+composer.json
+composer.lock
+README.md
+.gitignore
+phpunit.xml.dist
+.travis.yml
+Dockerfile
+Makefile
+# optional: skip docs/tests generated under this subfolder
+docs/**
+test/**
