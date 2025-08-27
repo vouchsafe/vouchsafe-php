@@ -8,7 +8,7 @@ For most pull requests, we request that you identify or create an associated iss
 
 This project has a combination of manually maintained code and code generated with [openapi-generator](https://github.com/OpenAPITools/openapi-generator). If your contribution involves changes to generated code, please call this out in the issue or pull request as we will likely need to make a change to the input OpenAPI specification before accepting the contribution.
 
-Everythng in the `/src/openapi` subfolder is generated code.
+Everything in the `/src/openapi` subfolder is generated code.
 
 ## Compatibility with supported language and runtime versions
 
