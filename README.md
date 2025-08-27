@@ -87,6 +87,19 @@ try {
 }
 ```
 
+## Development
+
+**[See the contribution guidelines for this project](https://github.com/vouchsafe/vouchsafe-php/blob/main/CONTRIBUTING.md)**
+
+Contributions including issues and pull requests are welcome.
+
+To run the project locally, clone the repo and run:
+
+```bash
+composer install
+make generate # regenerate the OpenAPI files from spec
+```
+
 ## Further reading
 
 - [Developer docs](https://help.vouchsafe.id/en/collections/12439003-developers)
