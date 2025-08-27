@@ -8,6 +8,7 @@ use Vouchsafe\OpenAPI\ApiException;
 use Vouchsafe\OpenAPI\Api\AuthenticationApi;
 use Vouchsafe\OpenAPI\Api\VerificationsApi;
 use Vouchsafe\OpenAPI\Api\SmartLookupsApi;
+use Vouchsafe\OpenAPI\Api\FlowsApi; // <-- NEW
 use Vouchsafe\OpenAPI\Model\AuthenticateInput;
 
 final class VouchsafeApiError extends \RuntimeException
@@ -17,11 +18,6 @@ final class VouchsafeApiError extends \RuntimeException
   /** @var mixed */
   public $responseBody;
 
-  /**
-   * @param int $statusCode
-   * @param mixed $responseBody
-   * @param string $message
-   */
   public function __construct($statusCode, $responseBody, $message)
   {
     parent::__construct($message, (int)$statusCode);
@@ -32,11 +28,8 @@ final class VouchsafeApiError extends \RuntimeException
 
 final class VouchsafeClient
 {
-  /** @var string */
   private $clientId;
-  /** @var string */
   private $clientSecret;
-  /** @var string */
   private $basePath = 'https://app.vouchsafe.id/api/v1';
 
   /** @var Configuration */
@@ -48,15 +41,14 @@ final class VouchsafeClient
   private $verificationsApi;
   /** @var SmartLookupsApi */
   private $smartLookupsApi;
+  /** @var FlowsApi */
+  private $flowsApi; // <-- NEW
 
   /** @var string|null */
   private $token = null;
   /** @var DateTimeImmutable|null */
   private $tokenExpiry = null;
 
-  /**
-   * @param array $opts ['client_id' => string, 'client_secret' => string]
-   */
   public function __construct(array $opts)
   {
     $this->clientId     = isset($opts['client_id']) ? (string)$opts['client_id'] : '';
@@ -70,9 +62,9 @@ final class VouchsafeClient
     $this->authenticationApi = new AuthenticationApi(null, $this->config);
     $this->verificationsApi  = new VerificationsApi(null, $this->config);
     $this->smartLookupsApi   = new SmartLookupsApi(null, $this->config);
+    $this->flowsApi          = new FlowsApi(null, $this->config); // <-- NEW
   }
 
-  /** Ensure we have a valid bearer token on the config. @return string */
   private function ensureAccessToken()
   {
     $now = new DateTimeImmutable('now');
@@ -103,7 +95,6 @@ final class VouchsafeClient
     return $this->token;
   }
 
-  /** Execute callable with auth + one 401 retry; normalize errors. */
   private function withErrorHandling($fn)
   {
     try {
@@ -111,7 +102,6 @@ final class VouchsafeClient
       return $fn();
     } catch (ApiException $e) {
       if ($e->getCode() === 401) {
-        // force refresh once
         $this->token = null;
         $this->tokenExpiry = null;
         $this->ensureAccessToken();
@@ -125,8 +115,6 @@ final class VouchsafeClient
       throw new VouchsafeApiError((int)$e->getCode(), $body, $msg);
     }
   }
-
-  /** High-level methods (Node parity) */
 
   public function getVerification(array $args)
   {
@@ -146,8 +134,6 @@ final class VouchsafeClient
 
   public function requestVerification(array $input)
   {
-    // If your generated method expects a model wrapper, wrap here:
-    // $body = new \Vouchsafe\OpenAPI\Model\RequestVerificationInput($input);
     return $this->withErrorHandling(function () use ($input) {
       return $this->verificationsApi->requestVerification($input);
     });
@@ -165,6 +151,21 @@ final class VouchsafeClient
     $postcode = isset($args['postcode']) ? (string)$args['postcode'] : '';
     return $this->withErrorHandling(function () use ($postcode) {
       return $this->smartLookupsApi->searchPostcode($postcode);
+    });
+  }
+
+  public function getFlow(array $args)
+  {
+    $id = isset($args['id']) ? (string)$args['id'] : '';
+    return $this->withErrorHandling(function () use ($id) {
+      return $this->flowsApi->getFlow($id);
+    });
+  }
+
+  public function listFlows()
+  {
+    return $this->withErrorHandling(function () {
+      return $this->flowsApi->listFlows();
     });
   }
 }

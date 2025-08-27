@@ -17,3 +17,6 @@ composer.phar
 
 .DS_Store
 composer.lock
+
+
+example.php

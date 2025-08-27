@@ -1,6 +1,6 @@
 <?php
 /**
- * VerificationsApi
+ * FlowsApi
  * PHP version 8.1
  *
  * @category Class
@@ -44,14 +44,14 @@ use Vouchsafe\OpenAPI\HeaderSelector;
 use Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * VerificationsApi Class Doc Comment
+ * FlowsApi Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class VerificationsApi
+class FlowsApi
 {
     /**
      * @var ClientInterface
@@ -75,13 +75,10 @@ class VerificationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getVerification' => [
+        'getFlow' => [
             'application/json',
         ],
-        'listVerifications' => [
-            'application/json',
-        ],
-        'requestVerification' => [
+        'listFlows' => [
             'application/json',
         ],
     ];
@@ -133,34 +130,34 @@ class VerificationsApi
     }
 
     /**
-     * Operation getVerification
+     * Operation getFlow
      *
-     * @param  string $id The verification ID returned when you requested it. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVerification'] to see the possible values for this operation
+     * @param  string $id The ID of the flow to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlow'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\Verification|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\Flow|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
-    public function getVerification($id, string $contentType = self::contentTypes['getVerification'][0])
+    public function getFlow($id, string $contentType = self::contentTypes['getFlow'][0])
     {
-        list($response) = $this->getVerificationWithHttpInfo($id, $contentType);
+        list($response) = $this->getFlowWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getVerificationWithHttpInfo
+     * Operation getFlowWithHttpInfo
      *
-     * @param  string $id The verification ID returned when you requested it. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVerification'] to see the possible values for this operation
+     * @param  string $id The ID of the flow to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlow'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\Verification|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\Flow|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getVerificationWithHttpInfo($id, string $contentType = self::contentTypes['getVerification'][0])
+    public function getFlowWithHttpInfo($id, string $contentType = self::contentTypes['getFlow'][0])
     {
-        $request = $this->getVerificationRequest($id, $contentType);
+        $request = $this->getFlowRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -188,7 +185,7 @@ class VerificationsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\Verification',
+                        '\Vouchsafe\OpenAPI\Model\Flow',
                         $request,
                         $response,
                     );
@@ -228,7 +225,7 @@ class VerificationsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Vouchsafe\OpenAPI\Model\Verification',
+                '\Vouchsafe\OpenAPI\Model\Flow',
                 $request,
                 $response,
             );
@@ -237,7 +234,7 @@ class VerificationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\Verification',
+                        '\Vouchsafe\OpenAPI\Model\Flow',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -274,17 +271,17 @@ class VerificationsApi
     }
 
     /**
-     * Operation getVerificationAsync
+     * Operation getFlowAsync
      *
-     * @param  string $id The verification ID returned when you requested it. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVerification'] to see the possible values for this operation
+     * @param  string $id The ID of the flow to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVerificationAsync($id, string $contentType = self::contentTypes['getVerification'][0])
+    public function getFlowAsync($id, string $contentType = self::contentTypes['getFlow'][0])
     {
-        return $this->getVerificationAsyncWithHttpInfo($id, $contentType)
+        return $this->getFlowAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -293,18 +290,18 @@ class VerificationsApi
     }
 
     /**
-     * Operation getVerificationAsyncWithHttpInfo
+     * Operation getFlowAsyncWithHttpInfo
      *
-     * @param  string $id The verification ID returned when you requested it. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVerification'] to see the possible values for this operation
+     * @param  string $id The ID of the flow to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVerificationAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getVerification'][0])
+    public function getFlowAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getFlow'][0])
     {
-        $returnType = '\Vouchsafe\OpenAPI\Model\Verification';
-        $request = $this->getVerificationRequest($id, $contentType);
+        $returnType = '\Vouchsafe\OpenAPI\Model\Flow';
+        $request = $this->getFlowRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -343,26 +340,26 @@ class VerificationsApi
     }
 
     /**
-     * Create request for operation 'getVerification'
+     * Create request for operation 'getFlow'
      *
-     * @param  string $id The verification ID returned when you requested it. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVerification'] to see the possible values for this operation
+     * @param  string $id The ID of the flow to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlow'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getVerificationRequest($id, string $contentType = self::contentTypes['getVerification'][0])
+    public function getFlowRequest($id, string $contentType = self::contentTypes['getFlow'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getVerification'
+                'Missing the required parameter $id when calling getFlow'
             );
         }
 
 
-        $resourcePath = '/verifications/{id}';
+        $resourcePath = '/flows/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -439,34 +436,32 @@ class VerificationsApi
     }
 
     /**
-     * Operation listVerifications
+     * Operation listFlows
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\Verification[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\Flow[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
-    public function listVerifications($status = null, string $contentType = self::contentTypes['listVerifications'][0])
+    public function listFlows(string $contentType = self::contentTypes['listFlows'][0])
     {
-        list($response) = $this->listVerificationsWithHttpInfo($status, $contentType);
+        list($response) = $this->listFlowsWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation listVerificationsWithHttpInfo
+     * Operation listFlowsWithHttpInfo
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\Verification[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\Flow[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listVerificationsWithHttpInfo($status = null, string $contentType = self::contentTypes['listVerifications'][0])
+    public function listFlowsWithHttpInfo(string $contentType = self::contentTypes['listFlows'][0])
     {
-        $request = $this->listVerificationsRequest($status, $contentType);
+        $request = $this->listFlowsRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -494,7 +489,7 @@ class VerificationsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\Verification[]',
+                        '\Vouchsafe\OpenAPI\Model\Flow[]',
                         $request,
                         $response,
                     );
@@ -528,7 +523,7 @@ class VerificationsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Vouchsafe\OpenAPI\Model\Verification[]',
+                '\Vouchsafe\OpenAPI\Model\Flow[]',
                 $request,
                 $response,
             );
@@ -537,7 +532,7 @@ class VerificationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\Verification[]',
+                        '\Vouchsafe\OpenAPI\Model\Flow[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -566,17 +561,16 @@ class VerificationsApi
     }
 
     /**
-     * Operation listVerificationsAsync
+     * Operation listFlowsAsync
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVerificationsAsync($status = null, string $contentType = self::contentTypes['listVerifications'][0])
+    public function listFlowsAsync(string $contentType = self::contentTypes['listFlows'][0])
     {
-        return $this->listVerificationsAsyncWithHttpInfo($status, $contentType)
+        return $this->listFlowsAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -585,18 +579,17 @@ class VerificationsApi
     }
 
     /**
-     * Operation listVerificationsAsyncWithHttpInfo
+     * Operation listFlowsAsyncWithHttpInfo
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listVerificationsAsyncWithHttpInfo($status = null, string $contentType = self::contentTypes['listVerifications'][0])
+    public function listFlowsAsyncWithHttpInfo(string $contentType = self::contentTypes['listFlows'][0])
     {
-        $returnType = '\Vouchsafe\OpenAPI\Model\Verification[]';
-        $request = $this->listVerificationsRequest($status, $contentType);
+        $returnType = '\Vouchsafe\OpenAPI\Model\Flow[]';
+        $request = $this->listFlowsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -635,35 +628,24 @@ class VerificationsApi
     }
 
     /**
-     * Create request for operation 'listVerifications'
+     * Create request for operation 'listFlows'
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listVerificationsRequest($status = null, string $contentType = self::contentTypes['listVerifications'][0])
+    public function listFlowsRequest(string $contentType = self::contentTypes['listFlows'][0])
     {
 
 
-
-        $resourcePath = '/verifications';
+        $resourcePath = '/flows';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status,
-            'status', // param base name
-            'Status', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
 
 
 
@@ -719,297 +701,6 @@ class VerificationsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation requestVerification
-     *
-     * @param  \Vouchsafe\OpenAPI\Model\RequestVerificationInput $request_verification_input request_verification_input (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestVerification'] to see the possible values for this operation
-     *
-     * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
-     */
-    public function requestVerification($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
-    {
-        list($response) = $this->requestVerificationWithHttpInfo($request_verification_input, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation requestVerificationWithHttpInfo
-     *
-     * @param  \Vouchsafe\OpenAPI\Model\RequestVerificationInput $request_verification_input (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestVerification'] to see the possible values for this operation
-     *
-     * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function requestVerificationWithHttpInfo($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
-    {
-        $request = $this->requestVerificationRequest($request_verification_input, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\RequestVerificationResponse',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $request,
-                        $response,
-                    );
-                case 401:
-                    return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Vouchsafe\OpenAPI\Model\RequestVerificationResponse',
-                $request,
-                $response,
-            );
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\RequestVerificationResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-        
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation requestVerificationAsync
-     *
-     * @param  \Vouchsafe\OpenAPI\Model\RequestVerificationInput $request_verification_input (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestVerification'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function requestVerificationAsync($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
-    {
-        return $this->requestVerificationAsyncWithHttpInfo($request_verification_input, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation requestVerificationAsyncWithHttpInfo
-     *
-     * @param  \Vouchsafe\OpenAPI\Model\RequestVerificationInput $request_verification_input (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestVerification'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function requestVerificationAsyncWithHttpInfo($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
-    {
-        $returnType = '\Vouchsafe\OpenAPI\Model\RequestVerificationResponse';
-        $request = $this->requestVerificationRequest($request_verification_input, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'requestVerification'
-     *
-     * @param  \Vouchsafe\OpenAPI\Model\RequestVerificationInput $request_verification_input (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['requestVerification'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function requestVerificationRequest($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
-    {
-
-        // verify the required parameter 'request_verification_input' is set
-        if ($request_verification_input === null || (is_array($request_verification_input) && count($request_verification_input) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request_verification_input when calling requestVerification'
-            );
-        }
-
-
-        $resourcePath = '/verifications';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($request_verification_input)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_verification_input));
-            } else {
-                $httpBody = $request_verification_input;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

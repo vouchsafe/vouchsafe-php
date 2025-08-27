@@ -1,6 +1,7 @@
 .php-cs-fixer.dist.php
 git_push.sh
 src/Api/AuthenticationApi.php
+src/Api/FlowsApi.php
 src/Api/SmartLookupsApi.php
 src/Api/VerificationsApi.php
 src/ApiException.php
@@ -13,6 +14,7 @@ src/Model/AuthenticateInput.php
 src/Model/AuthenticateResponse.php
 src/Model/CheckResult.php
 src/Model/CheckState.php
+src/Model/Flow.php
 src/Model/GetSmartLookupResponse.php
 src/Model/ModelInterface.php
 src/Model/PostcodeResponse.php
