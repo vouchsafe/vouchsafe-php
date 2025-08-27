@@ -32,8 +32,14 @@ echo $res->getUrl();
 
 ### List verifications
 
-```ts
-$verifications = $client->listVerifications();
+```php
+$list = $client->listVerifications(['status' => 'InProgress']);
+```
+
+### Get a specific verification
+
+```php
+$verification = $client->getVerification(['id' => 'abc123']);
 ```
 
 ### Sandbox mode
