@@ -1,6 +1,6 @@
 # Vouchsafe PHP
 
-The Vouchsafe Node library provides convenient, typed access to the Vouchsafe API for applications written in server-side JavaScript.
+The Vouchsafe PHP library provides convenient, typed access to the Vouchsafe API for applications written in PHP.
 
 ## Requirements
 
