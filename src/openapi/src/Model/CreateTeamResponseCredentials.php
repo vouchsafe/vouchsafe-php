@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestVerificationResponse
+ * CreateTeamResponseCredentials
  *
  * PHP version 8.1
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RequestVerificationResponse Class Doc Comment
+ * CreateTeamResponseCredentials Class Doc Comment
  *
  * @category Class
+ * @description Production API credentials for this team
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateTeamResponseCredentials implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RequestVerificationResponse';
+    protected static $openAPIModelName = 'CreateTeamResponse_credentials';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +59,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
-        'id' => 'string',
-        'workflow_id' => 'string',
-        'expires_at' => 'string'
+        'client_secret' => 'string',
+        'client_id' => 'string',
+        'environment' => '\Vouchsafe\OpenAPI\Model\Model36EnumsEnvironment',
+        'name' => 'string'
     ];
 
     /**
@@ -72,10 +73,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
-        'id' => null,
-        'workflow_id' => null,
-        'expires_at' => null
+        'client_secret' => null,
+        'client_id' => null,
+        'environment' => null,
+        'name' => null
     ];
 
     /**
@@ -84,10 +85,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
-        'id' => false,
-        'workflow_id' => false,
-        'expires_at' => false
+        'client_secret' => false,
+        'client_id' => false,
+        'environment' => false,
+        'name' => false
     ];
 
     /**
@@ -176,10 +177,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
-        'id' => 'id',
-        'workflow_id' => 'workflow_id',
-        'expires_at' => 'expires_at'
+        'client_secret' => 'client_secret',
+        'client_id' => 'client_id',
+        'environment' => 'environment',
+        'name' => 'name'
     ];
 
     /**
@@ -188,10 +189,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
-        'id' => 'setId',
-        'workflow_id' => 'setWorkflowId',
-        'expires_at' => 'setExpiresAt'
+        'client_secret' => 'setClientSecret',
+        'client_id' => 'setClientId',
+        'environment' => 'setEnvironment',
+        'name' => 'setName'
     ];
 
     /**
@@ -200,10 +201,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
-        'id' => 'getId',
-        'workflow_id' => 'getWorkflowId',
-        'expires_at' => 'getExpiresAt'
+        'client_secret' => 'getClientSecret',
+        'client_id' => 'getClientId',
+        'environment' => 'getEnvironment',
+        'name' => 'getName'
     ];
 
     /**
@@ -263,10 +264,10 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('client_secret', $data ?? [], null);
+        $this->setIfExists('client_id', $data ?? [], null);
+        $this->setIfExists('environment', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -296,14 +297,17 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['client_secret'] === null) {
+            $invalidProperties[] = "'client_secret' can't be null";
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['client_id'] === null) {
+            $invalidProperties[] = "'client_id' can't be null";
         }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
+        if ($this->container['environment'] === null) {
+            $invalidProperties[] = "'environment' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,109 +325,109 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets url
+     * Gets client_secret
      *
      * @return string
      */
-    public function getUrl()
+    public function getClientSecret()
     {
-        return $this->container['url'];
+        return $this->container['client_secret'];
     }
 
     /**
-     * Sets url
+     * Sets client_secret
      *
-     * @param string $url A unique URL to redirect the user to or embed in an iframe
+     * @param string $client_secret Client secret for API authentication
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setClientSecret($client_secret)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        if (is_null($client_secret)) {
+            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
         }
-        $this->container['url'] = $url;
+        $this->container['client_secret'] = $client_secret;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets client_id
      *
      * @return string
      */
-    public function getId()
+    public function getClientId()
     {
-        return $this->container['id'];
+        return $this->container['client_id'];
     }
 
     /**
-     * Sets id
+     * Sets client_id
      *
-     * @param string $id A unique ID for the verification session, for you to track progress
+     * @param string $client_id Client ID for API authentication
      *
      * @return self
      */
-    public function setId($id)
+    public function setClientId($client_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($client_id)) {
+            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['client_id'] = $client_id;
 
         return $this;
     }
 
     /**
-     * Gets workflow_id
+     * Gets environment
      *
-     * @return string|null
+     * @return \Vouchsafe\OpenAPI\Model\Model36EnumsEnvironment
      */
-    public function getWorkflowId()
+    public function getEnvironment()
     {
-        return $this->container['workflow_id'];
+        return $this->container['environment'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets environment
      *
-     * @param string|null $workflow_id The flow it belongs to
+     * @param \Vouchsafe\OpenAPI\Model\Model36EnumsEnvironment $environment environment
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setEnvironment($environment)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($environment)) {
+            throw new \InvalidArgumentException('non-nullable environment cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['environment'] = $environment;
 
         return $this;
     }
 
     /**
-     * Gets expires_at
+     * Gets name
      *
      * @return string
      */
-    public function getExpiresAt()
+    public function getName()
     {
-        return $this->container['expires_at'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets expires_at
+     * Sets name
      *
-     * @param string $expires_at When the user will stop getting reminders
+     * @param string $name Name of the API key
      *
      * @return self
      */
-    public function setExpiresAt($expires_at)
+    public function setName($name)
     {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['expires_at'] = $expires_at;
+        $this->container['name'] = $name;
 
         return $this;
     }

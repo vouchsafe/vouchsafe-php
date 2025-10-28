@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestVerificationResponse
+ * Team
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RequestVerificationResponse Class Doc Comment
+ * Team Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class Team implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RequestVerificationResponse';
+    protected static $openAPIModelName = 'Team';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
         'id' => 'string',
-        'workflow_id' => 'string',
-        'expires_at' => 'string'
+        'name' => 'string',
+        'public_name' => 'string',
+        'plan' => 'string',
+        'logo_url' => 'string',
+        'updated_at' => 'string',
+        'created_at' => 'string'
     ];
 
     /**
@@ -72,10 +75,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
         'id' => null,
-        'workflow_id' => null,
-        'expires_at' => null
+        'name' => null,
+        'public_name' => null,
+        'plan' => null,
+        'logo_url' => null,
+        'updated_at' => null,
+        'created_at' => null
     ];
 
     /**
@@ -84,10 +90,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
         'id' => false,
-        'workflow_id' => false,
-        'expires_at' => false
+        'name' => false,
+        'public_name' => false,
+        'plan' => false,
+        'logo_url' => false,
+        'updated_at' => false,
+        'created_at' => false
     ];
 
     /**
@@ -176,10 +185,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
         'id' => 'id',
-        'workflow_id' => 'workflow_id',
-        'expires_at' => 'expires_at'
+        'name' => 'name',
+        'public_name' => 'public_name',
+        'plan' => 'plan',
+        'logo_url' => 'logo_url',
+        'updated_at' => 'updated_at',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -188,10 +200,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
         'id' => 'setId',
-        'workflow_id' => 'setWorkflowId',
-        'expires_at' => 'setExpiresAt'
+        'name' => 'setName',
+        'public_name' => 'setPublicName',
+        'plan' => 'setPlan',
+        'logo_url' => 'setLogoUrl',
+        'updated_at' => 'setUpdatedAt',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -200,10 +215,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
         'id' => 'getId',
-        'workflow_id' => 'getWorkflowId',
-        'expires_at' => 'getExpiresAt'
+        'name' => 'getName',
+        'public_name' => 'getPublicName',
+        'plan' => 'getPlan',
+        'logo_url' => 'getLogoUrl',
+        'updated_at' => 'getUpdatedAt',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -247,6 +265,25 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
+    public const PLAN_TRIAL = 'Trial';
+    public const PLAN_PAYG = 'PAYG';
+    public const PLAN_FLEX = 'Flex';
+    public const PLAN_ENTERPRISE = 'Enterprise';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPlanAllowableValues()
+    {
+        return [
+            self::PLAN_TRIAL,
+            self::PLAN_PAYG,
+            self::PLAN_FLEX,
+            self::PLAN_ENTERPRISE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -263,10 +300,13 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('public_name', $data ?? [], null);
+        $this->setIfExists('plan', $data ?? [], null);
+        $this->setIfExists('logo_url', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -296,14 +336,35 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['public_name'] === null) {
+            $invalidProperties[] = "'public_name' can't be null";
+        }
+        if ($this->container['plan'] === null) {
+            $invalidProperties[] = "'plan' can't be null";
+        }
+        $allowedValues = $this->getPlanAllowableValues();
+        if (!is_null($this->container['plan']) && !in_array($this->container['plan'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'plan', must be one of '%s'",
+                $this->container['plan'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['logo_url'] === null) {
+            $invalidProperties[] = "'logo_url' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,33 +382,6 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url A unique URL to redirect the user to or embed in an iframe
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
      * Gets id
      *
      * @return string
@@ -360,7 +394,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets id
      *
-     * @param string $id A unique ID for the verification session, for you to track progress
+     * @param string $id The client ID of the team, as shown in the dashboard
      *
      * @return self
      */
@@ -375,55 +409,173 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets workflow_id
+     * Gets name
      *
-     * @return string|null
+     * @return string
      */
-    public function getWorkflowId()
+    public function getName()
     {
-        return $this->container['workflow_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets name
      *
-     * @param string|null $workflow_id The flow it belongs to
+     * @param string $name The name of the team
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setName($name)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets expires_at
+     * Gets public_name
      *
      * @return string
      */
-    public function getExpiresAt()
+    public function getPublicName()
     {
-        return $this->container['expires_at'];
+        return $this->container['public_name'];
     }
 
     /**
-     * Sets expires_at
+     * Sets public_name
      *
-     * @param string $expires_at When the user will stop getting reminders
+     * @param string $public_name The public name of the team, shown in end-user facing screens and communications. If set, overrides the name.
      *
      * @return self
      */
-    public function setExpiresAt($expires_at)
+    public function setPublicName($public_name)
     {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        if (is_null($public_name)) {
+            throw new \InvalidArgumentException('non-nullable public_name cannot be null');
         }
-        $this->container['expires_at'] = $expires_at;
+        $this->container['public_name'] = $public_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan
+     *
+     * @return string
+     */
+    public function getPlan()
+    {
+        return $this->container['plan'];
+    }
+
+    /**
+     * Sets plan
+     *
+     * @param string $plan Which plan is the team on?
+     *
+     * @return self
+     */
+    public function setPlan($plan)
+    {
+        if (is_null($plan)) {
+            throw new \InvalidArgumentException('non-nullable plan cannot be null');
+        }
+        $allowedValues = $this->getPlanAllowableValues();
+        if (!in_array($plan, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'plan', must be one of '%s'",
+                    $plan,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['plan'] = $plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets logo_url
+     *
+     * @return string
+     */
+    public function getLogoUrl()
+    {
+        return $this->container['logo_url'];
+    }
+
+    /**
+     * Sets logo_url
+     *
+     * @param string $logo_url Path to the team's logo image
+     *
+     * @return self
+     */
+    public function setLogoUrl($logo_url)
+    {
+        if (is_null($logo_url)) {
+            throw new \InvalidArgumentException('non-nullable logo_url cannot be null');
+        }
+        $this->container['logo_url'] = $logo_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param string $updated_at When the team's details were last changed, formatted as an ISO 8601 string
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at When the team was created, formatted as an ISO 8601 string
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

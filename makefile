@@ -6,6 +6,7 @@ GEN_OPTS= \
   -g php \
   -o src/openapi \
   -p packageName=Vouchsafe,invokerPackage=Vouchsafe\\OpenAPI,srcBasePath=src \
+  --type-mappings date-time=string,DateTime=string \
   --skip-validate-spec
 
 generate:

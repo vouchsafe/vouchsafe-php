@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestVerificationResponse
+ * CreateTeamResponse
  *
  * PHP version 8.1
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RequestVerificationResponse Class Doc Comment
+ * CreateTeamResponse Class Doc Comment
  *
  * @category Class
+ * @description Response from creating a new team
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateTeamResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RequestVerificationResponse';
+    protected static $openAPIModelName = 'CreateTeamResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +59,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
         'id' => 'string',
-        'workflow_id' => 'string',
-        'expires_at' => 'string'
+        'name' => 'string',
+        'public_name' => 'string',
+        'created_at' => 'string',
+        'credentials' => '\Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials'
     ];
 
     /**
@@ -72,10 +74,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
         'id' => null,
-        'workflow_id' => null,
-        'expires_at' => null
+        'name' => null,
+        'public_name' => null,
+        'created_at' => null,
+        'credentials' => null
     ];
 
     /**
@@ -84,10 +87,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
         'id' => false,
-        'workflow_id' => false,
-        'expires_at' => false
+        'name' => false,
+        'public_name' => false,
+        'created_at' => false,
+        'credentials' => false
     ];
 
     /**
@@ -176,10 +180,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
         'id' => 'id',
-        'workflow_id' => 'workflow_id',
-        'expires_at' => 'expires_at'
+        'name' => 'name',
+        'public_name' => 'public_name',
+        'created_at' => 'created_at',
+        'credentials' => 'credentials'
     ];
 
     /**
@@ -188,10 +193,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
         'id' => 'setId',
-        'workflow_id' => 'setWorkflowId',
-        'expires_at' => 'setExpiresAt'
+        'name' => 'setName',
+        'public_name' => 'setPublicName',
+        'created_at' => 'setCreatedAt',
+        'credentials' => 'setCredentials'
     ];
 
     /**
@@ -200,10 +206,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
         'id' => 'getId',
-        'workflow_id' => 'getWorkflowId',
-        'expires_at' => 'getExpiresAt'
+        'name' => 'getName',
+        'public_name' => 'getPublicName',
+        'created_at' => 'getCreatedAt',
+        'credentials' => 'getCredentials'
     ];
 
     /**
@@ -263,10 +270,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('public_name', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('credentials', $data ?? [], null);
     }
 
     /**
@@ -296,14 +304,17 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['credentials'] === null) {
+            $invalidProperties[] = "'credentials' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,33 +332,6 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url A unique URL to redirect the user to or embed in an iframe
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
      * Gets id
      *
      * @return string
@@ -360,7 +344,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets id
      *
-     * @param string $id A unique ID for the verification session, for you to track progress
+     * @param string $id Unique identifier for the created team
      *
      * @return self
      */
@@ -375,55 +359,109 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets workflow_id
+     * Gets name
      *
-     * @return string|null
+     * @return string
      */
-    public function getWorkflowId()
+    public function getName()
     {
-        return $this->container['workflow_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets name
      *
-     * @param string|null $workflow_id The flow it belongs to
+     * @param string $name The name of the team.
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setName($name)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets expires_at
+     * Gets public_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getExpiresAt()
+    public function getPublicName()
     {
-        return $this->container['expires_at'];
+        return $this->container['public_name'];
     }
 
     /**
-     * Sets expires_at
+     * Sets public_name
      *
-     * @param string $expires_at When the user will stop getting reminders
+     * @param string|null $public_name The public name of the team, shown in end-user facing screens and communications. If set, overrides the name.
      *
      * @return self
      */
-    public function setExpiresAt($expires_at)
+    public function setPublicName($public_name)
     {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        if (is_null($public_name)) {
+            throw new \InvalidArgumentException('non-nullable public_name cannot be null');
         }
-        $this->container['expires_at'] = $expires_at;
+        $this->container['public_name'] = $public_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at ISO 8601 timestamp of team creation
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets credentials
+     *
+     * @return \Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials
+     */
+    public function getCredentials()
+    {
+        return $this->container['credentials'];
+    }
+
+    /**
+     * Sets credentials
+     *
+     * @param \Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials $credentials credentials
+     *
+     * @return self
+     */
+    public function setCredentials($credentials)
+    {
+        if (is_null($credentials)) {
+            throw new \InvalidArgumentException('non-nullable credentials cannot be null');
+        }
+        $this->container['credentials'] = $credentials;
 
         return $this;
     }

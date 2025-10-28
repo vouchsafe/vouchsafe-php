@@ -1,6 +1,6 @@
 <?php
 /**
- * RequestVerificationResponse
+ * CreateTeamInput
  *
  * PHP version 8.1
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RequestVerificationResponse Class Doc Comment
+ * CreateTeamInput Class Doc Comment
  *
  * @category Class
+ * @description Input for creating a new team
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreateTeamInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RequestVerificationResponse';
+    protected static $openAPIModelName = 'CreateTeamInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +59,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
-        'id' => 'string',
-        'workflow_id' => 'string',
-        'expires_at' => 'string'
+        'name' => 'string',
+        'public_name' => 'string',
+        'logo_url' => 'string',
+        'team_admin_emails' => 'string[]',
+        'flow_template' => '\Vouchsafe\OpenAPI\Model\FlowTemplate'
     ];
 
     /**
@@ -72,10 +74,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'url' => null,
-        'id' => null,
-        'workflow_id' => null,
-        'expires_at' => null
+        'name' => null,
+        'public_name' => null,
+        'logo_url' => null,
+        'team_admin_emails' => null,
+        'flow_template' => null
     ];
 
     /**
@@ -84,10 +87,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'url' => false,
-        'id' => false,
-        'workflow_id' => false,
-        'expires_at' => false
+        'name' => false,
+        'public_name' => false,
+        'logo_url' => false,
+        'team_admin_emails' => false,
+        'flow_template' => false
     ];
 
     /**
@@ -176,10 +180,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
-        'id' => 'id',
-        'workflow_id' => 'workflow_id',
-        'expires_at' => 'expires_at'
+        'name' => 'name',
+        'public_name' => 'public_name',
+        'logo_url' => 'logo_url',
+        'team_admin_emails' => 'team_admin_emails',
+        'flow_template' => 'flow_template'
     ];
 
     /**
@@ -188,10 +193,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
-        'id' => 'setId',
-        'workflow_id' => 'setWorkflowId',
-        'expires_at' => 'setExpiresAt'
+        'name' => 'setName',
+        'public_name' => 'setPublicName',
+        'logo_url' => 'setLogoUrl',
+        'team_admin_emails' => 'setTeamAdminEmails',
+        'flow_template' => 'setFlowTemplate'
     ];
 
     /**
@@ -200,10 +206,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
-        'id' => 'getId',
-        'workflow_id' => 'getWorkflowId',
-        'expires_at' => 'getExpiresAt'
+        'name' => 'getName',
+        'public_name' => 'getPublicName',
+        'logo_url' => 'getLogoUrl',
+        'team_admin_emails' => 'getTeamAdminEmails',
+        'flow_template' => 'getFlowTemplate'
     ];
 
     /**
@@ -263,10 +270,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('public_name', $data ?? [], null);
+        $this->setIfExists('logo_url', $data ?? [], null);
+        $this->setIfExists('team_admin_emails', $data ?? [], null);
+        $this->setIfExists('flow_template', $data ?? [], null);
     }
 
     /**
@@ -296,14 +304,11 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
+        if ($this->container['team_admin_emails'] === null) {
+            $invalidProperties[] = "'team_admin_emails' can't be null";
         }
         return $invalidProperties;
     }
@@ -321,109 +326,136 @@ class RequestVerificationResponse implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets url
+     * Gets name
      *
      * @return string
      */
-    public function getUrl()
+    public function getName()
     {
-        return $this->container['url'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets url
+     * Sets name
      *
-     * @param string $url A unique URL to redirect the user to or embed in an iframe
+     * @param string $name The name of the team.
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setName($name)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['url'] = $url;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id A unique ID for the verification session, for you to track progress
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets workflow_id
+     * Gets public_name
      *
      * @return string|null
      */
-    public function getWorkflowId()
+    public function getPublicName()
     {
-        return $this->container['workflow_id'];
+        return $this->container['public_name'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets public_name
      *
-     * @param string|null $workflow_id The flow it belongs to
+     * @param string|null $public_name The public name of the team, shown in end-user facing screens and communications. If set, overrides the name.
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setPublicName($public_name)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($public_name)) {
+            throw new \InvalidArgumentException('non-nullable public_name cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['public_name'] = $public_name;
 
         return $this;
     }
 
     /**
-     * Gets expires_at
+     * Gets logo_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getExpiresAt()
+    public function getLogoUrl()
     {
-        return $this->container['expires_at'];
+        return $this->container['logo_url'];
     }
 
     /**
-     * Sets expires_at
+     * Sets logo_url
      *
-     * @param string $expires_at When the user will stop getting reminders
+     * @param string|null $logo_url Path to the team's logo image.
      *
      * @return self
      */
-    public function setExpiresAt($expires_at)
+    public function setLogoUrl($logo_url)
     {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        if (is_null($logo_url)) {
+            throw new \InvalidArgumentException('non-nullable logo_url cannot be null');
         }
-        $this->container['expires_at'] = $expires_at;
+        $this->container['logo_url'] = $logo_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets team_admin_emails
+     *
+     * @return string[]
+     */
+    public function getTeamAdminEmails()
+    {
+        return $this->container['team_admin_emails'];
+    }
+
+    /**
+     * Sets team_admin_emails
+     *
+     * @param string[] $team_admin_emails Email addresses of users to add as team administrators.
+     *
+     * @return self
+     */
+    public function setTeamAdminEmails($team_admin_emails)
+    {
+        if (is_null($team_admin_emails)) {
+            throw new \InvalidArgumentException('non-nullable team_admin_emails cannot be null');
+        }
+        $this->container['team_admin_emails'] = $team_admin_emails;
+
+        return $this;
+    }
+
+    /**
+     * Gets flow_template
+     *
+     * @return \Vouchsafe\OpenAPI\Model\FlowTemplate|null
+     */
+    public function getFlowTemplate()
+    {
+        return $this->container['flow_template'];
+    }
+
+    /**
+     * Sets flow_template
+     *
+     * @param \Vouchsafe\OpenAPI\Model\FlowTemplate|null $flow_template flow_template
+     *
+     * @return self
+     */
+    public function setFlowTemplate($flow_template)
+    {
+        if (is_null($flow_template)) {
+            throw new \InvalidArgumentException('non-nullable flow_template cannot be null');
+        }
+        $this->container['flow_template'] = $flow_template;
 
         return $this;
     }
