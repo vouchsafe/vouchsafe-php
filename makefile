@@ -10,6 +10,6 @@ GEN_OPTS= \
   --skip-validate-spec
 
 generate:
-	openapi-generator generate -i $(SPEC_URL) $(GEN_OPTS)
+	docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i $(SPEC_URL) $(GEN_OPTS) -o /local/src/openapi
 	composer dump-autoload
-	@echo "✅ Regenerated into src/openapi"
+	@echo "✅ Regenerated  into src/openapi"
