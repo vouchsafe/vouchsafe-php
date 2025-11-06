@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthenticateInput
+ * RecordCreditBureauVerificationChecksCheckResult
  *
  * PHP version 8.1
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * AuthenticateInput Class Doc Comment
+ * RecordCreditBureauVerificationChecksCheckResult Class Doc Comment
  *
  * @category Class
+ * @description Construct a type with a set of properties K of type T
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class RecordCreditBureauVerificationChecksCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AuthenticateInput';
+    protected static $openAPIModelName = 'Record_CreditBureauVerificationChecks.CheckResult_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'client_id' => 'string',
-        'client_secret' => 'string'
+        'identity_match' => '\Vouchsafe\OpenAPI\Model\CheckResult',
+        'residency_match' => '\Vouchsafe\OpenAPI\Model\CheckResult'
     ];
 
     /**
@@ -70,8 +71,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'client_id' => null,
-        'client_secret' => null
+        'identity_match' => null,
+        'residency_match' => null
     ];
 
     /**
@@ -80,8 +81,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'client_id' => false,
-        'client_secret' => false
+        'identity_match' => false,
+        'residency_match' => false
     ];
 
     /**
@@ -170,8 +171,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'client_id' => 'client_id',
-        'client_secret' => 'client_secret'
+        'identity_match' => 'IDENTITY_MATCH',
+        'residency_match' => 'RESIDENCY_MATCH'
     ];
 
     /**
@@ -180,8 +181,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'client_id' => 'setClientId',
-        'client_secret' => 'setClientSecret'
+        'identity_match' => 'setIdentityMatch',
+        'residency_match' => 'setResidencyMatch'
     ];
 
     /**
@@ -190,8 +191,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'client_id' => 'getClientId',
-        'client_secret' => 'getClientSecret'
+        'identity_match' => 'getIdentityMatch',
+        'residency_match' => 'getResidencyMatch'
     ];
 
     /**
@@ -251,8 +252,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('client_id', $data ?? [], null);
-        $this->setIfExists('client_secret', $data ?? [], null);
+        $this->setIfExists('identity_match', $data ?? [], null);
+        $this->setIfExists('residency_match', $data ?? [], null);
     }
 
     /**
@@ -282,11 +283,11 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['client_id'] === null) {
-            $invalidProperties[] = "'client_id' can't be null";
+        if ($this->container['identity_match'] === null) {
+            $invalidProperties[] = "'identity_match' can't be null";
         }
-        if ($this->container['client_secret'] === null) {
-            $invalidProperties[] = "'client_secret' can't be null";
+        if ($this->container['residency_match'] === null) {
+            $invalidProperties[] = "'residency_match' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +305,55 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets client_id
+     * Gets identity_match
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\CheckResult
      */
-    public function getClientId()
+    public function getIdentityMatch()
     {
-        return $this->container['client_id'];
+        return $this->container['identity_match'];
     }
 
     /**
-     * Sets client_id
+     * Sets identity_match
      *
-     * @param string $client_id client_id
+     * @param \Vouchsafe\OpenAPI\Model\CheckResult $identity_match identity_match
      *
      * @return self
      */
-    public function setClientId($client_id)
+    public function setIdentityMatch($identity_match)
     {
-        if (is_null($client_id)) {
-            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
+        if (is_null($identity_match)) {
+            throw new \InvalidArgumentException('non-nullable identity_match cannot be null');
         }
-        $this->container['client_id'] = $client_id;
+        $this->container['identity_match'] = $identity_match;
 
         return $this;
     }
 
     /**
-     * Gets client_secret
+     * Gets residency_match
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\CheckResult
      */
-    public function getClientSecret()
+    public function getResidencyMatch()
     {
-        return $this->container['client_secret'];
+        return $this->container['residency_match'];
     }
 
     /**
-     * Sets client_secret
+     * Sets residency_match
      *
-     * @param string $client_secret client_secret
+     * @param \Vouchsafe\OpenAPI\Model\CheckResult $residency_match residency_match
      *
      * @return self
      */
-    public function setClientSecret($client_secret)
+    public function setResidencyMatch($residency_match)
     {
-        if (is_null($client_secret)) {
-            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
+        if (is_null($residency_match)) {
+            throw new \InvalidArgumentException('non-nullable residency_match cannot be null');
         }
-        $this->container['client_secret'] = $client_secret;
+        $this->container['residency_match'] = $residency_match;
 
         return $this;
     }

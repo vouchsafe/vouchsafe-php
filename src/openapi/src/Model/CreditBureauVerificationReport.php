@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthenticateInput
+ * CreditBureauVerificationReport
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * AuthenticateInput Class Doc Comment
+ * CreditBureauVerificationReport Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class CreditBureauVerificationReport implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AuthenticateInput';
+    protected static $openAPIModelName = 'CreditBureauVerificationReport';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'client_id' => 'string',
-        'client_secret' => 'string'
+        'state' => '\Vouchsafe\OpenAPI\Model\CheckState',
+        'checks' => '\Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult'
     ];
 
     /**
@@ -70,8 +70,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'client_id' => null,
-        'client_secret' => null
+        'state' => null,
+        'checks' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'client_id' => false,
-        'client_secret' => false
+        'state' => false,
+        'checks' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'client_id' => 'client_id',
-        'client_secret' => 'client_secret'
+        'state' => 'state',
+        'checks' => 'checks'
     ];
 
     /**
@@ -180,8 +180,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'client_id' => 'setClientId',
-        'client_secret' => 'setClientSecret'
+        'state' => 'setState',
+        'checks' => 'setChecks'
     ];
 
     /**
@@ -190,8 +190,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'client_id' => 'getClientId',
-        'client_secret' => 'getClientSecret'
+        'state' => 'getState',
+        'checks' => 'getChecks'
     ];
 
     /**
@@ -251,8 +251,8 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('client_id', $data ?? [], null);
-        $this->setIfExists('client_secret', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('checks', $data ?? [], null);
     }
 
     /**
@@ -282,11 +282,11 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['client_id'] === null) {
-            $invalidProperties[] = "'client_id' can't be null";
+        if ($this->container['state'] === null) {
+            $invalidProperties[] = "'state' can't be null";
         }
-        if ($this->container['client_secret'] === null) {
-            $invalidProperties[] = "'client_secret' can't be null";
+        if ($this->container['checks'] === null) {
+            $invalidProperties[] = "'checks' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +304,55 @@ class AuthenticateInput implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets client_id
+     * Gets state
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\CheckState
      */
-    public function getClientId()
+    public function getState()
     {
-        return $this->container['client_id'];
+        return $this->container['state'];
     }
 
     /**
-     * Sets client_id
+     * Sets state
      *
-     * @param string $client_id client_id
+     * @param \Vouchsafe\OpenAPI\Model\CheckState $state state
      *
      * @return self
      */
-    public function setClientId($client_id)
+    public function setState($state)
     {
-        if (is_null($client_id)) {
-            throw new \InvalidArgumentException('non-nullable client_id cannot be null');
+        if (is_null($state)) {
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
         }
-        $this->container['client_id'] = $client_id;
+        $this->container['state'] = $state;
 
         return $this;
     }
 
     /**
-     * Gets client_secret
+     * Gets checks
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult
      */
-    public function getClientSecret()
+    public function getChecks()
     {
-        return $this->container['client_secret'];
+        return $this->container['checks'];
     }
 
     /**
-     * Sets client_secret
+     * Sets checks
      *
-     * @param string $client_secret client_secret
+     * @param \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult $checks checks
      *
      * @return self
      */
-    public function setClientSecret($client_secret)
+    public function setChecks($checks)
     {
-        if (is_null($client_secret)) {
-            throw new \InvalidArgumentException('non-nullable client_secret cannot be null');
+        if (is_null($checks)) {
+            throw new \InvalidArgumentException('non-nullable checks cannot be null');
         }
-        $this->container['client_secret'] = $client_secret;
+        $this->container['checks'] = $checks;
 
         return $this;
     }
