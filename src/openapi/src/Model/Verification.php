@@ -336,16 +336,16 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['expires_at'] === null) {
             $invalidProperties[] = "'expires_at' can't be null";
         }
-        if ($this->container['email'] === null) {
+        if ($this->container['email'] === null && !$this->isNullableSetToNull('email')) {
             $invalidProperties[] = "'email' can't be null";
         }
-        if ($this->container['redirect_url'] === null) {
+        if ($this->container['redirect_url'] === null && !$this->isNullableSetToNull('redirect_url')) {
             $invalidProperties[] = "'redirect_url' can't be null";
         }
         if ($this->container['workflow_id'] === null) {
             $invalidProperties[] = "'workflow_id' can't be null";
         }
-        if ($this->container['external_id'] === null) {
+        if ($this->container['external_id'] === null && !$this->isNullableSetToNull('external_id')) {
             $invalidProperties[] = "'external_id' can't be null";
         }
         return $invalidProperties;
@@ -474,7 +474,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets email
      *
-     * @return string
+     * @return string|null
      */
     public function getEmail()
     {
@@ -484,7 +484,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      *
-     * @param string $email The originally supplied email address
+     * @param string|null $email The originally supplied email address
      *
      * @return self
      */
@@ -508,7 +508,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets redirect_url
      *
-     * @return string
+     * @return string|null
      */
     public function getRedirectUrl()
     {
@@ -518,7 +518,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets redirect_url
      *
-     * @param string $redirect_url Where to send the user upon success. If null, the verification flow default will be used.
+     * @param string|null $redirect_url Where to send the user upon success. If null, the verification flow default will be used.
      *
      * @return self
      */
@@ -569,7 +569,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets external_id
      *
-     * @return string
+     * @return string|null
      */
     public function getExternalId()
     {
@@ -579,7 +579,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_id
      *
-     * @param string $external_id An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * @param string|null $external_id An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
      *
      * @return self
      */

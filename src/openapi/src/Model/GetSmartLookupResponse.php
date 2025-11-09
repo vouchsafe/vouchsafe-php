@@ -390,19 +390,19 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['checks'] === null) {
             $invalidProperties[] = "'checks' can't be null";
         }
-        if ($this->container['first_name'] === null) {
+        if ($this->container['first_name'] === null && !$this->isNullableSetToNull('first_name')) {
             $invalidProperties[] = "'first_name' can't be null";
         }
-        if ($this->container['last_name'] === null) {
+        if ($this->container['last_name'] === null && !$this->isNullableSetToNull('last_name')) {
             $invalidProperties[] = "'last_name' can't be null";
         }
-        if ($this->container['first_line_of_address'] === null) {
+        if ($this->container['first_line_of_address'] === null && !$this->isNullableSetToNull('first_line_of_address')) {
             $invalidProperties[] = "'first_line_of_address' can't be null";
         }
-        if ($this->container['postcode'] === null) {
+        if ($this->container['postcode'] === null && !$this->isNullableSetToNull('postcode')) {
             $invalidProperties[] = "'postcode' can't be null";
         }
-        if ($this->container['metadata'] === null) {
+        if ($this->container['metadata'] === null && !$this->isNullableSetToNull('metadata')) {
             $invalidProperties[] = "'metadata' can't be null";
         }
         if ($this->container['created_at'] === null) {
@@ -516,7 +516,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets first_name
      *
-     * @return string
+     * @return string|null
      */
     public function getFirstName()
     {
@@ -526,7 +526,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets first_name
      *
-     * @param string $first_name first_name
+     * @param string|null $first_name first_name
      *
      * @return self
      */
@@ -550,7 +550,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets last_name
      *
-     * @return string
+     * @return string|null
      */
     public function getLastName()
     {
@@ -560,7 +560,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets last_name
      *
-     * @param string $last_name last_name
+     * @param string|null $last_name last_name
      *
      * @return self
      */
@@ -584,7 +584,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets first_line_of_address
      *
-     * @return string
+     * @return string|null
      */
     public function getFirstLineOfAddress()
     {
@@ -594,7 +594,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets first_line_of_address
      *
-     * @param string $first_line_of_address first_line_of_address
+     * @param string|null $first_line_of_address first_line_of_address
      *
      * @return self
      */
@@ -618,7 +618,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets postcode
      *
-     * @return string
+     * @return string|null
      */
     public function getPostcode()
     {
@@ -628,7 +628,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets postcode
      *
-     * @param string $postcode postcode
+     * @param string|null $postcode postcode
      *
      * @return self
      */
@@ -787,7 +787,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets metadata
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function getMetadata()
     {
@@ -797,7 +797,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets metadata
      *
-     * @param mixed $metadata Extra information to aid debugging. May change without notice.
+     * @param mixed|null $metadata Extra information to aid debugging. May change without notice.
      *
      * @return self
      */
