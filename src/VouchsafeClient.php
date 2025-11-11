@@ -135,14 +135,16 @@ final class VouchsafeClient
   public function requestVerification(array $input)
   {
     return $this->withErrorHandling(function () use ($input) {
-      return $this->verificationsApi->requestVerification($input);
+      $requestInput = new \Vouchsafe\OpenAPI\Model\RequestVerificationInput($input);
+      return $this->verificationsApi->requestVerification($requestInput);
     });
   }
 
   public function performSmartLookup(array $input)
   {
     return $this->withErrorHandling(function () use ($input) {
-      return $this->smartLookupsApi->performSmartLookup($input);
+      $smartLookupInput = new \Vouchsafe\OpenAPI\Model\SmartLookupInput($input);
+      return $this->smartLookupsApi->performSmartLookup($smartLookupInput);
     });
   }
 
