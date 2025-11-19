@@ -1,6 +1,6 @@
 <?php
 /**
- * SmartLookupInput
+ * OnlineFootprintVerificationReport
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * SmartLookupInput Class Doc Comment
+ * OnlineFootprintVerificationReport Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SmartLookupInput';
+    protected static $openAPIModelName = 'OnlineFootprintVerificationReport';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'checks' => 'string[]',
-        'first_line_of_address' => 'string',
-        'postcode' => 'string',
-        'email' => 'string',
-        'phone' => 'string',
-        'date_of_birth' => 'string'
+        'state' => '\Vouchsafe\OpenAPI\Model\CheckState',
+        'checks' => '\Vouchsafe\OpenAPI\Model\RecordOnlineFootprintVerificationChecksCheckResult'
     ];
 
     /**
@@ -76,14 +70,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'first_name' => null,
-        'last_name' => null,
-        'checks' => null,
-        'first_line_of_address' => null,
-        'postcode' => null,
-        'email' => null,
-        'phone' => null,
-        'date_of_birth' => null
+        'state' => null,
+        'checks' => null
     ];
 
     /**
@@ -92,14 +80,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'first_name' => false,
-        'last_name' => false,
-        'checks' => false,
-        'first_line_of_address' => false,
-        'postcode' => false,
-        'email' => false,
-        'phone' => false,
-        'date_of_birth' => false
+        'state' => false,
+        'checks' => false
     ];
 
     /**
@@ -188,14 +170,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
-        'checks' => 'checks',
-        'first_line_of_address' => 'first_line_of_address',
-        'postcode' => 'postcode',
-        'email' => 'email',
-        'phone' => 'phone',
-        'date_of_birth' => 'date_of_birth'
+        'state' => 'state',
+        'checks' => 'checks'
     ];
 
     /**
@@ -204,14 +180,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName',
-        'checks' => 'setChecks',
-        'first_line_of_address' => 'setFirstLineOfAddress',
-        'postcode' => 'setPostcode',
-        'email' => 'setEmail',
-        'phone' => 'setPhone',
-        'date_of_birth' => 'setDateOfBirth'
+        'state' => 'setState',
+        'checks' => 'setChecks'
     ];
 
     /**
@@ -220,14 +190,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName',
-        'checks' => 'getChecks',
-        'first_line_of_address' => 'getFirstLineOfAddress',
-        'postcode' => 'getPostcode',
-        'email' => 'getEmail',
-        'phone' => 'getPhone',
-        'date_of_birth' => 'getDateOfBirth'
+        'state' => 'getState',
+        'checks' => 'getChecks'
     ];
 
     /**
@@ -271,25 +235,6 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CHECKS_ADDRESS = 'Address';
-    public const CHECKS_CREDIT_BUREAU = 'CreditBureau';
-    public const CHECKS_ONLINE_FOOTPRINT = 'OnlineFootprint';
-    public const CHECKS_AML = 'AML';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getChecksAllowableValues()
-    {
-        return [
-            self::CHECKS_ADDRESS,
-            self::CHECKS_CREDIT_BUREAU,
-            self::CHECKS_ONLINE_FOOTPRINT,
-            self::CHECKS_AML,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -306,14 +251,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('first_name', $data ?? [], null);
-        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
         $this->setIfExists('checks', $data ?? [], null);
-        $this->setIfExists('first_line_of_address', $data ?? [], null);
-        $this->setIfExists('postcode', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('phone', $data ?? [], null);
-        $this->setIfExists('date_of_birth', $data ?? [], null);
     }
 
     /**
@@ -343,11 +282,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['first_name'] === null) {
-            $invalidProperties[] = "'first_name' can't be null";
-        }
-        if ($this->container['last_name'] === null) {
-            $invalidProperties[] = "'last_name' can't be null";
+        if ($this->container['state'] === null) {
+            $invalidProperties[] = "'state' can't be null";
         }
         if ($this->container['checks'] === null) {
             $invalidProperties[] = "'checks' can't be null";
@@ -368,55 +304,28 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets first_name
+     * Gets state
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\CheckState
      */
-    public function getFirstName()
+    public function getState()
     {
-        return $this->container['first_name'];
+        return $this->container['state'];
     }
 
     /**
-     * Sets first_name
+     * Sets state
      *
-     * @param string $first_name (required) — Given name(s)
+     * @param \Vouchsafe\OpenAPI\Model\CheckState $state state
      *
      * @return self
      */
-    public function setFirstName($first_name)
+    public function setState($state)
     {
-        if (is_null($first_name)) {
-            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
+        if (is_null($state)) {
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
         }
-        $this->container['first_name'] = $first_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_name
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->container['last_name'];
-    }
-
-    /**
-     * Sets last_name
-     *
-     * @param string $last_name (required) — Family name
-     *
-     * @return self
-     */
-    public function setLastName($last_name)
-    {
-        if (is_null($last_name)) {
-            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
-        }
-        $this->container['last_name'] = $last_name;
+        $this->container['state'] = $state;
 
         return $this;
     }
@@ -424,7 +333,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets checks
      *
-     * @return string[]
+     * @return \Vouchsafe\OpenAPI\Model\RecordOnlineFootprintVerificationChecksCheckResult
      */
     public function getChecks()
     {
@@ -434,7 +343,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets checks
      *
-     * @param string[] $checks (required)
+     * @param \Vouchsafe\OpenAPI\Model\RecordOnlineFootprintVerificationChecksCheckResult $checks checks
      *
      * @return self
      */
@@ -443,151 +352,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($checks)) {
             throw new \InvalidArgumentException('non-nullable checks cannot be null');
         }
-        $allowedValues = $this->getChecksAllowableValues();
-        if (array_diff($checks, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'checks', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['checks'] = $checks;
-
-        return $this;
-    }
-
-    /**
-     * Gets first_line_of_address
-     *
-     * @return string|null
-     */
-    public function getFirstLineOfAddress()
-    {
-        return $this->container['first_line_of_address'];
-    }
-
-    /**
-     * Sets first_line_of_address
-     *
-     * @param string|null $first_line_of_address (conditionally required) - Required when checks includes Address or CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
-     *
-     * @return self
-     */
-    public function setFirstLineOfAddress($first_line_of_address)
-    {
-        if (is_null($first_line_of_address)) {
-            throw new \InvalidArgumentException('non-nullable first_line_of_address cannot be null');
-        }
-        $this->container['first_line_of_address'] = $first_line_of_address;
-
-        return $this;
-    }
-
-    /**
-     * Gets postcode
-     *
-     * @return string|null
-     */
-    public function getPostcode()
-    {
-        return $this->container['postcode'];
-    }
-
-    /**
-     * Sets postcode
-     *
-     * @param string|null $postcode (conditionally required) - Postcode used in GET /postcode. Required when checks includes Address or CreditBureau; otherwise optional.
-     *
-     * @return self
-     */
-    public function setPostcode($postcode)
-    {
-        if (is_null($postcode)) {
-            throw new \InvalidArgumentException('non-nullable postcode cannot be null');
-        }
-        $this->container['postcode'] = $postcode;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email (conditionally required) — Email address. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets phone
-     *
-     * @return string|null
-     */
-    public function getPhone()
-    {
-        return $this->container['phone'];
-    }
-
-    /**
-     * Sets phone
-     *
-     * @param string|null $phone (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
-     *
-     * @return self
-     */
-    public function setPhone($phone)
-    {
-        if (is_null($phone)) {
-            throw new \InvalidArgumentException('non-nullable phone cannot be null');
-        }
-        $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_of_birth
-     *
-     * @return string|null
-     */
-    public function getDateOfBirth()
-    {
-        return $this->container['date_of_birth'];
-    }
-
-    /**
-     * Sets date_of_birth
-     *
-     * @param string|null $date_of_birth (conditionally required) — Required when checks includes CreditBureau or AML; otherwise optional. Format as YYYY-MM-DD or ISO 8601
-     *
-     * @return self
-     */
-    public function setDateOfBirth($date_of_birth)
-    {
-        if (is_null($date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
-        }
-        $this->container['date_of_birth'] = $date_of_birth;
 
         return $this;
     }

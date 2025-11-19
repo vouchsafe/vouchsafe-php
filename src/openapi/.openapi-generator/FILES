@@ -11,6 +11,7 @@ src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/36EnumsEnvironment.php
 src/Model/AddressVerificationReport.php
+src/Model/AmlVerificationReport.php
 src/Model/ApiErrorResponse.php
 src/Model/AuthenticateInput.php
 src/Model/AuthenticateResponse.php
@@ -24,10 +25,13 @@ src/Model/Flow.php
 src/Model/FlowTemplate.php
 src/Model/GetSmartLookupResponse.php
 src/Model/ModelInterface.php
+src/Model/OnlineFootprintVerificationReport.php
 src/Model/PostcodeResponse.php
 src/Model/Reason.php
 src/Model/RecordAddressVerificationChecksCheckResult.php
+src/Model/RecordAmlVerificationChecksCheckResult.php
 src/Model/RecordCreditBureauVerificationChecksCheckResult.php
+src/Model/RecordOnlineFootprintVerificationChecksCheckResult.php
 src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
 src/Model/SmartLookupInput.php

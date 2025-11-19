@@ -70,6 +70,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => 'string',
         'address_verification_report' => '\Vouchsafe\OpenAPI\Model\AddressVerificationReport',
         'credit_bureau_verification_report' => '\Vouchsafe\OpenAPI\Model\CreditBureauVerificationReport',
+        'online_footprint_verification_report' => '\Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport',
+        'aml_verification_report' => '\Vouchsafe\OpenAPI\Model\AmlVerificationReport',
         'metadata' => 'mixed',
         'created_at' => 'string'
     ];
@@ -94,6 +96,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => null,
         'address_verification_report' => null,
         'credit_bureau_verification_report' => null,
+        'online_footprint_verification_report' => null,
+        'aml_verification_report' => null,
         'metadata' => null,
         'created_at' => null
     ];
@@ -116,6 +120,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => false,
         'address_verification_report' => false,
         'credit_bureau_verification_report' => false,
+        'online_footprint_verification_report' => false,
+        'aml_verification_report' => false,
         'metadata' => true,
         'created_at' => false
     ];
@@ -218,6 +224,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => 'phone',
         'address_verification_report' => 'address_verification_report',
         'credit_bureau_verification_report' => 'credit_bureau_verification_report',
+        'online_footprint_verification_report' => 'online_footprint_verification_report',
+        'aml_verification_report' => 'aml_verification_report',
         'metadata' => 'metadata',
         'created_at' => 'created_at'
     ];
@@ -240,6 +248,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => 'setPhone',
         'address_verification_report' => 'setAddressVerificationReport',
         'credit_bureau_verification_report' => 'setCreditBureauVerificationReport',
+        'online_footprint_verification_report' => 'setOnlineFootprintVerificationReport',
+        'aml_verification_report' => 'setAmlVerificationReport',
         'metadata' => 'setMetadata',
         'created_at' => 'setCreatedAt'
     ];
@@ -262,6 +272,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'phone' => 'getPhone',
         'address_verification_report' => 'getAddressVerificationReport',
         'credit_bureau_verification_report' => 'getCreditBureauVerificationReport',
+        'online_footprint_verification_report' => 'getOnlineFootprintVerificationReport',
+        'aml_verification_report' => 'getAmlVerificationReport',
         'metadata' => 'getMetadata',
         'created_at' => 'getCreatedAt'
     ];
@@ -309,6 +321,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
     public const CHECKS_ADDRESS = 'Address';
     public const CHECKS_CREDIT_BUREAU = 'CreditBureau';
+    public const CHECKS_ONLINE_FOOTPRINT = 'OnlineFootprint';
+    public const CHECKS_AML = 'AML';
 
     /**
      * Gets allowable values of the enum
@@ -320,6 +334,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return [
             self::CHECKS_ADDRESS,
             self::CHECKS_CREDIT_BUREAU,
+            self::CHECKS_ONLINE_FOOTPRINT,
+            self::CHECKS_AML,
         ];
     }
 
@@ -350,6 +366,8 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('address_verification_report', $data ?? [], null);
         $this->setIfExists('credit_bureau_verification_report', $data ?? [], null);
+        $this->setIfExists('online_footprint_verification_report', $data ?? [], null);
+        $this->setIfExists('aml_verification_report', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
     }
@@ -780,6 +798,60 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable credit_bureau_verification_report cannot be null');
         }
         $this->container['credit_bureau_verification_report'] = $credit_bureau_verification_report;
+
+        return $this;
+    }
+
+    /**
+     * Gets online_footprint_verification_report
+     *
+     * @return \Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport|null
+     */
+    public function getOnlineFootprintVerificationReport()
+    {
+        return $this->container['online_footprint_verification_report'];
+    }
+
+    /**
+     * Sets online_footprint_verification_report
+     *
+     * @param \Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport|null $online_footprint_verification_report online_footprint_verification_report
+     *
+     * @return self
+     */
+    public function setOnlineFootprintVerificationReport($online_footprint_verification_report)
+    {
+        if (is_null($online_footprint_verification_report)) {
+            throw new \InvalidArgumentException('non-nullable online_footprint_verification_report cannot be null');
+        }
+        $this->container['online_footprint_verification_report'] = $online_footprint_verification_report;
+
+        return $this;
+    }
+
+    /**
+     * Gets aml_verification_report
+     *
+     * @return \Vouchsafe\OpenAPI\Model\AmlVerificationReport|null
+     */
+    public function getAmlVerificationReport()
+    {
+        return $this->container['aml_verification_report'];
+    }
+
+    /**
+     * Sets aml_verification_report
+     *
+     * @param \Vouchsafe\OpenAPI\Model\AmlVerificationReport|null $aml_verification_report aml_verification_report
+     *
+     * @return self
+     */
+    public function setAmlVerificationReport($aml_verification_report)
+    {
+        if (is_null($aml_verification_report)) {
+            throw new \InvalidArgumentException('non-nullable aml_verification_report cannot be null');
+        }
+        $this->container['aml_verification_report'] = $aml_verification_report;
 
         return $this;
     }
