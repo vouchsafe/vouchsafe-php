@@ -35,6 +35,7 @@ src/Model/RecordOnlineFootprintVerificationChecksCheckResult.php
 src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
 src/Model/SmartLookupInput.php
+src/Model/SmartLookupInputThresholds.php
 src/Model/Status.php
 src/Model/Team.php
 src/Model/Verification.php

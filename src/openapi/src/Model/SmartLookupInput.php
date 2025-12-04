@@ -65,7 +65,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'string',
         'email' => 'string',
         'phone' => 'string',
-        'date_of_birth' => 'string'
+        'date_of_birth' => 'string',
+        'thresholds' => '\Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds'
     ];
 
     /**
@@ -83,7 +84,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => null,
         'email' => null,
         'phone' => null,
-        'date_of_birth' => null
+        'date_of_birth' => null,
+        'thresholds' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => false,
         'email' => false,
         'phone' => false,
-        'date_of_birth' => false
+        'date_of_birth' => false,
+        'thresholds' => false
     ];
 
     /**
@@ -195,7 +198,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'postcode',
         'email' => 'email',
         'phone' => 'phone',
-        'date_of_birth' => 'date_of_birth'
+        'date_of_birth' => 'date_of_birth',
+        'thresholds' => 'thresholds'
     ];
 
     /**
@@ -211,7 +215,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'setPostcode',
         'email' => 'setEmail',
         'phone' => 'setPhone',
-        'date_of_birth' => 'setDateOfBirth'
+        'date_of_birth' => 'setDateOfBirth',
+        'thresholds' => 'setThresholds'
     ];
 
     /**
@@ -227,7 +232,8 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'getPostcode',
         'email' => 'getEmail',
         'phone' => 'getPhone',
-        'date_of_birth' => 'getDateOfBirth'
+        'date_of_birth' => 'getDateOfBirth',
+        'thresholds' => 'getThresholds'
     ];
 
     /**
@@ -314,6 +320,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('thresholds', $data ?? [], null);
     }
 
     /**
@@ -588,6 +595,33 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
         }
         $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets thresholds
+     *
+     * @return \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds|null
+     */
+    public function getThresholds()
+    {
+        return $this->container['thresholds'];
+    }
+
+    /**
+     * Sets thresholds
+     *
+     * @param \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds|null $thresholds thresholds
+     *
+     * @return self
+     */
+    public function setThresholds($thresholds)
+    {
+        if (is_null($thresholds)) {
+            throw new \InvalidArgumentException('non-nullable thresholds cannot be null');
+        }
+        $this->container['thresholds'] = $thresholds;
 
         return $this;
     }
