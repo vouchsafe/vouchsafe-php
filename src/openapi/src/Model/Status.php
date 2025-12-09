@@ -55,6 +55,8 @@ class Status
 
     public const LOCKED_OUT = 'LockedOut';
 
+    public const MANUALLY_REVIEWED = 'ManuallyReviewed';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -67,7 +69,8 @@ class Status
             self::VERIFIED,
             self::REFUSED,
             self::CANCELLED,
-            self::LOCKED_OUT
+            self::LOCKED_OUT,
+            self::MANUALLY_REVIEWED
         ];
     }
 }
