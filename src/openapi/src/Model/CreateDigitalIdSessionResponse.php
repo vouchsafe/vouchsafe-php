@@ -59,7 +59,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPITypes = [
         'expires_at' => 'string',
-        'workflow_id' => 'string',
+        'flow_id' => 'string',
         'url' => 'string',
         'id' => 'string'
     ];
@@ -73,7 +73,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'expires_at' => null,
-        'workflow_id' => null,
+        'flow_id' => null,
         'url' => null,
         'id' => null
     ];
@@ -85,7 +85,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
       */
     protected static array $openAPINullables = [
         'expires_at' => false,
-        'workflow_id' => false,
+        'flow_id' => false,
         'url' => false,
         'id' => false
     ];
@@ -177,7 +177,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
      */
     protected static $attributeMap = [
         'expires_at' => 'expires_at',
-        'workflow_id' => 'workflow_id',
+        'flow_id' => 'flow_id',
         'url' => 'url',
         'id' => 'id'
     ];
@@ -189,7 +189,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
      */
     protected static $setters = [
         'expires_at' => 'setExpiresAt',
-        'workflow_id' => 'setWorkflowId',
+        'flow_id' => 'setFlowId',
         'url' => 'setUrl',
         'id' => 'setId'
     ];
@@ -201,7 +201,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
      */
     protected static $getters = [
         'expires_at' => 'getExpiresAt',
-        'workflow_id' => 'getWorkflowId',
+        'flow_id' => 'getFlowId',
         'url' => 'getUrl',
         'id' => 'getId'
     ];
@@ -264,7 +264,7 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
     public function __construct(?array $data = null)
     {
         $this->setIfExists('expires_at', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
+        $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
     }
@@ -299,8 +299,8 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
         if ($this->container['expires_at'] === null) {
             $invalidProperties[] = "'expires_at' can't be null";
         }
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
+        if ($this->container['flow_id'] === null) {
+            $invalidProperties[] = "'flow_id' can't be null";
         }
         if ($this->container['url'] === null) {
             $invalidProperties[] = "'url' can't be null";
@@ -351,28 +351,28 @@ class CreateDigitalIdSessionResponse implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
-     * Gets workflow_id
+     * Gets flow_id
      *
      * @return string
      */
-    public function getWorkflowId()
+    public function getFlowId()
     {
-        return $this->container['workflow_id'];
+        return $this->container['flow_id'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets flow_id
      *
-     * @param string $workflow_id workflow_id
+     * @param string $flow_id flow_id
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setFlowId($flow_id)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($flow_id)) {
+            throw new \InvalidArgumentException('non-nullable flow_id cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['flow_id'] = $flow_id;
 
         return $this;
     }

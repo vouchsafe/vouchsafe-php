@@ -60,7 +60,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'known_claims' => '\Vouchsafe\OpenAPI\Model\KnownClaims',
         'redirect_url' => 'string',
-        'workflow_id' => 'string'
+        'flow_id' => 'string'
     ];
 
     /**
@@ -73,7 +73,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'known_claims' => null,
         'redirect_url' => null,
-        'workflow_id' => null
+        'flow_id' => null
     ];
 
     /**
@@ -84,7 +84,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'known_claims' => false,
         'redirect_url' => false,
-        'workflow_id' => false
+        'flow_id' => false
     ];
 
     /**
@@ -175,7 +175,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'known_claims' => 'known_claims',
         'redirect_url' => 'redirect_url',
-        'workflow_id' => 'workflow_id'
+        'flow_id' => 'flow_id'
     ];
 
     /**
@@ -186,7 +186,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'known_claims' => 'setKnownClaims',
         'redirect_url' => 'setRedirectUrl',
-        'workflow_id' => 'setWorkflowId'
+        'flow_id' => 'setFlowId'
     ];
 
     /**
@@ -197,7 +197,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'known_claims' => 'getKnownClaims',
         'redirect_url' => 'getRedirectUrl',
-        'workflow_id' => 'getWorkflowId'
+        'flow_id' => 'getFlowId'
     ];
 
     /**
@@ -259,7 +259,7 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('known_claims', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
+        $this->setIfExists('flow_id', $data ?? [], null);
     }
 
     /**
@@ -289,8 +289,8 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
+        if ($this->container['flow_id'] === null) {
+            $invalidProperties[] = "'flow_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -362,28 +362,28 @@ class CreateDigitalIdSessionInput implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets workflow_id
+     * Gets flow_id
      *
      * @return string
      */
-    public function getWorkflowId()
+    public function getFlowId()
     {
-        return $this->container['workflow_id'];
+        return $this->container['flow_id'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets flow_id
      *
-     * @param string $workflow_id workflow_id
+     * @param string $flow_id flow_id
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setFlowId($flow_id)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($flow_id)) {
+            throw new \InvalidArgumentException('non-nullable flow_id cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['flow_id'] = $flow_id;
 
         return $this;
     }

@@ -62,7 +62,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => '\Vouchsafe\OpenAPI\Model\VerifiedClaims',
         'known_claims' => '\Vouchsafe\OpenAPI\Model\KnownClaims',
         'provider_id' => 'string',
-        'workflow_id' => 'string',
+        'flow_id' => 'string',
         'redirect_url' => 'string',
         'expires_at' => 'string',
         'created_at' => 'string',
@@ -82,7 +82,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => null,
         'known_claims' => null,
         'provider_id' => null,
-        'workflow_id' => null,
+        'flow_id' => null,
         'redirect_url' => null,
         'expires_at' => null,
         'created_at' => null,
@@ -100,7 +100,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => true,
         'known_claims' => true,
         'provider_id' => true,
-        'workflow_id' => false,
+        'flow_id' => false,
         'redirect_url' => true,
         'expires_at' => false,
         'created_at' => false,
@@ -198,7 +198,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => 'verified_claims',
         'known_claims' => 'known_claims',
         'provider_id' => 'provider_id',
-        'workflow_id' => 'workflow_id',
+        'flow_id' => 'flow_id',
         'redirect_url' => 'redirect_url',
         'expires_at' => 'expires_at',
         'created_at' => 'created_at',
@@ -216,7 +216,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => 'setVerifiedClaims',
         'known_claims' => 'setKnownClaims',
         'provider_id' => 'setProviderId',
-        'workflow_id' => 'setWorkflowId',
+        'flow_id' => 'setFlowId',
         'redirect_url' => 'setRedirectUrl',
         'expires_at' => 'setExpiresAt',
         'created_at' => 'setCreatedAt',
@@ -234,7 +234,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         'verified_claims' => 'getVerifiedClaims',
         'known_claims' => 'getKnownClaims',
         'provider_id' => 'getProviderId',
-        'workflow_id' => 'getWorkflowId',
+        'flow_id' => 'getFlowId',
         'redirect_url' => 'getRedirectUrl',
         'expires_at' => 'getExpiresAt',
         'created_at' => 'getCreatedAt',
@@ -303,7 +303,7 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('verified_claims', $data ?? [], null);
         $this->setIfExists('known_claims', $data ?? [], null);
         $this->setIfExists('provider_id', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
+        $this->setIfExists('flow_id', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -350,8 +350,8 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['provider_id'] === null && !$this->isNullableSetToNull('provider_id')) {
             $invalidProperties[] = "'provider_id' can't be null";
         }
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
+        if ($this->container['flow_id'] === null) {
+            $invalidProperties[] = "'flow_id' can't be null";
         }
         if ($this->container['redirect_url'] === null && !$this->isNullableSetToNull('redirect_url')) {
             $invalidProperties[] = "'redirect_url' can't be null";
@@ -520,28 +520,28 @@ class DigitalIdSession implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets workflow_id
+     * Gets flow_id
      *
      * @return string
      */
-    public function getWorkflowId()
+    public function getFlowId()
     {
-        return $this->container['workflow_id'];
+        return $this->container['flow_id'];
     }
 
     /**
-     * Sets workflow_id
+     * Sets flow_id
      *
-     * @param string $workflow_id workflow_id
+     * @param string $flow_id flow_id
      *
      * @return self
      */
-    public function setWorkflowId($workflow_id)
+    public function setFlowId($flow_id)
     {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
+        if (is_null($flow_id)) {
+            throw new \InvalidArgumentException('non-nullable flow_id cannot be null');
         }
-        $this->container['workflow_id'] = $workflow_id;
+        $this->container['flow_id'] = $flow_id;
 
         return $this;
     }

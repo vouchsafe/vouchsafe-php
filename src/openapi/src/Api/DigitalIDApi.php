@@ -718,7 +718,7 @@ class DigitalIDApi
     /**
      * Operation listSessions
      *
-     * @param  string|null $workflow_id Filter by workflow ID (optional)
+     * @param  string|null $flow_id Filter by flow ID (optional)
      * @param  string|null $status Filter by session status (optional)
      * @param  string|null $provider_id Filter by provider ID (optional)
      * @param  float|null $limit Maximum number of sessions to return (optional)
@@ -731,16 +731,16 @@ class DigitalIDApi
      * @throws \InvalidArgumentException
      * @return \Vouchsafe\OpenAPI\Model\DigitalIdSession[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
-    public function listSessions($workflow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
+    public function listSessions($flow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
     {
-        list($response) = $this->listSessionsWithHttpInfo($workflow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
+        list($response) = $this->listSessionsWithHttpInfo($flow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
         return $response;
     }
 
     /**
      * Operation listSessionsWithHttpInfo
      *
-     * @param  string|null $workflow_id Filter by workflow ID (optional)
+     * @param  string|null $flow_id Filter by flow ID (optional)
      * @param  string|null $status Filter by session status (optional)
      * @param  string|null $provider_id Filter by provider ID (optional)
      * @param  float|null $limit Maximum number of sessions to return (optional)
@@ -753,9 +753,9 @@ class DigitalIDApi
      * @throws \InvalidArgumentException
      * @return array of \Vouchsafe\OpenAPI\Model\DigitalIdSession[]|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listSessionsWithHttpInfo($workflow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
+    public function listSessionsWithHttpInfo($flow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
     {
-        $request = $this->listSessionsRequest($workflow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
+        $request = $this->listSessionsRequest($flow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -857,7 +857,7 @@ class DigitalIDApi
     /**
      * Operation listSessionsAsync
      *
-     * @param  string|null $workflow_id Filter by workflow ID (optional)
+     * @param  string|null $flow_id Filter by flow ID (optional)
      * @param  string|null $status Filter by session status (optional)
      * @param  string|null $provider_id Filter by provider ID (optional)
      * @param  float|null $limit Maximum number of sessions to return (optional)
@@ -869,9 +869,9 @@ class DigitalIDApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSessionsAsync($workflow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
+    public function listSessionsAsync($flow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
     {
-        return $this->listSessionsAsyncWithHttpInfo($workflow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType)
+        return $this->listSessionsAsyncWithHttpInfo($flow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -882,7 +882,7 @@ class DigitalIDApi
     /**
      * Operation listSessionsAsyncWithHttpInfo
      *
-     * @param  string|null $workflow_id Filter by workflow ID (optional)
+     * @param  string|null $flow_id Filter by flow ID (optional)
      * @param  string|null $status Filter by session status (optional)
      * @param  string|null $provider_id Filter by provider ID (optional)
      * @param  float|null $limit Maximum number of sessions to return (optional)
@@ -894,10 +894,10 @@ class DigitalIDApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listSessionsAsyncWithHttpInfo($workflow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
+    public function listSessionsAsyncWithHttpInfo($flow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
     {
         $returnType = '\Vouchsafe\OpenAPI\Model\DigitalIdSession[]';
-        $request = $this->listSessionsRequest($workflow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
+        $request = $this->listSessionsRequest($flow_id, $status, $provider_id, $limit, $offset, $created_after, $created_before, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -938,7 +938,7 @@ class DigitalIDApi
     /**
      * Create request for operation 'listSessions'
      *
-     * @param  string|null $workflow_id Filter by workflow ID (optional)
+     * @param  string|null $flow_id Filter by flow ID (optional)
      * @param  string|null $status Filter by session status (optional)
      * @param  string|null $provider_id Filter by provider ID (optional)
      * @param  float|null $limit Maximum number of sessions to return (optional)
@@ -950,7 +950,7 @@ class DigitalIDApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listSessionsRequest($workflow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
+    public function listSessionsRequest($flow_id = null, $status = null, $provider_id = null, $limit = null, $offset = null, $created_after = null, $created_before = null, string $contentType = self::contentTypes['listSessions'][0])
     {
 
 
@@ -970,8 +970,8 @@ class DigitalIDApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $workflow_id,
-            'workflow_id', // param base name
+            $flow_id,
+            'flow_id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
