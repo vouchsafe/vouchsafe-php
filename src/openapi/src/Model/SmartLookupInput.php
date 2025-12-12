@@ -277,7 +277,6 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CHECKS_ADDRESS = 'Address';
     public const CHECKS_CREDIT_BUREAU = 'CreditBureau';
     public const CHECKS_ONLINE_FOOTPRINT = 'OnlineFootprint';
     public const CHECKS_AML = 'AML';
@@ -290,7 +289,6 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getChecksAllowableValues()
     {
         return [
-            self::CHECKS_ADDRESS,
             self::CHECKS_CREDIT_BUREAU,
             self::CHECKS_ONLINE_FOOTPRINT,
             self::CHECKS_AML,
@@ -477,7 +475,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets first_line_of_address
      *
-     * @param string|null $first_line_of_address (conditionally required) - Required when checks includes Address or CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * @param string|null $first_line_of_address (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
      *
      * @return self
      */
@@ -504,7 +502,7 @@ class SmartLookupInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets postcode
      *
-     * @param string|null $postcode (conditionally required) - Postcode used in GET /postcode. Required when checks includes Address or CreditBureau; otherwise optional.
+     * @param string|null $postcode (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional.
      *
      * @return self
      */

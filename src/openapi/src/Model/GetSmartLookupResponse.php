@@ -68,7 +68,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => 'string',
         'email' => 'string',
         'phone' => 'string',
-        'address_verification_report' => '\Vouchsafe\OpenAPI\Model\AddressVerificationReport',
         'credit_bureau_verification_report' => '\Vouchsafe\OpenAPI\Model\CreditBureauVerificationReport',
         'online_footprint_verification_report' => '\Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport',
         'aml_verification_report' => '\Vouchsafe\OpenAPI\Model\AmlVerificationReport',
@@ -94,7 +93,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => null,
         'email' => null,
         'phone' => null,
-        'address_verification_report' => null,
         'credit_bureau_verification_report' => null,
         'online_footprint_verification_report' => null,
         'aml_verification_report' => null,
@@ -118,7 +116,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => false,
         'email' => false,
         'phone' => false,
-        'address_verification_report' => false,
         'credit_bureau_verification_report' => false,
         'online_footprint_verification_report' => false,
         'aml_verification_report' => false,
@@ -222,7 +219,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => 'date_of_birth',
         'email' => 'email',
         'phone' => 'phone',
-        'address_verification_report' => 'address_verification_report',
         'credit_bureau_verification_report' => 'credit_bureau_verification_report',
         'online_footprint_verification_report' => 'online_footprint_verification_report',
         'aml_verification_report' => 'aml_verification_report',
@@ -246,7 +242,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => 'setDateOfBirth',
         'email' => 'setEmail',
         'phone' => 'setPhone',
-        'address_verification_report' => 'setAddressVerificationReport',
         'credit_bureau_verification_report' => 'setCreditBureauVerificationReport',
         'online_footprint_verification_report' => 'setOnlineFootprintVerificationReport',
         'aml_verification_report' => 'setAmlVerificationReport',
@@ -270,7 +265,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'date_of_birth' => 'getDateOfBirth',
         'email' => 'getEmail',
         'phone' => 'getPhone',
-        'address_verification_report' => 'getAddressVerificationReport',
         'credit_bureau_verification_report' => 'getCreditBureauVerificationReport',
         'online_footprint_verification_report' => 'getOnlineFootprintVerificationReport',
         'aml_verification_report' => 'getAmlVerificationReport',
@@ -319,7 +313,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const CHECKS_ADDRESS = 'Address';
     public const CHECKS_CREDIT_BUREAU = 'CreditBureau';
     public const CHECKS_ONLINE_FOOTPRINT = 'OnlineFootprint';
     public const CHECKS_AML = 'AML';
@@ -332,7 +325,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public function getChecksAllowableValues()
     {
         return [
-            self::CHECKS_ADDRESS,
             self::CHECKS_CREDIT_BUREAU,
             self::CHECKS_ONLINE_FOOTPRINT,
             self::CHECKS_AML,
@@ -364,7 +356,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
-        $this->setIfExists('address_verification_report', $data ?? [], null);
         $this->setIfExists('credit_bureau_verification_report', $data ?? [], null);
         $this->setIfExists('online_footprint_verification_report', $data ?? [], null);
         $this->setIfExists('aml_verification_report', $data ?? [], null);
@@ -744,33 +735,6 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable phone cannot be null');
         }
         $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets address_verification_report
-     *
-     * @return \Vouchsafe\OpenAPI\Model\AddressVerificationReport|null
-     */
-    public function getAddressVerificationReport()
-    {
-        return $this->container['address_verification_report'];
-    }
-
-    /**
-     * Sets address_verification_report
-     *
-     * @param \Vouchsafe\OpenAPI\Model\AddressVerificationReport|null $address_verification_report address_verification_report
-     *
-     * @return self
-     */
-    public function setAddressVerificationReport($address_verification_report)
-    {
-        if (is_null($address_verification_report)) {
-            throw new \InvalidArgumentException('non-nullable address_verification_report cannot be null');
-        }
-        $this->container['address_verification_report'] = $address_verification_report;
 
         return $this;
     }
