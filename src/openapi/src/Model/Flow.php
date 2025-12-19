@@ -63,6 +63,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'updated_at' => 'string',
         'created_at' => 'string',
+        'archived_at' => 'string',
         'tokens_per_verification' => 'float'
     ];
 
@@ -78,6 +79,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'updated_at' => null,
         'created_at' => null,
+        'archived_at' => null,
         'tokens_per_verification' => 'double'
     ];
 
@@ -91,6 +93,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'updated_at' => false,
         'created_at' => false,
+        'archived_at' => true,
         'tokens_per_verification' => false
     ];
 
@@ -184,6 +187,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'updated_at' => 'updated_at',
         'created_at' => 'created_at',
+        'archived_at' => 'archived_at',
         'tokens_per_verification' => 'tokens_per_verification'
     ];
 
@@ -197,6 +201,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'updated_at' => 'setUpdatedAt',
         'created_at' => 'setCreatedAt',
+        'archived_at' => 'setArchivedAt',
         'tokens_per_verification' => 'setTokensPerVerification'
     ];
 
@@ -210,6 +215,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'updated_at' => 'getUpdatedAt',
         'created_at' => 'getCreatedAt',
+        'archived_at' => 'getArchivedAt',
         'tokens_per_verification' => 'getTokensPerVerification'
     ];
 
@@ -274,6 +280,7 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('archived_at', $data ?? [], null);
         $this->setIfExists('tokens_per_verification', $data ?? [], null);
     }
 
@@ -315,6 +322,9 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['archived_at'] === null && !$this->isNullableSetToNull('archived_at')) {
+            $invalidProperties[] = "'archived_at' can't be null";
         }
         if ($this->container['tokens_per_verification'] === null) {
             $invalidProperties[] = "'tokens_per_verification' can't be null";
@@ -438,6 +448,40 @@ class Flow implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets archived_at
+     *
+     * @return string|null
+     */
+    public function getArchivedAt()
+    {
+        return $this->container['archived_at'];
+    }
+
+    /**
+     * Sets archived_at
+     *
+     * @param string|null $archived_at When the flow was archived, formatted as an ISO 8601 string. Defaults to null if the flow is active
+     *
+     * @return self
+     */
+    public function setArchivedAt($archived_at)
+    {
+        if (is_null($archived_at)) {
+            array_push($this->openAPINullablesSetToNull, 'archived_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('archived_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['archived_at'] = $archived_at;
 
         return $this;
     }
