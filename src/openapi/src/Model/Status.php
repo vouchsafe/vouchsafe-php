@@ -55,6 +55,8 @@ class Status
 
     public const LOCKED_OUT = 'LockedOut';
 
+    public const BLOCKED = 'Blocked';
+
     public const MANUALLY_REVIEWED = 'ManuallyReviewed';
 
     /**
@@ -70,6 +72,7 @@ class Status
             self::REFUSED,
             self::CANCELLED,
             self::LOCKED_OUT,
+            self::BLOCKED,
             self::MANUALLY_REVIEWED
         ];
     }
