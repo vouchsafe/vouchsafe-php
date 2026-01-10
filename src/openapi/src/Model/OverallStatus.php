@@ -1,6 +1,6 @@
 <?php
 /**
- * Reason
+ * OverallStatus
  *
  * PHP version 8.1
  *
@@ -31,31 +31,23 @@ namespace Vouchsafe\OpenAPI\Model;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Reason Class Doc Comment
+ * OverallStatus Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Reason
+class OverallStatus
 {
     /**
      * Possible values of this enum
      */
-    public const INVALID_POSTCODE = 'INVALID_POSTCODE';
+    public const PASS = 'pass';
 
-    public const INVALID_ADDRESS = 'INVALID_ADDRESS';
+    public const FAIL = 'fail';
 
-    public const MED_MATCH_PERSON_AT_ADDRESS = 'MED_MATCH_PERSON_AT_ADDRESS';
-
-    public const LOW_MATCH_PERSON_AT_ADDRESS = 'LOW_MATCH_PERSON_AT_ADDRESS';
-
-    public const DOB_NOT_MATCHED = 'DOB_NOT_MATCHED';
-
-    public const NO_IDENTITY_MATCH = 'NO_IDENTITY_MATCH';
-
-    public const NO_RESIDENCY_MATCH = 'NO_RESIDENCY_MATCH';
+    public const IN_PROGRESS = 'in_progress';
 
     /**
      * Gets allowable values of the enum
@@ -64,13 +56,9 @@ class Reason
     public static function getAllowableEnumValues()
     {
         return [
-            self::INVALID_POSTCODE,
-            self::INVALID_ADDRESS,
-            self::MED_MATCH_PERSON_AT_ADDRESS,
-            self::LOW_MATCH_PERSON_AT_ADDRESS,
-            self::DOB_NOT_MATCHED,
-            self::NO_IDENTITY_MATCH,
-            self::NO_RESIDENCY_MATCH
+            self::PASS,
+            self::FAIL,
+            self::IN_PROGRESS
         ];
     }
 }

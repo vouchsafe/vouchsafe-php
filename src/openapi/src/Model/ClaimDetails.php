@@ -1,6 +1,6 @@
 <?php
 /**
- * Verification
+ * ClaimDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Verification Class Doc Comment
+ * ClaimDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
+class ClaimDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Verification';
+    protected static $openAPIModelName = 'ClaimDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => '\Vouchsafe\OpenAPI\Model\CaseStatus',
-        'created_at' => 'string',
-        'expires_at' => 'string',
         'email' => 'string',
-        'redirect_url' => 'string',
-        'workflow_id' => 'string',
-        'external_id' => 'string'
+        'phone_number' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'date_of_birth' => 'string',
+        'first_line_of_address' => 'string',
+        'postcode' => 'string'
     ];
 
     /**
@@ -76,14 +75,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'status' => null,
-        'created_at' => null,
-        'expires_at' => null,
         'email' => null,
-        'redirect_url' => null,
-        'workflow_id' => null,
-        'external_id' => null
+        'phone_number' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'date_of_birth' => null,
+        'first_line_of_address' => null,
+        'postcode' => null
     ];
 
     /**
@@ -92,14 +90,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'created_at' => false,
-        'expires_at' => false,
         'email' => true,
-        'redirect_url' => true,
-        'workflow_id' => false,
-        'external_id' => true
+        'phone_number' => true,
+        'first_name' => true,
+        'last_name' => true,
+        'date_of_birth' => true,
+        'first_line_of_address' => true,
+        'postcode' => true
     ];
 
     /**
@@ -188,14 +185,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'created_at' => 'created_at',
-        'expires_at' => 'expires_at',
         'email' => 'email',
-        'redirect_url' => 'redirect_url',
-        'workflow_id' => 'workflow_id',
-        'external_id' => 'external_id'
+        'phone_number' => 'phone_number',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'date_of_birth' => 'date_of_birth',
+        'first_line_of_address' => 'first_line_of_address',
+        'postcode' => 'postcode'
     ];
 
     /**
@@ -204,14 +200,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'status' => 'setStatus',
-        'created_at' => 'setCreatedAt',
-        'expires_at' => 'setExpiresAt',
         'email' => 'setEmail',
-        'redirect_url' => 'setRedirectUrl',
-        'workflow_id' => 'setWorkflowId',
-        'external_id' => 'setExternalId'
+        'phone_number' => 'setPhoneNumber',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'date_of_birth' => 'setDateOfBirth',
+        'first_line_of_address' => 'setFirstLineOfAddress',
+        'postcode' => 'setPostcode'
     ];
 
     /**
@@ -220,14 +215,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'status' => 'getStatus',
-        'created_at' => 'getCreatedAt',
-        'expires_at' => 'getExpiresAt',
         'email' => 'getEmail',
-        'redirect_url' => 'getRedirectUrl',
-        'workflow_id' => 'getWorkflowId',
-        'external_id' => 'getExternalId'
+        'phone_number' => 'getPhoneNumber',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'date_of_birth' => 'getDateOfBirth',
+        'first_line_of_address' => 'getFirstLineOfAddress',
+        'postcode' => 'getPostcode'
     ];
 
     /**
@@ -287,14 +281,13 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('redirect_url', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('phone_number', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('first_line_of_address', $data ?? [], null);
+        $this->setIfExists('postcode', $data ?? [], null);
     }
 
     /**
@@ -324,29 +317,26 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
-        }
         if ($this->container['email'] === null && !$this->isNullableSetToNull('email')) {
             $invalidProperties[] = "'email' can't be null";
         }
-        if ($this->container['redirect_url'] === null && !$this->isNullableSetToNull('redirect_url')) {
-            $invalidProperties[] = "'redirect_url' can't be null";
+        if ($this->container['phone_number'] === null && !$this->isNullableSetToNull('phone_number')) {
+            $invalidProperties[] = "'phone_number' can't be null";
         }
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
+        if ($this->container['first_name'] === null && !$this->isNullableSetToNull('first_name')) {
+            $invalidProperties[] = "'first_name' can't be null";
         }
-        if ($this->container['external_id'] === null && !$this->isNullableSetToNull('external_id')) {
-            $invalidProperties[] = "'external_id' can't be null";
+        if ($this->container['last_name'] === null && !$this->isNullableSetToNull('last_name')) {
+            $invalidProperties[] = "'last_name' can't be null";
+        }
+        if ($this->container['date_of_birth'] === null && !$this->isNullableSetToNull('date_of_birth')) {
+            $invalidProperties[] = "'date_of_birth' can't be null";
+        }
+        if ($this->container['first_line_of_address'] === null && !$this->isNullableSetToNull('first_line_of_address')) {
+            $invalidProperties[] = "'first_line_of_address' can't be null";
+        }
+        if ($this->container['postcode'] === null && !$this->isNullableSetToNull('postcode')) {
+            $invalidProperties[] = "'postcode' can't be null";
         }
         return $invalidProperties;
     }
@@ -364,114 +354,6 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id Unique ID for tracking a verification session over time
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \Vouchsafe\OpenAPI\Model\CaseStatus
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \Vouchsafe\OpenAPI\Model\CaseStatus $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at When it was originally requested or begun
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets expires_at
-     *
-     * @return string
-     */
-    public function getExpiresAt()
-    {
-        return $this->container['expires_at'];
-    }
-
-    /**
-     * Sets expires_at
-     *
-     * @param string $expires_at When the user will stop getting reminders
-     *
-     * @return self
-     */
-    public function setExpiresAt($expires_at)
-    {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
-        }
-        $this->container['expires_at'] = $expires_at;
-
-        return $this;
-    }
-
-    /**
      * Gets email
      *
      * @return string|null
@@ -484,7 +366,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets email
      *
-     * @param string|null $email The originally supplied email address
+     * @param string|null $email email
      *
      * @return self
      */
@@ -506,96 +388,205 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets redirect_url
+     * Gets phone_number
      *
      * @return string|null
      */
-    public function getRedirectUrl()
+    public function getPhoneNumber()
     {
-        return $this->container['redirect_url'];
+        return $this->container['phone_number'];
     }
 
     /**
-     * Sets redirect_url
+     * Sets phone_number
      *
-     * @param string|null $redirect_url Where to send the user upon success. If null, the verification flow default will be used.
+     * @param string|null $phone_number phone_number
      *
      * @return self
      */
-    public function setRedirectUrl($redirect_url)
+    public function setPhoneNumber($phone_number)
     {
-        if (is_null($redirect_url)) {
-            array_push($this->openAPINullablesSetToNull, 'redirect_url');
+        if (is_null($phone_number)) {
+            array_push($this->openAPINullablesSetToNull, 'phone_number');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('redirect_url', $nullablesSetToNull);
+            $index = array_search('phone_number', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['redirect_url'] = $redirect_url;
+        $this->container['phone_number'] = $phone_number;
 
         return $this;
     }
 
     /**
-     * Gets workflow_id
-     *
-     * @return string
-     */
-    public function getWorkflowId()
-    {
-        return $this->container['workflow_id'];
-    }
-
-    /**
-     * Sets workflow_id
-     *
-     * @param string $workflow_id The verification flow it belongs to
-     *
-     * @return self
-     */
-    public function setWorkflowId($workflow_id)
-    {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
-        }
-        $this->container['workflow_id'] = $workflow_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets external_id
+     * Gets first_name
      *
      * @return string|null
      */
-    public function getExternalId()
+    public function getFirstName()
     {
-        return $this->container['external_id'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets external_id
+     * Sets first_name
      *
-     * @param string|null $external_id An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * @param string|null $first_name first_name
      *
      * @return self
      */
-    public function setExternalId($external_id)
+    public function setFirstName($first_name)
     {
-        if (is_null($external_id)) {
-            array_push($this->openAPINullablesSetToNull, 'external_id');
+        if (is_null($first_name)) {
+            array_push($this->openAPINullablesSetToNull, 'first_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('external_id', $nullablesSetToNull);
+            $index = array_search('first_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['external_id'] = $external_id;
+        $this->container['first_name'] = $first_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_name
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['last_name'];
+    }
+
+    /**
+     * Sets last_name
+     *
+     * @param string|null $last_name last_name
+     *
+     * @return self
+     */
+    public function setLastName($last_name)
+    {
+        if (is_null($last_name)) {
+            array_push($this->openAPINullablesSetToNull, 'last_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_of_birth
+     *
+     * @return string|null
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param string|null $date_of_birth date_of_birth
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            array_push($this->openAPINullablesSetToNull, 'date_of_birth');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('date_of_birth', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_line_of_address
+     *
+     * @return string|null
+     */
+    public function getFirstLineOfAddress()
+    {
+        return $this->container['first_line_of_address'];
+    }
+
+    /**
+     * Sets first_line_of_address
+     *
+     * @param string|null $first_line_of_address first_line_of_address
+     *
+     * @return self
+     */
+    public function setFirstLineOfAddress($first_line_of_address)
+    {
+        if (is_null($first_line_of_address)) {
+            array_push($this->openAPINullablesSetToNull, 'first_line_of_address');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('first_line_of_address', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['first_line_of_address'] = $first_line_of_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets postcode
+     *
+     * @return string|null
+     */
+    public function getPostcode()
+    {
+        return $this->container['postcode'];
+    }
+
+    /**
+     * Sets postcode
+     *
+     * @param string|null $postcode postcode
+     *
+     * @return self
+     */
+    public function setPostcode($postcode)
+    {
+        if (is_null($postcode)) {
+            array_push($this->openAPINullablesSetToNull, 'postcode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postcode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postcode'] = $postcode;
 
         return $this;
     }

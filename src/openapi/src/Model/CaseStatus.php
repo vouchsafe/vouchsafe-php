@@ -1,6 +1,6 @@
 <?php
 /**
- * Reason
+ * CaseStatus
  *
  * PHP version 8.1
  *
@@ -31,31 +31,33 @@ namespace Vouchsafe\OpenAPI\Model;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Reason Class Doc Comment
+ * CaseStatus Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Reason
+class CaseStatus
 {
     /**
      * Possible values of this enum
      */
-    public const INVALID_POSTCODE = 'INVALID_POSTCODE';
+    public const IN_PROGRESS = 'InProgress';
 
-    public const INVALID_ADDRESS = 'INVALID_ADDRESS';
+    public const READY_FOR_REVIEW = 'ReadyForReview';
 
-    public const MED_MATCH_PERSON_AT_ADDRESS = 'MED_MATCH_PERSON_AT_ADDRESS';
+    public const VERIFIED = 'Verified';
 
-    public const LOW_MATCH_PERSON_AT_ADDRESS = 'LOW_MATCH_PERSON_AT_ADDRESS';
+    public const REFUSED = 'Refused';
 
-    public const DOB_NOT_MATCHED = 'DOB_NOT_MATCHED';
+    public const CANCELLED = 'Cancelled';
 
-    public const NO_IDENTITY_MATCH = 'NO_IDENTITY_MATCH';
+    public const LOCKED_OUT = 'LockedOut';
 
-    public const NO_RESIDENCY_MATCH = 'NO_RESIDENCY_MATCH';
+    public const BLOCKED = 'Blocked';
+
+    public const MANUALLY_REVIEWED = 'ManuallyReviewed';
 
     /**
      * Gets allowable values of the enum
@@ -64,13 +66,14 @@ class Reason
     public static function getAllowableEnumValues()
     {
         return [
-            self::INVALID_POSTCODE,
-            self::INVALID_ADDRESS,
-            self::MED_MATCH_PERSON_AT_ADDRESS,
-            self::LOW_MATCH_PERSON_AT_ADDRESS,
-            self::DOB_NOT_MATCHED,
-            self::NO_IDENTITY_MATCH,
-            self::NO_RESIDENCY_MATCH
+            self::IN_PROGRESS,
+            self::READY_FOR_REVIEW,
+            self::VERIFIED,
+            self::REFUSED,
+            self::CANCELLED,
+            self::LOCKED_OUT,
+            self::BLOCKED,
+            self::MANUALLY_REVIEWED
         ];
     }
 }

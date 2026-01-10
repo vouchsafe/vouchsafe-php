@@ -140,7 +140,7 @@ class VerificationsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\Verification|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\GetVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
     public function getVerification($id, string $contentType = self::contentTypes['getVerification'][0])
     {
@@ -156,7 +156,7 @@ class VerificationsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\Verification|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\GetVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getVerificationWithHttpInfo($id, string $contentType = self::contentTypes['getVerification'][0])
     {
@@ -188,7 +188,7 @@ class VerificationsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\Verification',
+                        '\Vouchsafe\OpenAPI\Model\GetVerificationResponse',
                         $request,
                         $response,
                     );
@@ -228,7 +228,7 @@ class VerificationsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Vouchsafe\OpenAPI\Model\Verification',
+                '\Vouchsafe\OpenAPI\Model\GetVerificationResponse',
                 $request,
                 $response,
             );
@@ -237,7 +237,7 @@ class VerificationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\Verification',
+                        '\Vouchsafe\OpenAPI\Model\GetVerificationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -303,7 +303,7 @@ class VerificationsApi
      */
     public function getVerificationAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getVerification'][0])
     {
-        $returnType = '\Vouchsafe\OpenAPI\Model\Verification';
+        $returnType = '\Vouchsafe\OpenAPI\Model\GetVerificationResponse';
         $request = $this->getVerificationRequest($id, $contentType);
 
         return $this->client
@@ -441,7 +441,7 @@ class VerificationsApi
     /**
      * Operation listVerifications
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
+     * @param  \Vouchsafe\OpenAPI\Model\CaseStatus|null $status Optional status filter. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
@@ -457,7 +457,7 @@ class VerificationsApi
     /**
      * Operation listVerificationsWithHttpInfo
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
+     * @param  \Vouchsafe\OpenAPI\Model\CaseStatus|null $status Optional status filter. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
@@ -568,7 +568,7 @@ class VerificationsApi
     /**
      * Operation listVerificationsAsync
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
+     * @param  \Vouchsafe\OpenAPI\Model\CaseStatus|null $status Optional status filter. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -587,7 +587,7 @@ class VerificationsApi
     /**
      * Operation listVerificationsAsyncWithHttpInfo
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
+     * @param  \Vouchsafe\OpenAPI\Model\CaseStatus|null $status Optional status filter. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -637,7 +637,7 @@ class VerificationsApi
     /**
      * Create request for operation 'listVerifications'
      *
-     * @param  \Vouchsafe\OpenAPI\Model\Status|null $status Optional status filter. (optional)
+     * @param  \Vouchsafe\OpenAPI\Model\CaseStatus|null $status Optional status filter. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listVerifications'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -659,7 +659,7 @@ class VerificationsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $status,
             'status', // param base name
-            'Status', // openApiType
+            'CaseStatus', // openApiType
             'form', // style
             true, // explode
             false // required

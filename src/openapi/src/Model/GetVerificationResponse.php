@@ -1,6 +1,6 @@
 <?php
 /**
- * Verification
+ * GetVerificationResponse
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Verification Class Doc Comment
+ * GetVerificationResponse Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Verification';
+    protected static $openAPIModelName = 'GetVerificationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -65,7 +65,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'string',
         'redirect_url' => 'string',
         'workflow_id' => 'string',
-        'external_id' => 'string'
+        'external_id' => 'string',
+        'claim_details' => '\Vouchsafe\OpenAPI\Model\ClaimDetails',
+        'checks' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]'
     ];
 
     /**
@@ -83,7 +85,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => null,
         'redirect_url' => null,
         'workflow_id' => null,
-        'external_id' => null
+        'external_id' => null,
+        'claim_details' => null,
+        'checks' => null
     ];
 
     /**
@@ -99,7 +103,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => true,
         'redirect_url' => true,
         'workflow_id' => false,
-        'external_id' => true
+        'external_id' => true,
+        'claim_details' => false,
+        'checks' => false
     ];
 
     /**
@@ -195,7 +201,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'email',
         'redirect_url' => 'redirect_url',
         'workflow_id' => 'workflow_id',
-        'external_id' => 'external_id'
+        'external_id' => 'external_id',
+        'claim_details' => 'claim_details',
+        'checks' => 'checks'
     ];
 
     /**
@@ -211,7 +219,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'setEmail',
         'redirect_url' => 'setRedirectUrl',
         'workflow_id' => 'setWorkflowId',
-        'external_id' => 'setExternalId'
+        'external_id' => 'setExternalId',
+        'claim_details' => 'setClaimDetails',
+        'checks' => 'setChecks'
     ];
 
     /**
@@ -227,7 +237,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         'email' => 'getEmail',
         'redirect_url' => 'getRedirectUrl',
         'workflow_id' => 'getWorkflowId',
-        'external_id' => 'getExternalId'
+        'external_id' => 'getExternalId',
+        'claim_details' => 'getClaimDetails',
+        'checks' => 'getChecks'
     ];
 
     /**
@@ -295,6 +307,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('redirect_url', $data ?? [], null);
         $this->setIfExists('workflow_id', $data ?? [], null);
         $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('claim_details', $data ?? [], null);
+        $this->setIfExists('checks', $data ?? [], null);
     }
 
     /**
@@ -347,6 +361,12 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['external_id'] === null && !$this->isNullableSetToNull('external_id')) {
             $invalidProperties[] = "'external_id' can't be null";
+        }
+        if ($this->container['claim_details'] === null) {
+            $invalidProperties[] = "'claim_details' can't be null";
+        }
+        if ($this->container['checks'] === null) {
+            $invalidProperties[] = "'checks' can't be null";
         }
         return $invalidProperties;
     }
@@ -596,6 +616,60 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['external_id'] = $external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets claim_details
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ClaimDetails
+     */
+    public function getClaimDetails()
+    {
+        return $this->container['claim_details'];
+    }
+
+    /**
+     * Sets claim_details
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ClaimDetails $claim_details claim_details
+     *
+     * @return self
+     */
+    public function setClaimDetails($claim_details)
+    {
+        if (is_null($claim_details)) {
+            throw new \InvalidArgumentException('non-nullable claim_details cannot be null');
+        }
+        $this->container['claim_details'] = $claim_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets checks
+     *
+     * @return \Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]
+     */
+    public function getChecks()
+    {
+        return $this->container['checks'];
+    }
+
+    /**
+     * Sets checks
+     *
+     * @param \Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[] $checks The collected evidence and validations performed
+     *
+     * @return self
+     */
+    public function setChecks($checks)
+    {
+        if (is_null($checks)) {
+            throw new \InvalidArgumentException('non-nullable checks cannot be null');
+        }
+        $this->container['checks'] = $checks;
 
         return $this;
     }

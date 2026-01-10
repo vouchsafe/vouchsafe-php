@@ -1,6 +1,6 @@
 <?php
 /**
- * Verification
+ * VideoSelfieValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Verification Class Doc Comment
+ * VideoSelfieValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
+class VideoSelfieValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Verification';
+    protected static $openAPIModelName = 'VideoSelfieValidations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => '\Vouchsafe\OpenAPI\Model\CaseStatus',
-        'created_at' => 'string',
-        'expires_at' => 'string',
-        'email' => 'string',
-        'redirect_url' => 'string',
-        'workflow_id' => 'string',
-        'external_id' => 'string'
+        'referee_dissimilarity_check' => '\Vouchsafe\OpenAPI\Model\CheckStatus',
+        'liveness_check' => '\Vouchsafe\OpenAPI\Model\CheckStatus'
     ];
 
     /**
@@ -76,14 +70,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'status' => null,
-        'created_at' => null,
-        'expires_at' => null,
-        'email' => null,
-        'redirect_url' => null,
-        'workflow_id' => null,
-        'external_id' => null
+        'referee_dissimilarity_check' => null,
+        'liveness_check' => null
     ];
 
     /**
@@ -92,14 +80,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'created_at' => false,
-        'expires_at' => false,
-        'email' => true,
-        'redirect_url' => true,
-        'workflow_id' => false,
-        'external_id' => true
+        'referee_dissimilarity_check' => true,
+        'liveness_check' => true
     ];
 
     /**
@@ -188,14 +170,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'created_at' => 'created_at',
-        'expires_at' => 'expires_at',
-        'email' => 'email',
-        'redirect_url' => 'redirect_url',
-        'workflow_id' => 'workflow_id',
-        'external_id' => 'external_id'
+        'referee_dissimilarity_check' => 'referee_dissimilarity_check',
+        'liveness_check' => 'liveness_check'
     ];
 
     /**
@@ -204,14 +180,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'status' => 'setStatus',
-        'created_at' => 'setCreatedAt',
-        'expires_at' => 'setExpiresAt',
-        'email' => 'setEmail',
-        'redirect_url' => 'setRedirectUrl',
-        'workflow_id' => 'setWorkflowId',
-        'external_id' => 'setExternalId'
+        'referee_dissimilarity_check' => 'setRefereeDissimilarityCheck',
+        'liveness_check' => 'setLivenessCheck'
     ];
 
     /**
@@ -220,14 +190,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'status' => 'getStatus',
-        'created_at' => 'getCreatedAt',
-        'expires_at' => 'getExpiresAt',
-        'email' => 'getEmail',
-        'redirect_url' => 'getRedirectUrl',
-        'workflow_id' => 'getWorkflowId',
-        'external_id' => 'getExternalId'
+        'referee_dissimilarity_check' => 'getRefereeDissimilarityCheck',
+        'liveness_check' => 'getLivenessCheck'
     ];
 
     /**
@@ -287,14 +251,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('redirect_url', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('referee_dissimilarity_check', $data ?? [], null);
+        $this->setIfExists('liveness_check', $data ?? [], null);
     }
 
     /**
@@ -324,29 +282,8 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
-        }
-        if ($this->container['email'] === null && !$this->isNullableSetToNull('email')) {
-            $invalidProperties[] = "'email' can't be null";
-        }
-        if ($this->container['redirect_url'] === null && !$this->isNullableSetToNull('redirect_url')) {
-            $invalidProperties[] = "'redirect_url' can't be null";
-        }
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
-        }
-        if ($this->container['external_id'] === null && !$this->isNullableSetToNull('external_id')) {
-            $invalidProperties[] = "'external_id' can't be null";
+        if ($this->container['liveness_check'] === null && !$this->isNullableSetToNull('liveness_check')) {
+            $invalidProperties[] = "'liveness_check' can't be null";
         }
         return $invalidProperties;
     }
@@ -364,238 +301,69 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets referee_dissimilarity_check
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\CheckStatus|null
      */
-    public function getId()
+    public function getRefereeDissimilarityCheck()
     {
-        return $this->container['id'];
+        return $this->container['referee_dissimilarity_check'];
     }
 
     /**
-     * Sets id
+     * Sets referee_dissimilarity_check
      *
-     * @param string $id Unique ID for tracking a verification session over time
+     * @param \Vouchsafe\OpenAPI\Model\CheckStatus|null $referee_dissimilarity_check referee_dissimilarity_check
      *
      * @return self
      */
-    public function setId($id)
+    public function setRefereeDissimilarityCheck($referee_dissimilarity_check)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return \Vouchsafe\OpenAPI\Model\CaseStatus
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \Vouchsafe\OpenAPI\Model\CaseStatus $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at When it was originally requested or begun
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets expires_at
-     *
-     * @return string
-     */
-    public function getExpiresAt()
-    {
-        return $this->container['expires_at'];
-    }
-
-    /**
-     * Sets expires_at
-     *
-     * @param string $expires_at When the user will stop getting reminders
-     *
-     * @return self
-     */
-    public function setExpiresAt($expires_at)
-    {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
-        }
-        $this->container['expires_at'] = $expires_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email The originally supplied email address
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            array_push($this->openAPINullablesSetToNull, 'email');
+        if (is_null($referee_dissimilarity_check)) {
+            array_push($this->openAPINullablesSetToNull, 'referee_dissimilarity_check');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email', $nullablesSetToNull);
+            $index = array_search('referee_dissimilarity_check', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['email'] = $email;
+        $this->container['referee_dissimilarity_check'] = $referee_dissimilarity_check;
 
         return $this;
     }
 
     /**
-     * Gets redirect_url
+     * Gets liveness_check
      *
-     * @return string|null
+     * @return \Vouchsafe\OpenAPI\Model\CheckStatus|null
      */
-    public function getRedirectUrl()
+    public function getLivenessCheck()
     {
-        return $this->container['redirect_url'];
+        return $this->container['liveness_check'];
     }
 
     /**
-     * Sets redirect_url
+     * Sets liveness_check
      *
-     * @param string|null $redirect_url Where to send the user upon success. If null, the verification flow default will be used.
+     * @param \Vouchsafe\OpenAPI\Model\CheckStatus|null $liveness_check liveness_check
      *
      * @return self
      */
-    public function setRedirectUrl($redirect_url)
+    public function setLivenessCheck($liveness_check)
     {
-        if (is_null($redirect_url)) {
-            array_push($this->openAPINullablesSetToNull, 'redirect_url');
+        if (is_null($liveness_check)) {
+            array_push($this->openAPINullablesSetToNull, 'liveness_check');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('redirect_url', $nullablesSetToNull);
+            $index = array_search('liveness_check', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['redirect_url'] = $redirect_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets workflow_id
-     *
-     * @return string
-     */
-    public function getWorkflowId()
-    {
-        return $this->container['workflow_id'];
-    }
-
-    /**
-     * Sets workflow_id
-     *
-     * @param string $workflow_id The verification flow it belongs to
-     *
-     * @return self
-     */
-    public function setWorkflowId($workflow_id)
-    {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
-        }
-        $this->container['workflow_id'] = $workflow_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets external_id
-     *
-     * @return string|null
-     */
-    public function getExternalId()
-    {
-        return $this->container['external_id'];
-    }
-
-    /**
-     * Sets external_id
-     *
-     * @param string|null $external_id An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
-     *
-     * @return self
-     */
-    public function setExternalId($external_id)
-    {
-        if (is_null($external_id)) {
-            array_push($this->openAPINullablesSetToNull, 'external_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['external_id'] = $external_id;
+        $this->container['liveness_check'] = $liveness_check;
 
         return $this;
     }

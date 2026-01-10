@@ -1,6 +1,6 @@
 <?php
 /**
- * Verification
+ * BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * Verification Class Doc Comment
+ * BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
+class BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Verification';
+    protected static $openAPIModelName = 'BaseCheckExtended_video_selfie.VideoSelfieEvidenceItem_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => '\Vouchsafe\OpenAPI\Model\CaseStatus',
-        'created_at' => 'string',
-        'expires_at' => 'string',
-        'email' => 'string',
-        'redirect_url' => 'string',
-        'workflow_id' => 'string',
-        'external_id' => 'string'
+        'status' => '\Vouchsafe\OpenAPI\Model\OverallStatus',
+        'check_type' => 'string',
+        'recorded_past_attempts' => '\Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[]',
+        'submitted_evidence' => '\Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[]',
+        'total_attempts' => 'float'
     ];
 
     /**
@@ -76,14 +73,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
         'status' => null,
-        'created_at' => null,
-        'expires_at' => null,
-        'email' => null,
-        'redirect_url' => null,
-        'workflow_id' => null,
-        'external_id' => null
+        'check_type' => null,
+        'recorded_past_attempts' => null,
+        'submitted_evidence' => null,
+        'total_attempts' => 'double'
     ];
 
     /**
@@ -92,14 +86,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
         'status' => false,
-        'created_at' => false,
-        'expires_at' => false,
-        'email' => true,
-        'redirect_url' => true,
-        'workflow_id' => false,
-        'external_id' => true
+        'check_type' => false,
+        'recorded_past_attempts' => false,
+        'submitted_evidence' => false,
+        'total_attempts' => false
     ];
 
     /**
@@ -188,14 +179,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'status' => 'status',
-        'created_at' => 'created_at',
-        'expires_at' => 'expires_at',
-        'email' => 'email',
-        'redirect_url' => 'redirect_url',
-        'workflow_id' => 'workflow_id',
-        'external_id' => 'external_id'
+        'check_type' => 'check_type',
+        'recorded_past_attempts' => 'recorded_past_attempts',
+        'submitted_evidence' => 'submitted_evidence',
+        'total_attempts' => 'total_attempts'
     ];
 
     /**
@@ -204,14 +192,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'status' => 'setStatus',
-        'created_at' => 'setCreatedAt',
-        'expires_at' => 'setExpiresAt',
-        'email' => 'setEmail',
-        'redirect_url' => 'setRedirectUrl',
-        'workflow_id' => 'setWorkflowId',
-        'external_id' => 'setExternalId'
+        'check_type' => 'setCheckType',
+        'recorded_past_attempts' => 'setRecordedPastAttempts',
+        'submitted_evidence' => 'setSubmittedEvidence',
+        'total_attempts' => 'setTotalAttempts'
     ];
 
     /**
@@ -220,14 +205,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'status' => 'getStatus',
-        'created_at' => 'getCreatedAt',
-        'expires_at' => 'getExpiresAt',
-        'email' => 'getEmail',
-        'redirect_url' => 'getRedirectUrl',
-        'workflow_id' => 'getWorkflowId',
-        'external_id' => 'getExternalId'
+        'check_type' => 'getCheckType',
+        'recorded_past_attempts' => 'getRecordedPastAttempts',
+        'submitted_evidence' => 'getSubmittedEvidence',
+        'total_attempts' => 'getTotalAttempts'
     ];
 
     /**
@@ -271,6 +253,19 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CHECK_TYPE_VIDEO_SELFIE = 'video_selfie';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCheckTypeAllowableValues()
+    {
+        return [
+            self::CHECK_TYPE_VIDEO_SELFIE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -287,14 +282,11 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('expires_at', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('redirect_url', $data ?? [], null);
-        $this->setIfExists('workflow_id', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('check_type', $data ?? [], null);
+        $this->setIfExists('recorded_past_attempts', $data ?? [], null);
+        $this->setIfExists('submitted_evidence', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
     }
 
     /**
@@ -324,29 +316,29 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+        if ($this->container['check_type'] === null) {
+            $invalidProperties[] = "'check_type' can't be null";
         }
-        if ($this->container['expires_at'] === null) {
-            $invalidProperties[] = "'expires_at' can't be null";
+        $allowedValues = $this->getCheckTypeAllowableValues();
+        if (!is_null($this->container['check_type']) && !in_array($this->container['check_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'check_type', must be one of '%s'",
+                $this->container['check_type'],
+                implode("', '", $allowedValues)
+            );
         }
-        if ($this->container['email'] === null && !$this->isNullableSetToNull('email')) {
-            $invalidProperties[] = "'email' can't be null";
+
+        if ($this->container['recorded_past_attempts'] === null) {
+            $invalidProperties[] = "'recorded_past_attempts' can't be null";
         }
-        if ($this->container['redirect_url'] === null && !$this->isNullableSetToNull('redirect_url')) {
-            $invalidProperties[] = "'redirect_url' can't be null";
+        if ($this->container['submitted_evidence'] === null) {
+            $invalidProperties[] = "'submitted_evidence' can't be null";
         }
-        if ($this->container['workflow_id'] === null) {
-            $invalidProperties[] = "'workflow_id' can't be null";
-        }
-        if ($this->container['external_id'] === null && !$this->isNullableSetToNull('external_id')) {
-            $invalidProperties[] = "'external_id' can't be null";
+        if ($this->container['total_attempts'] === null) {
+            $invalidProperties[] = "'total_attempts' can't be null";
         }
         return $invalidProperties;
     }
@@ -364,36 +356,9 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id Unique ID for tracking a verification session over time
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
      * Gets status
      *
-     * @return \Vouchsafe\OpenAPI\Model\CaseStatus
+     * @return \Vouchsafe\OpenAPI\Model\OverallStatus
      */
     public function getStatus()
     {
@@ -403,7 +368,7 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \Vouchsafe\OpenAPI\Model\CaseStatus $status status
+     * @param \Vouchsafe\OpenAPI\Model\OverallStatus $status status
      *
      * @return self
      */
@@ -418,184 +383,119 @@ class Verification implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets created_at
+     * Gets check_type
      *
      * @return string
      */
-    public function getCreatedAt()
+    public function getCheckType()
     {
-        return $this->container['created_at'];
+        return $this->container['check_type'];
     }
 
     /**
-     * Sets created_at
+     * Sets check_type
      *
-     * @param string $created_at When it was originally requested or begun
+     * @param string $check_type check_type
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setCheckType($check_type)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($check_type)) {
+            throw new \InvalidArgumentException('non-nullable check_type cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $allowedValues = $this->getCheckTypeAllowableValues();
+        if (!in_array($check_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'check_type', must be one of '%s'",
+                    $check_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['check_type'] = $check_type;
 
         return $this;
     }
 
     /**
-     * Gets expires_at
+     * Gets recorded_past_attempts
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[]
      */
-    public function getExpiresAt()
+    public function getRecordedPastAttempts()
     {
-        return $this->container['expires_at'];
+        return $this->container['recorded_past_attempts'];
     }
 
     /**
-     * Sets expires_at
+     * Sets recorded_past_attempts
      *
-     * @param string $expires_at When the user will stop getting reminders
+     * @param \Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[] $recorded_past_attempts recorded_past_attempts
      *
      * @return self
      */
-    public function setExpiresAt($expires_at)
+    public function setRecordedPastAttempts($recorded_past_attempts)
     {
-        if (is_null($expires_at)) {
-            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        if (is_null($recorded_past_attempts)) {
+            throw new \InvalidArgumentException('non-nullable recorded_past_attempts cannot be null');
         }
-        $this->container['expires_at'] = $expires_at;
+        $this->container['recorded_past_attempts'] = $recorded_past_attempts;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets submitted_evidence
      *
-     * @return string|null
+     * @return \Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[]
      */
-    public function getEmail()
+    public function getSubmittedEvidence()
     {
-        return $this->container['email'];
+        return $this->container['submitted_evidence'];
     }
 
     /**
-     * Sets email
+     * Sets submitted_evidence
      *
-     * @param string|null $email The originally supplied email address
+     * @param \Vouchsafe\OpenAPI\Model\VideoSelfieEvidenceItem[] $submitted_evidence submitted_evidence
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setSubmittedEvidence($submitted_evidence)
     {
-        if (is_null($email)) {
-            array_push($this->openAPINullablesSetToNull, 'email');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($submitted_evidence)) {
+            throw new \InvalidArgumentException('non-nullable submitted_evidence cannot be null');
         }
-        $this->container['email'] = $email;
+        $this->container['submitted_evidence'] = $submitted_evidence;
 
         return $this;
     }
 
     /**
-     * Gets redirect_url
+     * Gets total_attempts
      *
-     * @return string|null
+     * @return float
      */
-    public function getRedirectUrl()
+    public function getTotalAttempts()
     {
-        return $this->container['redirect_url'];
+        return $this->container['total_attempts'];
     }
 
     /**
-     * Sets redirect_url
+     * Sets total_attempts
      *
-     * @param string|null $redirect_url Where to send the user upon success. If null, the verification flow default will be used.
+     * @param float $total_attempts total_attempts
      *
      * @return self
      */
-    public function setRedirectUrl($redirect_url)
+    public function setTotalAttempts($total_attempts)
     {
-        if (is_null($redirect_url)) {
-            array_push($this->openAPINullablesSetToNull, 'redirect_url');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('redirect_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
         }
-        $this->container['redirect_url'] = $redirect_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets workflow_id
-     *
-     * @return string
-     */
-    public function getWorkflowId()
-    {
-        return $this->container['workflow_id'];
-    }
-
-    /**
-     * Sets workflow_id
-     *
-     * @param string $workflow_id The verification flow it belongs to
-     *
-     * @return self
-     */
-    public function setWorkflowId($workflow_id)
-    {
-        if (is_null($workflow_id)) {
-            throw new \InvalidArgumentException('non-nullable workflow_id cannot be null');
-        }
-        $this->container['workflow_id'] = $workflow_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets external_id
-     *
-     * @return string|null
-     */
-    public function getExternalId()
-    {
-        return $this->container['external_id'];
-    }
-
-    /**
-     * Sets external_id
-     *
-     * @param string|null $external_id An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
-     *
-     * @return self
-     */
-    public function setExternalId($external_id)
-    {
-        if (is_null($external_id)) {
-            array_push($this->openAPINullablesSetToNull, 'external_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['external_id'] = $external_id;
+        $this->container['total_attempts'] = $total_attempts;
 
         return $this;
     }
