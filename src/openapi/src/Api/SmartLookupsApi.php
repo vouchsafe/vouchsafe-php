@@ -137,7 +137,7 @@ class SmartLookupsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
     public function performSmartLookup($smart_lookup_input, string $contentType = self::contentTypes['performSmartLookup'][0])
     {
@@ -153,7 +153,7 @@ class SmartLookupsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function performSmartLookupWithHttpInfo($smart_lookup_input, string $contentType = self::contentTypes['performSmartLookup'][0])
     {
@@ -201,6 +201,12 @@ class SmartLookupsApi
                         $request,
                         $response,
                     );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $request,
+                        $response,
+                    );
             }
 
             
@@ -242,6 +248,14 @@ class SmartLookupsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
@@ -428,7 +442,7 @@ class SmartLookupsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\PostcodeResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\PostcodeResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
     public function searchPostcode($postcode, string $contentType = self::contentTypes['searchPostcode'][0])
     {
@@ -444,7 +458,7 @@ class SmartLookupsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\PostcodeResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\PostcodeResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function searchPostcodeWithHttpInfo($postcode, string $contentType = self::contentTypes['searchPostcode'][0])
     {
@@ -492,6 +506,12 @@ class SmartLookupsApi
                         $request,
                         $response,
                     );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $request,
+                        $response,
+                    );
             }
 
             
@@ -533,6 +553,14 @@ class SmartLookupsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',

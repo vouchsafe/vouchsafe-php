@@ -733,7 +733,7 @@ class VerificationsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
     public function requestVerification($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
     {
@@ -749,7 +749,7 @@ class VerificationsApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\RequestVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function requestVerificationWithHttpInfo($request_verification_input, string $contentType = self::contentTypes['requestVerification'][0])
     {
@@ -797,6 +797,12 @@ class VerificationsApi
                         $request,
                         $response,
                     );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $request,
+                        $response,
+                    );
             }
 
             
@@ -838,6 +844,14 @@ class VerificationsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
