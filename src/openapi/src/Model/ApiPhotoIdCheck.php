@@ -1,6 +1,6 @@
 <?php
 /**
- * GetVerificationResponseChecksInner
+ * ApiPhotoIdCheck
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * GetVerificationResponseChecksInner Class Doc Comment
+ * ApiPhotoIdCheck Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiPhotoIdCheck implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetVerificationResponse_checks_inner';
+    protected static $openAPIModelName = 'Api_PhotoIdCheck_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

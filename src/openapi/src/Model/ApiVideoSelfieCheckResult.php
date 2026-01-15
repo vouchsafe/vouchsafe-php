@@ -1,6 +1,6 @@
 <?php
 /**
- * GetVerificationResponseChecksInner
+ * ApiVideoSelfieCheckResult
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * GetVerificationResponseChecksInner Class Doc Comment
+ * ApiVideoSelfieCheckResult Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVideoSelfieCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetVerificationResponse_checks_inner';
+    protected static $openAPIModelName = 'Api_VideoSelfieCheck__result';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult',
-        'overall_status' => 'string',
-        'step' => 'string'
+        'recorded_previous_submissions' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[]',
+        'submissions' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[]',
+        'total_attempts' => 'float'
     ];
 
     /**
@@ -71,9 +71,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'overall_status' => null,
-        'step' => null
+        'recorded_previous_submissions' => null,
+        'submissions' => null,
+        'total_attempts' => 'double'
     ];
 
     /**
@@ -82,9 +82,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => false,
-        'overall_status' => false,
-        'step' => false
+        'recorded_previous_submissions' => false,
+        'submissions' => false,
+        'total_attempts' => false
     ];
 
     /**
@@ -173,9 +173,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'overall_status' => 'overall_status',
-        'step' => 'step'
+        'recorded_previous_submissions' => 'recorded_previous_submissions',
+        'submissions' => 'submissions',
+        'total_attempts' => 'total_attempts'
     ];
 
     /**
@@ -184,9 +184,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'overall_status' => 'setOverallStatus',
-        'step' => 'setStep'
+        'recorded_previous_submissions' => 'setRecordedPreviousSubmissions',
+        'submissions' => 'setSubmissions',
+        'total_attempts' => 'setTotalAttempts'
     ];
 
     /**
@@ -195,9 +195,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'overall_status' => 'getOverallStatus',
-        'step' => 'getStep'
+        'recorded_previous_submissions' => 'getRecordedPreviousSubmissions',
+        'submissions' => 'getSubmissions',
+        'total_attempts' => 'getTotalAttempts'
     ];
 
     /**
@@ -241,36 +241,6 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
-    public const OVERALL_STATUS_PASS = 'pass';
-    public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_PHOTO_ID = 'photo_id';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOverallStatusAllowableValues()
-    {
-        return [
-            self::OVERALL_STATUS_IN_PROGRESS,
-            self::OVERALL_STATUS_PASS,
-            self::OVERALL_STATUS_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_PHOTO_ID,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -287,9 +257,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('overall_status', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('recorded_previous_submissions', $data ?? [], null);
+        $this->setIfExists('submissions', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
     }
 
     /**
@@ -319,33 +289,15 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+        if ($this->container['recorded_previous_submissions'] === null) {
+            $invalidProperties[] = "'recorded_previous_submissions' can't be null";
         }
-        if ($this->container['overall_status'] === null) {
-            $invalidProperties[] = "'overall_status' can't be null";
+        if ($this->container['submissions'] === null) {
+            $invalidProperties[] = "'submissions' can't be null";
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'overall_status', must be one of '%s'",
-                $this->container['overall_status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['total_attempts'] === null) {
+            $invalidProperties[] = "'total_attempts' can't be null";
         }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -362,102 +314,82 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets result
+     * Gets recorded_previous_submissions
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[]
      */
-    public function getResult()
+    public function getRecordedPreviousSubmissions()
     {
-        return $this->container['result'];
+        return $this->container['recorded_previous_submissions'];
     }
 
     /**
-     * Sets result
+     * Sets recorded_previous_submissions
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[] $recorded_previous_submissions recorded_previous_submissions
      *
      * @return self
      */
-    public function setResult($result)
+    public function setRecordedPreviousSubmissions($recorded_previous_submissions)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        if (is_null($recorded_previous_submissions)) {
+            throw new \InvalidArgumentException('non-nullable recorded_previous_submissions cannot be null');
         }
-        $this->container['result'] = $result;
+        $this->container['recorded_previous_submissions'] = $recorded_previous_submissions;
 
         return $this;
     }
 
     /**
-     * Gets overall_status
+     * Gets submissions
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[]
      */
-    public function getOverallStatus()
+    public function getSubmissions()
     {
-        return $this->container['overall_status'];
+        return $this->container['submissions'];
     }
 
     /**
-     * Sets overall_status
+     * Sets submissions
      *
-     * @param string $overall_status overall_status
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner[] $submissions submissions
      *
      * @return self
      */
-    public function setOverallStatus($overall_status)
+    public function setSubmissions($submissions)
     {
-        if (is_null($overall_status)) {
-            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        if (is_null($submissions)) {
+            throw new \InvalidArgumentException('non-nullable submissions cannot be null');
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!in_array($overall_status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
-                    $overall_status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['overall_status'] = $overall_status;
+        $this->container['submissions'] = $submissions;
 
         return $this;
     }
 
     /**
-     * Gets step
+     * Gets total_attempts
      *
-     * @return string
+     * @return float
      */
-    public function getStep()
+    public function getTotalAttempts()
     {
-        return $this->container['step'];
+        return $this->container['total_attempts'];
     }
 
     /**
-     * Sets step
+     * Sets total_attempts
      *
-     * @param string $step step
+     * @param float $total_attempts total_attempts
      *
      * @return self
      */
-    public function setStep($step)
+    public function setTotalAttempts($total_attempts)
     {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['step'] = $step;
+        $this->container['total_attempts'] = $total_attempts;
 
         return $this;
     }

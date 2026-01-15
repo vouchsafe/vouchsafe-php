@@ -1,6 +1,6 @@
 <?php
 /**
- * GetVerificationResponseChecksInner
+ * ApiOtpCheckAnyOf
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * GetVerificationResponseChecksInner Class Doc Comment
+ * ApiOtpCheckAnyOf Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiOtpCheckAnyOf implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetVerificationResponse_checks_inner';
+    protected static $openAPIModelName = 'Api_OtpCheck__anyOf';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult',
+        'result' => '\Vouchsafe\OpenAPI\Model\ApiOtpCheckAnyOfResult',
         'overall_status' => 'string',
         'step' => 'string'
     ];
@@ -244,7 +244,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
     public const OVERALL_STATUS_PASS = 'pass';
     public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_PHOTO_ID = 'photo_id';
+    public const STEP_VERIFY_EMAIL = 'verify_email';
 
     /**
      * Gets allowable values of the enum
@@ -268,7 +268,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     public function getStepAllowableValues()
     {
         return [
-            self::STEP_PHOTO_ID,
+            self::STEP_VERIFY_EMAIL,
         ];
     }
 
@@ -364,7 +364,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     /**
      * Gets result
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiOtpCheckAnyOfResult
      */
     public function getResult()
     {
@@ -374,7 +374,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     /**
      * Sets result
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiOtpCheckAnyOfResult $result result
      *
      * @return self
      */

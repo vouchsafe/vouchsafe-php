@@ -1,6 +1,6 @@
 <?php
 /**
- * GetVerificationResponseChecksInner
+ * ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * GetVerificationResponseChecksInner Class Doc Comment
+ * ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetVerificationResponse_checks_inner';
+    protected static $openAPIModelName = 'Api_VideoSelfieCheck__result_recorded_previous_submissions_inner_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult',
-        'overall_status' => 'string',
-        'step' => 'string'
+        'referee_dissimilarity_check' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck',
+        'liveness_check' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck'
     ];
 
     /**
@@ -71,9 +70,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'overall_status' => null,
-        'step' => null
+        'referee_dissimilarity_check' => null,
+        'liveness_check' => null
     ];
 
     /**
@@ -82,9 +80,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => false,
-        'overall_status' => false,
-        'step' => false
+        'referee_dissimilarity_check' => false,
+        'liveness_check' => false
     ];
 
     /**
@@ -173,9 +170,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'overall_status' => 'overall_status',
-        'step' => 'step'
+        'referee_dissimilarity_check' => 'referee_dissimilarity_check',
+        'liveness_check' => 'liveness_check'
     ];
 
     /**
@@ -184,9 +180,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'overall_status' => 'setOverallStatus',
-        'step' => 'setStep'
+        'referee_dissimilarity_check' => 'setRefereeDissimilarityCheck',
+        'liveness_check' => 'setLivenessCheck'
     ];
 
     /**
@@ -195,9 +190,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'overall_status' => 'getOverallStatus',
-        'step' => 'getStep'
+        'referee_dissimilarity_check' => 'getRefereeDissimilarityCheck',
+        'liveness_check' => 'getLivenessCheck'
     ];
 
     /**
@@ -241,36 +235,6 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
-    public const OVERALL_STATUS_PASS = 'pass';
-    public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_PHOTO_ID = 'photo_id';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOverallStatusAllowableValues()
-    {
-        return [
-            self::OVERALL_STATUS_IN_PROGRESS,
-            self::OVERALL_STATUS_PASS,
-            self::OVERALL_STATUS_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_PHOTO_ID,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -287,9 +251,8 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('overall_status', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('referee_dissimilarity_check', $data ?? [], null);
+        $this->setIfExists('liveness_check', $data ?? [], null);
     }
 
     /**
@@ -319,33 +282,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+        if ($this->container['liveness_check'] === null) {
+            $invalidProperties[] = "'liveness_check' can't be null";
         }
-        if ($this->container['overall_status'] === null) {
-            $invalidProperties[] = "'overall_status' can't be null";
-        }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'overall_status', must be one of '%s'",
-                $this->container['overall_status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -362,102 +301,55 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets result
+     * Gets referee_dissimilarity_check
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck|null
      */
-    public function getResult()
+    public function getRefereeDissimilarityCheck()
     {
-        return $this->container['result'];
+        return $this->container['referee_dissimilarity_check'];
     }
 
     /**
-     * Sets result
+     * Sets referee_dissimilarity_check
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck|null $referee_dissimilarity_check referee_dissimilarity_check
      *
      * @return self
      */
-    public function setResult($result)
+    public function setRefereeDissimilarityCheck($referee_dissimilarity_check)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        if (is_null($referee_dissimilarity_check)) {
+            throw new \InvalidArgumentException('non-nullable referee_dissimilarity_check cannot be null');
         }
-        $this->container['result'] = $result;
+        $this->container['referee_dissimilarity_check'] = $referee_dissimilarity_check;
 
         return $this;
     }
 
     /**
-     * Gets overall_status
+     * Gets liveness_check
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck
      */
-    public function getOverallStatus()
+    public function getLivenessCheck()
     {
-        return $this->container['overall_status'];
+        return $this->container['liveness_check'];
     }
 
     /**
-     * Sets overall_status
+     * Sets liveness_check
      *
-     * @param string $overall_status overall_status
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck $liveness_check liveness_check
      *
      * @return self
      */
-    public function setOverallStatus($overall_status)
+    public function setLivenessCheck($liveness_check)
     {
-        if (is_null($overall_status)) {
-            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        if (is_null($liveness_check)) {
+            throw new \InvalidArgumentException('non-nullable liveness_check cannot be null');
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!in_array($overall_status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
-                    $overall_status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['overall_status'] = $overall_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets step
-     *
-     * @return string
-     */
-    public function getStep()
-    {
-        return $this->container['step'];
-    }
-
-    /**
-     * Sets step
-     *
-     * @param string $step step
-     *
-     * @return self
-     */
-    public function setStep($step)
-    {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['step'] = $step;
+        $this->container['liveness_check'] = $liveness_check;
 
         return $this;
     }

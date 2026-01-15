@@ -1,6 +1,6 @@
 <?php
 /**
- * GetVerificationResponseChecksInner
+ * ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * GetVerificationResponseChecksInner Class Doc Comment
+ * ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsRefereeDissimilarityCheck implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GetVerificationResponse_checks_inner';
+    protected static $openAPIModelName = 'Api_VideoSelfieCheck__result_recorded_previous_submissions_inner_validations_referee_dissimilarity_check';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult',
-        'overall_status' => 'string',
-        'step' => 'string'
+        'confidence_tier' => 'string',
+        'score' => 'float',
+        'status' => 'string'
     ];
 
     /**
@@ -71,9 +71,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'overall_status' => null,
-        'step' => null
+        'confidence_tier' => null,
+        'score' => 'double',
+        'status' => null
     ];
 
     /**
@@ -82,9 +82,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => false,
-        'overall_status' => false,
-        'step' => false
+        'confidence_tier' => false,
+        'score' => false,
+        'status' => false
     ];
 
     /**
@@ -173,9 +173,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'overall_status' => 'overall_status',
-        'step' => 'step'
+        'confidence_tier' => 'confidence_tier',
+        'score' => 'score',
+        'status' => 'status'
     ];
 
     /**
@@ -184,9 +184,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'overall_status' => 'setOverallStatus',
-        'step' => 'setStep'
+        'confidence_tier' => 'setConfidenceTier',
+        'score' => 'setScore',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -195,9 +195,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'overall_status' => 'getOverallStatus',
-        'step' => 'getStep'
+        'confidence_tier' => 'getConfidenceTier',
+        'score' => 'getScore',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -241,22 +241,23 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
-    public const OVERALL_STATUS_PASS = 'pass';
-    public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_PHOTO_ID = 'photo_id';
+    public const CONFIDENCE_TIER_LOW = 'low';
+    public const CONFIDENCE_TIER_MEDIUM = 'medium';
+    public const CONFIDENCE_TIER_HIGH = 'high';
+    public const STATUS_PASS = 'pass';
+    public const STATUS_FAIL = 'fail';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getOverallStatusAllowableValues()
+    public function getConfidenceTierAllowableValues()
     {
         return [
-            self::OVERALL_STATUS_IN_PROGRESS,
-            self::OVERALL_STATUS_PASS,
-            self::OVERALL_STATUS_FAIL,
+            self::CONFIDENCE_TIER_LOW,
+            self::CONFIDENCE_TIER_MEDIUM,
+            self::CONFIDENCE_TIER_HIGH,
         ];
     }
 
@@ -265,10 +266,11 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      *
      * @return string[]
      */
-    public function getStepAllowableValues()
+    public function getStatusAllowableValues()
     {
         return [
-            self::STEP_PHOTO_ID,
+            self::STATUS_PASS,
+            self::STATUS_FAIL,
         ];
     }
 
@@ -287,9 +289,9 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('overall_status', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('confidence_tier', $data ?? [], null);
+        $this->setIfExists('score', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -319,29 +321,29 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+        if ($this->container['confidence_tier'] === null) {
+            $invalidProperties[] = "'confidence_tier' can't be null";
         }
-        if ($this->container['overall_status'] === null) {
-            $invalidProperties[] = "'overall_status' can't be null";
-        }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
+        $allowedValues = $this->getConfidenceTierAllowableValues();
+        if (!is_null($this->container['confidence_tier']) && !in_array($this->container['confidence_tier'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'overall_status', must be one of '%s'",
-                $this->container['overall_status'],
+                "invalid value '%s' for 'confidence_tier', must be one of '%s'",
+                $this->container['confidence_tier'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
+        if ($this->container['score'] === null) {
+            $invalidProperties[] = "'score' can't be null";
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -362,102 +364,102 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets result
+     * Gets confidence_tier
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult
+     * @return string
      */
-    public function getResult()
+    public function getConfidenceTier()
     {
-        return $this->container['result'];
+        return $this->container['confidence_tier'];
     }
 
     /**
-     * Sets result
+     * Sets confidence_tier
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult $result result
+     * @param string $confidence_tier confidence_tier
      *
      * @return self
      */
-    public function setResult($result)
+    public function setConfidenceTier($confidence_tier)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        if (is_null($confidence_tier)) {
+            throw new \InvalidArgumentException('non-nullable confidence_tier cannot be null');
         }
-        $this->container['result'] = $result;
+        $allowedValues = $this->getConfidenceTierAllowableValues();
+        if (!in_array($confidence_tier, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'confidence_tier', must be one of '%s'",
+                    $confidence_tier,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['confidence_tier'] = $confidence_tier;
 
         return $this;
     }
 
     /**
-     * Gets overall_status
+     * Gets score
      *
-     * @return string
+     * @return float
      */
-    public function getOverallStatus()
+    public function getScore()
     {
-        return $this->container['overall_status'];
+        return $this->container['score'];
     }
 
     /**
-     * Sets overall_status
+     * Sets score
      *
-     * @param string $overall_status overall_status
+     * @param float $score score
      *
      * @return self
      */
-    public function setOverallStatus($overall_status)
+    public function setScore($score)
     {
-        if (is_null($overall_status)) {
-            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        if (is_null($score)) {
+            throw new \InvalidArgumentException('non-nullable score cannot be null');
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!in_array($overall_status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
-                    $overall_status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['overall_status'] = $overall_status;
+        $this->container['score'] = $score;
 
         return $this;
     }
 
     /**
-     * Gets step
+     * Gets status
      *
      * @return string
      */
-    public function getStep()
+    public function getStatus()
     {
-        return $this->container['step'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets step
+     * Sets status
      *
-     * @param string $step step
+     * @param string $status status
      *
      * @return self
      */
-    public function setStep($step)
+    public function setStatus($status)
     {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['step'] = $step;
+        $this->container['status'] = $status;
 
         return $this;
     }
