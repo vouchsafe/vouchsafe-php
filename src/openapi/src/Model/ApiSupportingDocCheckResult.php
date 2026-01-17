@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckResult
+ * ApiSupportingDocCheckResult
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckResult Class Doc Comment
+ * ApiSupportingDocCheckResult Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiSupportingDocCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__result';
+    protected static $openAPIModelName = 'Api_SupportingDocCheck__result';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations'
+        'recorded_previous_submissions' => '\Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[]',
+        'submissions' => '\Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[]',
+        'total_attempts' => 'float'
     ];
 
     /**
@@ -69,7 +71,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'validations' => null
+        'recorded_previous_submissions' => null,
+        'submissions' => null,
+        'total_attempts' => 'double'
     ];
 
     /**
@@ -78,7 +82,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'validations' => false
+        'recorded_previous_submissions' => false,
+        'submissions' => false,
+        'total_attempts' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'validations' => 'validations'
+        'recorded_previous_submissions' => 'recorded_previous_submissions',
+        'submissions' => 'submissions',
+        'total_attempts' => 'total_attempts'
     ];
 
     /**
@@ -176,7 +184,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'validations' => 'setValidations'
+        'recorded_previous_submissions' => 'setRecordedPreviousSubmissions',
+        'submissions' => 'setSubmissions',
+        'total_attempts' => 'setTotalAttempts'
     ];
 
     /**
@@ -185,7 +195,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'validations' => 'getValidations'
+        'recorded_previous_submissions' => 'getRecordedPreviousSubmissions',
+        'submissions' => 'getSubmissions',
+        'total_attempts' => 'getTotalAttempts'
     ];
 
     /**
@@ -245,7 +257,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('recorded_previous_submissions', $data ?? [], null);
+        $this->setIfExists('submissions', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
     }
 
     /**
@@ -275,8 +289,14 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['recorded_previous_submissions'] === null) {
+            $invalidProperties[] = "'recorded_previous_submissions' can't be null";
+        }
+        if ($this->container['submissions'] === null) {
+            $invalidProperties[] = "'submissions' can't be null";
+        }
+        if ($this->container['total_attempts'] === null) {
+            $invalidProperties[] = "'total_attempts' can't be null";
         }
         return $invalidProperties;
     }
@@ -294,28 +314,82 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets validations
+     * Gets recorded_previous_submissions
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[]
      */
-    public function getValidations()
+    public function getRecordedPreviousSubmissions()
     {
-        return $this->container['validations'];
+        return $this->container['recorded_previous_submissions'];
     }
 
     /**
-     * Sets validations
+     * Sets recorded_previous_submissions
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[] $recorded_previous_submissions recorded_previous_submissions
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setRecordedPreviousSubmissions($recorded_previous_submissions)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($recorded_previous_submissions)) {
+            throw new \InvalidArgumentException('non-nullable recorded_previous_submissions cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['recorded_previous_submissions'] = $recorded_previous_submissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets submissions
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[]
+     */
+    public function getSubmissions()
+    {
+        return $this->container['submissions'];
+    }
+
+    /**
+     * Sets submissions
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner[] $submissions submissions
+     *
+     * @return self
+     */
+    public function setSubmissions($submissions)
+    {
+        if (is_null($submissions)) {
+            throw new \InvalidArgumentException('non-nullable submissions cannot be null');
+        }
+        $this->container['submissions'] = $submissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_attempts
+     *
+     * @return float
+     */
+    public function getTotalAttempts()
+    {
+        return $this->container['total_attempts'];
+    }
+
+    /**
+     * Sets total_attempts
+     *
+     * @param float $total_attempts total_attempts
+     *
+     * @return self
+     */
+    public function setTotalAttempts($total_attempts)
+    {
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
+        }
+        $this->container['total_attempts'] = $total_attempts;
 
         return $this;
     }

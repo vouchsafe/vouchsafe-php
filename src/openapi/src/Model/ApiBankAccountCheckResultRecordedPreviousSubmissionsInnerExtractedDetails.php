@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
+ * ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails Class Doc Comment
+ * ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_PhotoIdCheck__result_recorded_previous_submissions_inner_extracted_details';
+    protected static $openAPIModelName = 'Api_BankAccountCheck__result_recorded_previous_submissions_inner_extracted_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -63,13 +63,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'string',
         'first_name' => 'string',
         'last_name' => 'string',
-        'smart_card_number' => 'string',
-        'mrz_code' => 'string',
-        'icao_format' => 'string',
-        'issuing_country' => 'string',
-        'issue_date' => 'string',
-        'expiration_date' => 'string',
-        'document_number' => 'string'
+        'transaction_data' => 'mixed',
+        'account_type' => 'string',
+        'bank_name' => 'string'
     ];
 
     /**
@@ -85,13 +81,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => null,
         'first_name' => null,
         'last_name' => null,
-        'smart_card_number' => null,
-        'mrz_code' => null,
-        'icao_format' => null,
-        'issuing_country' => null,
-        'issue_date' => null,
-        'expiration_date' => null,
-        'document_number' => null
+        'transaction_data' => null,
+        'account_type' => null,
+        'bank_name' => null
     ];
 
     /**
@@ -105,13 +97,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => false,
         'first_name' => false,
         'last_name' => false,
-        'smart_card_number' => false,
-        'mrz_code' => false,
-        'icao_format' => false,
-        'issuing_country' => false,
-        'issue_date' => false,
-        'expiration_date' => false,
-        'document_number' => false
+        'transaction_data' => true,
+        'account_type' => false,
+        'bank_name' => false
     ];
 
     /**
@@ -205,13 +193,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'date_of_birth',
         'first_name' => 'first_name',
         'last_name' => 'last_name',
-        'smart_card_number' => 'smart_card_number',
-        'mrz_code' => 'mrz_code',
-        'icao_format' => 'icao_format',
-        'issuing_country' => 'issuing_country',
-        'issue_date' => 'issue_date',
-        'expiration_date' => 'expiration_date',
-        'document_number' => 'document_number'
+        'transaction_data' => 'transaction_data',
+        'account_type' => 'account_type',
+        'bank_name' => 'bank_name'
     ];
 
     /**
@@ -225,13 +209,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'setDateOfBirth',
         'first_name' => 'setFirstName',
         'last_name' => 'setLastName',
-        'smart_card_number' => 'setSmartCardNumber',
-        'mrz_code' => 'setMrzCode',
-        'icao_format' => 'setIcaoFormat',
-        'issuing_country' => 'setIssuingCountry',
-        'issue_date' => 'setIssueDate',
-        'expiration_date' => 'setExpirationDate',
-        'document_number' => 'setDocumentNumber'
+        'transaction_data' => 'setTransactionData',
+        'account_type' => 'setAccountType',
+        'bank_name' => 'setBankName'
     ];
 
     /**
@@ -245,13 +225,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'getDateOfBirth',
         'first_name' => 'getFirstName',
         'last_name' => 'getLastName',
-        'smart_card_number' => 'getSmartCardNumber',
-        'mrz_code' => 'getMrzCode',
-        'icao_format' => 'getIcaoFormat',
-        'issuing_country' => 'getIssuingCountry',
-        'issue_date' => 'getIssueDate',
-        'expiration_date' => 'getExpirationDate',
-        'document_number' => 'getDocumentNumber'
+        'transaction_data' => 'getTransactionData',
+        'account_type' => 'getAccountType',
+        'bank_name' => 'getBankName'
     ];
 
     /**
@@ -295,6 +271,21 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         return self::$openAPIModelName;
     }
 
+    public const ACCOUNT_TYPE_CASH_CURRENT = 'cash:current';
+    public const ACCOUNT_TYPE_SAVINGS = 'savings';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccountTypeAllowableValues()
+    {
+        return [
+            self::ACCOUNT_TYPE_CASH_CURRENT,
+            self::ACCOUNT_TYPE_SAVINGS,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -316,13 +307,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('first_name', $data ?? [], null);
         $this->setIfExists('last_name', $data ?? [], null);
-        $this->setIfExists('smart_card_number', $data ?? [], null);
-        $this->setIfExists('mrz_code', $data ?? [], null);
-        $this->setIfExists('icao_format', $data ?? [], null);
-        $this->setIfExists('issuing_country', $data ?? [], null);
-        $this->setIfExists('issue_date', $data ?? [], null);
-        $this->setIfExists('expiration_date', $data ?? [], null);
-        $this->setIfExists('document_number', $data ?? [], null);
+        $this->setIfExists('transaction_data', $data ?? [], null);
+        $this->setIfExists('account_type', $data ?? [], null);
+        $this->setIfExists('bank_name', $data ?? [], null);
     }
 
     /**
@@ -358,8 +345,23 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         if ($this->container['last_name'] === null) {
             $invalidProperties[] = "'last_name' can't be null";
         }
-        if ($this->container['document_number'] === null) {
-            $invalidProperties[] = "'document_number' can't be null";
+        if ($this->container['transaction_data'] === null && !$this->isNullableSetToNull('transaction_data')) {
+            $invalidProperties[] = "'transaction_data' can't be null";
+        }
+        if ($this->container['account_type'] === null) {
+            $invalidProperties[] = "'account_type' can't be null";
+        }
+        $allowedValues = $this->getAccountTypeAllowableValues();
+        if (!is_null($this->container['account_type']) && !in_array($this->container['account_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'account_type', must be one of '%s'",
+                $this->container['account_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['bank_name'] === null) {
+            $invalidProperties[] = "'bank_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -512,190 +514,99 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
     }
 
     /**
-     * Gets smart_card_number
+     * Gets transaction_data
      *
-     * @return string|null
+     * @return mixed|null
      */
-    public function getSmartCardNumber()
+    public function getTransactionData()
     {
-        return $this->container['smart_card_number'];
+        return $this->container['transaction_data'];
     }
 
     /**
-     * Sets smart_card_number
+     * Sets transaction_data
      *
-     * @param string|null $smart_card_number smart_card_number
+     * @param mixed|null $transaction_data transaction_data
      *
      * @return self
      */
-    public function setSmartCardNumber($smart_card_number)
+    public function setTransactionData($transaction_data)
     {
-        if (is_null($smart_card_number)) {
-            throw new \InvalidArgumentException('non-nullable smart_card_number cannot be null');
+        if (is_null($transaction_data)) {
+            array_push($this->openAPINullablesSetToNull, 'transaction_data');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('transaction_data', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['smart_card_number'] = $smart_card_number;
+        $this->container['transaction_data'] = $transaction_data;
 
         return $this;
     }
 
     /**
-     * Gets mrz_code
-     *
-     * @return string|null
-     */
-    public function getMrzCode()
-    {
-        return $this->container['mrz_code'];
-    }
-
-    /**
-     * Sets mrz_code
-     *
-     * @param string|null $mrz_code mrz_code
-     *
-     * @return self
-     */
-    public function setMrzCode($mrz_code)
-    {
-        if (is_null($mrz_code)) {
-            throw new \InvalidArgumentException('non-nullable mrz_code cannot be null');
-        }
-        $this->container['mrz_code'] = $mrz_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets icao_format
-     *
-     * @return string|null
-     */
-    public function getIcaoFormat()
-    {
-        return $this->container['icao_format'];
-    }
-
-    /**
-     * Sets icao_format
-     *
-     * @param string|null $icao_format icao_format
-     *
-     * @return self
-     */
-    public function setIcaoFormat($icao_format)
-    {
-        if (is_null($icao_format)) {
-            throw new \InvalidArgumentException('non-nullable icao_format cannot be null');
-        }
-        $this->container['icao_format'] = $icao_format;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuing_country
-     *
-     * @return string|null
-     */
-    public function getIssuingCountry()
-    {
-        return $this->container['issuing_country'];
-    }
-
-    /**
-     * Sets issuing_country
-     *
-     * @param string|null $issuing_country issuing_country
-     *
-     * @return self
-     */
-    public function setIssuingCountry($issuing_country)
-    {
-        if (is_null($issuing_country)) {
-            throw new \InvalidArgumentException('non-nullable issuing_country cannot be null');
-        }
-        $this->container['issuing_country'] = $issuing_country;
-
-        return $this;
-    }
-
-    /**
-     * Gets issue_date
-     *
-     * @return string|null
-     */
-    public function getIssueDate()
-    {
-        return $this->container['issue_date'];
-    }
-
-    /**
-     * Sets issue_date
-     *
-     * @param string|null $issue_date issue_date
-     *
-     * @return self
-     */
-    public function setIssueDate($issue_date)
-    {
-        if (is_null($issue_date)) {
-            throw new \InvalidArgumentException('non-nullable issue_date cannot be null');
-        }
-        $this->container['issue_date'] = $issue_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets expiration_date
-     *
-     * @return string|null
-     */
-    public function getExpirationDate()
-    {
-        return $this->container['expiration_date'];
-    }
-
-    /**
-     * Sets expiration_date
-     *
-     * @param string|null $expiration_date expiration_date
-     *
-     * @return self
-     */
-    public function setExpirationDate($expiration_date)
-    {
-        if (is_null($expiration_date)) {
-            throw new \InvalidArgumentException('non-nullable expiration_date cannot be null');
-        }
-        $this->container['expiration_date'] = $expiration_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets document_number
+     * Gets account_type
      *
      * @return string
      */
-    public function getDocumentNumber()
+    public function getAccountType()
     {
-        return $this->container['document_number'];
+        return $this->container['account_type'];
     }
 
     /**
-     * Sets document_number
+     * Sets account_type
      *
-     * @param string $document_number document_number
+     * @param string $account_type account_type
      *
      * @return self
      */
-    public function setDocumentNumber($document_number)
+    public function setAccountType($account_type)
     {
-        if (is_null($document_number)) {
-            throw new \InvalidArgumentException('non-nullable document_number cannot be null');
+        if (is_null($account_type)) {
+            throw new \InvalidArgumentException('non-nullable account_type cannot be null');
         }
-        $this->container['document_number'] = $document_number;
+        $allowedValues = $this->getAccountTypeAllowableValues();
+        if (!in_array($account_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'account_type', must be one of '%s'",
+                    $account_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['account_type'] = $account_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets bank_name
+     *
+     * @return string
+     */
+    public function getBankName()
+    {
+        return $this->container['bank_name'];
+    }
+
+    /**
+     * Sets bank_name
+     *
+     * @param string $bank_name bank_name
+     *
+     * @return self
+     */
+    public function setBankName($bank_name)
+    {
+        if (is_null($bank_name)) {
+            throw new \InvalidArgumentException('non-nullable bank_name cannot be null');
+        }
+        $this->container['bank_name'] = $bank_name;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
+ * ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails Class Doc Comment
+ * ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_PhotoIdCheck__result_recorded_previous_submissions_inner_extracted_details';
+    protected static $openAPIModelName = 'Api_SupportingDocCheck__result_recorded_previous_submissions_inner_extracted_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -63,13 +63,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'string',
         'first_name' => 'string',
         'last_name' => 'string',
-        'smart_card_number' => 'string',
-        'mrz_code' => 'string',
-        'icao_format' => 'string',
-        'issuing_country' => 'string',
-        'issue_date' => 'string',
-        'expiration_date' => 'string',
-        'document_number' => 'string'
+        'issuer' => 'string',
+        'document_date' => 'string',
+        'document_category' => 'string'
     ];
 
     /**
@@ -85,13 +81,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => null,
         'first_name' => null,
         'last_name' => null,
-        'smart_card_number' => null,
-        'mrz_code' => null,
-        'icao_format' => null,
-        'issuing_country' => null,
-        'issue_date' => null,
-        'expiration_date' => null,
-        'document_number' => null
+        'issuer' => null,
+        'document_date' => null,
+        'document_category' => null
     ];
 
     /**
@@ -105,13 +97,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => false,
         'first_name' => false,
         'last_name' => false,
-        'smart_card_number' => false,
-        'mrz_code' => false,
-        'icao_format' => false,
-        'issuing_country' => false,
-        'issue_date' => false,
-        'expiration_date' => false,
-        'document_number' => false
+        'issuer' => false,
+        'document_date' => false,
+        'document_category' => false
     ];
 
     /**
@@ -205,13 +193,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'date_of_birth',
         'first_name' => 'first_name',
         'last_name' => 'last_name',
-        'smart_card_number' => 'smart_card_number',
-        'mrz_code' => 'mrz_code',
-        'icao_format' => 'icao_format',
-        'issuing_country' => 'issuing_country',
-        'issue_date' => 'issue_date',
-        'expiration_date' => 'expiration_date',
-        'document_number' => 'document_number'
+        'issuer' => 'issuer',
+        'document_date' => 'document_date',
+        'document_category' => 'document_category'
     ];
 
     /**
@@ -225,13 +209,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'setDateOfBirth',
         'first_name' => 'setFirstName',
         'last_name' => 'setLastName',
-        'smart_card_number' => 'setSmartCardNumber',
-        'mrz_code' => 'setMrzCode',
-        'icao_format' => 'setIcaoFormat',
-        'issuing_country' => 'setIssuingCountry',
-        'issue_date' => 'setIssueDate',
-        'expiration_date' => 'setExpirationDate',
-        'document_number' => 'setDocumentNumber'
+        'issuer' => 'setIssuer',
+        'document_date' => 'setDocumentDate',
+        'document_category' => 'setDocumentCategory'
     ];
 
     /**
@@ -245,13 +225,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         'date_of_birth' => 'getDateOfBirth',
         'first_name' => 'getFirstName',
         'last_name' => 'getLastName',
-        'smart_card_number' => 'getSmartCardNumber',
-        'mrz_code' => 'getMrzCode',
-        'icao_format' => 'getIcaoFormat',
-        'issuing_country' => 'getIssuingCountry',
-        'issue_date' => 'getIssueDate',
-        'expiration_date' => 'getExpirationDate',
-        'document_number' => 'getDocumentNumber'
+        'issuer' => 'getIssuer',
+        'document_date' => 'getDocumentDate',
+        'document_category' => 'getDocumentCategory'
     ];
 
     /**
@@ -295,6 +271,51 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         return self::$openAPIModelName;
     }
 
+    public const DOCUMENT_CATEGORY_BIRTH_OR_ADOPTION_CERTIFICATE = 'birth_or_adoption_certificate';
+    public const DOCUMENT_CATEGORY_MARRIAGE_CERTIFICATE = 'marriage_certificate';
+    public const DOCUMENT_CATEGORY_NATURALISATION_OR_REG_CERTIFICATE = 'naturalisation_or_reg_certificate';
+    public const DOCUMENT_CATEGORY_EDUCATION_CERTIFICATE = 'education_certificate';
+    public const DOCUMENT_CATEGORY_PAYE_TAX_SUMMARY = 'paye_tax_summary';
+    public const DOCUMENT_CATEGORY_PAYSLIP = 'payslip';
+    public const DOCUMENT_CATEGORY_PENSION_ANNUAL_STATEMENT = 'pension_annual_statement';
+    public const DOCUMENT_CATEGORY_BENEFITS_LETTER = 'benefits_letter';
+    public const DOCUMENT_CATEGORY_NHS_LETTER = 'nhs_letter';
+    public const DOCUMENT_CATEGORY_BANK_STATEMENT = 'bank_statement';
+    public const DOCUMENT_CATEGORY_CREDIT_CARD_STATEMENT = 'credit_card_statement';
+    public const DOCUMENT_CATEGORY_MORTGAGE_STATEMENT = 'mortgage_statement';
+    public const DOCUMENT_CATEGORY_INSURANCE_POLICY_AGREEMENT = 'insurance_policy_agreement';
+    public const DOCUMENT_CATEGORY_UTILITY_BILL = 'utility_bill';
+    public const DOCUMENT_CATEGORY_MOBILE_PHONE_BILL = 'mobile_phone_bill';
+    public const DOCUMENT_CATEGORY_HMPPS_LETTER = 'hmpps_letter';
+    public const DOCUMENT_CATEGORY_OLDER_PERSON_BUS_PASS = 'older_person_bus_pass';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDocumentCategoryAllowableValues()
+    {
+        return [
+            self::DOCUMENT_CATEGORY_BIRTH_OR_ADOPTION_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_MARRIAGE_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_NATURALISATION_OR_REG_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_EDUCATION_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_PAYE_TAX_SUMMARY,
+            self::DOCUMENT_CATEGORY_PAYSLIP,
+            self::DOCUMENT_CATEGORY_PENSION_ANNUAL_STATEMENT,
+            self::DOCUMENT_CATEGORY_BENEFITS_LETTER,
+            self::DOCUMENT_CATEGORY_NHS_LETTER,
+            self::DOCUMENT_CATEGORY_BANK_STATEMENT,
+            self::DOCUMENT_CATEGORY_CREDIT_CARD_STATEMENT,
+            self::DOCUMENT_CATEGORY_MORTGAGE_STATEMENT,
+            self::DOCUMENT_CATEGORY_INSURANCE_POLICY_AGREEMENT,
+            self::DOCUMENT_CATEGORY_UTILITY_BILL,
+            self::DOCUMENT_CATEGORY_MOBILE_PHONE_BILL,
+            self::DOCUMENT_CATEGORY_HMPPS_LETTER,
+            self::DOCUMENT_CATEGORY_OLDER_PERSON_BUS_PASS,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -316,13 +337,9 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('first_name', $data ?? [], null);
         $this->setIfExists('last_name', $data ?? [], null);
-        $this->setIfExists('smart_card_number', $data ?? [], null);
-        $this->setIfExists('mrz_code', $data ?? [], null);
-        $this->setIfExists('icao_format', $data ?? [], null);
-        $this->setIfExists('issuing_country', $data ?? [], null);
-        $this->setIfExists('issue_date', $data ?? [], null);
-        $this->setIfExists('expiration_date', $data ?? [], null);
-        $this->setIfExists('document_number', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('document_date', $data ?? [], null);
+        $this->setIfExists('document_category', $data ?? [], null);
     }
 
     /**
@@ -358,9 +375,24 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
         if ($this->container['last_name'] === null) {
             $invalidProperties[] = "'last_name' can't be null";
         }
-        if ($this->container['document_number'] === null) {
-            $invalidProperties[] = "'document_number' can't be null";
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
         }
+        if ($this->container['document_date'] === null) {
+            $invalidProperties[] = "'document_date' can't be null";
+        }
+        if ($this->container['document_category'] === null) {
+            $invalidProperties[] = "'document_category' can't be null";
+        }
+        $allowedValues = $this->getDocumentCategoryAllowableValues();
+        if (!is_null($this->container['document_category']) && !in_array($this->container['document_category'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'document_category', must be one of '%s'",
+                $this->container['document_category'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -512,190 +544,92 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails impl
     }
 
     /**
-     * Gets smart_card_number
-     *
-     * @return string|null
-     */
-    public function getSmartCardNumber()
-    {
-        return $this->container['smart_card_number'];
-    }
-
-    /**
-     * Sets smart_card_number
-     *
-     * @param string|null $smart_card_number smart_card_number
-     *
-     * @return self
-     */
-    public function setSmartCardNumber($smart_card_number)
-    {
-        if (is_null($smart_card_number)) {
-            throw new \InvalidArgumentException('non-nullable smart_card_number cannot be null');
-        }
-        $this->container['smart_card_number'] = $smart_card_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets mrz_code
-     *
-     * @return string|null
-     */
-    public function getMrzCode()
-    {
-        return $this->container['mrz_code'];
-    }
-
-    /**
-     * Sets mrz_code
-     *
-     * @param string|null $mrz_code mrz_code
-     *
-     * @return self
-     */
-    public function setMrzCode($mrz_code)
-    {
-        if (is_null($mrz_code)) {
-            throw new \InvalidArgumentException('non-nullable mrz_code cannot be null');
-        }
-        $this->container['mrz_code'] = $mrz_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets icao_format
-     *
-     * @return string|null
-     */
-    public function getIcaoFormat()
-    {
-        return $this->container['icao_format'];
-    }
-
-    /**
-     * Sets icao_format
-     *
-     * @param string|null $icao_format icao_format
-     *
-     * @return self
-     */
-    public function setIcaoFormat($icao_format)
-    {
-        if (is_null($icao_format)) {
-            throw new \InvalidArgumentException('non-nullable icao_format cannot be null');
-        }
-        $this->container['icao_format'] = $icao_format;
-
-        return $this;
-    }
-
-    /**
-     * Gets issuing_country
-     *
-     * @return string|null
-     */
-    public function getIssuingCountry()
-    {
-        return $this->container['issuing_country'];
-    }
-
-    /**
-     * Sets issuing_country
-     *
-     * @param string|null $issuing_country issuing_country
-     *
-     * @return self
-     */
-    public function setIssuingCountry($issuing_country)
-    {
-        if (is_null($issuing_country)) {
-            throw new \InvalidArgumentException('non-nullable issuing_country cannot be null');
-        }
-        $this->container['issuing_country'] = $issuing_country;
-
-        return $this;
-    }
-
-    /**
-     * Gets issue_date
-     *
-     * @return string|null
-     */
-    public function getIssueDate()
-    {
-        return $this->container['issue_date'];
-    }
-
-    /**
-     * Sets issue_date
-     *
-     * @param string|null $issue_date issue_date
-     *
-     * @return self
-     */
-    public function setIssueDate($issue_date)
-    {
-        if (is_null($issue_date)) {
-            throw new \InvalidArgumentException('non-nullable issue_date cannot be null');
-        }
-        $this->container['issue_date'] = $issue_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets expiration_date
-     *
-     * @return string|null
-     */
-    public function getExpirationDate()
-    {
-        return $this->container['expiration_date'];
-    }
-
-    /**
-     * Sets expiration_date
-     *
-     * @param string|null $expiration_date expiration_date
-     *
-     * @return self
-     */
-    public function setExpirationDate($expiration_date)
-    {
-        if (is_null($expiration_date)) {
-            throw new \InvalidArgumentException('non-nullable expiration_date cannot be null');
-        }
-        $this->container['expiration_date'] = $expiration_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets document_number
+     * Gets issuer
      *
      * @return string
      */
-    public function getDocumentNumber()
+    public function getIssuer()
     {
-        return $this->container['document_number'];
+        return $this->container['issuer'];
     }
 
     /**
-     * Sets document_number
+     * Sets issuer
      *
-     * @param string $document_number document_number
+     * @param string $issuer issuer
      *
      * @return self
      */
-    public function setDocumentNumber($document_number)
+    public function setIssuer($issuer)
     {
-        if (is_null($document_number)) {
-            throw new \InvalidArgumentException('non-nullable document_number cannot be null');
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
         }
-        $this->container['document_number'] = $document_number;
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_date
+     *
+     * @return string
+     */
+    public function getDocumentDate()
+    {
+        return $this->container['document_date'];
+    }
+
+    /**
+     * Sets document_date
+     *
+     * @param string $document_date document_date
+     *
+     * @return self
+     */
+    public function setDocumentDate($document_date)
+    {
+        if (is_null($document_date)) {
+            throw new \InvalidArgumentException('non-nullable document_date cannot be null');
+        }
+        $this->container['document_date'] = $document_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_category
+     *
+     * @return string
+     */
+    public function getDocumentCategory()
+    {
+        return $this->container['document_category'];
+    }
+
+    /**
+     * Sets document_category
+     *
+     * @param string $document_category document_category
+     *
+     * @return self
+     */
+    public function setDocumentCategory($document_category)
+    {
+        if (is_null($document_category)) {
+            throw new \InvalidArgumentException('non-nullable document_category cannot be null');
+        }
+        $allowedValues = $this->getDocumentCategoryAllowableValues();
+        if (!in_array($document_category, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'document_category', must be one of '%s'",
+                    $document_category,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['document_category'] = $document_category;
 
         return $this;
     }

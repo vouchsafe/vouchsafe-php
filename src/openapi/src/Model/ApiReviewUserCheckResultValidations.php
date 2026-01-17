@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckResult
+ * ApiReviewUserCheckResultValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckResult Class Doc Comment
+ * ApiReviewUserCheckResultValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiReviewUserCheckResultValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__result';
+    protected static $openAPIModelName = 'Api_ReviewUserCheck__result_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations'
+        'confirmed_claims' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidationsConfirmedClaims'
     ];
 
     /**
@@ -69,7 +69,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'validations' => null
+        'confirmed_claims' => null
     ];
 
     /**
@@ -78,7 +78,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'validations' => false
+        'confirmed_claims' => false
     ];
 
     /**
@@ -167,7 +167,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'validations' => 'validations'
+        'confirmed_claims' => 'confirmed_claims'
     ];
 
     /**
@@ -176,7 +176,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'validations' => 'setValidations'
+        'confirmed_claims' => 'setConfirmedClaims'
     ];
 
     /**
@@ -185,7 +185,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'validations' => 'getValidations'
+        'confirmed_claims' => 'getConfirmedClaims'
     ];
 
     /**
@@ -245,7 +245,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('confirmed_claims', $data ?? [], null);
     }
 
     /**
@@ -275,8 +275,8 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['confirmed_claims'] === null) {
+            $invalidProperties[] = "'confirmed_claims' can't be null";
         }
         return $invalidProperties;
     }
@@ -294,28 +294,28 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets validations
+     * Gets confirmed_claims
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidationsConfirmedClaims
      */
-    public function getValidations()
+    public function getConfirmedClaims()
     {
-        return $this->container['validations'];
+        return $this->container['confirmed_claims'];
     }
 
     /**
-     * Sets validations
+     * Sets confirmed_claims
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidationsConfirmedClaims $confirmed_claims confirmed_claims
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setConfirmedClaims($confirmed_claims)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($confirmed_claims)) {
+            throw new \InvalidArgumentException('non-nullable confirmed_claims cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['confirmed_claims'] = $confirmed_claims;
 
         return $this;
     }

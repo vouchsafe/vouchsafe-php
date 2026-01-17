@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner
+ * ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner Class Doc Comment
+ * ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_PhotoIdCheck__result_recorded_previous_submissions_inner';
+    protected static $openAPIModelName = 'Api_SupportingDocCheck__result_recorded_previous_submissions_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,11 +58,11 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
       * @var string[]
       */
     protected static $openAPITypes = [
-        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails',
+        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails',
         'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerArtefactsInner[]',
         'evidence_type' => 'string',
         'evidence_route' => 'string',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerValidations',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerValidations',
         'created_at' => 'string',
         'status' => 'string'
     ];
@@ -485,7 +485,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
     /**
      * Gets extracted_details
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
+     * @return \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails
      */
     public function getExtractedDetails()
     {
@@ -495,7 +495,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
     /**
      * Sets extracted_details
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails $extracted_details extracted_details
+     * @param \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails $extracted_details extracted_details
      *
      * @return self
      */
@@ -613,7 +613,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
     /**
      * Gets validations
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerValidations
      */
     public function getValidations()
     {
@@ -623,7 +623,7 @@ class ApiPhotoIdCheckResultRecordedPreviousSubmissionsInner implements ModelInte
     /**
      * Sets validations
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerValidations $validations validations
      *
      * @return self
      */

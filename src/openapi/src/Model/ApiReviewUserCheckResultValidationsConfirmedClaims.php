@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckResult
+ * ApiReviewUserCheckResultValidationsConfirmedClaims
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckResult Class Doc Comment
+ * ApiReviewUserCheckResultValidationsConfirmedClaims Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiReviewUserCheckResultValidationsConfirmedClaims implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__result';
+    protected static $openAPIModelName = 'Api_ReviewUserCheck__result_validations_confirmed_claims';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations'
+        'date_of_birth_is_correct' => 'bool',
+        'name_is_correct' => 'bool',
+        'photo_matches_applicant' => 'bool'
     ];
 
     /**
@@ -69,7 +71,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'validations' => null
+        'date_of_birth_is_correct' => null,
+        'name_is_correct' => null,
+        'photo_matches_applicant' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'validations' => false
+        'date_of_birth_is_correct' => false,
+        'name_is_correct' => false,
+        'photo_matches_applicant' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'validations' => 'validations'
+        'date_of_birth_is_correct' => 'date_of_birth_is_correct',
+        'name_is_correct' => 'name_is_correct',
+        'photo_matches_applicant' => 'photo_matches_applicant'
     ];
 
     /**
@@ -176,7 +184,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'validations' => 'setValidations'
+        'date_of_birth_is_correct' => 'setDateOfBirthIsCorrect',
+        'name_is_correct' => 'setNameIsCorrect',
+        'photo_matches_applicant' => 'setPhotoMatchesApplicant'
     ];
 
     /**
@@ -185,7 +195,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'validations' => 'getValidations'
+        'date_of_birth_is_correct' => 'getDateOfBirthIsCorrect',
+        'name_is_correct' => 'getNameIsCorrect',
+        'photo_matches_applicant' => 'getPhotoMatchesApplicant'
     ];
 
     /**
@@ -245,7 +257,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('date_of_birth_is_correct', $data ?? [], null);
+        $this->setIfExists('name_is_correct', $data ?? [], null);
+        $this->setIfExists('photo_matches_applicant', $data ?? [], null);
     }
 
     /**
@@ -275,8 +289,14 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['date_of_birth_is_correct'] === null) {
+            $invalidProperties[] = "'date_of_birth_is_correct' can't be null";
+        }
+        if ($this->container['name_is_correct'] === null) {
+            $invalidProperties[] = "'name_is_correct' can't be null";
+        }
+        if ($this->container['photo_matches_applicant'] === null) {
+            $invalidProperties[] = "'photo_matches_applicant' can't be null";
         }
         return $invalidProperties;
     }
@@ -294,28 +314,82 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets validations
+     * Gets date_of_birth_is_correct
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations
+     * @return bool
      */
-    public function getValidations()
+    public function getDateOfBirthIsCorrect()
     {
-        return $this->container['validations'];
+        return $this->container['date_of_birth_is_correct'];
     }
 
     /**
-     * Sets validations
+     * Sets date_of_birth_is_correct
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations $validations validations
+     * @param bool $date_of_birth_is_correct date_of_birth_is_correct
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setDateOfBirthIsCorrect($date_of_birth_is_correct)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($date_of_birth_is_correct)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth_is_correct cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['date_of_birth_is_correct'] = $date_of_birth_is_correct;
+
+        return $this;
+    }
+
+    /**
+     * Gets name_is_correct
+     *
+     * @return bool
+     */
+    public function getNameIsCorrect()
+    {
+        return $this->container['name_is_correct'];
+    }
+
+    /**
+     * Sets name_is_correct
+     *
+     * @param bool $name_is_correct name_is_correct
+     *
+     * @return self
+     */
+    public function setNameIsCorrect($name_is_correct)
+    {
+        if (is_null($name_is_correct)) {
+            throw new \InvalidArgumentException('non-nullable name_is_correct cannot be null');
+        }
+        $this->container['name_is_correct'] = $name_is_correct;
+
+        return $this;
+    }
+
+    /**
+     * Gets photo_matches_applicant
+     *
+     * @return bool
+     */
+    public function getPhotoMatchesApplicant()
+    {
+        return $this->container['photo_matches_applicant'];
+    }
+
+    /**
+     * Sets photo_matches_applicant
+     *
+     * @param bool $photo_matches_applicant photo_matches_applicant
+     *
+     * @return self
+     */
+    public function setPhotoMatchesApplicant($photo_matches_applicant)
+    {
+        if (is_null($photo_matches_applicant)) {
+            throw new \InvalidArgumentException('non-nullable photo_matches_applicant cannot be null');
+        }
+        $this->container['photo_matches_applicant'] = $photo_matches_applicant;
 
         return $this;
     }

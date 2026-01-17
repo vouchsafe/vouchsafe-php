@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckResult
+ * ApiSupportingDocCheck
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckResult Class Doc Comment
+ * ApiSupportingDocCheck Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiSupportingDocCheck implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__result';
+    protected static $openAPIModelName = 'Api_SupportingDocCheck_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations'
+        'result' => '\Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResult',
+        'overall_status' => 'string',
+        'step' => 'string'
     ];
 
     /**
@@ -69,7 +71,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'validations' => null
+        'result' => null,
+        'overall_status' => null,
+        'step' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'validations' => false
+        'result' => false,
+        'overall_status' => false,
+        'step' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'validations' => 'validations'
+        'result' => 'result',
+        'overall_status' => 'overall_status',
+        'step' => 'step'
     ];
 
     /**
@@ -176,7 +184,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'validations' => 'setValidations'
+        'result' => 'setResult',
+        'overall_status' => 'setOverallStatus',
+        'step' => 'setStep'
     ];
 
     /**
@@ -185,7 +195,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'validations' => 'getValidations'
+        'result' => 'getResult',
+        'overall_status' => 'getOverallStatus',
+        'step' => 'getStep'
     ];
 
     /**
@@ -229,6 +241,36 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
+    public const OVERALL_STATUS_PASS = 'pass';
+    public const OVERALL_STATUS_FAIL = 'fail';
+    public const STEP_SUPPORTING_DOCUMENT = 'supporting_document';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOverallStatusAllowableValues()
+    {
+        return [
+            self::OVERALL_STATUS_IN_PROGRESS,
+            self::OVERALL_STATUS_PASS,
+            self::OVERALL_STATUS_FAIL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStepAllowableValues()
+    {
+        return [
+            self::STEP_SUPPORTING_DOCUMENT,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -245,7 +287,9 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('overall_status', $data ?? [], null);
+        $this->setIfExists('step', $data ?? [], null);
     }
 
     /**
@@ -275,9 +319,33 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
         }
+        if ($this->container['overall_status'] === null) {
+            $invalidProperties[] = "'overall_status' can't be null";
+        }
+        $allowedValues = $this->getOverallStatusAllowableValues();
+        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'overall_status', must be one of '%s'",
+                $this->container['overall_status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['step'] === null) {
+            $invalidProperties[] = "'step' can't be null";
+        }
+        $allowedValues = $this->getStepAllowableValues();
+        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'step', must be one of '%s'",
+                $this->container['step'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -294,28 +362,102 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets validations
+     * Gets result
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResult
      */
-    public function getValidations()
+    public function getResult()
     {
-        return $this->container['validations'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets validations
+     * Sets result
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiSupportingDocCheckResult $result result
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setResult($result)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets overall_status
+     *
+     * @return string
+     */
+    public function getOverallStatus()
+    {
+        return $this->container['overall_status'];
+    }
+
+    /**
+     * Sets overall_status
+     *
+     * @param string $overall_status overall_status
+     *
+     * @return self
+     */
+    public function setOverallStatus($overall_status)
+    {
+        if (is_null($overall_status)) {
+            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        }
+        $allowedValues = $this->getOverallStatusAllowableValues();
+        if (!in_array($overall_status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
+                    $overall_status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['overall_status'] = $overall_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets step
+     *
+     * @return string
+     */
+    public function getStep()
+    {
+        return $this->container['step'];
+    }
+
+    /**
+     * Sets step
+     *
+     * @param string $step step
+     *
+     * @return self
+     */
+    public function setStep($step)
+    {
+        if (is_null($step)) {
+            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        }
+        $allowedValues = $this->getStepAllowableValues();
+        if (!in_array($step, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'step', must be one of '%s'",
+                    $step,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['step'] = $step;
 
         return $this;
     }

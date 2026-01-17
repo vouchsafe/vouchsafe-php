@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckResult
+ * ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckResult Class Doc Comment
+ * ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__result';
+    protected static $openAPIModelName = 'Api_BankAccountCheck__result_recorded_previous_submissions_inner_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations'
+        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue',
+        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue',
+        'non_zero_balance' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue',
+        'has_recent_transactions' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue',
+        'required_data_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue'
     ];
 
     /**
@@ -69,7 +73,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'validations' => null
+        'referee_biometrics_dissimilar' => null,
+        'names_consistent' => null,
+        'non_zero_balance' => null,
+        'has_recent_transactions' => null,
+        'required_data_extracted' => null
     ];
 
     /**
@@ -78,7 +86,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'validations' => false
+        'referee_biometrics_dissimilar' => false,
+        'names_consistent' => false,
+        'non_zero_balance' => false,
+        'has_recent_transactions' => false,
+        'required_data_extracted' => false
     ];
 
     /**
@@ -167,7 +179,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'validations' => 'validations'
+        'referee_biometrics_dissimilar' => 'referee_biometrics_dissimilar',
+        'names_consistent' => 'names_consistent',
+        'non_zero_balance' => 'non_zero_balance',
+        'has_recent_transactions' => 'has_recent_transactions',
+        'required_data_extracted' => 'required_data_extracted'
     ];
 
     /**
@@ -176,7 +192,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'validations' => 'setValidations'
+        'referee_biometrics_dissimilar' => 'setRefereeBiometricsDissimilar',
+        'names_consistent' => 'setNamesConsistent',
+        'non_zero_balance' => 'setNonZeroBalance',
+        'has_recent_transactions' => 'setHasRecentTransactions',
+        'required_data_extracted' => 'setRequiredDataExtracted'
     ];
 
     /**
@@ -185,7 +205,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'validations' => 'getValidations'
+        'referee_biometrics_dissimilar' => 'getRefereeBiometricsDissimilar',
+        'names_consistent' => 'getNamesConsistent',
+        'non_zero_balance' => 'getNonZeroBalance',
+        'has_recent_transactions' => 'getHasRecentTransactions',
+        'required_data_extracted' => 'getRequiredDataExtracted'
     ];
 
     /**
@@ -245,7 +269,11 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('referee_biometrics_dissimilar', $data ?? [], null);
+        $this->setIfExists('names_consistent', $data ?? [], null);
+        $this->setIfExists('non_zero_balance', $data ?? [], null);
+        $this->setIfExists('has_recent_transactions', $data ?? [], null);
+        $this->setIfExists('required_data_extracted', $data ?? [], null);
     }
 
     /**
@@ -275,8 +303,14 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['non_zero_balance'] === null) {
+            $invalidProperties[] = "'non_zero_balance' can't be null";
+        }
+        if ($this->container['has_recent_transactions'] === null) {
+            $invalidProperties[] = "'has_recent_transactions' can't be null";
+        }
+        if ($this->container['required_data_extracted'] === null) {
+            $invalidProperties[] = "'required_data_extracted' can't be null";
         }
         return $invalidProperties;
     }
@@ -294,28 +328,136 @@ class ApiReviewUserCheckResult implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets validations
+     * Gets referee_biometrics_dissimilar
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue|null
      */
-    public function getValidations()
+    public function getRefereeBiometricsDissimilar()
     {
-        return $this->container['validations'];
+        return $this->container['referee_biometrics_dissimilar'];
     }
 
     /**
-     * Sets validations
+     * Sets referee_biometrics_dissimilar
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResultValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setRefereeBiometricsDissimilar($referee_biometrics_dissimilar)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($referee_biometrics_dissimilar)) {
+            throw new \InvalidArgumentException('non-nullable referee_biometrics_dissimilar cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['referee_biometrics_dissimilar'] = $referee_biometrics_dissimilar;
+
+        return $this;
+    }
+
+    /**
+     * Gets names_consistent
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue|null
+     */
+    public function getNamesConsistent()
+    {
+        return $this->container['names_consistent'];
+    }
+
+    /**
+     * Sets names_consistent
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue|null $names_consistent names_consistent
+     *
+     * @return self
+     */
+    public function setNamesConsistent($names_consistent)
+    {
+        if (is_null($names_consistent)) {
+            throw new \InvalidArgumentException('non-nullable names_consistent cannot be null');
+        }
+        $this->container['names_consistent'] = $names_consistent;
+
+        return $this;
+    }
+
+    /**
+     * Gets non_zero_balance
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue
+     */
+    public function getNonZeroBalance()
+    {
+        return $this->container['non_zero_balance'];
+    }
+
+    /**
+     * Sets non_zero_balance
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue $non_zero_balance non_zero_balance
+     *
+     * @return self
+     */
+    public function setNonZeroBalance($non_zero_balance)
+    {
+        if (is_null($non_zero_balance)) {
+            throw new \InvalidArgumentException('non-nullable non_zero_balance cannot be null');
+        }
+        $this->container['non_zero_balance'] = $non_zero_balance;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_recent_transactions
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue
+     */
+    public function getHasRecentTransactions()
+    {
+        return $this->container['has_recent_transactions'];
+    }
+
+    /**
+     * Sets has_recent_transactions
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue $has_recent_transactions has_recent_transactions
+     *
+     * @return self
+     */
+    public function setHasRecentTransactions($has_recent_transactions)
+    {
+        if (is_null($has_recent_transactions)) {
+            throw new \InvalidArgumentException('non-nullable has_recent_transactions cannot be null');
+        }
+        $this->container['has_recent_transactions'] = $has_recent_transactions;
+
+        return $this;
+    }
+
+    /**
+     * Gets required_data_extracted
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue
+     */
+    public function getRequiredDataExtracted()
+    {
+        return $this->container['required_data_extracted'];
+    }
+
+    /**
+     * Sets required_data_extracted
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInnerValidationsValue $required_data_extracted required_data_extracted
+     *
+     * @return self
+     */
+    public function setRequiredDataExtracted($required_data_extracted)
+    {
+        if (is_null($required_data_extracted)) {
+            throw new \InvalidArgumentException('non-nullable required_data_extracted cannot be null');
+        }
+        $this->container['required_data_extracted'] = $required_data_extracted;
 
         return $this;
     }

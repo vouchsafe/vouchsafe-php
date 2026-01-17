@@ -12,6 +12,11 @@ src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/36EnumsEnvironment.php
 src/Model/AmlVerificationReport.php
+src/Model/ApiBankAccountCheck.php
+src/Model/ApiBankAccountCheckResult.php
+src/Model/ApiBankAccountCheckResultRecordedPreviousSubmissionsInner.php
+src/Model/ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerExtractedDetails.php
+src/Model/ApiBankAccountCheckResultRecordedPreviousSubmissionsInnerValidations.php
 src/Model/ApiErrorResponse.php
 src/Model/ApiOtpCheck.php
 src/Model/ApiOtpCheckAnyOf.php
@@ -28,7 +33,13 @@ src/Model/ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerExtractedDetails.
 src/Model/ApiPhotoIdCheckResultRecordedPreviousSubmissionsInnerValidations.php
 src/Model/ApiReviewUserCheck.php
 src/Model/ApiReviewUserCheckResult.php
-src/Model/ApiReviewUserCheckResultConfirmedClaims.php
+src/Model/ApiReviewUserCheckResultValidations.php
+src/Model/ApiReviewUserCheckResultValidationsConfirmedClaims.php
+src/Model/ApiSupportingDocCheck.php
+src/Model/ApiSupportingDocCheckResult.php
+src/Model/ApiSupportingDocCheckResultRecordedPreviousSubmissionsInner.php
+src/Model/ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerExtractedDetails.php
+src/Model/ApiSupportingDocCheckResultRecordedPreviousSubmissionsInnerValidations.php
 src/Model/ApiVideoSelfieCheck.php
 src/Model/ApiVideoSelfieCheckResult.php
 src/Model/ApiVideoSelfieCheckResultRecordedPreviousSubmissionsInner.php
@@ -73,7 +84,6 @@ src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
 src/Model/SmartLookupInput.php
 src/Model/SmartLookupInputThresholds.php
-src/Model/SupportingDocEvidence.php
 src/Model/Team.php
 src/Model/Verification.php
 src/Model/VerifiedClaims.php

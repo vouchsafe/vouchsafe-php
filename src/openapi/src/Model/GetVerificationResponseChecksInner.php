@@ -58,7 +58,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult',
+        'result' => '\Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult',
         'overall_status' => 'string',
         'step' => 'string'
     ];
@@ -244,7 +244,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
     public const OVERALL_STATUS_PASS = 'pass';
     public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_PHOTO_ID = 'photo_id';
+    public const STEP_BANK_ACCOUNT = 'bank_account';
 
     /**
      * Gets allowable values of the enum
@@ -268,7 +268,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     public function getStepAllowableValues()
     {
         return [
-            self::STEP_PHOTO_ID,
+            self::STEP_BANK_ACCOUNT,
         ];
     }
 
@@ -364,7 +364,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     /**
      * Gets result
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult
      */
     public function getResult()
     {
@@ -374,7 +374,7 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     /**
      * Sets result
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiPhotoIdCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult $result result
      *
      * @return self
      */
