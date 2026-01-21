@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiVideoSelfieCheckArtefactsInner
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiVideoSelfieCheckArtefactsInner Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVideoSelfieCheckArtefactsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_VideoSelfieCheck__artefacts_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
-        'created_at' => 'string',
-        'total_attempts' => 'float',
-        'outcome' => 'string',
-        'step' => 'string'
+        'key' => 'string',
+        'role' => 'string'
     ];
 
     /**
@@ -74,12 +70,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'artefacts' => null,
-        'validations' => null,
-        'created_at' => null,
-        'total_attempts' => 'double',
-        'outcome' => null,
-        'step' => null
+        'key' => null,
+        'role' => null
     ];
 
     /**
@@ -88,12 +80,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'artefacts' => false,
-        'validations' => false,
-        'created_at' => false,
-        'total_attempts' => false,
-        'outcome' => false,
-        'step' => false
+        'key' => false,
+        'role' => false
     ];
 
     /**
@@ -182,12 +170,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'artefacts' => 'artefacts',
-        'validations' => 'validations',
-        'created_at' => 'created_at',
-        'total_attempts' => 'total_attempts',
-        'outcome' => 'outcome',
-        'step' => 'step'
+        'key' => 'key',
+        'role' => 'role'
     ];
 
     /**
@@ -196,12 +180,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations',
-        'created_at' => 'setCreatedAt',
-        'total_attempts' => 'setTotalAttempts',
-        'outcome' => 'setOutcome',
-        'step' => 'setStep'
+        'key' => 'setKey',
+        'role' => 'setRole'
     ];
 
     /**
@@ -210,12 +190,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations',
-        'created_at' => 'getCreatedAt',
-        'total_attempts' => 'getTotalAttempts',
-        'outcome' => 'getOutcome',
-        'step' => 'getStep'
+        'key' => 'getKey',
+        'role' => 'getRole'
     ];
 
     /**
@@ -259,34 +235,21 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
-    public const OUTCOME_PASS = 'pass';
-    public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
+    public const ROLE_DOCUMENT = 'document';
+    public const ROLE_BACKSIDE = 'backside';
+    public const ROLE_FACE_SCAN = 'face_scan';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getOutcomeAllowableValues()
+    public function getRoleAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
-            self::OUTCOME_PASS,
-            self::OUTCOME_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_VIDEO_SELFIE,
+            self::ROLE_DOCUMENT,
+            self::ROLE_BACKSIDE,
+            self::ROLE_FACE_SCAN,
         ];
     }
 
@@ -305,12 +268,8 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('artefacts', $data ?? [], null);
-        $this->setIfExists('validations', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('total_attempts', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('key', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
     }
 
     /**
@@ -340,29 +299,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
+        if ($this->container['key'] === null) {
+            $invalidProperties[] = "'key' can't be null";
         }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'outcome', must be one of '%s'",
-                $this->container['outcome'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
                 implode("', '", $allowedValues)
             );
         }
@@ -383,183 +330,65 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
-     * Gets validations
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
-     */
-    public function getValidations()
-    {
-        return $this->container['validations'];
-    }
-
-    /**
-     * Sets validations
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
-     *
-     * @return self
-     */
-    public function setValidations($validations)
-    {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
-        }
-        $this->container['validations'] = $validations;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return string|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string|null $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_attempts
-     *
-     * @return float|null
-     */
-    public function getTotalAttempts()
-    {
-        return $this->container['total_attempts'];
-    }
-
-    /**
-     * Sets total_attempts
-     *
-     * @param float|null $total_attempts total_attempts
-     *
-     * @return self
-     */
-    public function setTotalAttempts($total_attempts)
-    {
-        if (is_null($total_attempts)) {
-            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
-        }
-        $this->container['total_attempts'] = $total_attempts;
-
-        return $this;
-    }
-
-    /**
-     * Gets outcome
-     *
-     * @return string|null
-     */
-    public function getOutcome()
-    {
-        return $this->container['outcome'];
-    }
-
-    /**
-     * Sets outcome
-     *
-     * @param string|null $outcome outcome
-     *
-     * @return self
-     */
-    public function setOutcome($outcome)
-    {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
-        }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!in_array($outcome, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'outcome', must be one of '%s'",
-                    $outcome,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['outcome'] = $outcome;
-
-        return $this;
-    }
-
-    /**
-     * Gets step
+     * Gets key
      *
      * @return string
      */
-    public function getStep()
+    public function getKey()
     {
-        return $this->container['step'];
+        return $this->container['key'];
     }
 
     /**
-     * Sets step
+     * Sets key
      *
-     * @param string $step step
+     * @param string $key key
      *
      * @return self
      */
-    public function setStep($step)
+    public function setKey($key)
     {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        if (is_null($key)) {
+            throw new \InvalidArgumentException('non-nullable key cannot be null');
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
+        $this->container['key'] = $key;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!in_array($role, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['step'] = $step;
+        $this->container['role'] = $role;
 
         return $this;
     }

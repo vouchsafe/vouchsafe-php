@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiSupportingDocEvidenceItemExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiSupportingDocEvidenceItemExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiSupportingDocEvidenceItemExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_SupportingDocEvidenceItem__extracted_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
-        'created_at' => 'string',
-        'total_attempts' => 'float',
-        'outcome' => 'string',
-        'step' => 'string'
+        'postcode' => 'string',
+        'first_line_of_address' => 'string',
+        'date_of_birth' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'issuer' => 'string',
+        'document_date' => 'string',
+        'document_category' => 'string'
     ];
 
     /**
@@ -74,12 +76,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'artefacts' => null,
-        'validations' => null,
-        'created_at' => null,
-        'total_attempts' => 'double',
-        'outcome' => null,
-        'step' => null
+        'postcode' => null,
+        'first_line_of_address' => null,
+        'date_of_birth' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'issuer' => null,
+        'document_date' => null,
+        'document_category' => null
     ];
 
     /**
@@ -88,12 +92,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'artefacts' => false,
-        'validations' => false,
-        'created_at' => false,
-        'total_attempts' => false,
-        'outcome' => false,
-        'step' => false
+        'postcode' => false,
+        'first_line_of_address' => false,
+        'date_of_birth' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'issuer' => false,
+        'document_date' => false,
+        'document_category' => false
     ];
 
     /**
@@ -182,12 +188,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'artefacts' => 'artefacts',
-        'validations' => 'validations',
-        'created_at' => 'created_at',
-        'total_attempts' => 'total_attempts',
-        'outcome' => 'outcome',
-        'step' => 'step'
+        'postcode' => 'postcode',
+        'first_line_of_address' => 'first_line_of_address',
+        'date_of_birth' => 'date_of_birth',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'issuer' => 'issuer',
+        'document_date' => 'document_date',
+        'document_category' => 'document_category'
     ];
 
     /**
@@ -196,12 +204,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations',
-        'created_at' => 'setCreatedAt',
-        'total_attempts' => 'setTotalAttempts',
-        'outcome' => 'setOutcome',
-        'step' => 'setStep'
+        'postcode' => 'setPostcode',
+        'first_line_of_address' => 'setFirstLineOfAddress',
+        'date_of_birth' => 'setDateOfBirth',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'issuer' => 'setIssuer',
+        'document_date' => 'setDocumentDate',
+        'document_category' => 'setDocumentCategory'
     ];
 
     /**
@@ -210,12 +220,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations',
-        'created_at' => 'getCreatedAt',
-        'total_attempts' => 'getTotalAttempts',
-        'outcome' => 'getOutcome',
-        'step' => 'getStep'
+        'postcode' => 'getPostcode',
+        'first_line_of_address' => 'getFirstLineOfAddress',
+        'date_of_birth' => 'getDateOfBirth',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'issuer' => 'getIssuer',
+        'document_date' => 'getDocumentDate',
+        'document_category' => 'getDocumentCategory'
     ];
 
     /**
@@ -259,34 +271,49 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
-    public const OUTCOME_PASS = 'pass';
-    public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
+    public const DOCUMENT_CATEGORY_BIRTH_OR_ADOPTION_CERTIFICATE = 'birth_or_adoption_certificate';
+    public const DOCUMENT_CATEGORY_MARRIAGE_CERTIFICATE = 'marriage_certificate';
+    public const DOCUMENT_CATEGORY_NATURALISATION_OR_REG_CERTIFICATE = 'naturalisation_or_reg_certificate';
+    public const DOCUMENT_CATEGORY_EDUCATION_CERTIFICATE = 'education_certificate';
+    public const DOCUMENT_CATEGORY_PAYE_TAX_SUMMARY = 'paye_tax_summary';
+    public const DOCUMENT_CATEGORY_PAYSLIP = 'payslip';
+    public const DOCUMENT_CATEGORY_PENSION_ANNUAL_STATEMENT = 'pension_annual_statement';
+    public const DOCUMENT_CATEGORY_BENEFITS_LETTER = 'benefits_letter';
+    public const DOCUMENT_CATEGORY_NHS_LETTER = 'nhs_letter';
+    public const DOCUMENT_CATEGORY_BANK_STATEMENT = 'bank_statement';
+    public const DOCUMENT_CATEGORY_CREDIT_CARD_STATEMENT = 'credit_card_statement';
+    public const DOCUMENT_CATEGORY_MORTGAGE_STATEMENT = 'mortgage_statement';
+    public const DOCUMENT_CATEGORY_INSURANCE_POLICY_AGREEMENT = 'insurance_policy_agreement';
+    public const DOCUMENT_CATEGORY_UTILITY_BILL = 'utility_bill';
+    public const DOCUMENT_CATEGORY_MOBILE_PHONE_BILL = 'mobile_phone_bill';
+    public const DOCUMENT_CATEGORY_HMPPS_LETTER = 'hmpps_letter';
+    public const DOCUMENT_CATEGORY_OLDER_PERSON_BUS_PASS = 'older_person_bus_pass';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getOutcomeAllowableValues()
+    public function getDocumentCategoryAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
-            self::OUTCOME_PASS,
-            self::OUTCOME_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_VIDEO_SELFIE,
+            self::DOCUMENT_CATEGORY_BIRTH_OR_ADOPTION_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_MARRIAGE_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_NATURALISATION_OR_REG_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_EDUCATION_CERTIFICATE,
+            self::DOCUMENT_CATEGORY_PAYE_TAX_SUMMARY,
+            self::DOCUMENT_CATEGORY_PAYSLIP,
+            self::DOCUMENT_CATEGORY_PENSION_ANNUAL_STATEMENT,
+            self::DOCUMENT_CATEGORY_BENEFITS_LETTER,
+            self::DOCUMENT_CATEGORY_NHS_LETTER,
+            self::DOCUMENT_CATEGORY_BANK_STATEMENT,
+            self::DOCUMENT_CATEGORY_CREDIT_CARD_STATEMENT,
+            self::DOCUMENT_CATEGORY_MORTGAGE_STATEMENT,
+            self::DOCUMENT_CATEGORY_INSURANCE_POLICY_AGREEMENT,
+            self::DOCUMENT_CATEGORY_UTILITY_BILL,
+            self::DOCUMENT_CATEGORY_MOBILE_PHONE_BILL,
+            self::DOCUMENT_CATEGORY_HMPPS_LETTER,
+            self::DOCUMENT_CATEGORY_OLDER_PERSON_BUS_PASS,
         ];
     }
 
@@ -305,12 +332,14 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('artefacts', $data ?? [], null);
-        $this->setIfExists('validations', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('total_attempts', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('postcode', $data ?? [], null);
+        $this->setIfExists('first_line_of_address', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('issuer', $data ?? [], null);
+        $this->setIfExists('document_date', $data ?? [], null);
+        $this->setIfExists('document_category', $data ?? [], null);
     }
 
     /**
@@ -340,29 +369,26 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
+        if ($this->container['first_name'] === null) {
+            $invalidProperties[] = "'first_name' can't be null";
         }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['last_name'] === null) {
+            $invalidProperties[] = "'last_name' can't be null";
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['document_date'] === null) {
+            $invalidProperties[] = "'document_date' can't be null";
+        }
+        if ($this->container['document_category'] === null) {
+            $invalidProperties[] = "'document_category' can't be null";
+        }
+        $allowedValues = $this->getDocumentCategoryAllowableValues();
+        if (!is_null($this->container['document_category']) && !in_array($this->container['document_category'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'outcome', must be one of '%s'",
-                $this->container['outcome'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
+                "invalid value '%s' for 'document_category', must be one of '%s'",
+                $this->container['document_category'],
                 implode("', '", $allowedValues)
             );
         }
@@ -383,183 +409,227 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
-     * Gets validations
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
-     */
-    public function getValidations()
-    {
-        return $this->container['validations'];
-    }
-
-    /**
-     * Sets validations
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
-     *
-     * @return self
-     */
-    public function setValidations($validations)
-    {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
-        }
-        $this->container['validations'] = $validations;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
+     * Gets postcode
      *
      * @return string|null
      */
-    public function getCreatedAt()
+    public function getPostcode()
     {
-        return $this->container['created_at'];
+        return $this->container['postcode'];
     }
 
     /**
-     * Sets created_at
+     * Sets postcode
      *
-     * @param string|null $created_at created_at
+     * @param string|null $postcode postcode
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setPostcode($postcode)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($postcode)) {
+            throw new \InvalidArgumentException('non-nullable postcode cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['postcode'] = $postcode;
 
         return $this;
     }
 
     /**
-     * Gets total_attempts
-     *
-     * @return float|null
-     */
-    public function getTotalAttempts()
-    {
-        return $this->container['total_attempts'];
-    }
-
-    /**
-     * Sets total_attempts
-     *
-     * @param float|null $total_attempts total_attempts
-     *
-     * @return self
-     */
-    public function setTotalAttempts($total_attempts)
-    {
-        if (is_null($total_attempts)) {
-            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
-        }
-        $this->container['total_attempts'] = $total_attempts;
-
-        return $this;
-    }
-
-    /**
-     * Gets outcome
+     * Gets first_line_of_address
      *
      * @return string|null
      */
-    public function getOutcome()
+    public function getFirstLineOfAddress()
     {
-        return $this->container['outcome'];
+        return $this->container['first_line_of_address'];
     }
 
     /**
-     * Sets outcome
+     * Sets first_line_of_address
      *
-     * @param string|null $outcome outcome
+     * @param string|null $first_line_of_address first_line_of_address
      *
      * @return self
      */
-    public function setOutcome($outcome)
+    public function setFirstLineOfAddress($first_line_of_address)
     {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        if (is_null($first_line_of_address)) {
+            throw new \InvalidArgumentException('non-nullable first_line_of_address cannot be null');
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!in_array($outcome, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'outcome', must be one of '%s'",
-                    $outcome,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['outcome'] = $outcome;
+        $this->container['first_line_of_address'] = $first_line_of_address;
 
         return $this;
     }
 
     /**
-     * Gets step
+     * Gets date_of_birth
+     *
+     * @return string|null
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param string|null $date_of_birth date_of_birth
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
+        }
+        $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_name
      *
      * @return string
      */
-    public function getStep()
+    public function getFirstName()
     {
-        return $this->container['step'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets step
+     * Sets first_name
      *
-     * @param string $step step
+     * @param string $first_name first_name
      *
      * @return self
      */
-    public function setStep($step)
+    public function setFirstName($first_name)
     {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
+        $this->container['first_name'] = $first_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_name
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->container['last_name'];
+    }
+
+    /**
+     * Sets last_name
+     *
+     * @param string $last_name last_name
+     *
+     * @return self
+     */
+    public function setLastName($last_name)
+    {
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
+        }
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer
+     *
+     * @return string
+     */
+    public function getIssuer()
+    {
+        return $this->container['issuer'];
+    }
+
+    /**
+     * Sets issuer
+     *
+     * @param string $issuer issuer
+     *
+     * @return self
+     */
+    public function setIssuer($issuer)
+    {
+        if (is_null($issuer)) {
+            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
+        }
+        $this->container['issuer'] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_date
+     *
+     * @return string
+     */
+    public function getDocumentDate()
+    {
+        return $this->container['document_date'];
+    }
+
+    /**
+     * Sets document_date
+     *
+     * @param string $document_date document_date
+     *
+     * @return self
+     */
+    public function setDocumentDate($document_date)
+    {
+        if (is_null($document_date)) {
+            throw new \InvalidArgumentException('non-nullable document_date cannot be null');
+        }
+        $this->container['document_date'] = $document_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_category
+     *
+     * @return string
+     */
+    public function getDocumentCategory()
+    {
+        return $this->container['document_category'];
+    }
+
+    /**
+     * Sets document_category
+     *
+     * @param string $document_category document_category
+     *
+     * @return self
+     */
+    public function setDocumentCategory($document_category)
+    {
+        if (is_null($document_category)) {
+            throw new \InvalidArgumentException('non-nullable document_category cannot be null');
+        }
+        $allowedValues = $this->getDocumentCategoryAllowableValues();
+        if (!in_array($document_category, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
+                    "Invalid value '%s' for 'document_category', must be one of '%s'",
+                    $document_category,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['step'] = $step;
+        $this->container['document_category'] = $document_category;
 
         return $this;
     }

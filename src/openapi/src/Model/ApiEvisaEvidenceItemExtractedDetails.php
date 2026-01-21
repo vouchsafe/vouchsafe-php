@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiEvisaEvidenceItemExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiEvisaEvidenceItemExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEvisaEvidenceItemExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_EvisaEvidenceItem__extracted_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
-        'created_at' => 'string',
-        'total_attempts' => 'float',
-        'outcome' => 'string',
-        'step' => 'string'
+        'postcode' => 'string',
+        'first_line_of_address' => 'string',
+        'date_of_birth' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'immigration_status' => 'string',
+        'nationality' => 'string',
+        'issue_date' => 'string',
+        'expiration_date' => 'string',
+        'reference_number' => 'string',
+        'share_code' => 'string'
     ];
 
     /**
@@ -74,12 +79,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'artefacts' => null,
-        'validations' => null,
-        'created_at' => null,
-        'total_attempts' => 'double',
-        'outcome' => null,
-        'step' => null
+        'postcode' => null,
+        'first_line_of_address' => null,
+        'date_of_birth' => null,
+        'first_name' => null,
+        'last_name' => null,
+        'immigration_status' => null,
+        'nationality' => null,
+        'issue_date' => null,
+        'expiration_date' => null,
+        'reference_number' => null,
+        'share_code' => null
     ];
 
     /**
@@ -88,12 +98,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'artefacts' => false,
-        'validations' => false,
-        'created_at' => false,
-        'total_attempts' => false,
-        'outcome' => false,
-        'step' => false
+        'postcode' => false,
+        'first_line_of_address' => false,
+        'date_of_birth' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'immigration_status' => false,
+        'nationality' => false,
+        'issue_date' => false,
+        'expiration_date' => false,
+        'reference_number' => false,
+        'share_code' => false
     ];
 
     /**
@@ -182,12 +197,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'artefacts' => 'artefacts',
-        'validations' => 'validations',
-        'created_at' => 'created_at',
-        'total_attempts' => 'total_attempts',
-        'outcome' => 'outcome',
-        'step' => 'step'
+        'postcode' => 'postcode',
+        'first_line_of_address' => 'first_line_of_address',
+        'date_of_birth' => 'date_of_birth',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'immigration_status' => 'immigration_status',
+        'nationality' => 'nationality',
+        'issue_date' => 'issue_date',
+        'expiration_date' => 'expiration_date',
+        'reference_number' => 'reference_number',
+        'share_code' => 'share_code'
     ];
 
     /**
@@ -196,12 +216,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations',
-        'created_at' => 'setCreatedAt',
-        'total_attempts' => 'setTotalAttempts',
-        'outcome' => 'setOutcome',
-        'step' => 'setStep'
+        'postcode' => 'setPostcode',
+        'first_line_of_address' => 'setFirstLineOfAddress',
+        'date_of_birth' => 'setDateOfBirth',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'immigration_status' => 'setImmigrationStatus',
+        'nationality' => 'setNationality',
+        'issue_date' => 'setIssueDate',
+        'expiration_date' => 'setExpirationDate',
+        'reference_number' => 'setReferenceNumber',
+        'share_code' => 'setShareCode'
     ];
 
     /**
@@ -210,12 +235,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations',
-        'created_at' => 'getCreatedAt',
-        'total_attempts' => 'getTotalAttempts',
-        'outcome' => 'getOutcome',
-        'step' => 'getStep'
+        'postcode' => 'getPostcode',
+        'first_line_of_address' => 'getFirstLineOfAddress',
+        'date_of_birth' => 'getDateOfBirth',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'immigration_status' => 'getImmigrationStatus',
+        'nationality' => 'getNationality',
+        'issue_date' => 'getIssueDate',
+        'expiration_date' => 'getExpirationDate',
+        'reference_number' => 'getReferenceNumber',
+        'share_code' => 'getShareCode'
     ];
 
     /**
@@ -259,36 +289,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
-    public const OUTCOME_PASS = 'pass';
-    public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOutcomeAllowableValues()
-    {
-        return [
-            self::OUTCOME_IN_PROGRESS,
-            self::OUTCOME_PASS,
-            self::OUTCOME_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_VIDEO_SELFIE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -305,12 +305,17 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('artefacts', $data ?? [], null);
-        $this->setIfExists('validations', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('total_attempts', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('postcode', $data ?? [], null);
+        $this->setIfExists('first_line_of_address', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('immigration_status', $data ?? [], null);
+        $this->setIfExists('nationality', $data ?? [], null);
+        $this->setIfExists('issue_date', $data ?? [], null);
+        $this->setIfExists('expiration_date', $data ?? [], null);
+        $this->setIfExists('reference_number', $data ?? [], null);
+        $this->setIfExists('share_code', $data ?? [], null);
     }
 
     /**
@@ -340,33 +345,21 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
+        if ($this->container['first_name'] === null) {
+            $invalidProperties[] = "'first_name' can't be null";
         }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['last_name'] === null) {
+            $invalidProperties[] = "'last_name' can't be null";
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'outcome', must be one of '%s'",
-                $this->container['outcome'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['expiration_date'] === null) {
+            $invalidProperties[] = "'expiration_date' can't be null";
         }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
+        if ($this->container['reference_number'] === null) {
+            $invalidProperties[] = "'reference_number' can't be null";
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['share_code'] === null) {
+            $invalidProperties[] = "'share_code' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -383,183 +376,298 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
-     * Gets validations
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
-     */
-    public function getValidations()
-    {
-        return $this->container['validations'];
-    }
-
-    /**
-     * Sets validations
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
-     *
-     * @return self
-     */
-    public function setValidations($validations)
-    {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
-        }
-        $this->container['validations'] = $validations;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
+     * Gets postcode
      *
      * @return string|null
      */
-    public function getCreatedAt()
+    public function getPostcode()
     {
-        return $this->container['created_at'];
+        return $this->container['postcode'];
     }
 
     /**
-     * Sets created_at
+     * Sets postcode
      *
-     * @param string|null $created_at created_at
+     * @param string|null $postcode postcode
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setPostcode($postcode)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($postcode)) {
+            throw new \InvalidArgumentException('non-nullable postcode cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['postcode'] = $postcode;
 
         return $this;
     }
 
     /**
-     * Gets total_attempts
-     *
-     * @return float|null
-     */
-    public function getTotalAttempts()
-    {
-        return $this->container['total_attempts'];
-    }
-
-    /**
-     * Sets total_attempts
-     *
-     * @param float|null $total_attempts total_attempts
-     *
-     * @return self
-     */
-    public function setTotalAttempts($total_attempts)
-    {
-        if (is_null($total_attempts)) {
-            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
-        }
-        $this->container['total_attempts'] = $total_attempts;
-
-        return $this;
-    }
-
-    /**
-     * Gets outcome
+     * Gets first_line_of_address
      *
      * @return string|null
      */
-    public function getOutcome()
+    public function getFirstLineOfAddress()
     {
-        return $this->container['outcome'];
+        return $this->container['first_line_of_address'];
     }
 
     /**
-     * Sets outcome
+     * Sets first_line_of_address
      *
-     * @param string|null $outcome outcome
+     * @param string|null $first_line_of_address first_line_of_address
      *
      * @return self
      */
-    public function setOutcome($outcome)
+    public function setFirstLineOfAddress($first_line_of_address)
     {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        if (is_null($first_line_of_address)) {
+            throw new \InvalidArgumentException('non-nullable first_line_of_address cannot be null');
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!in_array($outcome, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'outcome', must be one of '%s'",
-                    $outcome,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['outcome'] = $outcome;
+        $this->container['first_line_of_address'] = $first_line_of_address;
 
         return $this;
     }
 
     /**
-     * Gets step
+     * Gets date_of_birth
+     *
+     * @return string|null
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param string|null $date_of_birth date_of_birth
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
+        }
+        $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_name
      *
      * @return string
      */
-    public function getStep()
+    public function getFirstName()
     {
-        return $this->container['step'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets step
+     * Sets first_name
      *
-     * @param string $step step
+     * @param string $first_name first_name
      *
      * @return self
      */
-    public function setStep($step)
+    public function setFirstName($first_name)
     {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['first_name'] = $first_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_name
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->container['last_name'];
+    }
+
+    /**
+     * Sets last_name
+     *
+     * @param string $last_name last_name
+     *
+     * @return self
+     */
+    public function setLastName($last_name)
+    {
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
         }
-        $this->container['step'] = $step;
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets immigration_status
+     *
+     * @return string|null
+     */
+    public function getImmigrationStatus()
+    {
+        return $this->container['immigration_status'];
+    }
+
+    /**
+     * Sets immigration_status
+     *
+     * @param string|null $immigration_status immigration_status
+     *
+     * @return self
+     */
+    public function setImmigrationStatus($immigration_status)
+    {
+        if (is_null($immigration_status)) {
+            throw new \InvalidArgumentException('non-nullable immigration_status cannot be null');
+        }
+        $this->container['immigration_status'] = $immigration_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets nationality
+     *
+     * @return string|null
+     */
+    public function getNationality()
+    {
+        return $this->container['nationality'];
+    }
+
+    /**
+     * Sets nationality
+     *
+     * @param string|null $nationality nationality
+     *
+     * @return self
+     */
+    public function setNationality($nationality)
+    {
+        if (is_null($nationality)) {
+            throw new \InvalidArgumentException('non-nullable nationality cannot be null');
+        }
+        $this->container['nationality'] = $nationality;
+
+        return $this;
+    }
+
+    /**
+     * Gets issue_date
+     *
+     * @return string|null
+     */
+    public function getIssueDate()
+    {
+        return $this->container['issue_date'];
+    }
+
+    /**
+     * Sets issue_date
+     *
+     * @param string|null $issue_date issue_date
+     *
+     * @return self
+     */
+    public function setIssueDate($issue_date)
+    {
+        if (is_null($issue_date)) {
+            throw new \InvalidArgumentException('non-nullable issue_date cannot be null');
+        }
+        $this->container['issue_date'] = $issue_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiration_date
+     *
+     * @return string
+     */
+    public function getExpirationDate()
+    {
+        return $this->container['expiration_date'];
+    }
+
+    /**
+     * Sets expiration_date
+     *
+     * @param string $expiration_date expiration_date
+     *
+     * @return self
+     */
+    public function setExpirationDate($expiration_date)
+    {
+        if (is_null($expiration_date)) {
+            throw new \InvalidArgumentException('non-nullable expiration_date cannot be null');
+        }
+        $this->container['expiration_date'] = $expiration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference_number
+     *
+     * @return string
+     */
+    public function getReferenceNumber()
+    {
+        return $this->container['reference_number'];
+    }
+
+    /**
+     * Sets reference_number
+     *
+     * @param string $reference_number reference_number
+     *
+     * @return self
+     */
+    public function setReferenceNumber($reference_number)
+    {
+        if (is_null($reference_number)) {
+            throw new \InvalidArgumentException('non-nullable reference_number cannot be null');
+        }
+        $this->container['reference_number'] = $reference_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets share_code
+     *
+     * @return string
+     */
+    public function getShareCode()
+    {
+        return $this->container['share_code'];
+    }
+
+    /**
+     * Sets share_code
+     *
+     * @param string $share_code share_code
+     *
+     * @return self
+     */
+    public function setShareCode($share_code)
+    {
+        if (is_null($share_code)) {
+            throw new \InvalidArgumentException('non-nullable share_code cannot be null');
+        }
+        $this->container['share_code'] = $share_code;
 
         return $this;
     }

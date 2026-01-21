@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiBankAccountEvidenceItem
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiBankAccountEvidenceItem Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiBankAccountEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_BankAccountEvidenceItem_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
+        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemExtractedDetails',
         'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
+        'evidence_type' => 'string',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemValidations',
         'created_at' => 'string',
         'total_attempts' => 'float',
         'outcome' => 'string',
@@ -74,7 +76,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'extracted_details' => null,
         'artefacts' => null,
+        'evidence_type' => null,
         'validations' => null,
         'created_at' => null,
         'total_attempts' => 'double',
@@ -88,7 +92,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'extracted_details' => false,
         'artefacts' => false,
+        'evidence_type' => false,
         'validations' => false,
         'created_at' => false,
         'total_attempts' => false,
@@ -182,7 +188,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
+        'extracted_details' => 'extracted_details',
         'artefacts' => 'artefacts',
+        'evidence_type' => 'evidence_type',
         'validations' => 'validations',
         'created_at' => 'created_at',
         'total_attempts' => 'total_attempts',
@@ -196,7 +204,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
+        'extracted_details' => 'setExtractedDetails',
         'artefacts' => 'setArtefacts',
+        'evidence_type' => 'setEvidenceType',
         'validations' => 'setValidations',
         'created_at' => 'setCreatedAt',
         'total_attempts' => 'setTotalAttempts',
@@ -210,7 +220,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
+        'extracted_details' => 'getExtractedDetails',
         'artefacts' => 'getArtefacts',
+        'evidence_type' => 'getEvidenceType',
         'validations' => 'getValidations',
         'created_at' => 'getCreatedAt',
         'total_attempts' => 'getTotalAttempts',
@@ -259,10 +271,23 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const EVIDENCE_TYPE_OPEN_BANKING = 'open_banking';
     public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
+    public const STEP_BANK_ACCOUNT = 'bank_account';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEvidenceTypeAllowableValues()
+    {
+        return [
+            self::EVIDENCE_TYPE_OPEN_BANKING,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -286,7 +311,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     public function getStepAllowableValues()
     {
         return [
-            self::STEP_VIDEO_SELFIE,
+            self::STEP_BANK_ACCOUNT,
         ];
     }
 
@@ -305,7 +330,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('extracted_details', $data ?? [], null);
         $this->setIfExists('artefacts', $data ?? [], null);
+        $this->setIfExists('evidence_type', $data ?? [], null);
         $this->setIfExists('validations', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('total_attempts', $data ?? [], null);
@@ -340,9 +367,21 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
+        if ($this->container['extracted_details'] === null) {
+            $invalidProperties[] = "'extracted_details' can't be null";
         }
+        if ($this->container['evidence_type'] === null) {
+            $invalidProperties[] = "'evidence_type' can't be null";
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!is_null($this->container['evidence_type']) && !in_array($this->container['evidence_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'evidence_type', must be one of '%s'",
+                $this->container['evidence_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['validations'] === null) {
             $invalidProperties[] = "'validations' can't be null";
         }
@@ -383,9 +422,36 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
+     * Gets extracted_details
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemExtractedDetails
+     */
+    public function getExtractedDetails()
+    {
+        return $this->container['extracted_details'];
+    }
+
+    /**
+     * Sets extracted_details
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemExtractedDetails $extracted_details extracted_details
+     *
+     * @return self
+     */
+    public function setExtractedDetails($extracted_details)
+    {
+        if (is_null($extracted_details)) {
+            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
+        }
+        $this->container['extracted_details'] = $extracted_details;
+
+        return $this;
+    }
+
+    /**
      * Gets artefacts
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]|null
      */
     public function getArtefacts()
     {
@@ -395,7 +461,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets artefacts
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]|null $artefacts artefacts
      *
      * @return self
      */
@@ -410,9 +476,46 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets evidence_type
+     *
+     * @return string
+     */
+    public function getEvidenceType()
+    {
+        return $this->container['evidence_type'];
+    }
+
+    /**
+     * Sets evidence_type
+     *
+     * @param string $evidence_type evidence_type
+     *
+     * @return self
+     */
+    public function setEvidenceType($evidence_type)
+    {
+        if (is_null($evidence_type)) {
+            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!in_array($evidence_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
+                    $evidence_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['evidence_type'] = $evidence_type;
+
+        return $this;
+    }
+
+    /**
      * Gets validations
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemValidations
      */
     public function getValidations()
     {
@@ -422,7 +525,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets validations
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiBankAccountEvidenceItemValidations $validations validations
      *
      * @return self
      */

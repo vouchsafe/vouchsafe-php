@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiVerifyPhoneNumberCheck
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiVerifyPhoneNumberCheck Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerifyPhoneNumberCheck implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_VerifyPhoneNumberCheck_';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVerifyPhoneNumberCheckValidations',
         'created_at' => 'string',
         'total_attempts' => 'float',
         'outcome' => 'string',
@@ -74,7 +73,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'artefacts' => null,
         'validations' => null,
         'created_at' => null,
         'total_attempts' => 'double',
@@ -88,7 +86,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'artefacts' => false,
         'validations' => false,
         'created_at' => false,
         'total_attempts' => false,
@@ -182,7 +179,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'artefacts' => 'artefacts',
         'validations' => 'validations',
         'created_at' => 'created_at',
         'total_attempts' => 'total_attempts',
@@ -196,7 +192,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'artefacts' => 'setArtefacts',
         'validations' => 'setValidations',
         'created_at' => 'setCreatedAt',
         'total_attempts' => 'setTotalAttempts',
@@ -210,7 +205,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'artefacts' => 'getArtefacts',
         'validations' => 'getValidations',
         'created_at' => 'getCreatedAt',
         'total_attempts' => 'getTotalAttempts',
@@ -262,7 +256,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
+    public const STEP_VERIFY_PHONE_NUMBER = 'verify_phone_number';
 
     /**
      * Gets allowable values of the enum
@@ -286,7 +280,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     public function getStepAllowableValues()
     {
         return [
-            self::STEP_VIDEO_SELFIE,
+            self::STEP_VERIFY_PHONE_NUMBER,
         ];
     }
 
@@ -305,7 +299,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('artefacts', $data ?? [], null);
         $this->setIfExists('validations', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('total_attempts', $data ?? [], null);
@@ -340,9 +333,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
-        }
         if ($this->container['validations'] === null) {
             $invalidProperties[] = "'validations' can't be null";
         }
@@ -383,36 +373,9 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
      * Gets validations
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyPhoneNumberCheckValidations
      */
     public function getValidations()
     {
@@ -422,7 +385,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets validations
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyPhoneNumberCheckValidations $validations validations
      *
      * @return self
      */

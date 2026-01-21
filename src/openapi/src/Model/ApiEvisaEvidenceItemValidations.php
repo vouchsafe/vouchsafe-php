@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVideoSelfieCheck
+ * ApiEvisaEvidenceItemValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVideoSelfieCheck Class Doc Comment
+ * ApiEvisaEvidenceItemValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VideoSelfieCheck_';
+    protected static $openAPIModelName = 'Api_EvisaEvidenceItem__validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations',
-        'created_at' => 'string',
-        'total_attempts' => 'float',
-        'outcome' => 'string',
-        'step' => 'string'
+        'face_match' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck',
+        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
+        'valid_from_reached' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
+        'submitted_details_accepted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
     ];
 
     /**
@@ -74,12 +73,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'artefacts' => null,
-        'validations' => null,
-        'created_at' => null,
-        'total_attempts' => 'double',
-        'outcome' => null,
-        'step' => null
+        'face_match' => null,
+        'has_not_expired' => null,
+        'valid_from_reached' => null,
+        'required_fields_extracted' => null,
+        'submitted_details_accepted' => null
     ];
 
     /**
@@ -88,12 +86,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'artefacts' => false,
-        'validations' => false,
-        'created_at' => false,
-        'total_attempts' => false,
-        'outcome' => false,
-        'step' => false
+        'face_match' => false,
+        'has_not_expired' => false,
+        'valid_from_reached' => false,
+        'required_fields_extracted' => false,
+        'submitted_details_accepted' => false
     ];
 
     /**
@@ -182,12 +179,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'artefacts' => 'artefacts',
-        'validations' => 'validations',
-        'created_at' => 'created_at',
-        'total_attempts' => 'total_attempts',
-        'outcome' => 'outcome',
-        'step' => 'step'
+        'face_match' => 'face_match',
+        'has_not_expired' => 'has_not_expired',
+        'valid_from_reached' => 'valid_from_reached',
+        'required_fields_extracted' => 'required_fields_extracted',
+        'submitted_details_accepted' => 'submitted_details_accepted'
     ];
 
     /**
@@ -196,12 +192,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations',
-        'created_at' => 'setCreatedAt',
-        'total_attempts' => 'setTotalAttempts',
-        'outcome' => 'setOutcome',
-        'step' => 'setStep'
+        'face_match' => 'setFaceMatch',
+        'has_not_expired' => 'setHasNotExpired',
+        'valid_from_reached' => 'setValidFromReached',
+        'required_fields_extracted' => 'setRequiredFieldsExtracted',
+        'submitted_details_accepted' => 'setSubmittedDetailsAccepted'
     ];
 
     /**
@@ -210,12 +205,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations',
-        'created_at' => 'getCreatedAt',
-        'total_attempts' => 'getTotalAttempts',
-        'outcome' => 'getOutcome',
-        'step' => 'getStep'
+        'face_match' => 'getFaceMatch',
+        'has_not_expired' => 'getHasNotExpired',
+        'valid_from_reached' => 'getValidFromReached',
+        'required_fields_extracted' => 'getRequiredFieldsExtracted',
+        'submitted_details_accepted' => 'getSubmittedDetailsAccepted'
     ];
 
     /**
@@ -259,36 +253,6 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
-    public const OUTCOME_PASS = 'pass';
-    public const OUTCOME_FAIL = 'fail';
-    public const STEP_VIDEO_SELFIE = 'video_selfie';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOutcomeAllowableValues()
-    {
-        return [
-            self::OUTCOME_IN_PROGRESS,
-            self::OUTCOME_PASS,
-            self::OUTCOME_FAIL,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStepAllowableValues()
-    {
-        return [
-            self::STEP_VIDEO_SELFIE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -305,12 +269,11 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('artefacts', $data ?? [], null);
-        $this->setIfExists('validations', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('total_attempts', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('face_match', $data ?? [], null);
+        $this->setIfExists('has_not_expired', $data ?? [], null);
+        $this->setIfExists('valid_from_reached', $data ?? [], null);
+        $this->setIfExists('required_fields_extracted', $data ?? [], null);
+        $this->setIfExists('submitted_details_accepted', $data ?? [], null);
     }
 
     /**
@@ -340,33 +303,18 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
+        if ($this->container['has_not_expired'] === null) {
+            $invalidProperties[] = "'has_not_expired' can't be null";
         }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
+        if ($this->container['valid_from_reached'] === null) {
+            $invalidProperties[] = "'valid_from_reached' can't be null";
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'outcome', must be one of '%s'",
-                $this->container['outcome'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['required_fields_extracted'] === null) {
+            $invalidProperties[] = "'required_fields_extracted' can't be null";
         }
-
-        if ($this->container['step'] === null) {
-            $invalidProperties[] = "'step' can't be null";
+        if ($this->container['submitted_details_accepted'] === null) {
+            $invalidProperties[] = "'submitted_details_accepted' can't be null";
         }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'step', must be one of '%s'",
-                $this->container['step'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -383,183 +331,136 @@ class ApiVideoSelfieCheck implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets artefacts
+     * Gets face_match
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck|null
      */
-    public function getArtefacts()
+    public function getFaceMatch()
     {
-        return $this->container['artefacts'];
+        return $this->container['face_match'];
     }
 
     /**
-     * Sets artefacts
+     * Sets face_match
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck|null $face_match face_match
      *
      * @return self
      */
-    public function setArtefacts($artefacts)
+    public function setFaceMatch($face_match)
     {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
+        if (is_null($face_match)) {
+            throw new \InvalidArgumentException('non-nullable face_match cannot be null');
         }
-        $this->container['artefacts'] = $artefacts;
+        $this->container['face_match'] = $face_match;
 
         return $this;
     }
 
     /**
-     * Gets validations
+     * Gets has_not_expired
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
      */
-    public function getValidations()
+    public function getHasNotExpired()
     {
-        return $this->container['validations'];
+        return $this->container['has_not_expired'];
     }
 
     /**
-     * Sets validations
+     * Sets has_not_expired
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $has_not_expired has_not_expired
      *
      * @return self
      */
-    public function setValidations($validations)
+    public function setHasNotExpired($has_not_expired)
     {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        if (is_null($has_not_expired)) {
+            throw new \InvalidArgumentException('non-nullable has_not_expired cannot be null');
         }
-        $this->container['validations'] = $validations;
+        $this->container['has_not_expired'] = $has_not_expired;
 
         return $this;
     }
 
     /**
-     * Gets created_at
+     * Gets valid_from_reached
      *
-     * @return string|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
      */
-    public function getCreatedAt()
+    public function getValidFromReached()
     {
-        return $this->container['created_at'];
+        return $this->container['valid_from_reached'];
     }
 
     /**
-     * Sets created_at
+     * Sets valid_from_reached
      *
-     * @param string|null $created_at created_at
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $valid_from_reached valid_from_reached
      *
      * @return self
      */
-    public function setCreatedAt($created_at)
+    public function setValidFromReached($valid_from_reached)
     {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        if (is_null($valid_from_reached)) {
+            throw new \InvalidArgumentException('non-nullable valid_from_reached cannot be null');
         }
-        $this->container['created_at'] = $created_at;
+        $this->container['valid_from_reached'] = $valid_from_reached;
 
         return $this;
     }
 
     /**
-     * Gets total_attempts
+     * Gets required_fields_extracted
      *
-     * @return float|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
      */
-    public function getTotalAttempts()
+    public function getRequiredFieldsExtracted()
     {
-        return $this->container['total_attempts'];
+        return $this->container['required_fields_extracted'];
     }
 
     /**
-     * Sets total_attempts
+     * Sets required_fields_extracted
      *
-     * @param float|null $total_attempts total_attempts
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $required_fields_extracted required_fields_extracted
      *
      * @return self
      */
-    public function setTotalAttempts($total_attempts)
+    public function setRequiredFieldsExtracted($required_fields_extracted)
     {
-        if (is_null($total_attempts)) {
-            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
+        if (is_null($required_fields_extracted)) {
+            throw new \InvalidArgumentException('non-nullable required_fields_extracted cannot be null');
         }
-        $this->container['total_attempts'] = $total_attempts;
+        $this->container['required_fields_extracted'] = $required_fields_extracted;
 
         return $this;
     }
 
     /**
-     * Gets outcome
+     * Gets submitted_details_accepted
      *
-     * @return string|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
      */
-    public function getOutcome()
+    public function getSubmittedDetailsAccepted()
     {
-        return $this->container['outcome'];
+        return $this->container['submitted_details_accepted'];
     }
 
     /**
-     * Sets outcome
+     * Sets submitted_details_accepted
      *
-     * @param string|null $outcome outcome
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $submitted_details_accepted submitted_details_accepted
      *
      * @return self
      */
-    public function setOutcome($outcome)
+    public function setSubmittedDetailsAccepted($submitted_details_accepted)
     {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        if (is_null($submitted_details_accepted)) {
+            throw new \InvalidArgumentException('non-nullable submitted_details_accepted cannot be null');
         }
-        $allowedValues = $this->getOutcomeAllowableValues();
-        if (!in_array($outcome, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'outcome', must be one of '%s'",
-                    $outcome,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['outcome'] = $outcome;
-
-        return $this;
-    }
-
-    /**
-     * Gets step
-     *
-     * @return string
-     */
-    public function getStep()
-    {
-        return $this->container['step'];
-    }
-
-    /**
-     * Sets step
-     *
-     * @param string $step step
-     *
-     * @return self
-     */
-    public function setStep($step)
-    {
-        if (is_null($step)) {
-            throw new \InvalidArgumentException('non-nullable step cannot be null');
-        }
-        $allowedValues = $this->getStepAllowableValues();
-        if (!in_array($step, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'step', must be one of '%s'",
-                    $step,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['step'] = $step;
+        $this->container['submitted_details_accepted'] = $submitted_details_accepted;
 
         return $this;
     }

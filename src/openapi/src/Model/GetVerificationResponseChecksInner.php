@@ -58,9 +58,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult',
-        'overall_status' => 'string',
-        'step' => 'string'
+        'artefacts' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemValidations',
+        'created_at' => 'string',
+        'total_attempts' => 'float',
+        'outcome' => 'string',
+        'step' => 'string',
+        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemExtractedDetails',
+        'evidence_type' => 'string'
     ];
 
     /**
@@ -71,9 +76,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'overall_status' => null,
-        'step' => null
+        'artefacts' => null,
+        'validations' => null,
+        'created_at' => null,
+        'total_attempts' => 'double',
+        'outcome' => null,
+        'step' => null,
+        'extracted_details' => null,
+        'evidence_type' => null
     ];
 
     /**
@@ -82,9 +92,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => false,
-        'overall_status' => false,
-        'step' => false
+        'artefacts' => false,
+        'validations' => false,
+        'created_at' => false,
+        'total_attempts' => false,
+        'outcome' => false,
+        'step' => false,
+        'extracted_details' => false,
+        'evidence_type' => false
     ];
 
     /**
@@ -173,9 +188,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'overall_status' => 'overall_status',
-        'step' => 'step'
+        'artefacts' => 'artefacts',
+        'validations' => 'validations',
+        'created_at' => 'created_at',
+        'total_attempts' => 'total_attempts',
+        'outcome' => 'outcome',
+        'step' => 'step',
+        'extracted_details' => 'extracted_details',
+        'evidence_type' => 'evidence_type'
     ];
 
     /**
@@ -184,9 +204,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'overall_status' => 'setOverallStatus',
-        'step' => 'setStep'
+        'artefacts' => 'setArtefacts',
+        'validations' => 'setValidations',
+        'created_at' => 'setCreatedAt',
+        'total_attempts' => 'setTotalAttempts',
+        'outcome' => 'setOutcome',
+        'step' => 'setStep',
+        'extracted_details' => 'setExtractedDetails',
+        'evidence_type' => 'setEvidenceType'
     ];
 
     /**
@@ -195,9 +220,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'overall_status' => 'getOverallStatus',
-        'step' => 'getStep'
+        'artefacts' => 'getArtefacts',
+        'validations' => 'getValidations',
+        'created_at' => 'getCreatedAt',
+        'total_attempts' => 'getTotalAttempts',
+        'outcome' => 'getOutcome',
+        'step' => 'getStep',
+        'extracted_details' => 'getExtractedDetails',
+        'evidence_type' => 'getEvidenceType'
     ];
 
     /**
@@ -241,22 +271,24 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
-    public const OVERALL_STATUS_PASS = 'pass';
-    public const OVERALL_STATUS_FAIL = 'fail';
-    public const STEP_BANK_ACCOUNT = 'bank_account';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_PASS = 'pass';
+    public const OUTCOME_FAIL = 'fail';
+    public const STEP_VOUCH = 'vouch';
+    public const EVIDENCE_TYPE_PROFESSIONAL_REFEREE = 'professional_referee';
+    public const EVIDENCE_TYPE_PERSONAL_REFEREE = 'personal_referee';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getOverallStatusAllowableValues()
+    public function getOutcomeAllowableValues()
     {
         return [
-            self::OVERALL_STATUS_IN_PROGRESS,
-            self::OVERALL_STATUS_PASS,
-            self::OVERALL_STATUS_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_PASS,
+            self::OUTCOME_FAIL,
         ];
     }
 
@@ -268,7 +300,20 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     public function getStepAllowableValues()
     {
         return [
-            self::STEP_BANK_ACCOUNT,
+            self::STEP_VOUCH,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEvidenceTypeAllowableValues()
+    {
+        return [
+            self::EVIDENCE_TYPE_PROFESSIONAL_REFEREE,
+            self::EVIDENCE_TYPE_PERSONAL_REFEREE,
         ];
     }
 
@@ -287,9 +332,14 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('overall_status', $data ?? [], null);
+        $this->setIfExists('artefacts', $data ?? [], null);
+        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
+        $this->setIfExists('outcome', $data ?? [], null);
         $this->setIfExists('step', $data ?? [], null);
+        $this->setIfExists('extracted_details', $data ?? [], null);
+        $this->setIfExists('evidence_type', $data ?? [], null);
     }
 
     /**
@@ -319,17 +369,17 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+        if ($this->container['artefacts'] === null) {
+            $invalidProperties[] = "'artefacts' can't be null";
         }
-        if ($this->container['overall_status'] === null) {
-            $invalidProperties[] = "'overall_status' can't be null";
+        if ($this->container['validations'] === null) {
+            $invalidProperties[] = "'validations' can't be null";
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'overall_status', must be one of '%s'",
-                $this->container['overall_status'],
+                "invalid value '%s' for 'outcome', must be one of '%s'",
+                $this->container['outcome'],
                 implode("', '", $allowedValues)
             );
         }
@@ -342,6 +392,21 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'step', must be one of '%s'",
                 $this->container['step'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['extracted_details'] === null) {
+            $invalidProperties[] = "'extracted_details' can't be null";
+        }
+        if ($this->container['evidence_type'] === null) {
+            $invalidProperties[] = "'evidence_type' can't be null";
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!is_null($this->container['evidence_type']) && !in_array($this->container['evidence_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'evidence_type', must be one of '%s'",
+                $this->container['evidence_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -362,65 +427,146 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets result
+     * Gets artefacts
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[]
      */
-    public function getResult()
+    public function getArtefacts()
     {
-        return $this->container['result'];
+        return $this->container['artefacts'];
     }
 
     /**
-     * Sets result
+     * Sets artefacts
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiBankAccountCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckArtefactsInner[] $artefacts artefacts
      *
      * @return self
      */
-    public function setResult($result)
+    public function setArtefacts($artefacts)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        if (is_null($artefacts)) {
+            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
         }
-        $this->container['result'] = $result;
+        $this->container['artefacts'] = $artefacts;
 
         return $this;
     }
 
     /**
-     * Gets overall_status
+     * Gets validations
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemValidations
      */
-    public function getOverallStatus()
+    public function getValidations()
     {
-        return $this->container['overall_status'];
+        return $this->container['validations'];
     }
 
     /**
-     * Sets overall_status
+     * Sets validations
      *
-     * @param string $overall_status overall_status
+     * @param \Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemValidations $validations validations
      *
      * @return self
      */
-    public function setOverallStatus($overall_status)
+    public function setValidations($validations)
     {
-        if (is_null($overall_status)) {
-            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        if (is_null($validations)) {
+            throw new \InvalidArgumentException('non-nullable validations cannot be null');
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!in_array($overall_status, $allowedValues, true)) {
+        $this->container['validations'] = $validations;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_attempts
+     *
+     * @return float|null
+     */
+    public function getTotalAttempts()
+    {
+        return $this->container['total_attempts'];
+    }
+
+    /**
+     * Sets total_attempts
+     *
+     * @param float|null $total_attempts total_attempts
+     *
+     * @return self
+     */
+    public function setTotalAttempts($total_attempts)
+    {
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
+        }
+        $this->container['total_attempts'] = $total_attempts;
+
+        return $this;
+    }
+
+    /**
+     * Gets outcome
+     *
+     * @return string|null
+     */
+    public function getOutcome()
+    {
+        return $this->container['outcome'];
+    }
+
+    /**
+     * Sets outcome
+     *
+     * @param string|null $outcome outcome
+     *
+     * @return self
+     */
+    public function setOutcome($outcome)
+    {
+        if (is_null($outcome)) {
+            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        }
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!in_array($outcome, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
-                    $overall_status,
+                    "Invalid value '%s' for 'outcome', must be one of '%s'",
+                    $outcome,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['overall_status'] = $overall_status;
+        $this->container['outcome'] = $outcome;
 
         return $this;
     }
@@ -458,6 +604,70 @@ class GetVerificationResponseChecksInner implements ModelInterface, ArrayAccess,
             );
         }
         $this->container['step'] = $step;
+
+        return $this;
+    }
+
+    /**
+     * Gets extracted_details
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemExtractedDetails
+     */
+    public function getExtractedDetails()
+    {
+        return $this->container['extracted_details'];
+    }
+
+    /**
+     * Sets extracted_details
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiRefereeEvidenceItemExtractedDetails $extracted_details extracted_details
+     *
+     * @return self
+     */
+    public function setExtractedDetails($extracted_details)
+    {
+        if (is_null($extracted_details)) {
+            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
+        }
+        $this->container['extracted_details'] = $extracted_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets evidence_type
+     *
+     * @return string
+     */
+    public function getEvidenceType()
+    {
+        return $this->container['evidence_type'];
+    }
+
+    /**
+     * Sets evidence_type
+     *
+     * @param string $evidence_type evidence_type
+     *
+     * @return self
+     */
+    public function setEvidenceType($evidence_type)
+    {
+        if (is_null($evidence_type)) {
+            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!in_array($evidence_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
+                    $evidence_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['evidence_type'] = $evidence_type;
 
         return $this;
     }

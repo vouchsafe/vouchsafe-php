@@ -58,8 +58,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'result' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResult',
-        'overall_status' => 'string',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidations',
+        'created_at' => 'string',
+        'total_attempts' => 'float',
+        'outcome' => 'string',
         'step' => 'string'
     ];
 
@@ -71,8 +73,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'result' => null,
-        'overall_status' => null,
+        'validations' => null,
+        'created_at' => null,
+        'total_attempts' => 'double',
+        'outcome' => null,
         'step' => null
     ];
 
@@ -82,8 +86,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'result' => false,
-        'overall_status' => false,
+        'validations' => false,
+        'created_at' => false,
+        'total_attempts' => false,
+        'outcome' => false,
         'step' => false
     ];
 
@@ -173,8 +179,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'result' => 'result',
-        'overall_status' => 'overall_status',
+        'validations' => 'validations',
+        'created_at' => 'created_at',
+        'total_attempts' => 'total_attempts',
+        'outcome' => 'outcome',
         'step' => 'step'
     ];
 
@@ -184,8 +192,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'result' => 'setResult',
-        'overall_status' => 'setOverallStatus',
+        'validations' => 'setValidations',
+        'created_at' => 'setCreatedAt',
+        'total_attempts' => 'setTotalAttempts',
+        'outcome' => 'setOutcome',
         'step' => 'setStep'
     ];
 
@@ -195,8 +205,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'result' => 'getResult',
-        'overall_status' => 'getOverallStatus',
+        'validations' => 'getValidations',
+        'created_at' => 'getCreatedAt',
+        'total_attempts' => 'getTotalAttempts',
+        'outcome' => 'getOutcome',
         'step' => 'getStep'
     ];
 
@@ -241,9 +253,9 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const OVERALL_STATUS_IN_PROGRESS = 'in_progress';
-    public const OVERALL_STATUS_PASS = 'pass';
-    public const OVERALL_STATUS_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_PASS = 'pass';
+    public const OUTCOME_FAIL = 'fail';
     public const STEP_VERIFY_USER_DETAILS = 'verify_user_details';
 
     /**
@@ -251,12 +263,12 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @return string[]
      */
-    public function getOverallStatusAllowableValues()
+    public function getOutcomeAllowableValues()
     {
         return [
-            self::OVERALL_STATUS_IN_PROGRESS,
-            self::OVERALL_STATUS_PASS,
-            self::OVERALL_STATUS_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_PASS,
+            self::OUTCOME_FAIL,
         ];
     }
 
@@ -287,8 +299,10 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('result', $data ?? [], null);
-        $this->setIfExists('overall_status', $data ?? [], null);
+        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
+        $this->setIfExists('outcome', $data ?? [], null);
         $this->setIfExists('step', $data ?? [], null);
     }
 
@@ -319,17 +333,14 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+        if ($this->container['validations'] === null) {
+            $invalidProperties[] = "'validations' can't be null";
         }
-        if ($this->container['overall_status'] === null) {
-            $invalidProperties[] = "'overall_status' can't be null";
-        }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!is_null($this->container['overall_status']) && !in_array($this->container['overall_status'], $allowedValues, true)) {
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'overall_status', must be one of '%s'",
-                $this->container['overall_status'],
+                "invalid value '%s' for 'outcome', must be one of '%s'",
+                $this->container['outcome'],
                 implode("', '", $allowedValues)
             );
         }
@@ -362,65 +373,119 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
-     * Gets result
+     * Gets validations
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResult
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidations
      */
-    public function getResult()
+    public function getValidations()
     {
-        return $this->container['result'];
+        return $this->container['validations'];
     }
 
     /**
-     * Sets result
+     * Sets validations
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckResult $result result
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidations $validations validations
      *
      * @return self
      */
-    public function setResult($result)
+    public function setValidations($validations)
     {
-        if (is_null($result)) {
-            throw new \InvalidArgumentException('non-nullable result cannot be null');
+        if (is_null($validations)) {
+            throw new \InvalidArgumentException('non-nullable validations cannot be null');
         }
-        $this->container['result'] = $result;
+        $this->container['validations'] = $validations;
 
         return $this;
     }
 
     /**
-     * Gets overall_status
+     * Gets created_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getOverallStatus()
+    public function getCreatedAt()
     {
-        return $this->container['overall_status'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets overall_status
+     * Sets created_at
      *
-     * @param string $overall_status overall_status
+     * @param string|null $created_at created_at
      *
      * @return self
      */
-    public function setOverallStatus($overall_status)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($overall_status)) {
-            throw new \InvalidArgumentException('non-nullable overall_status cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $allowedValues = $this->getOverallStatusAllowableValues();
-        if (!in_array($overall_status, $allowedValues, true)) {
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_attempts
+     *
+     * @return float|null
+     */
+    public function getTotalAttempts()
+    {
+        return $this->container['total_attempts'];
+    }
+
+    /**
+     * Sets total_attempts
+     *
+     * @param float|null $total_attempts total_attempts
+     *
+     * @return self
+     */
+    public function setTotalAttempts($total_attempts)
+    {
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
+        }
+        $this->container['total_attempts'] = $total_attempts;
+
+        return $this;
+    }
+
+    /**
+     * Gets outcome
+     *
+     * @return string|null
+     */
+    public function getOutcome()
+    {
+        return $this->container['outcome'];
+    }
+
+    /**
+     * Sets outcome
+     *
+     * @param string|null $outcome outcome
+     *
+     * @return self
+     */
+    public function setOutcome($outcome)
+    {
+        if (is_null($outcome)) {
+            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        }
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!in_array($outcome, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'overall_status', must be one of '%s'",
-                    $overall_status,
+                    "Invalid value '%s' for 'outcome', must be one of '%s'",
+                    $outcome,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['overall_status'] = $overall_status;
+        $this->container['outcome'] = $outcome;
 
         return $this;
     }
