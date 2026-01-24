@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckValidations
+ * ApiOfaCheckDetailsSignals
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckValidations Class Doc Comment
+ * ApiOfaCheckDetailsSignals Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiOfaCheckDetailsSignals implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__validations';
+    protected static $openAPIModelName = 'Api_OfaCheck__details_signals';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_confirmed_date_of_birth' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_photo' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'negative' => 'mixed[]',
+        'positive' => 'mixed[]'
     ];
 
     /**
@@ -71,9 +70,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referee_confirmed_date_of_birth' => null,
-        'referee_confirmed_name' => null,
-        'referee_confirmed_photo' => null
+        'negative' => null,
+        'positive' => null
     ];
 
     /**
@@ -82,9 +80,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referee_confirmed_date_of_birth' => false,
-        'referee_confirmed_name' => false,
-        'referee_confirmed_photo' => false
+        'negative' => false,
+        'positive' => false
     ];
 
     /**
@@ -173,9 +170,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'referee_confirmed_date_of_birth' => 'referee_confirmed_date_of_birth',
-        'referee_confirmed_name' => 'referee_confirmed_name',
-        'referee_confirmed_photo' => 'referee_confirmed_photo'
+        'negative' => 'negative',
+        'positive' => 'positive'
     ];
 
     /**
@@ -184,9 +180,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'referee_confirmed_date_of_birth' => 'setRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'setRefereeConfirmedName',
-        'referee_confirmed_photo' => 'setRefereeConfirmedPhoto'
+        'negative' => 'setNegative',
+        'positive' => 'setPositive'
     ];
 
     /**
@@ -195,9 +190,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'referee_confirmed_date_of_birth' => 'getRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'getRefereeConfirmedName',
-        'referee_confirmed_photo' => 'getRefereeConfirmedPhoto'
+        'negative' => 'getNegative',
+        'positive' => 'getPositive'
     ];
 
     /**
@@ -257,9 +251,8 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('referee_confirmed_date_of_birth', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_name', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_photo', $data ?? [], null);
+        $this->setIfExists('negative', $data ?? [], null);
+        $this->setIfExists('positive', $data ?? [], null);
     }
 
     /**
@@ -289,6 +282,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['negative'] === null) {
+            $invalidProperties[] = "'negative' can't be null";
+        }
+        if ($this->container['positive'] === null) {
+            $invalidProperties[] = "'positive' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +304,55 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets referee_confirmed_date_of_birth
+     * Gets negative
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return mixed[]
      */
-    public function getRefereeConfirmedDateOfBirth()
+    public function getNegative()
     {
-        return $this->container['referee_confirmed_date_of_birth'];
+        return $this->container['negative'];
     }
 
     /**
-     * Sets referee_confirmed_date_of_birth
+     * Sets negative
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_date_of_birth referee_confirmed_date_of_birth
+     * @param mixed[] $negative negative
      *
      * @return self
      */
-    public function setRefereeConfirmedDateOfBirth($referee_confirmed_date_of_birth)
+    public function setNegative($negative)
     {
-        if (is_null($referee_confirmed_date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_date_of_birth cannot be null');
+        if (is_null($negative)) {
+            throw new \InvalidArgumentException('non-nullable negative cannot be null');
         }
-        $this->container['referee_confirmed_date_of_birth'] = $referee_confirmed_date_of_birth;
+        $this->container['negative'] = $negative;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_name
+     * Gets positive
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return mixed[]
      */
-    public function getRefereeConfirmedName()
+    public function getPositive()
     {
-        return $this->container['referee_confirmed_name'];
+        return $this->container['positive'];
     }
 
     /**
-     * Sets referee_confirmed_name
+     * Sets positive
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_name referee_confirmed_name
+     * @param mixed[] $positive positive
      *
      * @return self
      */
-    public function setRefereeConfirmedName($referee_confirmed_name)
+    public function setPositive($positive)
     {
-        if (is_null($referee_confirmed_name)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_name cannot be null');
+        if (is_null($positive)) {
+            throw new \InvalidArgumentException('non-nullable positive cannot be null');
         }
-        $this->container['referee_confirmed_name'] = $referee_confirmed_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets referee_confirmed_photo
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
-     */
-    public function getRefereeConfirmedPhoto()
-    {
-        return $this->container['referee_confirmed_photo'];
-    }
-
-    /**
-     * Sets referee_confirmed_photo
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_photo referee_confirmed_photo
-     *
-     * @return self
-     */
-    public function setRefereeConfirmedPhoto($referee_confirmed_photo)
-    {
-        if (is_null($referee_confirmed_photo)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_photo cannot be null');
-        }
-        $this->container['referee_confirmed_photo'] = $referee_confirmed_photo;
+        $this->container['positive'] = $positive;
 
         return $this;
     }

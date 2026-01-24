@@ -58,11 +58,11 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'non_zero_balance' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'has_recent_transactions' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'non_zero_balance' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'has_recent_transactions' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -330,7 +330,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Gets referee_biometrics_dissimilar
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getRefereeBiometricsDissimilar()
     {
@@ -340,7 +340,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Sets referee_biometrics_dissimilar
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
      *
      * @return self
      */
@@ -357,7 +357,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Gets names_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getNamesConsistent()
     {
@@ -367,7 +367,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Sets names_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $names_consistent names_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $names_consistent names_consistent
      *
      * @return self
      */
@@ -384,7 +384,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Gets non_zero_balance
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getNonZeroBalance()
     {
@@ -394,7 +394,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Sets non_zero_balance
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $non_zero_balance non_zero_balance
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $non_zero_balance non_zero_balance
      *
      * @return self
      */
@@ -411,7 +411,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Gets has_recent_transactions
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getHasRecentTransactions()
     {
@@ -421,7 +421,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Sets has_recent_transactions
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $has_recent_transactions has_recent_transactions
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $has_recent_transactions has_recent_transactions
      *
      * @return self
      */
@@ -438,7 +438,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Gets required_fields_extracted
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getRequiredFieldsExtracted()
     {
@@ -448,7 +448,7 @@ class ApiBankAccountEvidenceItemValidations implements ModelInterface, ArrayAcce
     /**
      * Sets required_fields_extracted
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $required_fields_extracted required_fields_extracted
      *
      * @return self
      */

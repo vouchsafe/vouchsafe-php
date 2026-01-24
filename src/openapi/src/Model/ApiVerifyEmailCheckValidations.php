@@ -58,8 +58,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email_verified' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsEmailVerified',
-        'not_known_fraudster' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'email_verified' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsEmailVerified'
     ];
 
     /**
@@ -70,8 +69,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email_verified' => null,
-        'not_known_fraudster' => null
+        'email_verified' => null
     ];
 
     /**
@@ -80,8 +78,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'email_verified' => false,
-        'not_known_fraudster' => false
+        'email_verified' => false
     ];
 
     /**
@@ -170,8 +167,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
-        'email_verified' => 'email_verified',
-        'not_known_fraudster' => 'not_known_fraudster'
+        'email_verified' => 'email_verified'
     ];
 
     /**
@@ -180,8 +176,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
-        'email_verified' => 'setEmailVerified',
-        'not_known_fraudster' => 'setNotKnownFraudster'
+        'email_verified' => 'setEmailVerified'
     ];
 
     /**
@@ -190,8 +185,7 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
-        'email_verified' => 'getEmailVerified',
-        'not_known_fraudster' => 'getNotKnownFraudster'
+        'email_verified' => 'getEmailVerified'
     ];
 
     /**
@@ -252,7 +246,6 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
     public function __construct(?array $data = null)
     {
         $this->setIfExists('email_verified', $data ?? [], null);
-        $this->setIfExists('not_known_fraudster', $data ?? [], null);
     }
 
     /**
@@ -282,9 +275,6 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
-        if ($this->container['not_known_fraudster'] === null) {
-            $invalidProperties[] = "'not_known_fraudster' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -323,33 +313,6 @@ class ApiVerifyEmailCheckValidations implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable email_verified cannot be null');
         }
         $this->container['email_verified'] = $email_verified;
-
-        return $this;
-    }
-
-    /**
-     * Gets not_known_fraudster
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
-     */
-    public function getNotKnownFraudster()
-    {
-        return $this->container['not_known_fraudster'];
-    }
-
-    /**
-     * Sets not_known_fraudster
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $not_known_fraudster not_known_fraudster
-     *
-     * @return self
-     */
-    public function setNotKnownFraudster($not_known_fraudster)
-    {
-        if (is_null($not_known_fraudster)) {
-            throw new \InvalidArgumentException('non-nullable not_known_fraudster cannot be null');
-        }
-        $this->container['not_known_fraudster'] = $not_known_fraudster;
 
         return $this;
     }

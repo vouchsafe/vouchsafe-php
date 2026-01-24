@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckValidations
+ * ApiAmlCheckDetailsMatchesInnerProperties
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckValidations Class Doc Comment
+ * ApiAmlCheckDetailsMatchesInnerProperties Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiAmlCheckDetailsMatchesInnerProperties implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__validations';
+    protected static $openAPIModelName = 'Api_AmlCheck__details_matches_inner_properties';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_confirmed_date_of_birth' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_photo' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'birth_country' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry',
+        'birth_place' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry',
+        'birth_date' => 'string',
+        'position' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry',
+        'country' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry',
+        'notes' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry'
     ];
 
     /**
@@ -71,9 +74,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referee_confirmed_date_of_birth' => null,
-        'referee_confirmed_name' => null,
-        'referee_confirmed_photo' => null
+        'birth_country' => null,
+        'birth_place' => null,
+        'birth_date' => null,
+        'position' => null,
+        'country' => null,
+        'notes' => null
     ];
 
     /**
@@ -82,9 +88,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referee_confirmed_date_of_birth' => false,
-        'referee_confirmed_name' => false,
-        'referee_confirmed_photo' => false
+        'birth_country' => false,
+        'birth_place' => false,
+        'birth_date' => false,
+        'position' => false,
+        'country' => false,
+        'notes' => false
     ];
 
     /**
@@ -173,9 +182,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'referee_confirmed_date_of_birth' => 'referee_confirmed_date_of_birth',
-        'referee_confirmed_name' => 'referee_confirmed_name',
-        'referee_confirmed_photo' => 'referee_confirmed_photo'
+        'birth_country' => 'birth_country',
+        'birth_place' => 'birth_place',
+        'birth_date' => 'birth_date',
+        'position' => 'position',
+        'country' => 'country',
+        'notes' => 'notes'
     ];
 
     /**
@@ -184,9 +196,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'referee_confirmed_date_of_birth' => 'setRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'setRefereeConfirmedName',
-        'referee_confirmed_photo' => 'setRefereeConfirmedPhoto'
+        'birth_country' => 'setBirthCountry',
+        'birth_place' => 'setBirthPlace',
+        'birth_date' => 'setBirthDate',
+        'position' => 'setPosition',
+        'country' => 'setCountry',
+        'notes' => 'setNotes'
     ];
 
     /**
@@ -195,9 +210,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'referee_confirmed_date_of_birth' => 'getRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'getRefereeConfirmedName',
-        'referee_confirmed_photo' => 'getRefereeConfirmedPhoto'
+        'birth_country' => 'getBirthCountry',
+        'birth_place' => 'getBirthPlace',
+        'birth_date' => 'getBirthDate',
+        'position' => 'getPosition',
+        'country' => 'getCountry',
+        'notes' => 'getNotes'
     ];
 
     /**
@@ -257,9 +275,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('referee_confirmed_date_of_birth', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_name', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_photo', $data ?? [], null);
+        $this->setIfExists('birth_country', $data ?? [], null);
+        $this->setIfExists('birth_place', $data ?? [], null);
+        $this->setIfExists('birth_date', $data ?? [], null);
+        $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('notes', $data ?? [], null);
     }
 
     /**
@@ -305,82 +326,163 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets referee_confirmed_date_of_birth
+     * Gets birth_country
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null
      */
-    public function getRefereeConfirmedDateOfBirth()
+    public function getBirthCountry()
     {
-        return $this->container['referee_confirmed_date_of_birth'];
+        return $this->container['birth_country'];
     }
 
     /**
-     * Sets referee_confirmed_date_of_birth
+     * Sets birth_country
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_date_of_birth referee_confirmed_date_of_birth
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null $birth_country birth_country
      *
      * @return self
      */
-    public function setRefereeConfirmedDateOfBirth($referee_confirmed_date_of_birth)
+    public function setBirthCountry($birth_country)
     {
-        if (is_null($referee_confirmed_date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_date_of_birth cannot be null');
+        if (is_null($birth_country)) {
+            throw new \InvalidArgumentException('non-nullable birth_country cannot be null');
         }
-        $this->container['referee_confirmed_date_of_birth'] = $referee_confirmed_date_of_birth;
+        $this->container['birth_country'] = $birth_country;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_name
+     * Gets birth_place
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null
      */
-    public function getRefereeConfirmedName()
+    public function getBirthPlace()
     {
-        return $this->container['referee_confirmed_name'];
+        return $this->container['birth_place'];
     }
 
     /**
-     * Sets referee_confirmed_name
+     * Sets birth_place
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_name referee_confirmed_name
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null $birth_place birth_place
      *
      * @return self
      */
-    public function setRefereeConfirmedName($referee_confirmed_name)
+    public function setBirthPlace($birth_place)
     {
-        if (is_null($referee_confirmed_name)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_name cannot be null');
+        if (is_null($birth_place)) {
+            throw new \InvalidArgumentException('non-nullable birth_place cannot be null');
         }
-        $this->container['referee_confirmed_name'] = $referee_confirmed_name;
+        $this->container['birth_place'] = $birth_place;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_photo
+     * Gets birth_date
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string|null
      */
-    public function getRefereeConfirmedPhoto()
+    public function getBirthDate()
     {
-        return $this->container['referee_confirmed_photo'];
+        return $this->container['birth_date'];
     }
 
     /**
-     * Sets referee_confirmed_photo
+     * Sets birth_date
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_photo referee_confirmed_photo
+     * @param string|null $birth_date birth_date
      *
      * @return self
      */
-    public function setRefereeConfirmedPhoto($referee_confirmed_photo)
+    public function setBirthDate($birth_date)
     {
-        if (is_null($referee_confirmed_photo)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_photo cannot be null');
+        if (is_null($birth_date)) {
+            throw new \InvalidArgumentException('non-nullable birth_date cannot be null');
         }
-        $this->container['referee_confirmed_photo'] = $referee_confirmed_photo;
+        $this->container['birth_date'] = $birth_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets position
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null
+     */
+    public function getPosition()
+    {
+        return $this->container['position'];
+    }
+
+    /**
+     * Sets position
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null $position position
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        if (is_null($position)) {
+            throw new \InvalidArgumentException('non-nullable position cannot be null');
+        }
+        $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets country
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null
+     */
+    public function getCountry()
+    {
+        return $this->container['country'];
+    }
+
+    /**
+     * Sets country
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null $country country
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
+        }
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets notes
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null
+     */
+    public function getNotes()
+    {
+        return $this->container['notes'];
+    }
+
+    /**
+     * Sets notes
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerPropertiesBirthCountry|null $notes notes
+     *
+     * @return self
+     */
+    public function setNotes($notes)
+    {
+        if (is_null($notes)) {
+            throw new \InvalidArgumentException('non-nullable notes cannot be null');
+        }
+        $this->container['notes'] = $notes;
 
         return $this;
     }

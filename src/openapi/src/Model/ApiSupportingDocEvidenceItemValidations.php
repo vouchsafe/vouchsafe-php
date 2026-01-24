@@ -58,17 +58,17 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'addresses_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'dates_of_birth_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'date_fields_valid' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'tampering_signals_check' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'document_complete_and_legible' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'document_age_valid' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'document_unique' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'category_match' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'addresses_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'dates_of_birth_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'date_fields_valid' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'tampering_signals_check' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'document_complete_and_legible' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'document_age_valid' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'document_unique' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'category_match' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -366,7 +366,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets referee_biometrics_dissimilar
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getRefereeBiometricsDissimilar()
     {
@@ -376,7 +376,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets referee_biometrics_dissimilar
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
      *
      * @return self
      */
@@ -393,7 +393,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets addresses_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getAddressesConsistent()
     {
@@ -403,7 +403,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets addresses_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $addresses_consistent addresses_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $addresses_consistent addresses_consistent
      *
      * @return self
      */
@@ -420,7 +420,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets dates_of_birth_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDatesOfBirthConsistent()
     {
@@ -430,7 +430,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets dates_of_birth_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $dates_of_birth_consistent dates_of_birth_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $dates_of_birth_consistent dates_of_birth_consistent
      *
      * @return self
      */
@@ -447,7 +447,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets names_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getNamesConsistent()
     {
@@ -457,7 +457,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets names_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $names_consistent names_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $names_consistent names_consistent
      *
      * @return self
      */
@@ -474,7 +474,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets date_fields_valid
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDateFieldsValid()
     {
@@ -484,7 +484,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets date_fields_valid
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $date_fields_valid date_fields_valid
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $date_fields_valid date_fields_valid
      *
      * @return self
      */
@@ -501,7 +501,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets tampering_signals_check
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getTamperingSignalsCheck()
     {
@@ -511,7 +511,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets tampering_signals_check
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $tampering_signals_check tampering_signals_check
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $tampering_signals_check tampering_signals_check
      *
      * @return self
      */
@@ -528,7 +528,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets document_complete_and_legible
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDocumentCompleteAndLegible()
     {
@@ -538,7 +538,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets document_complete_and_legible
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $document_complete_and_legible document_complete_and_legible
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $document_complete_and_legible document_complete_and_legible
      *
      * @return self
      */
@@ -555,7 +555,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets document_age_valid
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDocumentAgeValid()
     {
@@ -565,7 +565,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets document_age_valid
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $document_age_valid document_age_valid
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $document_age_valid document_age_valid
      *
      * @return self
      */
@@ -582,7 +582,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets document_unique
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDocumentUnique()
     {
@@ -592,7 +592,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets document_unique
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $document_unique document_unique
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $document_unique document_unique
      *
      * @return self
      */
@@ -609,7 +609,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets category_match
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getCategoryMatch()
     {
@@ -619,7 +619,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets category_match
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $category_match category_match
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $category_match category_match
      *
      * @return self
      */
@@ -636,7 +636,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Gets required_fields_extracted
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getRequiredFieldsExtracted()
     {
@@ -646,7 +646,7 @@ class ApiSupportingDocEvidenceItemValidations implements ModelInterface, ArrayAc
     /**
      * Sets required_fields_extracted
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $required_fields_extracted required_fields_extracted
      *
      * @return self
      */

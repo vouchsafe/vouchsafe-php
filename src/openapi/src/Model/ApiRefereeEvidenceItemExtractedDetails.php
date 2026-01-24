@@ -60,7 +60,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static $openAPITypes = [
         'organisation' => 'string',
         'relationship' => '\Vouchsafe\OpenAPI\Model\PersonalRelationship',
-        'referee_case_id' => 'string'
+        'referee_verification_id' => 'string'
     ];
 
     /**
@@ -73,7 +73,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static $openAPIFormats = [
         'organisation' => null,
         'relationship' => null,
-        'referee_case_id' => null
+        'referee_verification_id' => null
     ];
 
     /**
@@ -84,7 +84,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static array $openAPINullables = [
         'organisation' => false,
         'relationship' => false,
-        'referee_case_id' => false
+        'referee_verification_id' => false
     ];
 
     /**
@@ -175,7 +175,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static $attributeMap = [
         'organisation' => 'organisation',
         'relationship' => 'relationship',
-        'referee_case_id' => 'referee_case_id'
+        'referee_verification_id' => 'referee_verification_id'
     ];
 
     /**
@@ -186,7 +186,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static $setters = [
         'organisation' => 'setOrganisation',
         'relationship' => 'setRelationship',
-        'referee_case_id' => 'setRefereeCaseId'
+        'referee_verification_id' => 'setRefereeVerificationId'
     ];
 
     /**
@@ -197,7 +197,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     protected static $getters = [
         'organisation' => 'getOrganisation',
         'relationship' => 'getRelationship',
-        'referee_case_id' => 'getRefereeCaseId'
+        'referee_verification_id' => 'getRefereeVerificationId'
     ];
 
     /**
@@ -259,7 +259,7 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     {
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('relationship', $data ?? [], null);
-        $this->setIfExists('referee_case_id', $data ?? [], null);
+        $this->setIfExists('referee_verification_id', $data ?? [], null);
     }
 
     /**
@@ -289,8 +289,8 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     {
         $invalidProperties = [];
 
-        if ($this->container['referee_case_id'] === null) {
-            $invalidProperties[] = "'referee_case_id' can't be null";
+        if ($this->container['referee_verification_id'] === null) {
+            $invalidProperties[] = "'referee_verification_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -362,28 +362,28 @@ class ApiRefereeEvidenceItemExtractedDetails implements ModelInterface, ArrayAcc
     }
 
     /**
-     * Gets referee_case_id
+     * Gets referee_verification_id
      *
      * @return string
      */
-    public function getRefereeCaseId()
+    public function getRefereeVerificationId()
     {
-        return $this->container['referee_case_id'];
+        return $this->container['referee_verification_id'];
     }
 
     /**
-     * Sets referee_case_id
+     * Sets referee_verification_id
      *
-     * @param string $referee_case_id referee_case_id
+     * @param string $referee_verification_id referee_verification_id
      *
      * @return self
      */
-    public function setRefereeCaseId($referee_case_id)
+    public function setRefereeVerificationId($referee_verification_id)
     {
-        if (is_null($referee_case_id)) {
-            throw new \InvalidArgumentException('non-nullable referee_case_id cannot be null');
+        if (is_null($referee_verification_id)) {
+            throw new \InvalidArgumentException('non-nullable referee_verification_id cannot be null');
         }
-        $this->container['referee_case_id'] = $referee_case_id;
+        $this->container['referee_verification_id'] = $referee_verification_id;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckValidations
+ * ApiAmlCheckDetailsMatchesInner
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckValidations Class Doc Comment
+ * ApiAmlCheckDetailsMatchesInner Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiAmlCheckDetailsMatchesInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__validations';
+    protected static $openAPIModelName = 'Api_AmlCheck__details_matches_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_confirmed_date_of_birth' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_photo' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'properties' => '\Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerProperties',
+        'last_seen' => 'string',
+        'first_seen' => 'string',
+        'score' => 'float',
+        'caption' => 'string',
+        'id' => 'string'
     ];
 
     /**
@@ -71,9 +74,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referee_confirmed_date_of_birth' => null,
-        'referee_confirmed_name' => null,
-        'referee_confirmed_photo' => null
+        'properties' => null,
+        'last_seen' => null,
+        'first_seen' => null,
+        'score' => 'double',
+        'caption' => null,
+        'id' => null
     ];
 
     /**
@@ -82,9 +88,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referee_confirmed_date_of_birth' => false,
-        'referee_confirmed_name' => false,
-        'referee_confirmed_photo' => false
+        'properties' => false,
+        'last_seen' => false,
+        'first_seen' => false,
+        'score' => false,
+        'caption' => false,
+        'id' => false
     ];
 
     /**
@@ -173,9 +182,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'referee_confirmed_date_of_birth' => 'referee_confirmed_date_of_birth',
-        'referee_confirmed_name' => 'referee_confirmed_name',
-        'referee_confirmed_photo' => 'referee_confirmed_photo'
+        'properties' => 'properties',
+        'last_seen' => 'last_seen',
+        'first_seen' => 'first_seen',
+        'score' => 'score',
+        'caption' => 'caption',
+        'id' => 'id'
     ];
 
     /**
@@ -184,9 +196,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'referee_confirmed_date_of_birth' => 'setRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'setRefereeConfirmedName',
-        'referee_confirmed_photo' => 'setRefereeConfirmedPhoto'
+        'properties' => 'setProperties',
+        'last_seen' => 'setLastSeen',
+        'first_seen' => 'setFirstSeen',
+        'score' => 'setScore',
+        'caption' => 'setCaption',
+        'id' => 'setId'
     ];
 
     /**
@@ -195,9 +210,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'referee_confirmed_date_of_birth' => 'getRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'getRefereeConfirmedName',
-        'referee_confirmed_photo' => 'getRefereeConfirmedPhoto'
+        'properties' => 'getProperties',
+        'last_seen' => 'getLastSeen',
+        'first_seen' => 'getFirstSeen',
+        'score' => 'getScore',
+        'caption' => 'getCaption',
+        'id' => 'getId'
     ];
 
     /**
@@ -257,9 +275,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('referee_confirmed_date_of_birth', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_name', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_photo', $data ?? [], null);
+        $this->setIfExists('properties', $data ?? [], null);
+        $this->setIfExists('last_seen', $data ?? [], null);
+        $this->setIfExists('first_seen', $data ?? [], null);
+        $this->setIfExists('score', $data ?? [], null);
+        $this->setIfExists('caption', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
     }
 
     /**
@@ -289,6 +310,18 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['properties'] === null) {
+            $invalidProperties[] = "'properties' can't be null";
+        }
+        if ($this->container['score'] === null) {
+            $invalidProperties[] = "'score' can't be null";
+        }
+        if ($this->container['caption'] === null) {
+            $invalidProperties[] = "'caption' can't be null";
+        }
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +338,163 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets referee_confirmed_date_of_birth
+     * Gets properties
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerProperties
      */
-    public function getRefereeConfirmedDateOfBirth()
+    public function getProperties()
     {
-        return $this->container['referee_confirmed_date_of_birth'];
+        return $this->container['properties'];
     }
 
     /**
-     * Sets referee_confirmed_date_of_birth
+     * Sets properties
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_date_of_birth referee_confirmed_date_of_birth
+     * @param \Vouchsafe\OpenAPI\Model\ApiAmlCheckDetailsMatchesInnerProperties $properties properties
      *
      * @return self
      */
-    public function setRefereeConfirmedDateOfBirth($referee_confirmed_date_of_birth)
+    public function setProperties($properties)
     {
-        if (is_null($referee_confirmed_date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_date_of_birth cannot be null');
+        if (is_null($properties)) {
+            throw new \InvalidArgumentException('non-nullable properties cannot be null');
         }
-        $this->container['referee_confirmed_date_of_birth'] = $referee_confirmed_date_of_birth;
+        $this->container['properties'] = $properties;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_name
+     * Gets last_seen
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string|null
      */
-    public function getRefereeConfirmedName()
+    public function getLastSeen()
     {
-        return $this->container['referee_confirmed_name'];
+        return $this->container['last_seen'];
     }
 
     /**
-     * Sets referee_confirmed_name
+     * Sets last_seen
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_name referee_confirmed_name
+     * @param string|null $last_seen last_seen
      *
      * @return self
      */
-    public function setRefereeConfirmedName($referee_confirmed_name)
+    public function setLastSeen($last_seen)
     {
-        if (is_null($referee_confirmed_name)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_name cannot be null');
+        if (is_null($last_seen)) {
+            throw new \InvalidArgumentException('non-nullable last_seen cannot be null');
         }
-        $this->container['referee_confirmed_name'] = $referee_confirmed_name;
+        $this->container['last_seen'] = $last_seen;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_photo
+     * Gets first_seen
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string|null
      */
-    public function getRefereeConfirmedPhoto()
+    public function getFirstSeen()
     {
-        return $this->container['referee_confirmed_photo'];
+        return $this->container['first_seen'];
     }
 
     /**
-     * Sets referee_confirmed_photo
+     * Sets first_seen
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_photo referee_confirmed_photo
+     * @param string|null $first_seen first_seen
      *
      * @return self
      */
-    public function setRefereeConfirmedPhoto($referee_confirmed_photo)
+    public function setFirstSeen($first_seen)
     {
-        if (is_null($referee_confirmed_photo)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_photo cannot be null');
+        if (is_null($first_seen)) {
+            throw new \InvalidArgumentException('non-nullable first_seen cannot be null');
         }
-        $this->container['referee_confirmed_photo'] = $referee_confirmed_photo;
+        $this->container['first_seen'] = $first_seen;
+
+        return $this;
+    }
+
+    /**
+     * Gets score
+     *
+     * @return float
+     */
+    public function getScore()
+    {
+        return $this->container['score'];
+    }
+
+    /**
+     * Sets score
+     *
+     * @param float $score score
+     *
+     * @return self
+     */
+    public function setScore($score)
+    {
+        if (is_null($score)) {
+            throw new \InvalidArgumentException('non-nullable score cannot be null');
+        }
+        $this->container['score'] = $score;
+
+        return $this;
+    }
+
+    /**
+     * Gets caption
+     *
+     * @return string
+     */
+    public function getCaption()
+    {
+        return $this->container['caption'];
+    }
+
+    /**
+     * Sets caption
+     *
+     * @param string $caption caption
+     *
+     * @return self
+     */
+    public function setCaption($caption)
+    {
+        if (is_null($caption)) {
+            throw new \InvalidArgumentException('non-nullable caption cannot be null');
+        }
+        $this->container['caption'] = $caption;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
 
         return $this;
     }

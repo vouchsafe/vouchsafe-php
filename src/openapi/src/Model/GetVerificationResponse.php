@@ -67,7 +67,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => 'string',
         'external_id' => 'string',
         'claim_details' => '\Vouchsafe\OpenAPI\Model\ClaimDetails',
-        'checks' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]'
+        'checks' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]',
+        'enrichments' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[]'
     ];
 
     /**
@@ -87,7 +88,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => null,
         'external_id' => null,
         'claim_details' => null,
-        'checks' => null
+        'checks' => null,
+        'enrichments' => null
     ];
 
     /**
@@ -105,7 +107,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => false,
         'external_id' => true,
         'claim_details' => false,
-        'checks' => false
+        'checks' => false,
+        'enrichments' => false
     ];
 
     /**
@@ -203,7 +206,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => 'workflow_id',
         'external_id' => 'external_id',
         'claim_details' => 'claim_details',
-        'checks' => 'checks'
+        'checks' => 'checks',
+        'enrichments' => 'enrichments'
     ];
 
     /**
@@ -221,7 +225,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => 'setWorkflowId',
         'external_id' => 'setExternalId',
         'claim_details' => 'setClaimDetails',
-        'checks' => 'setChecks'
+        'checks' => 'setChecks',
+        'enrichments' => 'setEnrichments'
     ];
 
     /**
@@ -239,7 +244,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => 'getWorkflowId',
         'external_id' => 'getExternalId',
         'claim_details' => 'getClaimDetails',
-        'checks' => 'getChecks'
+        'checks' => 'getChecks',
+        'enrichments' => 'getEnrichments'
     ];
 
     /**
@@ -309,6 +315,7 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('claim_details', $data ?? [], null);
         $this->setIfExists('checks', $data ?? [], null);
+        $this->setIfExists('enrichments', $data ?? [], null);
     }
 
     /**
@@ -367,6 +374,9 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         }
         if ($this->container['checks'] === null) {
             $invalidProperties[] = "'checks' can't be null";
+        }
+        if ($this->container['enrichments'] === null) {
+            $invalidProperties[] = "'enrichments' can't be null";
         }
         return $invalidProperties;
     }
@@ -670,6 +680,33 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable checks cannot be null');
         }
         $this->container['checks'] = $checks;
+
+        return $this;
+    }
+
+    /**
+     * Gets enrichments
+     *
+     * @return \Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[]
+     */
+    public function getEnrichments()
+    {
+        return $this->container['enrichments'];
+    }
+
+    /**
+     * Sets enrichments
+     *
+     * @param \Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[] $enrichments enrichments
+     *
+     * @return self
+     */
+    public function setEnrichments($enrichments)
+    {
+        if (is_null($enrichments)) {
+            throw new \InvalidArgumentException('non-nullable enrichments cannot be null');
+        }
+        $this->container['enrichments'] = $enrichments;
 
         return $this;
     }

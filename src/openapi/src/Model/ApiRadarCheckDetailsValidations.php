@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckValidations
+ * ApiRadarCheckDetailsValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckValidations Class Doc Comment
+ * ApiRadarCheckDetailsValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiRadarCheckDetailsValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__validations';
+    protected static $openAPIModelName = 'Api_RadarCheck__details_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_confirmed_date_of_birth' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_photo' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'not_disposable_email' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'no_known_fraudster_match' => '\Vouchsafe\OpenAPI\Model\ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch',
+        'normal_velocity_detected' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -71,9 +71,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referee_confirmed_date_of_birth' => null,
-        'referee_confirmed_name' => null,
-        'referee_confirmed_photo' => null
+        'not_disposable_email' => null,
+        'no_known_fraudster_match' => null,
+        'normal_velocity_detected' => null
     ];
 
     /**
@@ -82,9 +82,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referee_confirmed_date_of_birth' => false,
-        'referee_confirmed_name' => false,
-        'referee_confirmed_photo' => false
+        'not_disposable_email' => false,
+        'no_known_fraudster_match' => false,
+        'normal_velocity_detected' => false
     ];
 
     /**
@@ -173,9 +173,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'referee_confirmed_date_of_birth' => 'referee_confirmed_date_of_birth',
-        'referee_confirmed_name' => 'referee_confirmed_name',
-        'referee_confirmed_photo' => 'referee_confirmed_photo'
+        'not_disposable_email' => 'not_disposable_email',
+        'no_known_fraudster_match' => 'no_known_fraudster_match',
+        'normal_velocity_detected' => 'normal_velocity_detected'
     ];
 
     /**
@@ -184,9 +184,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'referee_confirmed_date_of_birth' => 'setRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'setRefereeConfirmedName',
-        'referee_confirmed_photo' => 'setRefereeConfirmedPhoto'
+        'not_disposable_email' => 'setNotDisposableEmail',
+        'no_known_fraudster_match' => 'setNoKnownFraudsterMatch',
+        'normal_velocity_detected' => 'setNormalVelocityDetected'
     ];
 
     /**
@@ -195,9 +195,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'referee_confirmed_date_of_birth' => 'getRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'getRefereeConfirmedName',
-        'referee_confirmed_photo' => 'getRefereeConfirmedPhoto'
+        'not_disposable_email' => 'getNotDisposableEmail',
+        'no_known_fraudster_match' => 'getNoKnownFraudsterMatch',
+        'normal_velocity_detected' => 'getNormalVelocityDetected'
     ];
 
     /**
@@ -257,9 +257,9 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('referee_confirmed_date_of_birth', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_name', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_photo', $data ?? [], null);
+        $this->setIfExists('not_disposable_email', $data ?? [], null);
+        $this->setIfExists('no_known_fraudster_match', $data ?? [], null);
+        $this->setIfExists('normal_velocity_detected', $data ?? [], null);
     }
 
     /**
@@ -289,6 +289,12 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['no_known_fraudster_match'] === null) {
+            $invalidProperties[] = "'no_known_fraudster_match' can't be null";
+        }
+        if ($this->container['normal_velocity_detected'] === null) {
+            $invalidProperties[] = "'normal_velocity_detected' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +311,82 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets referee_confirmed_date_of_birth
+     * Gets not_disposable_email
      *
      * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
-    public function getRefereeConfirmedDateOfBirth()
+    public function getNotDisposableEmail()
     {
-        return $this->container['referee_confirmed_date_of_birth'];
+        return $this->container['not_disposable_email'];
     }
 
     /**
-     * Sets referee_confirmed_date_of_birth
+     * Sets not_disposable_email
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_date_of_birth referee_confirmed_date_of_birth
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $not_disposable_email not_disposable_email
      *
      * @return self
      */
-    public function setRefereeConfirmedDateOfBirth($referee_confirmed_date_of_birth)
+    public function setNotDisposableEmail($not_disposable_email)
     {
-        if (is_null($referee_confirmed_date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_date_of_birth cannot be null');
+        if (is_null($not_disposable_email)) {
+            throw new \InvalidArgumentException('non-nullable not_disposable_email cannot be null');
         }
-        $this->container['referee_confirmed_date_of_birth'] = $referee_confirmed_date_of_birth;
+        $this->container['not_disposable_email'] = $not_disposable_email;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_name
+     * Gets no_known_fraudster_match
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
      */
-    public function getRefereeConfirmedName()
+    public function getNoKnownFraudsterMatch()
     {
-        return $this->container['referee_confirmed_name'];
+        return $this->container['no_known_fraudster_match'];
     }
 
     /**
-     * Sets referee_confirmed_name
+     * Sets no_known_fraudster_match
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_name referee_confirmed_name
+     * @param \Vouchsafe\OpenAPI\Model\ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch $no_known_fraudster_match no_known_fraudster_match
      *
      * @return self
      */
-    public function setRefereeConfirmedName($referee_confirmed_name)
+    public function setNoKnownFraudsterMatch($no_known_fraudster_match)
     {
-        if (is_null($referee_confirmed_name)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_name cannot be null');
+        if (is_null($no_known_fraudster_match)) {
+            throw new \InvalidArgumentException('non-nullable no_known_fraudster_match cannot be null');
         }
-        $this->container['referee_confirmed_name'] = $referee_confirmed_name;
+        $this->container['no_known_fraudster_match'] = $no_known_fraudster_match;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_photo
+     * Gets normal_velocity_detected
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
-    public function getRefereeConfirmedPhoto()
+    public function getNormalVelocityDetected()
     {
-        return $this->container['referee_confirmed_photo'];
+        return $this->container['normal_velocity_detected'];
     }
 
     /**
-     * Sets referee_confirmed_photo
+     * Sets normal_velocity_detected
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_photo referee_confirmed_photo
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $normal_velocity_detected normal_velocity_detected
      *
      * @return self
      */
-    public function setRefereeConfirmedPhoto($referee_confirmed_photo)
+    public function setNormalVelocityDetected($normal_velocity_detected)
     {
-        if (is_null($referee_confirmed_photo)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_photo cannot be null');
+        if (is_null($normal_velocity_detected)) {
+            throw new \InvalidArgumentException('non-nullable normal_velocity_detected cannot be null');
         }
-        $this->container['referee_confirmed_photo'] = $referee_confirmed_photo;
+        $this->container['normal_velocity_detected'] = $normal_velocity_detected;
 
         return $this;
     }

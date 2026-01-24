@@ -58,8 +58,8 @@ class ApiRefereeEvidenceItemValidations implements ModelInterface, ArrayAccess, 
       * @var string[]
       */
     protected static $openAPITypes = [
-        'approved_professional_domain' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'relationship_minimum_duration_met' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'approved_professional_domain' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'relationship_minimum_duration_met' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -303,7 +303,7 @@ class ApiRefereeEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets approved_professional_domain
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getApprovedProfessionalDomain()
     {
@@ -313,7 +313,7 @@ class ApiRefereeEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets approved_professional_domain
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $approved_professional_domain approved_professional_domain
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $approved_professional_domain approved_professional_domain
      *
      * @return self
      */
@@ -330,7 +330,7 @@ class ApiRefereeEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets relationship_minimum_duration_met
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getRelationshipMinimumDurationMet()
     {
@@ -340,7 +340,7 @@ class ApiRefereeEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets relationship_minimum_duration_met
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $relationship_minimum_duration_met relationship_minimum_duration_met
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $relationship_minimum_duration_met relationship_minimum_duration_met
      *
      * @return self
      */

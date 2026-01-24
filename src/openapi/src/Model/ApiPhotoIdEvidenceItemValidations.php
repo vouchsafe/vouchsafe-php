@@ -58,21 +58,21 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'referee_over18' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'issuing_country_allowed' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'icao_format_valid' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'dates_of_birth_consistent' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
+        'referee_biometrics_dissimilar' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'referee_over18' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'issuing_country_allowed' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'icao_format_valid' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'names_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'dates_of_birth_consistent' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
         'face_match' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck',
-        'not_sample_or_internal_use' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'identifier_format_valid' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'matches_issuer_database' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'compound_identifiers_match' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'security_features_present' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
+        'not_sample_or_internal_use' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'identifier_format_valid' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'matches_issuer_database' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'compound_identifiers_match' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'security_features_present' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
         'document_borders_detected' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -397,7 +397,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets referee_biometrics_dissimilar
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getRefereeBiometricsDissimilar()
     {
@@ -407,7 +407,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets referee_biometrics_dissimilar
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_biometrics_dissimilar referee_biometrics_dissimilar
      *
      * @return self
      */
@@ -424,7 +424,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets referee_over18
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getRefereeOver18()
     {
@@ -434,7 +434,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets referee_over18
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $referee_over18 referee_over18
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_over18 referee_over18
      *
      * @return self
      */
@@ -451,7 +451,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets issuing_country_allowed
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getIssuingCountryAllowed()
     {
@@ -461,7 +461,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets issuing_country_allowed
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $issuing_country_allowed issuing_country_allowed
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $issuing_country_allowed issuing_country_allowed
      *
      * @return self
      */
@@ -478,7 +478,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets icao_format_valid
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getIcaoFormatValid()
     {
@@ -488,7 +488,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets icao_format_valid
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $icao_format_valid icao_format_valid
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $icao_format_valid icao_format_valid
      *
      * @return self
      */
@@ -505,7 +505,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets names_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getNamesConsistent()
     {
@@ -515,7 +515,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets names_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $names_consistent names_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $names_consistent names_consistent
      *
      * @return self
      */
@@ -532,7 +532,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets dates_of_birth_consistent
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getDatesOfBirthConsistent()
     {
@@ -542,7 +542,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets dates_of_birth_consistent
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $dates_of_birth_consistent dates_of_birth_consistent
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $dates_of_birth_consistent dates_of_birth_consistent
      *
      * @return self
      */
@@ -559,7 +559,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets has_not_expired
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getHasNotExpired()
     {
@@ -569,7 +569,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets has_not_expired
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $has_not_expired has_not_expired
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $has_not_expired has_not_expired
      *
      * @return self
      */
@@ -613,7 +613,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets not_sample_or_internal_use
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getNotSampleOrInternalUse()
     {
@@ -623,7 +623,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets not_sample_or_internal_use
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $not_sample_or_internal_use not_sample_or_internal_use
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $not_sample_or_internal_use not_sample_or_internal_use
      *
      * @return self
      */
@@ -640,7 +640,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets identifier_format_valid
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getIdentifierFormatValid()
     {
@@ -650,7 +650,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets identifier_format_valid
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $identifier_format_valid identifier_format_valid
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $identifier_format_valid identifier_format_valid
      *
      * @return self
      */
@@ -667,7 +667,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets matches_issuer_database
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getMatchesIssuerDatabase()
     {
@@ -677,7 +677,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets matches_issuer_database
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $matches_issuer_database matches_issuer_database
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $matches_issuer_database matches_issuer_database
      *
      * @return self
      */
@@ -694,7 +694,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets compound_identifiers_match
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getCompoundIdentifiersMatch()
     {
@@ -704,7 +704,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets compound_identifiers_match
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $compound_identifiers_match compound_identifiers_match
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $compound_identifiers_match compound_identifiers_match
      *
      * @return self
      */
@@ -721,7 +721,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets security_features_present
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
      */
     public function getSecurityFeaturesPresent()
     {
@@ -731,7 +731,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets security_features_present
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster|null $security_features_present security_features_present
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $security_features_present security_features_present
      *
      * @return self
      */
@@ -775,7 +775,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Gets required_fields_extracted
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getRequiredFieldsExtracted()
     {
@@ -785,7 +785,7 @@ class ApiPhotoIdEvidenceItemValidations implements ModelInterface, ArrayAccess, 
     /**
      * Sets required_fields_extracted
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $required_fields_extracted required_fields_extracted
      *
      * @return self
      */

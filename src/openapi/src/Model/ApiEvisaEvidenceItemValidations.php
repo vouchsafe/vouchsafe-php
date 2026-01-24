@@ -59,10 +59,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPITypes = [
         'face_match' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck',
-        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'valid_from_reached' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster',
-        'submitted_details_accepted' => '\Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster'
+        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'valid_from_reached' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'submitted_details_accepted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -360,7 +360,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Gets has_not_expired
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getHasNotExpired()
     {
@@ -370,7 +370,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Sets has_not_expired
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $has_not_expired has_not_expired
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $has_not_expired has_not_expired
      *
      * @return self
      */
@@ -387,7 +387,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Gets valid_from_reached
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getValidFromReached()
     {
@@ -397,7 +397,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Sets valid_from_reached
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $valid_from_reached valid_from_reached
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $valid_from_reached valid_from_reached
      *
      * @return self
      */
@@ -414,7 +414,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Gets required_fields_extracted
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getRequiredFieldsExtracted()
     {
@@ -424,7 +424,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Sets required_fields_extracted
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $required_fields_extracted required_fields_extracted
      *
      * @return self
      */
@@ -441,7 +441,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Gets submitted_details_accepted
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster
+     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
     public function getSubmittedDetailsAccepted()
     {
@@ -451,7 +451,7 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     /**
      * Sets submitted_details_accepted
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiVerifyEmailCheckValidationsNotKnownFraudster $submitted_details_accepted submitted_details_accepted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $submitted_details_accepted submitted_details_accepted
      *
      * @return self
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiReviewUserCheckValidations
+ * ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiReviewUserCheckValidations Class Doc Comment
+ * ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_ReviewUserCheck__validations';
+    protected static $openAPIModelName = 'Api_RadarCheck__details_validations_no_known_fraudster_match';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referee_confirmed_date_of_birth' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'referee_confirmed_photo' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'status' => 'string',
+        'messages' => 'string[]',
+        'risk' => 'string',
+        'flags' => '\Vouchsafe\OpenAPI\Model\FraudFlag[]'
     ];
 
     /**
@@ -71,9 +72,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referee_confirmed_date_of_birth' => null,
-        'referee_confirmed_name' => null,
-        'referee_confirmed_photo' => null
+        'status' => null,
+        'messages' => null,
+        'risk' => null,
+        'flags' => null
     ];
 
     /**
@@ -82,9 +84,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referee_confirmed_date_of_birth' => false,
-        'referee_confirmed_name' => false,
-        'referee_confirmed_photo' => false
+        'status' => false,
+        'messages' => false,
+        'risk' => false,
+        'flags' => false
     ];
 
     /**
@@ -173,9 +176,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'referee_confirmed_date_of_birth' => 'referee_confirmed_date_of_birth',
-        'referee_confirmed_name' => 'referee_confirmed_name',
-        'referee_confirmed_photo' => 'referee_confirmed_photo'
+        'status' => 'status',
+        'messages' => 'messages',
+        'risk' => 'risk',
+        'flags' => 'flags'
     ];
 
     /**
@@ -184,9 +188,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'referee_confirmed_date_of_birth' => 'setRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'setRefereeConfirmedName',
-        'referee_confirmed_photo' => 'setRefereeConfirmedPhoto'
+        'status' => 'setStatus',
+        'messages' => 'setMessages',
+        'risk' => 'setRisk',
+        'flags' => 'setFlags'
     ];
 
     /**
@@ -195,9 +200,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'referee_confirmed_date_of_birth' => 'getRefereeConfirmedDateOfBirth',
-        'referee_confirmed_name' => 'getRefereeConfirmedName',
-        'referee_confirmed_photo' => 'getRefereeConfirmedPhoto'
+        'status' => 'getStatus',
+        'messages' => 'getMessages',
+        'risk' => 'getRisk',
+        'flags' => 'getFlags'
     ];
 
     /**
@@ -241,6 +247,36 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+    public const STATUS_FAIL = 'fail';
+    public const RISK_LOW = 'low';
+    public const RISK_MEDIUM = 'medium';
+    public const RISK_HIGH = 'high';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_FAIL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRiskAllowableValues()
+    {
+        return [
+            self::RISK_LOW,
+            self::RISK_MEDIUM,
+            self::RISK_HIGH,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -257,9 +293,10 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('referee_confirmed_date_of_birth', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_name', $data ?? [], null);
-        $this->setIfExists('referee_confirmed_photo', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('messages', $data ?? [], null);
+        $this->setIfExists('risk', $data ?? [], null);
+        $this->setIfExists('flags', $data ?? [], null);
     }
 
     /**
@@ -289,6 +326,36 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['messages'] === null) {
+            $invalidProperties[] = "'messages' can't be null";
+        }
+        if ($this->container['risk'] === null) {
+            $invalidProperties[] = "'risk' can't be null";
+        }
+        $allowedValues = $this->getRiskAllowableValues();
+        if (!is_null($this->container['risk']) && !in_array($this->container['risk'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'risk', must be one of '%s'",
+                $this->container['risk'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['flags'] === null) {
+            $invalidProperties[] = "'flags' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,82 +372,129 @@ class ApiReviewUserCheckValidations implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets referee_confirmed_date_of_birth
+     * Gets status
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string
      */
-    public function getRefereeConfirmedDateOfBirth()
+    public function getStatus()
     {
-        return $this->container['referee_confirmed_date_of_birth'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets referee_confirmed_date_of_birth
+     * Sets status
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_date_of_birth referee_confirmed_date_of_birth
+     * @param string $status status
      *
      * @return self
      */
-    public function setRefereeConfirmedDateOfBirth($referee_confirmed_date_of_birth)
+    public function setStatus($status)
     {
-        if (is_null($referee_confirmed_date_of_birth)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_date_of_birth cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['referee_confirmed_date_of_birth'] = $referee_confirmed_date_of_birth;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_name
+     * Gets messages
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string[]
      */
-    public function getRefereeConfirmedName()
+    public function getMessages()
     {
-        return $this->container['referee_confirmed_name'];
+        return $this->container['messages'];
     }
 
     /**
-     * Sets referee_confirmed_name
+     * Sets messages
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_name referee_confirmed_name
+     * @param string[] $messages messages
      *
      * @return self
      */
-    public function setRefereeConfirmedName($referee_confirmed_name)
+    public function setMessages($messages)
     {
-        if (is_null($referee_confirmed_name)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_name cannot be null');
+        if (is_null($messages)) {
+            throw new \InvalidArgumentException('non-nullable messages cannot be null');
         }
-        $this->container['referee_confirmed_name'] = $referee_confirmed_name;
+        $this->container['messages'] = $messages;
 
         return $this;
     }
 
     /**
-     * Gets referee_confirmed_photo
+     * Gets risk
      *
-     * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null
+     * @return string
      */
-    public function getRefereeConfirmedPhoto()
+    public function getRisk()
     {
-        return $this->container['referee_confirmed_photo'];
+        return $this->container['risk'];
     }
 
     /**
-     * Sets referee_confirmed_photo
+     * Sets risk
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth|null $referee_confirmed_photo referee_confirmed_photo
+     * @param string $risk risk
      *
      * @return self
      */
-    public function setRefereeConfirmedPhoto($referee_confirmed_photo)
+    public function setRisk($risk)
     {
-        if (is_null($referee_confirmed_photo)) {
-            throw new \InvalidArgumentException('non-nullable referee_confirmed_photo cannot be null');
+        if (is_null($risk)) {
+            throw new \InvalidArgumentException('non-nullable risk cannot be null');
         }
-        $this->container['referee_confirmed_photo'] = $referee_confirmed_photo;
+        $allowedValues = $this->getRiskAllowableValues();
+        if (!in_array($risk, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'risk', must be one of '%s'",
+                    $risk,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['risk'] = $risk;
+
+        return $this;
+    }
+
+    /**
+     * Gets flags
+     *
+     * @return \Vouchsafe\OpenAPI\Model\FraudFlag[]
+     */
+    public function getFlags()
+    {
+        return $this->container['flags'];
+    }
+
+    /**
+     * Sets flags
+     *
+     * @param \Vouchsafe\OpenAPI\Model\FraudFlag[] $flags flags
+     *
+     * @return self
+     */
+    public function setFlags($flags)
+    {
+        if (is_null($flags)) {
+            throw new \InvalidArgumentException('non-nullable flags cannot be null');
+        }
+        $this->container['flags'] = $flags;
 
         return $this;
     }
