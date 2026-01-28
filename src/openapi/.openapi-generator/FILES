@@ -1,6 +1,6 @@
 .php-cs-fixer.dist.php
 git_push.sh
-src/Api/ArtefactApi.php
+src/Api/ArtefactsApi.php
 src/Api/AuthenticationApi.php
 src/Api/DigitalIDApi.php
 src/Api/FlowsApi.php
@@ -75,7 +75,7 @@ src/Model/Enrichments.php
 src/Model/Flow.php
 src/Model/FlowTemplate.php
 src/Model/FraudFlag.php
-src/Model/GetArtefactResponse.php
+src/Model/GetArtefactsResponse.php
 src/Model/GetSmartLookupResponse.php
 src/Model/GetVerificationResponse.php
 src/Model/GetVerificationResponseChecksInner.php
