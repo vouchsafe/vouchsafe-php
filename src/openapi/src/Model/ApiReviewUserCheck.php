@@ -336,6 +336,9 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['validations'] === null) {
             $invalidProperties[] = "'validations' can't be null";
         }
+        if ($this->container['outcome'] === null) {
+            $invalidProperties[] = "'outcome' can't be null";
+        }
         $allowedValues = $this->getOutcomeAllowableValues();
         if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -456,7 +459,7 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets outcome
      *
-     * @return string|null
+     * @return string
      */
     public function getOutcome()
     {
@@ -466,7 +469,7 @@ class ApiReviewUserCheck implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets outcome
      *
-     * @param string|null $outcome outcome
+     * @param string $outcome outcome
      *
      * @return self
      */

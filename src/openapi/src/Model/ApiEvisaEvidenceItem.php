@@ -391,6 +391,9 @@ class ApiEvisaEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['validations'] === null) {
             $invalidProperties[] = "'validations' can't be null";
         }
+        if ($this->container['outcome'] === null) {
+            $invalidProperties[] = "'outcome' can't be null";
+        }
         $allowedValues = $this->getOutcomeAllowableValues();
         if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -602,7 +605,7 @@ class ApiEvisaEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets outcome
      *
-     * @return string|null
+     * @return string
      */
     public function getOutcome()
     {
@@ -612,7 +615,7 @@ class ApiEvisaEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets outcome
      *
-     * @param string|null $outcome outcome
+     * @param string $outcome outcome
      *
      * @return self
      */
