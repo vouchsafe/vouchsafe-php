@@ -59,10 +59,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPITypes = [
         'face_match' => '\Vouchsafe\OpenAPI\Model\ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck',
-        'has_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'valid_from_reached' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'evisa_not_expired' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
+        'evisa_started' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
         'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth',
-        'submitted_details_accepted' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
+        'evisa_exists' => '\Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -74,10 +74,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPIFormats = [
         'face_match' => null,
-        'has_not_expired' => null,
-        'valid_from_reached' => null,
+        'evisa_not_expired' => null,
+        'evisa_started' => null,
         'required_fields_extracted' => null,
-        'submitted_details_accepted' => null
+        'evisa_exists' => null
     ];
 
     /**
@@ -87,10 +87,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
       */
     protected static array $openAPINullables = [
         'face_match' => false,
-        'has_not_expired' => false,
-        'valid_from_reached' => false,
+        'evisa_not_expired' => false,
+        'evisa_started' => false,
         'required_fields_extracted' => false,
-        'submitted_details_accepted' => false
+        'evisa_exists' => false
     ];
 
     /**
@@ -180,10 +180,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
      */
     protected static $attributeMap = [
         'face_match' => 'face_match',
-        'has_not_expired' => 'has_not_expired',
-        'valid_from_reached' => 'valid_from_reached',
+        'evisa_not_expired' => 'evisa_not_expired',
+        'evisa_started' => 'evisa_started',
         'required_fields_extracted' => 'required_fields_extracted',
-        'submitted_details_accepted' => 'submitted_details_accepted'
+        'evisa_exists' => 'evisa_exists'
     ];
 
     /**
@@ -193,10 +193,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
      */
     protected static $setters = [
         'face_match' => 'setFaceMatch',
-        'has_not_expired' => 'setHasNotExpired',
-        'valid_from_reached' => 'setValidFromReached',
+        'evisa_not_expired' => 'setEvisaNotExpired',
+        'evisa_started' => 'setEvisaStarted',
         'required_fields_extracted' => 'setRequiredFieldsExtracted',
-        'submitted_details_accepted' => 'setSubmittedDetailsAccepted'
+        'evisa_exists' => 'setEvisaExists'
     ];
 
     /**
@@ -206,10 +206,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
      */
     protected static $getters = [
         'face_match' => 'getFaceMatch',
-        'has_not_expired' => 'getHasNotExpired',
-        'valid_from_reached' => 'getValidFromReached',
+        'evisa_not_expired' => 'getEvisaNotExpired',
+        'evisa_started' => 'getEvisaStarted',
         'required_fields_extracted' => 'getRequiredFieldsExtracted',
-        'submitted_details_accepted' => 'getSubmittedDetailsAccepted'
+        'evisa_exists' => 'getEvisaExists'
     ];
 
     /**
@@ -270,10 +270,10 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     public function __construct(?array $data = null)
     {
         $this->setIfExists('face_match', $data ?? [], null);
-        $this->setIfExists('has_not_expired', $data ?? [], null);
-        $this->setIfExists('valid_from_reached', $data ?? [], null);
+        $this->setIfExists('evisa_not_expired', $data ?? [], null);
+        $this->setIfExists('evisa_started', $data ?? [], null);
         $this->setIfExists('required_fields_extracted', $data ?? [], null);
-        $this->setIfExists('submitted_details_accepted', $data ?? [], null);
+        $this->setIfExists('evisa_exists', $data ?? [], null);
     }
 
     /**
@@ -303,17 +303,17 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     {
         $invalidProperties = [];
 
-        if ($this->container['has_not_expired'] === null) {
-            $invalidProperties[] = "'has_not_expired' can't be null";
+        if ($this->container['evisa_not_expired'] === null) {
+            $invalidProperties[] = "'evisa_not_expired' can't be null";
         }
-        if ($this->container['valid_from_reached'] === null) {
-            $invalidProperties[] = "'valid_from_reached' can't be null";
+        if ($this->container['evisa_started'] === null) {
+            $invalidProperties[] = "'evisa_started' can't be null";
         }
         if ($this->container['required_fields_extracted'] === null) {
             $invalidProperties[] = "'required_fields_extracted' can't be null";
         }
-        if ($this->container['submitted_details_accepted'] === null) {
-            $invalidProperties[] = "'submitted_details_accepted' can't be null";
+        if ($this->container['evisa_exists'] === null) {
+            $invalidProperties[] = "'evisa_exists' can't be null";
         }
         return $invalidProperties;
     }
@@ -358,55 +358,55 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Gets has_not_expired
+     * Gets evisa_not_expired
      *
      * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
-    public function getHasNotExpired()
+    public function getEvisaNotExpired()
     {
-        return $this->container['has_not_expired'];
+        return $this->container['evisa_not_expired'];
     }
 
     /**
-     * Sets has_not_expired
+     * Sets evisa_not_expired
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $has_not_expired has_not_expired
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $evisa_not_expired evisa_not_expired
      *
      * @return self
      */
-    public function setHasNotExpired($has_not_expired)
+    public function setEvisaNotExpired($evisa_not_expired)
     {
-        if (is_null($has_not_expired)) {
-            throw new \InvalidArgumentException('non-nullable has_not_expired cannot be null');
+        if (is_null($evisa_not_expired)) {
+            throw new \InvalidArgumentException('non-nullable evisa_not_expired cannot be null');
         }
-        $this->container['has_not_expired'] = $has_not_expired;
+        $this->container['evisa_not_expired'] = $evisa_not_expired;
 
         return $this;
     }
 
     /**
-     * Gets valid_from_reached
+     * Gets evisa_started
      *
      * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
-    public function getValidFromReached()
+    public function getEvisaStarted()
     {
-        return $this->container['valid_from_reached'];
+        return $this->container['evisa_started'];
     }
 
     /**
-     * Sets valid_from_reached
+     * Sets evisa_started
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $valid_from_reached valid_from_reached
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $evisa_started evisa_started
      *
      * @return self
      */
-    public function setValidFromReached($valid_from_reached)
+    public function setEvisaStarted($evisa_started)
     {
-        if (is_null($valid_from_reached)) {
-            throw new \InvalidArgumentException('non-nullable valid_from_reached cannot be null');
+        if (is_null($evisa_started)) {
+            throw new \InvalidArgumentException('non-nullable evisa_started cannot be null');
         }
-        $this->container['valid_from_reached'] = $valid_from_reached;
+        $this->container['evisa_started'] = $evisa_started;
 
         return $this;
     }
@@ -439,28 +439,28 @@ class ApiEvisaEvidenceItemValidations implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Gets submitted_details_accepted
+     * Gets evisa_exists
      *
      * @return \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth
      */
-    public function getSubmittedDetailsAccepted()
+    public function getEvisaExists()
     {
-        return $this->container['submitted_details_accepted'];
+        return $this->container['evisa_exists'];
     }
 
     /**
-     * Sets submitted_details_accepted
+     * Sets evisa_exists
      *
-     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $submitted_details_accepted submitted_details_accepted
+     * @param \Vouchsafe\OpenAPI\Model\ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth $evisa_exists evisa_exists
      *
      * @return self
      */
-    public function setSubmittedDetailsAccepted($submitted_details_accepted)
+    public function setEvisaExists($evisa_exists)
     {
-        if (is_null($submitted_details_accepted)) {
-            throw new \InvalidArgumentException('non-nullable submitted_details_accepted cannot be null');
+        if (is_null($evisa_exists)) {
+            throw new \InvalidArgumentException('non-nullable evisa_exists cannot be null');
         }
-        $this->container['submitted_details_accepted'] = $submitted_details_accepted;
+        $this->container['evisa_exists'] = $evisa_exists;
 
         return $this;
     }

@@ -273,9 +273,10 @@ class ApiRefereeEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerial
 
     public const EVIDENCE_TYPE_PROFESSIONAL_REFEREE = 'professional_referee';
     public const EVIDENCE_TYPE_PERSONAL_REFEREE = 'personal_referee';
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_VOUCH = 'vouch';
 
     /**
@@ -299,9 +300,10 @@ class ApiRefereeEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

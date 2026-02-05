@@ -275,9 +275,10 @@ class ApiEvisaEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializ
     public const EVIDENCE_TYPE_RIGHT_TO_RENT = 'right_to_rent';
     public const EVIDENCE_TYPE_IMMIGRATION_STATUS = 'immigration_status';
     public const EVIDENCE_TYPE_UNKNOWN = 'unknown';
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_EVISA = 'evisa';
 
     /**
@@ -303,9 +304,10 @@ class ApiEvisaEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerializ
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

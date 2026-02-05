@@ -253,9 +253,10 @@ class ApiVerifyEmailCheck implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_VERIFY_EMAIL = 'verify_email';
 
     /**
@@ -266,9 +267,10 @@ class ApiVerifyEmailCheck implements ModelInterface, ArrayAccess, \JsonSerializa
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

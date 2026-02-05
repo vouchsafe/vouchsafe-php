@@ -3,6 +3,7 @@ git_push.sh
 src/Api/ArtefactsApi.php
 src/Api/AuthenticationApi.php
 src/Api/DigitalIDApi.php
+src/Api/EVisaVerificationApi.php
 src/Api/FlowsApi.php
 src/Api/SmartLookupsApi.php
 src/Api/TeamApi.php
@@ -46,6 +47,7 @@ src/Model/ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth.php
 src/Model/ApiSupportingDocEvidenceItem.php
 src/Model/ApiSupportingDocEvidenceItemExtractedDetails.php
 src/Model/ApiSupportingDocEvidenceItemValidations.php
+src/Model/ApiValidationStatus.php
 src/Model/ApiVerifyEmailCheck.php
 src/Model/ApiVerifyEmailCheckValidations.php
 src/Model/ApiVerifyEmailCheckValidationsEmailVerified.php
@@ -55,6 +57,7 @@ src/Model/ApiVideoSelfieCheck.php
 src/Model/ApiVideoSelfieCheckArtefactsInner.php
 src/Model/ApiVideoSelfieCheckValidations.php
 src/Model/ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck.php
+src/Model/ArtefactRoleType.php
 src/Model/AuthenticateInput.php
 src/Model/AuthenticateResponse.php
 src/Model/CaseStatus.php
@@ -72,6 +75,13 @@ src/Model/DigitalIdSessionStatus.php
 src/Model/EnrichmentCheckResult.php
 src/Model/EnrichmentVerificationReport.php
 src/Model/Enrichments.php
+src/Model/EvisaArtefact.php
+src/Model/EvisaBaseExtractedDetails.php
+src/Model/EvisaValidationResult.php
+src/Model/EvisaValidations.php
+src/Model/EvisaVerificationInput.php
+src/Model/EvisaVerificationResponse.php
+src/Model/FailedReason.php
 src/Model/Flow.php
 src/Model/FlowTemplate.php
 src/Model/FraudFlag.php
@@ -80,6 +90,12 @@ src/Model/GetSmartLookupResponse.php
 src/Model/GetVerificationResponse.php
 src/Model/GetVerificationResponseChecksInner.php
 src/Model/GetVerificationResponseEnrichmentsInner.php
+src/Model/ImmigrationStatusExtractedDetails.php
+src/Model/ImmigrationStatusInput.php
+src/Model/ImmigrationStatusInputPayload.php
+src/Model/ImmigrationStatusVerificationResponse.php
+src/Model/ImmigrationStatusVerificationResponseExtractedDetails.php
+src/Model/ImmigrationStatusVerificationResponseValidations.php
 src/Model/KnownClaims.php
 src/Model/KnownClaimsAddress.php
 src/Model/ModelInterface.php
@@ -94,6 +110,14 @@ src/Model/RecordCreditBureauVerificationChecksCheckResult.php
 src/Model/RecordOnlineFootprintVerificationChecksCheckResult.php
 src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
+src/Model/RightToRentInput.php
+src/Model/RightToRentInputPayload.php
+src/Model/RightToRentVerificationResponse.php
+src/Model/RightToRentVerificationResponseExtractedDetails.php
+src/Model/RightToWorkInput.php
+src/Model/RightToWorkInputPayload.php
+src/Model/RightToWorkVerificationResponse.php
+src/Model/RightToWorkVerificationResponseExtractedDetails.php
 src/Model/SmartLookupInput.php
 src/Model/SmartLookupInputThresholds.php
 src/Model/Team.php

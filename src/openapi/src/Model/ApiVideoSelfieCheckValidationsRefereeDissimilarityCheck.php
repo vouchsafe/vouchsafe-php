@@ -237,6 +237,7 @@ class ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck implements ModelIn
 
     public const STATUS_PASS = 'pass';
     public const STATUS_FAIL = 'fail';
+    public const STATUS_ERROR = 'error';
 
     /**
      * Gets allowable values of the enum
@@ -248,6 +249,7 @@ class ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck implements ModelIn
         return [
             self::STATUS_PASS,
             self::STATUS_FAIL,
+            self::STATUS_ERROR,
         ];
     }
 

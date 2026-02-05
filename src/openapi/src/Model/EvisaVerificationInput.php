@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * EvisaVerificationInput
  *
  * PHP version 8.1
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * EvisaVerificationInput Class Doc Comment
  *
  * @category Class
+ * @description Union type for all eVisa verification inputs
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class EvisaVerificationInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'EvisaVerificationInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'sub_type' => 'string',
+        'payload' => '\Vouchsafe\OpenAPI\Model\RightToRentInputPayload'
     ];
 
     /**
@@ -70,8 +71,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'sub_type' => null,
+        'payload' => null
     ];
 
     /**
@@ -80,8 +81,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'sub_type' => false,
+        'payload' => false
     ];
 
     /**
@@ -170,8 +171,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'sub_type' => 'sub_type',
+        'payload' => 'payload'
     ];
 
     /**
@@ -180,8 +181,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'sub_type' => 'setSubType',
+        'payload' => 'setPayload'
     ];
 
     /**
@@ -190,8 +191,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'sub_type' => 'getSubType',
+        'payload' => 'getPayload'
     ];
 
     /**
@@ -235,21 +236,17 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
+    public const SUB_TYPE_RIGHT_TO_RENT = 'RightToRent';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getSubTypeAllowableValues()
     {
         return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
+            self::SUB_TYPE_RIGHT_TO_RENT,
         ];
     }
 
@@ -268,8 +265,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('sub_type', $data ?? [], null);
+        $this->setIfExists('payload', $data ?? [], null);
     }
 
     /**
@@ -299,21 +296,21 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
+        if ($this->container['sub_type'] === null) {
+            $invalidProperties[] = "'sub_type' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getSubTypeAllowableValues();
+        if (!is_null($this->container['sub_type']) && !in_array($this->container['sub_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'sub_type', must be one of '%s'",
+                $this->container['sub_type'],
                 implode("', '", $allowedValues)
             );
         }
 
+        if ($this->container['payload'] === null) {
+            $invalidProperties[] = "'payload' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -330,65 +327,65 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
+     * Gets sub_type
      *
      * @return string
      */
-    public function getVerifiedAt()
+    public function getSubType()
     {
-        return $this->container['verified_at'];
+        return $this->container['sub_type'];
     }
 
     /**
-     * Sets verified_at
+     * Sets sub_type
      *
-     * @param string $verified_at verified_at
+     * @param string $sub_type The type of eVisa verification to perform
      *
      * @return self
      */
-    public function setVerifiedAt($verified_at)
+    public function setSubType($sub_type)
     {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
+        if (is_null($sub_type)) {
+            throw new \InvalidArgumentException('non-nullable sub_type cannot be null');
         }
-        $this->container['verified_at'] = $verified_at;
+        $allowedValues = $this->getSubTypeAllowableValues();
+        if (!in_array($sub_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'sub_type', must be one of '%s'",
+                    $sub_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['sub_type'] = $sub_type;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets payload
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\RightToRentInputPayload
      */
-    public function getStatus()
+    public function getPayload()
     {
-        return $this->container['status'];
+        return $this->container['payload'];
     }
 
     /**
-     * Sets status
+     * Sets payload
      *
-     * @param string $status status
+     * @param \Vouchsafe\OpenAPI\Model\RightToRentInputPayload $payload payload
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setPayload($payload)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($payload)) {
+            throw new \InvalidArgumentException('non-nullable payload cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['payload'] = $payload;
 
         return $this;
     }

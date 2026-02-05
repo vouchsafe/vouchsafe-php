@@ -278,9 +278,10 @@ class ApiPhotoIdEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerial
     public const EVIDENCE_TYPE_NATIONAL_ENTITLEMENT_CARD = 'national_entitlement_card';
     public const EVIDENCE_TYPE_NATIONAL_ID = 'national_id';
     public const EVIDENCE_TYPE_CITIZEN_CARD = 'citizen_card';
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_PHOTO_ID = 'photo_id';
 
     /**
@@ -309,9 +310,10 @@ class ApiPhotoIdEvidenceItem implements ModelInterface, ArrayAccess, \JsonSerial
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

@@ -253,9 +253,10 @@ class ApiVerifyPhoneNumberCheck implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_VERIFY_PHONE_NUMBER = 'verify_phone_number';
 
     /**
@@ -266,9 +267,10 @@ class ApiVerifyPhoneNumberCheck implements ModelInterface, ArrayAccess, \JsonSer
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

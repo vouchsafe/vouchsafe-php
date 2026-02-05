@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * RightToRentInputPayload
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * RightToRentInputPayload Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class RightToRentInputPayload implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'RightToRentInput_payload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'role' => 'string',
+        'company_name' => 'string',
+        'date_of_birth' => 'string',
+        'share_code' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'role' => null,
+        'company_name' => null,
+        'date_of_birth' => null,
+        'share_code' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'role' => false,
+        'company_name' => false,
+        'date_of_birth' => false,
+        'share_code' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'role' => 'role',
+        'company_name' => 'company_name',
+        'date_of_birth' => 'date_of_birth',
+        'share_code' => 'share_code'
     ];
 
     /**
@@ -180,8 +188,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'role' => 'setRole',
+        'company_name' => 'setCompanyName',
+        'date_of_birth' => 'setDateOfBirth',
+        'share_code' => 'setShareCode'
     ];
 
     /**
@@ -190,8 +200,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'role' => 'getRole',
+        'company_name' => 'getCompanyName',
+        'date_of_birth' => 'getDateOfBirth',
+        'share_code' => 'getShareCode'
     ];
 
     /**
@@ -235,21 +247,19 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
+    public const ROLE_AGENT = 'Agent';
+    public const ROLE_LANDLORD = 'Landlord';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getRoleAllowableValues()
     {
         return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
+            self::ROLE_AGENT,
+            self::ROLE_LANDLORD,
         ];
     }
 
@@ -268,8 +278,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('company_name', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('share_code', $data ?? [], null);
     }
 
     /**
@@ -299,21 +311,27 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
                 implode("', '", $allowedValues)
             );
         }
 
+        if ($this->container['company_name'] === null) {
+            $invalidProperties[] = "'company_name' can't be null";
+        }
+        if ($this->container['date_of_birth'] === null) {
+            $invalidProperties[] = "'date_of_birth' can't be null";
+        }
+        if ($this->container['share_code'] === null) {
+            $invalidProperties[] = "'share_code' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -330,65 +348,119 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
+     * Gets role
      *
      * @return string
      */
-    public function getVerifiedAt()
+    public function getRole()
     {
-        return $this->container['verified_at'];
+        return $this->container['role'];
     }
 
     /**
-     * Sets verified_at
+     * Sets role
      *
-     * @param string $verified_at verified_at
+     * @param string $role Role of the person requesting the verification
      *
      * @return self
      */
-    public function setVerifiedAt($verified_at)
+    public function setRole($role)
     {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
         }
-        $this->container['verified_at'] = $verified_at;
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!in_array($role, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['role'] = $role;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets company_name
      *
      * @return string
      */
-    public function getStatus()
+    public function getCompanyName()
     {
-        return $this->container['status'];
+        return $this->container['company_name'];
     }
 
     /**
-     * Sets status
+     * Sets company_name
      *
-     * @param string $status status
+     * @param string $company_name Name of the company or agency requesting the verification
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setCompanyName($company_name)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($company_name)) {
+            throw new \InvalidArgumentException('non-nullable company_name cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['company_name'] = $company_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_of_birth
+     *
+     * @return string
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param string $date_of_birth Date of birth in YYYY-MM-DD or ISO 8601 format
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets share_code
+     *
+     * @return string
+     */
+    public function getShareCode()
+    {
+        return $this->container['share_code'];
+    }
+
+    /**
+     * Sets share_code
+     *
+     * @param string $share_code The 9-character share code from the UK Home Office
+     *
+     * @return self
+     */
+    public function setShareCode($share_code)
+    {
+        if (is_null($share_code)) {
+            throw new \InvalidArgumentException('non-nullable share_code cannot be null');
+        }
+        $this->container['share_code'] = $share_code;
 
         return $this;
     }

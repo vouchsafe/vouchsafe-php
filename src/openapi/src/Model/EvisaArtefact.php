@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * EvisaArtefact
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * EvisaArtefact Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class EvisaArtefact implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'EvisaArtefact';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'role' => '\Vouchsafe\OpenAPI\Model\ArtefactRoleType',
+        'download_url' => 'string',
+        'expires_at' => 'string',
+        'expires_in_seconds' => 'float'
     ];
 
     /**
@@ -70,8 +72,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'role' => null,
+        'download_url' => null,
+        'expires_at' => null,
+        'expires_in_seconds' => 'double'
     ];
 
     /**
@@ -80,8 +84,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'role' => false,
+        'download_url' => false,
+        'expires_at' => false,
+        'expires_in_seconds' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'role' => 'role',
+        'download_url' => 'download_url',
+        'expires_at' => 'expires_at',
+        'expires_in_seconds' => 'expires_in_seconds'
     ];
 
     /**
@@ -180,8 +188,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'role' => 'setRole',
+        'download_url' => 'setDownloadUrl',
+        'expires_at' => 'setExpiresAt',
+        'expires_in_seconds' => 'setExpiresInSeconds'
     ];
 
     /**
@@ -190,8 +200,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'role' => 'getRole',
+        'download_url' => 'getDownloadUrl',
+        'expires_at' => 'getExpiresAt',
+        'expires_in_seconds' => 'getExpiresInSeconds'
     ];
 
     /**
@@ -235,23 +247,6 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -268,8 +263,10 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('download_url', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('expires_in_seconds', $data ?? [], null);
     }
 
     /**
@@ -299,21 +296,18 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['download_url'] === null) {
+            $invalidProperties[] = "'download_url' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
         }
-
+        if ($this->container['expires_in_seconds'] === null) {
+            $invalidProperties[] = "'expires_in_seconds' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -330,65 +324,109 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
+     * Gets role
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\ArtefactRoleType
      */
-    public function getVerifiedAt()
+    public function getRole()
     {
-        return $this->container['verified_at'];
+        return $this->container['role'];
     }
 
     /**
-     * Sets verified_at
+     * Sets role
      *
-     * @param string $verified_at verified_at
+     * @param \Vouchsafe\OpenAPI\Model\ArtefactRoleType $role role
      *
      * @return self
      */
-    public function setVerifiedAt($verified_at)
+    public function setRole($role)
     {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
         }
-        $this->container['verified_at'] = $verified_at;
+        $this->container['role'] = $role;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets download_url
      *
      * @return string
      */
-    public function getStatus()
+    public function getDownloadUrl()
     {
-        return $this->container['status'];
+        return $this->container['download_url'];
     }
 
     /**
-     * Sets status
+     * Sets download_url
      *
-     * @param string $status status
+     * @param string $download_url download_url
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setDownloadUrl($download_url)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($download_url)) {
+            throw new \InvalidArgumentException('non-nullable download_url cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['download_url'] = $download_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return string
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param string $expires_at expires_at
+     *
+     * @return self
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_in_seconds
+     *
+     * @return float
+     */
+    public function getExpiresInSeconds()
+    {
+        return $this->container['expires_in_seconds'];
+    }
+
+    /**
+     * Sets expires_in_seconds
+     *
+     * @param float $expires_in_seconds expires_in_seconds
+     *
+     * @return self
+     */
+    public function setExpiresInSeconds($expires_in_seconds)
+    {
+        if (is_null($expires_in_seconds)) {
+            throw new \InvalidArgumentException('non-nullable expires_in_seconds cannot be null');
+        }
+        $this->container['expires_in_seconds'] = $expires_in_seconds;
 
         return $this;
     }

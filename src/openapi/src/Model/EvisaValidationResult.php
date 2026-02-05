@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * EvisaValidationResult
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * EvisaValidationResult Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class EvisaValidationResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'EvisaValidationResult';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'status' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
+        'failed_reasons' => '\Vouchsafe\OpenAPI\Model\FailedReason[]'
     ];
 
     /**
@@ -70,8 +70,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'status' => null,
+        'failed_reasons' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'status' => false,
+        'failed_reasons' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'status' => 'status',
+        'failed_reasons' => 'failed_reasons'
     ];
 
     /**
@@ -180,8 +180,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'failed_reasons' => 'setFailedReasons'
     ];
 
     /**
@@ -190,8 +190,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'failed_reasons' => 'getFailedReasons'
     ];
 
     /**
@@ -235,23 +235,6 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -268,8 +251,8 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('failed_reasons', $data ?? [], null);
     }
 
     /**
@@ -299,21 +282,9 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
-        }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -330,36 +301,9 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
-     *
-     * @return string
-     */
-    public function getVerifiedAt()
-    {
-        return $this->container['verified_at'];
-    }
-
-    /**
-     * Sets verified_at
-     *
-     * @param string $verified_at verified_at
-     *
-     * @return self
-     */
-    public function setVerifiedAt($verified_at)
-    {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
-        }
-        $this->container['verified_at'] = $verified_at;
-
-        return $this;
-    }
-
-    /**
      * Gets status
      *
-     * @return string
+     * @return \Vouchsafe\OpenAPI\Model\ApiValidationStatus
      */
     public function getStatus()
     {
@@ -369,7 +313,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     /**
      * Sets status
      *
-     * @param string $status status
+     * @param \Vouchsafe\OpenAPI\Model\ApiValidationStatus $status status
      *
      * @return self
      */
@@ -378,17 +322,34 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         if (is_null($status)) {
             throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets failed_reasons
+     *
+     * @return \Vouchsafe\OpenAPI\Model\FailedReason[]|null
+     */
+    public function getFailedReasons()
+    {
+        return $this->container['failed_reasons'];
+    }
+
+    /**
+     * Sets failed_reasons
+     *
+     * @param \Vouchsafe\OpenAPI\Model\FailedReason[]|null $failed_reasons failed_reasons
+     *
+     * @return self
+     */
+    public function setFailedReasons($failed_reasons)
+    {
+        if (is_null($failed_reasons)) {
+            throw new \InvalidArgumentException('non-nullable failed_reasons cannot be null');
+        }
+        $this->container['failed_reasons'] = $failed_reasons;
 
         return $this;
     }

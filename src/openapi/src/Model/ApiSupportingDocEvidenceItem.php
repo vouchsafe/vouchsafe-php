@@ -288,9 +288,10 @@ class ApiSupportingDocEvidenceItem implements ModelInterface, ArrayAccess, \Json
     public const EVIDENCE_TYPE_MOBILE_PHONE_BILL = 'mobile_phone_bill';
     public const EVIDENCE_TYPE_HMPPS_LETTER = 'hmpps_letter';
     public const EVIDENCE_TYPE_OLDER_PERSON_BUS_PASS = 'older_person_bus_pass';
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_SUPPORTING_DOCUMENT = 'supporting_document';
 
     /**
@@ -329,9 +330,10 @@ class ApiSupportingDocEvidenceItem implements ModelInterface, ArrayAccess, \Json
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

@@ -272,9 +272,10 @@ class ApiBankAccountEvidenceItem implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     public const EVIDENCE_TYPE_OPEN_BANKING = 'open_banking';
-    public const OUTCOME_IN_PROGRESS = 'in_progress';
     public const OUTCOME_PASS = 'pass';
     public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
     public const STEP_BANK_ACCOUNT = 'bank_account';
 
     /**
@@ -297,9 +298,10 @@ class ApiBankAccountEvidenceItem implements ModelInterface, ArrayAccess, \JsonSe
     public function getOutcomeAllowableValues()
     {
         return [
-            self::OUTCOME_IN_PROGRESS,
             self::OUTCOME_PASS,
             self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 

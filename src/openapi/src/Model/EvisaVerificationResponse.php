@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * EvisaVerificationResponse
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * EvisaVerificationResponse Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class EvisaVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'EvisaVerificationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'verification_method' => 'string',
+        'billable' => 'bool',
+        'outcome' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
+        'artefacts' => '\Vouchsafe\OpenAPI\Model\EvisaArtefact[]',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations',
+        'evidence_type' => 'string',
+        'extracted_details' => '\Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails'
     ];
 
     /**
@@ -70,8 +75,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'verification_method' => null,
+        'billable' => null,
+        'outcome' => null,
+        'artefacts' => null,
+        'validations' => null,
+        'evidence_type' => null,
+        'extracted_details' => null
     ];
 
     /**
@@ -80,8 +90,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'verification_method' => false,
+        'billable' => false,
+        'outcome' => false,
+        'artefacts' => false,
+        'validations' => false,
+        'evidence_type' => false,
+        'extracted_details' => false
     ];
 
     /**
@@ -170,8 +185,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'verification_method' => 'verification_method',
+        'billable' => 'billable',
+        'outcome' => 'outcome',
+        'artefacts' => 'artefacts',
+        'validations' => 'validations',
+        'evidence_type' => 'evidence_type',
+        'extracted_details' => 'extracted_details'
     ];
 
     /**
@@ -180,8 +200,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'verification_method' => 'setVerificationMethod',
+        'billable' => 'setBillable',
+        'outcome' => 'setOutcome',
+        'artefacts' => 'setArtefacts',
+        'validations' => 'setValidations',
+        'evidence_type' => 'setEvidenceType',
+        'extracted_details' => 'setExtractedDetails'
     ];
 
     /**
@@ -190,8 +215,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'verification_method' => 'getVerificationMethod',
+        'billable' => 'getBillable',
+        'outcome' => 'getOutcome',
+        'artefacts' => 'getArtefacts',
+        'validations' => 'getValidations',
+        'evidence_type' => 'getEvidenceType',
+        'extracted_details' => 'getExtractedDetails'
     ];
 
     /**
@@ -235,21 +265,30 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
+    public const VERIFICATION_METHOD_EVISA = 'evisa';
+    public const EVIDENCE_TYPE_RIGHT_TO_RENT = 'right_to_rent';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getVerificationMethodAllowableValues()
     {
         return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
+            self::VERIFICATION_METHOD_EVISA,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEvidenceTypeAllowableValues()
+    {
+        return [
+            self::EVIDENCE_TYPE_RIGHT_TO_RENT,
         ];
     }
 
@@ -268,8 +307,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('verification_method', $data ?? [], null);
+        $this->setIfExists('billable', $data ?? [], null);
+        $this->setIfExists('outcome', $data ?? [], null);
+        $this->setIfExists('artefacts', $data ?? [], null);
+        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('evidence_type', $data ?? [], null);
+        $this->setIfExists('extracted_details', $data ?? [], null);
     }
 
     /**
@@ -299,21 +343,45 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
+        if ($this->container['verification_method'] === null) {
+            $invalidProperties[] = "'verification_method' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getVerificationMethodAllowableValues();
+        if (!is_null($this->container['verification_method']) && !in_array($this->container['verification_method'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'verification_method', must be one of '%s'",
+                $this->container['verification_method'],
                 implode("', '", $allowedValues)
             );
         }
 
+        if ($this->container['billable'] === null) {
+            $invalidProperties[] = "'billable' can't be null";
+        }
+        if ($this->container['outcome'] === null) {
+            $invalidProperties[] = "'outcome' can't be null";
+        }
+        if ($this->container['artefacts'] === null) {
+            $invalidProperties[] = "'artefacts' can't be null";
+        }
+        if ($this->container['validations'] === null) {
+            $invalidProperties[] = "'validations' can't be null";
+        }
+        if ($this->container['evidence_type'] === null) {
+            $invalidProperties[] = "'evidence_type' can't be null";
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!is_null($this->container['evidence_type']) && !in_array($this->container['evidence_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'evidence_type', must be one of '%s'",
+                $this->container['evidence_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['extracted_details'] === null) {
+            $invalidProperties[] = "'extracted_details' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -330,65 +398,210 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
+     * Gets verification_method
      *
      * @return string
      */
-    public function getVerifiedAt()
+    public function getVerificationMethod()
     {
-        return $this->container['verified_at'];
+        return $this->container['verification_method'];
     }
 
     /**
-     * Sets verified_at
+     * Sets verification_method
      *
-     * @param string $verified_at verified_at
+     * @param string $verification_method verification_method
      *
      * @return self
      */
-    public function setVerifiedAt($verified_at)
+    public function setVerificationMethod($verification_method)
     {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
+        if (is_null($verification_method)) {
+            throw new \InvalidArgumentException('non-nullable verification_method cannot be null');
         }
-        $this->container['verified_at'] = $verified_at;
+        $allowedValues = $this->getVerificationMethodAllowableValues();
+        if (!in_array($verification_method, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'verification_method', must be one of '%s'",
+                    $verification_method,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['verification_method'] = $verification_method;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets billable
      *
-     * @return string
+     * @return bool
      */
-    public function getStatus()
+    public function getBillable()
     {
-        return $this->container['status'];
+        return $this->container['billable'];
     }
 
     /**
-     * Sets status
+     * Sets billable
      *
-     * @param string $status status
+     * @param bool $billable billable
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setBillable($billable)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($billable)) {
+            throw new \InvalidArgumentException('non-nullable billable cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
+        $this->container['billable'] = $billable;
+
+        return $this;
+    }
+
+    /**
+     * Gets outcome
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ApiValidationStatus
+     */
+    public function getOutcome()
+    {
+        return $this->container['outcome'];
+    }
+
+    /**
+     * Sets outcome
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ApiValidationStatus $outcome outcome
+     *
+     * @return self
+     */
+    public function setOutcome($outcome)
+    {
+        if (is_null($outcome)) {
+            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        }
+        $this->container['outcome'] = $outcome;
+
+        return $this;
+    }
+
+    /**
+     * Gets artefacts
+     *
+     * @return \Vouchsafe\OpenAPI\Model\EvisaArtefact[]
+     */
+    public function getArtefacts()
+    {
+        return $this->container['artefacts'];
+    }
+
+    /**
+     * Sets artefacts
+     *
+     * @param \Vouchsafe\OpenAPI\Model\EvisaArtefact[] $artefacts artefacts
+     *
+     * @return self
+     */
+    public function setArtefacts($artefacts)
+    {
+        if (is_null($artefacts)) {
+            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
+        }
+        $this->container['artefacts'] = $artefacts;
+
+        return $this;
+    }
+
+    /**
+     * Gets validations
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations
+     */
+    public function getValidations()
+    {
+        return $this->container['validations'];
+    }
+
+    /**
+     * Sets validations
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations $validations validations
+     *
+     * @return self
+     */
+    public function setValidations($validations)
+    {
+        if (is_null($validations)) {
+            throw new \InvalidArgumentException('non-nullable validations cannot be null');
+        }
+        $this->container['validations'] = $validations;
+
+        return $this;
+    }
+
+    /**
+     * Gets evidence_type
+     *
+     * @return string
+     */
+    public function getEvidenceType()
+    {
+        return $this->container['evidence_type'];
+    }
+
+    /**
+     * Sets evidence_type
+     *
+     * @param string $evidence_type evidence_type
+     *
+     * @return self
+     */
+    public function setEvidenceType($evidence_type)
+    {
+        if (is_null($evidence_type)) {
+            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
+        }
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!in_array($evidence_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
+                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
+                    $evidence_type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['status'] = $status;
+        $this->container['evidence_type'] = $evidence_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets extracted_details
+     *
+     * @return \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails
+     */
+    public function getExtractedDetails()
+    {
+        return $this->container['extracted_details'];
+    }
+
+    /**
+     * Sets extracted_details
+     *
+     * @param \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails $extracted_details extracted_details
+     *
+     * @return self
+     */
+    public function setExtractedDetails($extracted_details)
+    {
+        if (is_null($extracted_details)) {
+            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
+        }
+        $this->container['extracted_details'] = $extracted_details;
 
         return $this;
     }

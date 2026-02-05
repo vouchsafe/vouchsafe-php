@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified
+ * EvisaBaseExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ApiVerifyEmailCheckValidationsEmailVerified Class Doc Comment
+ * EvisaBaseExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, ArrayAccess, \JsonSerializable
+class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Api_VerifyEmailCheck__validations_email_verified';
+    protected static $openAPIModelName = 'EvisaBaseExtractedDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verified_at' => 'string',
-        'status' => 'string'
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'date_of_birth' => 'string',
+        'share_code' => 'string',
+        'reference_number' => 'string',
+        'expiration_date' => 'string',
+        'valid_from' => 'string'
     ];
 
     /**
@@ -70,8 +75,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verified_at' => null,
-        'status' => null
+        'first_name' => null,
+        'last_name' => null,
+        'date_of_birth' => null,
+        'share_code' => null,
+        'reference_number' => null,
+        'expiration_date' => null,
+        'valid_from' => null
     ];
 
     /**
@@ -80,8 +90,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verified_at' => false,
-        'status' => false
+        'first_name' => false,
+        'last_name' => false,
+        'date_of_birth' => false,
+        'share_code' => false,
+        'reference_number' => false,
+        'expiration_date' => true,
+        'valid_from' => true
     ];
 
     /**
@@ -170,8 +185,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'verified_at' => 'verified_at',
-        'status' => 'status'
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'date_of_birth' => 'date_of_birth',
+        'share_code' => 'share_code',
+        'reference_number' => 'reference_number',
+        'expiration_date' => 'expiration_date',
+        'valid_from' => 'valid_from'
     ];
 
     /**
@@ -180,8 +200,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'verified_at' => 'setVerifiedAt',
-        'status' => 'setStatus'
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'date_of_birth' => 'setDateOfBirth',
+        'share_code' => 'setShareCode',
+        'reference_number' => 'setReferenceNumber',
+        'expiration_date' => 'setExpirationDate',
+        'valid_from' => 'setValidFrom'
     ];
 
     /**
@@ -190,8 +215,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'verified_at' => 'getVerifiedAt',
-        'status' => 'getStatus'
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'date_of_birth' => 'getDateOfBirth',
+        'share_code' => 'getShareCode',
+        'reference_number' => 'getReferenceNumber',
+        'expiration_date' => 'getExpirationDate',
+        'valid_from' => 'getValidFrom'
     ];
 
     /**
@@ -235,23 +265,6 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PASS = 'pass';
-    public const STATUS_FAIL = 'fail';
-    public const STATUS_ERROR = 'error';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PASS,
-            self::STATUS_FAIL,
-            self::STATUS_ERROR,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -268,8 +281,13 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verified_at', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
+        $this->setIfExists('share_code', $data ?? [], null);
+        $this->setIfExists('reference_number', $data ?? [], null);
+        $this->setIfExists('expiration_date', $data ?? [], null);
+        $this->setIfExists('valid_from', $data ?? [], null);
     }
 
     /**
@@ -299,21 +317,6 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['verified_at'] === null) {
-            $invalidProperties[] = "'verified_at' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -330,65 +333,204 @@ class ApiVerifyEmailCheckValidationsEmailVerified implements ModelInterface, Arr
 
 
     /**
-     * Gets verified_at
+     * Gets first_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getVerifiedAt()
+    public function getFirstName()
     {
-        return $this->container['verified_at'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets verified_at
+     * Sets first_name
      *
-     * @param string $verified_at verified_at
+     * @param string|null $first_name first_name
      *
      * @return self
      */
-    public function setVerifiedAt($verified_at)
+    public function setFirstName($first_name)
     {
-        if (is_null($verified_at)) {
-            throw new \InvalidArgumentException('non-nullable verified_at cannot be null');
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
         }
-        $this->container['verified_at'] = $verified_at;
+        $this->container['first_name'] = $first_name;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets last_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus()
+    public function getLastName()
     {
-        return $this->container['status'];
+        return $this->container['last_name'];
     }
 
     /**
-     * Sets status
+     * Sets last_name
      *
-     * @param string $status status
+     * @param string|null $last_name last_name
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setLastName($last_name)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_of_birth
+     *
+     * @return string|null
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param string|null $date_of_birth date_of_birth
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['date_of_birth'] = $date_of_birth;
+
+        return $this;
+    }
+
+    /**
+     * Gets share_code
+     *
+     * @return string|null
+     */
+    public function getShareCode()
+    {
+        return $this->container['share_code'];
+    }
+
+    /**
+     * Sets share_code
+     *
+     * @param string|null $share_code share_code
+     *
+     * @return self
+     */
+    public function setShareCode($share_code)
+    {
+        if (is_null($share_code)) {
+            throw new \InvalidArgumentException('non-nullable share_code cannot be null');
+        }
+        $this->container['share_code'] = $share_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets reference_number
+     *
+     * @return string|null
+     */
+    public function getReferenceNumber()
+    {
+        return $this->container['reference_number'];
+    }
+
+    /**
+     * Sets reference_number
+     *
+     * @param string|null $reference_number reference_number
+     *
+     * @return self
+     */
+    public function setReferenceNumber($reference_number)
+    {
+        if (is_null($reference_number)) {
+            throw new \InvalidArgumentException('non-nullable reference_number cannot be null');
+        }
+        $this->container['reference_number'] = $reference_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiration_date
+     *
+     * @return string|null
+     */
+    public function getExpirationDate()
+    {
+        return $this->container['expiration_date'];
+    }
+
+    /**
+     * Sets expiration_date
+     *
+     * @param string|null $expiration_date expiration_date
+     *
+     * @return self
+     */
+    public function setExpirationDate($expiration_date)
+    {
+        if (is_null($expiration_date)) {
+            array_push($this->openAPINullablesSetToNull, 'expiration_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('expiration_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['expiration_date'] = $expiration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_from
+     *
+     * @return string|null
+     */
+    public function getValidFrom()
+    {
+        return $this->container['valid_from'];
+    }
+
+    /**
+     * Sets valid_from
+     *
+     * @param string|null $valid_from valid_from
+     *
+     * @return self
+     */
+    public function setValidFrom($valid_from)
+    {
+        if (is_null($valid_from)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_from');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_from', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_from'] = $valid_from;
 
         return $this;
     }
