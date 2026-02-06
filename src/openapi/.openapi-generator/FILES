@@ -99,6 +99,9 @@ src/Model/ImmigrationStatusVerificationResponseValidations.php
 src/Model/KnownClaims.php
 src/Model/KnownClaimsAddress.php
 src/Model/ModelInterface.php
+src/Model/OnlineFootprintChecks.php
+src/Model/OnlineFootprintChecksAnyOf.php
+src/Model/OnlineFootprintChecksAnyOf1.php
 src/Model/OnlineFootprintVerificationReport.php
 src/Model/PersonalRelationship.php
 src/Model/PostcodeResponse.php
@@ -107,7 +110,6 @@ src/Model/RadarResult.php
 src/Model/Reason.php
 src/Model/RecordAmlVerificationChecksCheckResult.php
 src/Model/RecordCreditBureauVerificationChecksCheckResult.php
-src/Model/RecordOnlineFootprintVerificationChecksCheckResult.php
 src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
 src/Model/RightToRentInput.php

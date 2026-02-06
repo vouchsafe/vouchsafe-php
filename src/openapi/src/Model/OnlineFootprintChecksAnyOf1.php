@@ -1,6 +1,6 @@
 <?php
 /**
- * OnlineFootprintVerificationReport
+ * OnlineFootprintChecksAnyOf1
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * OnlineFootprintVerificationReport Class Doc Comment
+ * OnlineFootprintChecksAnyOf1 Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, \JsonSerializable
+class OnlineFootprintChecksAnyOf1 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OnlineFootprintVerificationReport';
+    protected static $openAPIModelName = 'OnlineFootprintChecks_anyOf_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
       * @var string[]
       */
     protected static $openAPITypes = [
-        'state' => '\Vouchsafe\OpenAPI\Model\CheckState',
-        'checks' => '\Vouchsafe\OpenAPI\Model\OnlineFootprintChecks'
+        'email_score' => '\Vouchsafe\OpenAPI\Model\CheckResult',
+        'phone_score' => '\Vouchsafe\OpenAPI\Model\CheckResult'
     ];
 
     /**
@@ -70,8 +70,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'state' => null,
-        'checks' => null
+        'email_score' => null,
+        'phone_score' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'state' => false,
-        'checks' => false
+        'email_score' => false,
+        'phone_score' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $attributeMap = [
-        'state' => 'state',
-        'checks' => 'checks'
+        'email_score' => 'EMAIL_SCORE',
+        'phone_score' => 'PHONE_SCORE'
     ];
 
     /**
@@ -180,8 +180,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $setters = [
-        'state' => 'setState',
-        'checks' => 'setChecks'
+        'email_score' => 'setEmailScore',
+        'phone_score' => 'setPhoneScore'
     ];
 
     /**
@@ -190,8 +190,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $getters = [
-        'state' => 'getState',
-        'checks' => 'getChecks'
+        'email_score' => 'getEmailScore',
+        'phone_score' => 'getPhoneScore'
     ];
 
     /**
@@ -251,8 +251,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('checks', $data ?? [], null);
+        $this->setIfExists('email_score', $data ?? [], null);
+        $this->setIfExists('phone_score', $data ?? [], null);
     }
 
     /**
@@ -282,11 +282,8 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
     {
         $invalidProperties = [];
 
-        if ($this->container['state'] === null) {
-            $invalidProperties[] = "'state' can't be null";
-        }
-        if ($this->container['checks'] === null) {
-            $invalidProperties[] = "'checks' can't be null";
+        if ($this->container['phone_score'] === null) {
+            $invalidProperties[] = "'phone_score' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,55 +301,55 @@ class OnlineFootprintVerificationReport implements ModelInterface, ArrayAccess, 
 
 
     /**
-     * Gets state
+     * Gets email_score
      *
-     * @return \Vouchsafe\OpenAPI\Model\CheckState
+     * @return \Vouchsafe\OpenAPI\Model\CheckResult|null
      */
-    public function getState()
+    public function getEmailScore()
     {
-        return $this->container['state'];
+        return $this->container['email_score'];
     }
 
     /**
-     * Sets state
+     * Sets email_score
      *
-     * @param \Vouchsafe\OpenAPI\Model\CheckState $state state
+     * @param \Vouchsafe\OpenAPI\Model\CheckResult|null $email_score email_score
      *
      * @return self
      */
-    public function setState($state)
+    public function setEmailScore($email_score)
     {
-        if (is_null($state)) {
-            throw new \InvalidArgumentException('non-nullable state cannot be null');
+        if (is_null($email_score)) {
+            throw new \InvalidArgumentException('non-nullable email_score cannot be null');
         }
-        $this->container['state'] = $state;
+        $this->container['email_score'] = $email_score;
 
         return $this;
     }
 
     /**
-     * Gets checks
+     * Gets phone_score
      *
-     * @return \Vouchsafe\OpenAPI\Model\OnlineFootprintChecks
+     * @return \Vouchsafe\OpenAPI\Model\CheckResult
      */
-    public function getChecks()
+    public function getPhoneScore()
     {
-        return $this->container['checks'];
+        return $this->container['phone_score'];
     }
 
     /**
-     * Sets checks
+     * Sets phone_score
      *
-     * @param \Vouchsafe\OpenAPI\Model\OnlineFootprintChecks $checks checks
+     * @param \Vouchsafe\OpenAPI\Model\CheckResult $phone_score phone_score
      *
      * @return self
      */
-    public function setChecks($checks)
+    public function setPhoneScore($phone_score)
     {
-        if (is_null($checks)) {
-            throw new \InvalidArgumentException('non-nullable checks cannot be null');
+        if (is_null($phone_score)) {
+            throw new \InvalidArgumentException('non-nullable phone_score cannot be null');
         }
-        $this->container['checks'] = $checks;
+        $this->container['phone_score'] = $phone_score;
 
         return $this;
     }
