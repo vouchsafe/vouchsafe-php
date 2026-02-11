@@ -833,7 +833,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets metadata
      *
-     * @param mixed|null $metadata Extra information to aid debugging. May change without notice.
+     * @param mixed|null $metadata Extra information about the checks performed. May include: - creditBureauVerification: Raw credit check data (identityMatches, residencyMatches, etc.) - onlineFootprintVerification: Email/phone validation data with scores and signals - amlVerification: Sanctions screening results  Structure depends on which checks were requested. May change without notice.
      *
      * @return self
      */
