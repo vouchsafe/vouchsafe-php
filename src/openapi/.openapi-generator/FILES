@@ -6,6 +6,7 @@ src/Api/DigitalIDApi.php
 src/Api/EVisaVerificationApi.php
 src/Api/FlowsApi.php
 src/Api/SmartLookupsApi.php
+src/Api/SupportingDocumentVerificationApi.php
 src/Api/TeamApi.php
 src/Api/VerificationsApi.php
 src/ApiException.php
@@ -36,8 +37,6 @@ src/Model/ApiRadarCheck.php
 src/Model/ApiRadarCheckDetails.php
 src/Model/ApiRadarCheckDetailsValidations.php
 src/Model/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch.php
-src/Model/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf.php
-src/Model/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1.php
 src/Model/ApiRefereeEvidenceItem.php
 src/Model/ApiRefereeEvidenceItemExtractedDetails.php
 src/Model/ApiRefereeEvidenceItemValidations.php
@@ -61,6 +60,8 @@ src/Model/ArtefactRoleType.php
 src/Model/AuthenticateInput.php
 src/Model/AuthenticateResponse.php
 src/Model/CaseStatus.php
+src/Model/CategoryMatchFailedReason.php
+src/Model/CategoryMatchResult.php
 src/Model/CheckResult.php
 src/Model/CheckState.php
 src/Model/ClaimDetails.php
@@ -72,6 +73,10 @@ src/Model/CreateTeamResponseCredentials.php
 src/Model/CreditBureauVerificationReport.php
 src/Model/DigitalIdSession.php
 src/Model/DigitalIdSessionStatus.php
+src/Model/DocumentAgeValidFailedReason.php
+src/Model/DocumentAgeValidResult.php
+src/Model/DocumentCompleteAndLegibleFailedReason.php
+src/Model/DocumentCompleteAndLegibleResult.php
 src/Model/EnrichmentCheckResult.php
 src/Model/EnrichmentVerificationReport.php
 src/Model/Enrichments.php
@@ -112,6 +117,8 @@ src/Model/RecordAmlVerificationChecksCheckResult.php
 src/Model/RecordCreditBureauVerificationChecksCheckResult.php
 src/Model/RequestVerificationInput.php
 src/Model/RequestVerificationResponse.php
+src/Model/RequiredFieldsExtractedFailedReason.php
+src/Model/RequiredFieldsExtractedResult.php
 src/Model/RightToRentInput.php
 src/Model/RightToRentInputPayload.php
 src/Model/RightToRentVerificationResponse.php
@@ -122,6 +129,14 @@ src/Model/RightToWorkVerificationResponse.php
 src/Model/RightToWorkVerificationResponseExtractedDetails.php
 src/Model/SmartLookupInput.php
 src/Model/SmartLookupInputThresholds.php
+src/Model/SupportingDocumentEvidenceType.php
+src/Model/SupportingDocumentExtractedDetails.php
+src/Model/SupportingDocumentValidations.php
+src/Model/SupportingDocumentVerificationResponse.php
+src/Model/SupportingDocumentVerificationResponseExtractedDetails.php
+src/Model/SupportingDocumentVerificationResponseValidations.php
+src/Model/TamperingSignalsCheckFailedReason.php
+src/Model/TamperingSignalsCheckResult.php
 src/Model/Team.php
 src/Model/Verification.php
 src/Model/VerifiedClaims.php
