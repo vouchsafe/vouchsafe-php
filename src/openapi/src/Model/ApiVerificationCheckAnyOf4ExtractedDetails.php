@@ -1,6 +1,6 @@
 <?php
 /**
- * RightToWorkVerificationResponseExtractedDetails
+ * ApiVerificationCheckAnyOf4ExtractedDetails
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RightToWorkVerificationResponseExtractedDetails Class Doc Comment
+ * ApiVerificationCheckAnyOf4ExtractedDetails Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RightToWorkVerificationResponseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerificationCheckAnyOf4ExtractedDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RightToWorkVerificationResponse_extracted_details';
+    protected static $openAPIModelName = 'Api_VerificationCheck__anyOf_4_extracted_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'first_name' => 'string',
-        'last_name' => 'string',
+        'smart_card_number' => 'string',
+        'mrz_code' => 'string',
+        'icao_format' => 'string',
+        'issuing_country' => 'string',
+        'issue_date' => 'string',
+        'expiration_date' => 'string',
+        'document_number' => 'string',
+        'postcode' => 'string',
+        'first_line_of_address' => 'string',
         'date_of_birth' => 'string',
-        'share_code' => 'string',
-        'reference_number' => 'string',
-        'expiration_date' => 'string'
+        'first_name' => 'string',
+        'last_name' => 'string'
     ];
 
     /**
@@ -74,12 +80,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'first_name' => null,
-        'last_name' => null,
+        'smart_card_number' => null,
+        'mrz_code' => null,
+        'icao_format' => null,
+        'issuing_country' => null,
+        'issue_date' => null,
+        'expiration_date' => null,
+        'document_number' => null,
+        'postcode' => null,
+        'first_line_of_address' => null,
         'date_of_birth' => null,
-        'share_code' => null,
-        'reference_number' => null,
-        'expiration_date' => null
+        'first_name' => null,
+        'last_name' => null
     ];
 
     /**
@@ -88,12 +100,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'first_name' => false,
-        'last_name' => false,
+        'smart_card_number' => false,
+        'mrz_code' => false,
+        'icao_format' => false,
+        'issuing_country' => false,
+        'issue_date' => false,
+        'expiration_date' => false,
+        'document_number' => false,
+        'postcode' => false,
+        'first_line_of_address' => false,
         'date_of_birth' => false,
-        'share_code' => false,
-        'reference_number' => false,
-        'expiration_date' => true
+        'first_name' => false,
+        'last_name' => false
     ];
 
     /**
@@ -182,12 +200,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
      * @var string[]
      */
     protected static $attributeMap = [
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
+        'smart_card_number' => 'smart_card_number',
+        'mrz_code' => 'mrz_code',
+        'icao_format' => 'icao_format',
+        'issuing_country' => 'issuing_country',
+        'issue_date' => 'issue_date',
+        'expiration_date' => 'expiration_date',
+        'document_number' => 'document_number',
+        'postcode' => 'postcode',
+        'first_line_of_address' => 'first_line_of_address',
         'date_of_birth' => 'date_of_birth',
-        'share_code' => 'share_code',
-        'reference_number' => 'reference_number',
-        'expiration_date' => 'expiration_date'
+        'first_name' => 'first_name',
+        'last_name' => 'last_name'
     ];
 
     /**
@@ -196,12 +220,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
      * @var string[]
      */
     protected static $setters = [
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName',
+        'smart_card_number' => 'setSmartCardNumber',
+        'mrz_code' => 'setMrzCode',
+        'icao_format' => 'setIcaoFormat',
+        'issuing_country' => 'setIssuingCountry',
+        'issue_date' => 'setIssueDate',
+        'expiration_date' => 'setExpirationDate',
+        'document_number' => 'setDocumentNumber',
+        'postcode' => 'setPostcode',
+        'first_line_of_address' => 'setFirstLineOfAddress',
         'date_of_birth' => 'setDateOfBirth',
-        'share_code' => 'setShareCode',
-        'reference_number' => 'setReferenceNumber',
-        'expiration_date' => 'setExpirationDate'
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName'
     ];
 
     /**
@@ -210,12 +240,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
      * @var string[]
      */
     protected static $getters = [
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName',
+        'smart_card_number' => 'getSmartCardNumber',
+        'mrz_code' => 'getMrzCode',
+        'icao_format' => 'getIcaoFormat',
+        'issuing_country' => 'getIssuingCountry',
+        'issue_date' => 'getIssueDate',
+        'expiration_date' => 'getExpirationDate',
+        'document_number' => 'getDocumentNumber',
+        'postcode' => 'getPostcode',
+        'first_line_of_address' => 'getFirstLineOfAddress',
         'date_of_birth' => 'getDateOfBirth',
-        'share_code' => 'getShareCode',
-        'reference_number' => 'getReferenceNumber',
-        'expiration_date' => 'getExpirationDate'
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName'
     ];
 
     /**
@@ -275,12 +311,18 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('smart_card_number', $data ?? [], null);
+        $this->setIfExists('mrz_code', $data ?? [], null);
+        $this->setIfExists('icao_format', $data ?? [], null);
+        $this->setIfExists('issuing_country', $data ?? [], null);
+        $this->setIfExists('issue_date', $data ?? [], null);
+        $this->setIfExists('expiration_date', $data ?? [], null);
+        $this->setIfExists('document_number', $data ?? [], null);
+        $this->setIfExists('postcode', $data ?? [], null);
+        $this->setIfExists('first_line_of_address', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('first_name', $data ?? [], null);
         $this->setIfExists('last_name', $data ?? [], null);
-        $this->setIfExists('date_of_birth', $data ?? [], null);
-        $this->setIfExists('share_code', $data ?? [], null);
-        $this->setIfExists('reference_number', $data ?? [], null);
-        $this->setIfExists('expiration_date', $data ?? [], null);
     }
 
     /**
@@ -310,6 +352,15 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
     {
         $invalidProperties = [];
 
+        if ($this->container['document_number'] === null) {
+            $invalidProperties[] = "'document_number' can't be null";
+        }
+        if ($this->container['first_name'] === null) {
+            $invalidProperties[] = "'first_name' can't be null";
+        }
+        if ($this->container['last_name'] === null) {
+            $invalidProperties[] = "'last_name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -326,55 +377,244 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
 
 
     /**
-     * Gets first_name
+     * Gets smart_card_number
      *
      * @return string|null
      */
-    public function getFirstName()
+    public function getSmartCardNumber()
     {
-        return $this->container['first_name'];
+        return $this->container['smart_card_number'];
     }
 
     /**
-     * Sets first_name
+     * Sets smart_card_number
      *
-     * @param string|null $first_name first_name
+     * @param string|null $smart_card_number smart_card_number
      *
      * @return self
      */
-    public function setFirstName($first_name)
+    public function setSmartCardNumber($smart_card_number)
     {
-        if (is_null($first_name)) {
-            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
+        if (is_null($smart_card_number)) {
+            throw new \InvalidArgumentException('non-nullable smart_card_number cannot be null');
         }
-        $this->container['first_name'] = $first_name;
+        $this->container['smart_card_number'] = $smart_card_number;
 
         return $this;
     }
 
     /**
-     * Gets last_name
+     * Gets mrz_code
      *
      * @return string|null
      */
-    public function getLastName()
+    public function getMrzCode()
     {
-        return $this->container['last_name'];
+        return $this->container['mrz_code'];
     }
 
     /**
-     * Sets last_name
+     * Sets mrz_code
      *
-     * @param string|null $last_name last_name
+     * @param string|null $mrz_code mrz_code
      *
      * @return self
      */
-    public function setLastName($last_name)
+    public function setMrzCode($mrz_code)
     {
-        if (is_null($last_name)) {
-            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
+        if (is_null($mrz_code)) {
+            throw new \InvalidArgumentException('non-nullable mrz_code cannot be null');
         }
-        $this->container['last_name'] = $last_name;
+        $this->container['mrz_code'] = $mrz_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets icao_format
+     *
+     * @return string|null
+     */
+    public function getIcaoFormat()
+    {
+        return $this->container['icao_format'];
+    }
+
+    /**
+     * Sets icao_format
+     *
+     * @param string|null $icao_format icao_format
+     *
+     * @return self
+     */
+    public function setIcaoFormat($icao_format)
+    {
+        if (is_null($icao_format)) {
+            throw new \InvalidArgumentException('non-nullable icao_format cannot be null');
+        }
+        $this->container['icao_format'] = $icao_format;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuing_country
+     *
+     * @return string|null
+     */
+    public function getIssuingCountry()
+    {
+        return $this->container['issuing_country'];
+    }
+
+    /**
+     * Sets issuing_country
+     *
+     * @param string|null $issuing_country issuing_country
+     *
+     * @return self
+     */
+    public function setIssuingCountry($issuing_country)
+    {
+        if (is_null($issuing_country)) {
+            throw new \InvalidArgumentException('non-nullable issuing_country cannot be null');
+        }
+        $this->container['issuing_country'] = $issuing_country;
+
+        return $this;
+    }
+
+    /**
+     * Gets issue_date
+     *
+     * @return string|null
+     */
+    public function getIssueDate()
+    {
+        return $this->container['issue_date'];
+    }
+
+    /**
+     * Sets issue_date
+     *
+     * @param string|null $issue_date issue_date
+     *
+     * @return self
+     */
+    public function setIssueDate($issue_date)
+    {
+        if (is_null($issue_date)) {
+            throw new \InvalidArgumentException('non-nullable issue_date cannot be null');
+        }
+        $this->container['issue_date'] = $issue_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiration_date
+     *
+     * @return string|null
+     */
+    public function getExpirationDate()
+    {
+        return $this->container['expiration_date'];
+    }
+
+    /**
+     * Sets expiration_date
+     *
+     * @param string|null $expiration_date expiration_date
+     *
+     * @return self
+     */
+    public function setExpirationDate($expiration_date)
+    {
+        if (is_null($expiration_date)) {
+            throw new \InvalidArgumentException('non-nullable expiration_date cannot be null');
+        }
+        $this->container['expiration_date'] = $expiration_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_number
+     *
+     * @return string
+     */
+    public function getDocumentNumber()
+    {
+        return $this->container['document_number'];
+    }
+
+    /**
+     * Sets document_number
+     *
+     * @param string $document_number document_number
+     *
+     * @return self
+     */
+    public function setDocumentNumber($document_number)
+    {
+        if (is_null($document_number)) {
+            throw new \InvalidArgumentException('non-nullable document_number cannot be null');
+        }
+        $this->container['document_number'] = $document_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets postcode
+     *
+     * @return string|null
+     */
+    public function getPostcode()
+    {
+        return $this->container['postcode'];
+    }
+
+    /**
+     * Sets postcode
+     *
+     * @param string|null $postcode postcode
+     *
+     * @return self
+     */
+    public function setPostcode($postcode)
+    {
+        if (is_null($postcode)) {
+            throw new \InvalidArgumentException('non-nullable postcode cannot be null');
+        }
+        $this->container['postcode'] = $postcode;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_line_of_address
+     *
+     * @return string|null
+     */
+    public function getFirstLineOfAddress()
+    {
+        return $this->container['first_line_of_address'];
+    }
+
+    /**
+     * Sets first_line_of_address
+     *
+     * @param string|null $first_line_of_address first_line_of_address
+     *
+     * @return self
+     */
+    public function setFirstLineOfAddress($first_line_of_address)
+    {
+        if (is_null($first_line_of_address)) {
+            throw new \InvalidArgumentException('non-nullable first_line_of_address cannot be null');
+        }
+        $this->container['first_line_of_address'] = $first_line_of_address;
 
         return $this;
     }
@@ -407,89 +647,55 @@ class RightToWorkVerificationResponseExtractedDetails implements ModelInterface,
     }
 
     /**
-     * Gets share_code
+     * Gets first_name
      *
-     * @return string|null
+     * @return string
      */
-    public function getShareCode()
+    public function getFirstName()
     {
-        return $this->container['share_code'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets share_code
+     * Sets first_name
      *
-     * @param string|null $share_code share_code
+     * @param string $first_name first_name
      *
      * @return self
      */
-    public function setShareCode($share_code)
+    public function setFirstName($first_name)
     {
-        if (is_null($share_code)) {
-            throw new \InvalidArgumentException('non-nullable share_code cannot be null');
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
         }
-        $this->container['share_code'] = $share_code;
+        $this->container['first_name'] = $first_name;
 
         return $this;
     }
 
     /**
-     * Gets reference_number
+     * Gets last_name
      *
-     * @return string|null
+     * @return string
      */
-    public function getReferenceNumber()
+    public function getLastName()
     {
-        return $this->container['reference_number'];
+        return $this->container['last_name'];
     }
 
     /**
-     * Sets reference_number
+     * Sets last_name
      *
-     * @param string|null $reference_number reference_number
+     * @param string $last_name last_name
      *
      * @return self
      */
-    public function setReferenceNumber($reference_number)
+    public function setLastName($last_name)
     {
-        if (is_null($reference_number)) {
-            throw new \InvalidArgumentException('non-nullable reference_number cannot be null');
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
         }
-        $this->container['reference_number'] = $reference_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets expiration_date
-     *
-     * @return string|null
-     */
-    public function getExpirationDate()
-    {
-        return $this->container['expiration_date'];
-    }
-
-    /**
-     * Sets expiration_date
-     *
-     * @param string|null $expiration_date Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
-     *
-     * @return self
-     */
-    public function setExpirationDate($expiration_date)
-    {
-        if (is_null($expiration_date)) {
-            array_push($this->openAPINullablesSetToNull, 'expiration_date');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiration_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['expiration_date'] = $expiration_date;
+        $this->container['last_name'] = $last_name;
 
         return $this;
     }

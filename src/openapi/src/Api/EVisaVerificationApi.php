@@ -134,7 +134,7 @@ class EVisaVerificationApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Vouchsafe\OpenAPI\Model\EvisaVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
+     * @return \Vouchsafe\OpenAPI\Model\EvisaVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
     public function verifyEvisa($evisa_verification_input, string $contentType = self::contentTypes['verifyEvisa'][0])
     {
@@ -150,7 +150,7 @@ class EVisaVerificationApi
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Vouchsafe\OpenAPI\Model\EvisaVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Vouchsafe\OpenAPI\Model\EvisaVerificationResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function verifyEvisaWithHttpInfo($evisa_verification_input, string $contentType = self::contentTypes['verifyEvisa'][0])
     {
@@ -205,12 +205,6 @@ class EVisaVerificationApi
                         $response,
                     );
                 case 422:
-                    return $this->handleResponseWithDataType(
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $request,
-                        $response,
-                    );
-                case 501:
                     return $this->handleResponseWithDataType(
                         '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
                         $request,
@@ -279,14 +273,6 @@ class EVisaVerificationApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 501:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Vouchsafe\OpenAPI\Model\ApiErrorResponse',

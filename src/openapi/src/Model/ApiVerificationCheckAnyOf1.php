@@ -1,6 +1,6 @@
 <?php
 /**
- * RightToRentVerificationResponse
+ * ApiVerificationCheckAnyOf1
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RightToRentVerificationResponse Class Doc Comment
+ * ApiVerificationCheckAnyOf1 Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerificationCheckAnyOf1 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RightToRentVerificationResponse';
+    protected static $openAPIModelName = 'Api_VerificationCheck__anyOf_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verification_method' => 'string',
-        'evidence_type' => 'string',
-        'outcome' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
-        'billable' => 'bool',
-        'extracted_details' => '\Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails',
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\EvisaArtefact[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations'
+        'validations' => '\Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1Validations',
+        'created_at' => 'string',
+        'total_attempts' => 'float',
+        'outcome' => 'string',
+        'step' => 'string'
     ];
 
     /**
@@ -75,13 +73,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verification_method' => null,
-        'evidence_type' => null,
+        'validations' => null,
+        'created_at' => null,
+        'total_attempts' => 'double',
         'outcome' => null,
-        'billable' => null,
-        'extracted_details' => null,
-        'artefacts' => null,
-        'validations' => null
+        'step' => null
     ];
 
     /**
@@ -90,13 +86,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verification_method' => false,
-        'evidence_type' => false,
+        'validations' => false,
+        'created_at' => false,
+        'total_attempts' => false,
         'outcome' => false,
-        'billable' => false,
-        'extracted_details' => false,
-        'artefacts' => false,
-        'validations' => false
+        'step' => false
     ];
 
     /**
@@ -185,13 +179,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'verification_method' => 'verification_method',
-        'evidence_type' => 'evidence_type',
+        'validations' => 'validations',
+        'created_at' => 'created_at',
+        'total_attempts' => 'total_attempts',
         'outcome' => 'outcome',
-        'billable' => 'billable',
-        'extracted_details' => 'extracted_details',
-        'artefacts' => 'artefacts',
-        'validations' => 'validations'
+        'step' => 'step'
     ];
 
     /**
@@ -200,13 +192,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'verification_method' => 'setVerificationMethod',
-        'evidence_type' => 'setEvidenceType',
+        'validations' => 'setValidations',
+        'created_at' => 'setCreatedAt',
+        'total_attempts' => 'setTotalAttempts',
         'outcome' => 'setOutcome',
-        'billable' => 'setBillable',
-        'extracted_details' => 'setExtractedDetails',
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations'
+        'step' => 'setStep'
     ];
 
     /**
@@ -215,13 +205,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'verification_method' => 'getVerificationMethod',
-        'evidence_type' => 'getEvidenceType',
+        'validations' => 'getValidations',
+        'created_at' => 'getCreatedAt',
+        'total_attempts' => 'getTotalAttempts',
         'outcome' => 'getOutcome',
-        'billable' => 'getBillable',
-        'extracted_details' => 'getExtractedDetails',
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations'
+        'step' => 'getStep'
     ];
 
     /**
@@ -265,18 +253,24 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-    public const VERIFICATION_METHOD_EVISA = 'evisa';
-    public const EVIDENCE_TYPE_RIGHT_TO_RENT = 'right_to_rent';
+    public const OUTCOME_PASS = 'pass';
+    public const OUTCOME_FAIL = 'fail';
+    public const OUTCOME_IN_PROGRESS = 'in_progress';
+    public const OUTCOME_ERROR = 'error';
+    public const STEP_VERIFY_EMAIL = 'verify_email';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getVerificationMethodAllowableValues()
+    public function getOutcomeAllowableValues()
     {
         return [
-            self::VERIFICATION_METHOD_EVISA,
+            self::OUTCOME_PASS,
+            self::OUTCOME_FAIL,
+            self::OUTCOME_IN_PROGRESS,
+            self::OUTCOME_ERROR,
         ];
     }
 
@@ -285,10 +279,10 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      *
      * @return string[]
      */
-    public function getEvidenceTypeAllowableValues()
+    public function getStepAllowableValues()
     {
         return [
-            self::EVIDENCE_TYPE_RIGHT_TO_RENT,
+            self::STEP_VERIFY_EMAIL,
         ];
     }
 
@@ -307,13 +301,11 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verification_method', $data ?? [], null);
-        $this->setIfExists('evidence_type', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('billable', $data ?? [], null);
-        $this->setIfExists('extracted_details', $data ?? [], null);
-        $this->setIfExists('artefacts', $data ?? [], null);
         $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('total_attempts', $data ?? [], null);
+        $this->setIfExists('outcome', $data ?? [], null);
+        $this->setIfExists('step', $data ?? [], null);
     }
 
     /**
@@ -343,45 +335,33 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
     {
         $invalidProperties = [];
 
-        if ($this->container['verification_method'] === null) {
-            $invalidProperties[] = "'verification_method' can't be null";
-        }
-        $allowedValues = $this->getVerificationMethodAllowableValues();
-        if (!is_null($this->container['verification_method']) && !in_array($this->container['verification_method'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'verification_method', must be one of '%s'",
-                $this->container['verification_method'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['evidence_type'] === null) {
-            $invalidProperties[] = "'evidence_type' can't be null";
-        }
-        $allowedValues = $this->getEvidenceTypeAllowableValues();
-        if (!is_null($this->container['evidence_type']) && !in_array($this->container['evidence_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'evidence_type', must be one of '%s'",
-                $this->container['evidence_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['outcome'] === null) {
-            $invalidProperties[] = "'outcome' can't be null";
-        }
-        if ($this->container['billable'] === null) {
-            $invalidProperties[] = "'billable' can't be null";
-        }
-        if ($this->container['extracted_details'] === null) {
-            $invalidProperties[] = "'extracted_details' can't be null";
-        }
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
-        }
         if ($this->container['validations'] === null) {
             $invalidProperties[] = "'validations' can't be null";
         }
+        if ($this->container['outcome'] === null) {
+            $invalidProperties[] = "'outcome' can't be null";
+        }
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!is_null($this->container['outcome']) && !in_array($this->container['outcome'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'outcome', must be one of '%s'",
+                $this->container['outcome'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['step'] === null) {
+            $invalidProperties[] = "'step' can't be null";
+        }
+        $allowedValues = $this->getStepAllowableValues();
+        if (!is_null($this->container['step']) && !in_array($this->container['step'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'step', must be one of '%s'",
+                $this->container['step'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -398,191 +378,9 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets verification_method
-     *
-     * @return string
-     */
-    public function getVerificationMethod()
-    {
-        return $this->container['verification_method'];
-    }
-
-    /**
-     * Sets verification_method
-     *
-     * @param string $verification_method verification_method
-     *
-     * @return self
-     */
-    public function setVerificationMethod($verification_method)
-    {
-        if (is_null($verification_method)) {
-            throw new \InvalidArgumentException('non-nullable verification_method cannot be null');
-        }
-        $allowedValues = $this->getVerificationMethodAllowableValues();
-        if (!in_array($verification_method, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'verification_method', must be one of '%s'",
-                    $verification_method,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['verification_method'] = $verification_method;
-
-        return $this;
-    }
-
-    /**
-     * Gets evidence_type
-     *
-     * @return string
-     */
-    public function getEvidenceType()
-    {
-        return $this->container['evidence_type'];
-    }
-
-    /**
-     * Sets evidence_type
-     *
-     * @param string $evidence_type evidence_type
-     *
-     * @return self
-     */
-    public function setEvidenceType($evidence_type)
-    {
-        if (is_null($evidence_type)) {
-            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
-        }
-        $allowedValues = $this->getEvidenceTypeAllowableValues();
-        if (!in_array($evidence_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
-                    $evidence_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['evidence_type'] = $evidence_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets outcome
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiValidationStatus
-     */
-    public function getOutcome()
-    {
-        return $this->container['outcome'];
-    }
-
-    /**
-     * Sets outcome
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiValidationStatus $outcome outcome
-     *
-     * @return self
-     */
-    public function setOutcome($outcome)
-    {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
-        }
-        $this->container['outcome'] = $outcome;
-
-        return $this;
-    }
-
-    /**
-     * Gets billable
-     *
-     * @return bool
-     */
-    public function getBillable()
-    {
-        return $this->container['billable'];
-    }
-
-    /**
-     * Sets billable
-     *
-     * @param bool $billable Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid.
-     *
-     * @return self
-     */
-    public function setBillable($billable)
-    {
-        if (is_null($billable)) {
-            throw new \InvalidArgumentException('non-nullable billable cannot be null');
-        }
-        $this->container['billable'] = $billable;
-
-        return $this;
-    }
-
-    /**
-     * Gets extracted_details
-     *
-     * @return \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails
-     */
-    public function getExtractedDetails()
-    {
-        return $this->container['extracted_details'];
-    }
-
-    /**
-     * Sets extracted_details
-     *
-     * @param \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails $extracted_details extracted_details
-     *
-     * @return self
-     */
-    public function setExtractedDetails($extracted_details)
-    {
-        if (is_null($extracted_details)) {
-            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
-        }
-        $this->container['extracted_details'] = $extracted_details;
-
-        return $this;
-    }
-
-    /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaArtefact[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaArtefact[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
      * Gets validations
      *
-     * @return \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1Validations
      */
     public function getValidations()
     {
@@ -592,7 +390,7 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Sets validations
      *
-     * @param \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations $validations validations
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1Validations $validations validations
      *
      * @return self
      */
@@ -602,6 +400,134 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
             throw new \InvalidArgumentException('non-nullable validations cannot be null');
         }
         $this->container['validations'] = $validations;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_attempts
+     *
+     * @return float|null
+     */
+    public function getTotalAttempts()
+    {
+        return $this->container['total_attempts'];
+    }
+
+    /**
+     * Sets total_attempts
+     *
+     * @param float|null $total_attempts total_attempts
+     *
+     * @return self
+     */
+    public function setTotalAttempts($total_attempts)
+    {
+        if (is_null($total_attempts)) {
+            throw new \InvalidArgumentException('non-nullable total_attempts cannot be null');
+        }
+        $this->container['total_attempts'] = $total_attempts;
+
+        return $this;
+    }
+
+    /**
+     * Gets outcome
+     *
+     * @return string
+     */
+    public function getOutcome()
+    {
+        return $this->container['outcome'];
+    }
+
+    /**
+     * Sets outcome
+     *
+     * @param string $outcome outcome
+     *
+     * @return self
+     */
+    public function setOutcome($outcome)
+    {
+        if (is_null($outcome)) {
+            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
+        }
+        $allowedValues = $this->getOutcomeAllowableValues();
+        if (!in_array($outcome, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'outcome', must be one of '%s'",
+                    $outcome,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['outcome'] = $outcome;
+
+        return $this;
+    }
+
+    /**
+     * Gets step
+     *
+     * @return string
+     */
+    public function getStep()
+    {
+        return $this->container['step'];
+    }
+
+    /**
+     * Sets step
+     *
+     * @param string $step step
+     *
+     * @return self
+     */
+    public function setStep($step)
+    {
+        if (is_null($step)) {
+            throw new \InvalidArgumentException('non-nullable step cannot be null');
+        }
+        $allowedValues = $this->getStepAllowableValues();
+        if (!in_array($step, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'step', must be one of '%s'",
+                    $step,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['step'] = $step;
 
         return $this;
     }

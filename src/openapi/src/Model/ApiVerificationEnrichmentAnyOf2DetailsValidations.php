@@ -1,6 +1,6 @@
 <?php
 /**
- * ImmigrationStatusVerificationResponseValidations
+ * ApiVerificationEnrichmentAnyOf2DetailsValidations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ImmigrationStatusVerificationResponseValidations Class Doc Comment
+ * ApiVerificationEnrichmentAnyOf2DetailsValidations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImmigrationStatusVerificationResponseValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerificationEnrichmentAnyOf2DetailsValidations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImmigrationStatusVerificationResponse_validations';
+    protected static $openAPIModelName = 'Api_VerificationEnrichment__anyOf_2_details_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @var string[]
       */
     protected static $openAPITypes = [
-        'evisa_exists' => '\Vouchsafe\OpenAPI\Model\EvisaExistsResult',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult',
-        'evisa_started' => '\Vouchsafe\OpenAPI\Model\EvisaStartedResult',
-        'evisa_not_expired' => '\Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult'
+        'not_disposable_email' => '\Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth',
+        'no_known_fraudster_match' => '\Vouchsafe\OpenAPI\Model\ApiVerificationEnrichmentAnyOf2DetailsValidationsNoKnownFraudsterMatch',
+        'normal_velocity_detected' => '\Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth'
     ];
 
     /**
@@ -72,10 +71,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'evisa_exists' => null,
-        'required_fields_extracted' => null,
-        'evisa_started' => null,
-        'evisa_not_expired' => null
+        'not_disposable_email' => null,
+        'no_known_fraudster_match' => null,
+        'normal_velocity_detected' => null
     ];
 
     /**
@@ -84,10 +82,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'evisa_exists' => false,
-        'required_fields_extracted' => false,
-        'evisa_started' => false,
-        'evisa_not_expired' => false
+        'not_disposable_email' => false,
+        'no_known_fraudster_match' => false,
+        'normal_velocity_detected' => false
     ];
 
     /**
@@ -176,10 +173,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $attributeMap = [
-        'evisa_exists' => 'evisa_exists',
-        'required_fields_extracted' => 'required_fields_extracted',
-        'evisa_started' => 'evisa_started',
-        'evisa_not_expired' => 'evisa_not_expired'
+        'not_disposable_email' => 'not_disposable_email',
+        'no_known_fraudster_match' => 'no_known_fraudster_match',
+        'normal_velocity_detected' => 'normal_velocity_detected'
     ];
 
     /**
@@ -188,10 +184,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $setters = [
-        'evisa_exists' => 'setEvisaExists',
-        'required_fields_extracted' => 'setRequiredFieldsExtracted',
-        'evisa_started' => 'setEvisaStarted',
-        'evisa_not_expired' => 'setEvisaNotExpired'
+        'not_disposable_email' => 'setNotDisposableEmail',
+        'no_known_fraudster_match' => 'setNoKnownFraudsterMatch',
+        'normal_velocity_detected' => 'setNormalVelocityDetected'
     ];
 
     /**
@@ -200,10 +195,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $getters = [
-        'evisa_exists' => 'getEvisaExists',
-        'required_fields_extracted' => 'getRequiredFieldsExtracted',
-        'evisa_started' => 'getEvisaStarted',
-        'evisa_not_expired' => 'getEvisaNotExpired'
+        'not_disposable_email' => 'getNotDisposableEmail',
+        'no_known_fraudster_match' => 'getNoKnownFraudsterMatch',
+        'normal_velocity_detected' => 'getNormalVelocityDetected'
     ];
 
     /**
@@ -263,10 +257,9 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('evisa_exists', $data ?? [], null);
-        $this->setIfExists('required_fields_extracted', $data ?? [], null);
-        $this->setIfExists('evisa_started', $data ?? [], null);
-        $this->setIfExists('evisa_not_expired', $data ?? [], null);
+        $this->setIfExists('not_disposable_email', $data ?? [], null);
+        $this->setIfExists('no_known_fraudster_match', $data ?? [], null);
+        $this->setIfExists('normal_velocity_detected', $data ?? [], null);
     }
 
     /**
@@ -296,6 +289,12 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
     {
         $invalidProperties = [];
 
+        if ($this->container['no_known_fraudster_match'] === null) {
+            $invalidProperties[] = "'no_known_fraudster_match' can't be null";
+        }
+        if ($this->container['normal_velocity_detected'] === null) {
+            $invalidProperties[] = "'normal_velocity_detected' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -312,109 +311,82 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
 
 
     /**
-     * Gets evisa_exists
+     * Gets not_disposable_email
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth|null
      */
-    public function getEvisaExists()
+    public function getNotDisposableEmail()
     {
-        return $this->container['evisa_exists'];
+        return $this->container['not_disposable_email'];
     }
 
     /**
-     * Sets evisa_exists
+     * Sets not_disposable_email
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null $evisa_exists evisa_exists
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth|null $not_disposable_email not_disposable_email
      *
      * @return self
      */
-    public function setEvisaExists($evisa_exists)
+    public function setNotDisposableEmail($not_disposable_email)
     {
-        if (is_null($evisa_exists)) {
-            throw new \InvalidArgumentException('non-nullable evisa_exists cannot be null');
+        if (is_null($not_disposable_email)) {
+            throw new \InvalidArgumentException('non-nullable not_disposable_email cannot be null');
         }
-        $this->container['evisa_exists'] = $evisa_exists;
+        $this->container['not_disposable_email'] = $not_disposable_email;
 
         return $this;
     }
 
     /**
-     * Gets required_fields_extracted
+     * Gets no_known_fraudster_match
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationEnrichmentAnyOf2DetailsValidationsNoKnownFraudsterMatch
      */
-    public function getRequiredFieldsExtracted()
+    public function getNoKnownFraudsterMatch()
     {
-        return $this->container['required_fields_extracted'];
+        return $this->container['no_known_fraudster_match'];
     }
 
     /**
-     * Sets required_fields_extracted
+     * Sets no_known_fraudster_match
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationEnrichmentAnyOf2DetailsValidationsNoKnownFraudsterMatch $no_known_fraudster_match no_known_fraudster_match
      *
      * @return self
      */
-    public function setRequiredFieldsExtracted($required_fields_extracted)
+    public function setNoKnownFraudsterMatch($no_known_fraudster_match)
     {
-        if (is_null($required_fields_extracted)) {
-            throw new \InvalidArgumentException('non-nullable required_fields_extracted cannot be null');
+        if (is_null($no_known_fraudster_match)) {
+            throw new \InvalidArgumentException('non-nullable no_known_fraudster_match cannot be null');
         }
-        $this->container['required_fields_extracted'] = $required_fields_extracted;
+        $this->container['no_known_fraudster_match'] = $no_known_fraudster_match;
 
         return $this;
     }
 
     /**
-     * Gets evisa_started
+     * Gets normal_velocity_detected
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth
      */
-    public function getEvisaStarted()
+    public function getNormalVelocityDetected()
     {
-        return $this->container['evisa_started'];
+        return $this->container['normal_velocity_detected'];
     }
 
     /**
-     * Sets evisa_started
+     * Sets normal_velocity_detected
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null $evisa_started evisa_started
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf3ValidationsRefereeConfirmedDateOfBirth $normal_velocity_detected normal_velocity_detected
      *
      * @return self
      */
-    public function setEvisaStarted($evisa_started)
+    public function setNormalVelocityDetected($normal_velocity_detected)
     {
-        if (is_null($evisa_started)) {
-            throw new \InvalidArgumentException('non-nullable evisa_started cannot be null');
+        if (is_null($normal_velocity_detected)) {
+            throw new \InvalidArgumentException('non-nullable normal_velocity_detected cannot be null');
         }
-        $this->container['evisa_started'] = $evisa_started;
-
-        return $this;
-    }
-
-    /**
-     * Gets evisa_not_expired
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null
-     */
-    public function getEvisaNotExpired()
-    {
-        return $this->container['evisa_not_expired'];
-    }
-
-    /**
-     * Sets evisa_not_expired
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null $evisa_not_expired evisa_not_expired
-     *
-     * @return self
-     */
-    public function setEvisaNotExpired($evisa_not_expired)
-    {
-        if (is_null($evisa_not_expired)) {
-            throw new \InvalidArgumentException('non-nullable evisa_not_expired cannot be null');
-        }
-        $this->container['evisa_not_expired'] = $evisa_not_expired;
+        $this->container['normal_velocity_detected'] = $normal_velocity_detected;
 
         return $this;
     }

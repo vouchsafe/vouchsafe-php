@@ -58,10 +58,10 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'evisa_exists' => '\Vouchsafe\OpenAPI\Model\EvisaValidationResult',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\EvisaValidationResult',
-        'evisa_started' => '\Vouchsafe\OpenAPI\Model\EvisaValidationResult',
-        'evisa_not_expired' => '\Vouchsafe\OpenAPI\Model\EvisaValidationResult'
+        'evisa_exists' => '\Vouchsafe\OpenAPI\Model\EvisaExistsResult',
+        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult',
+        'evisa_started' => '\Vouchsafe\OpenAPI\Model\EvisaStartedResult',
+        'evisa_not_expired' => '\Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult'
     ];
 
     /**
@@ -314,7 +314,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets evisa_exists
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null
+     * @return \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null
      */
     public function getEvisaExists()
     {
@@ -324,7 +324,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets evisa_exists
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null $evisa_exists evisa_exists
+     * @param \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null $evisa_exists evisa_exists
      *
      * @return self
      */
@@ -341,7 +341,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets required_fields_extracted
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null
+     * @return \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null
      */
     public function getRequiredFieldsExtracted()
     {
@@ -351,7 +351,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets required_fields_extracted
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null $required_fields_extracted required_fields_extracted
+     * @param \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null $required_fields_extracted required_fields_extracted
      *
      * @return self
      */
@@ -368,7 +368,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets evisa_started
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null
+     * @return \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null
      */
     public function getEvisaStarted()
     {
@@ -378,7 +378,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets evisa_started
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null $evisa_started evisa_started
+     * @param \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null $evisa_started evisa_started
      *
      * @return self
      */
@@ -395,7 +395,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets evisa_not_expired
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null
+     * @return \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null
      */
     public function getEvisaNotExpired()
     {
@@ -405,7 +405,7 @@ class EvisaValidations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets evisa_not_expired
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaValidationResult|null $evisa_not_expired evisa_not_expired
+     * @param \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null $evisa_not_expired evisa_not_expired
      *
      * @return self
      */

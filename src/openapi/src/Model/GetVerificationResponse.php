@@ -67,8 +67,8 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'workflow_id' => 'string',
         'external_id' => 'string',
         'claim_details' => '\Vouchsafe\OpenAPI\Model\ClaimDetails',
-        'checks' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]',
-        'enrichments' => '\Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[]'
+        'checks' => '\Vouchsafe\OpenAPI\Model\ApiVerificationCheck[]',
+        'enrichments' => '\Vouchsafe\OpenAPI\Model\ApiVerificationEnrichment[]'
     ];
 
     /**
@@ -660,7 +660,7 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets checks
      *
-     * @return \Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[]
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationCheck[]
      */
     public function getChecks()
     {
@@ -670,7 +670,7 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets checks
      *
-     * @param \Vouchsafe\OpenAPI\Model\GetVerificationResponseChecksInner[] $checks The collected evidence and validations performed
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationCheck[] $checks The collected evidence and validations performed
      *
      * @return self
      */
@@ -687,7 +687,7 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enrichments
      *
-     * @return \Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[]
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationEnrichment[]
      */
     public function getEnrichments()
     {
@@ -697,7 +697,7 @@ class GetVerificationResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets enrichments
      *
-     * @param \Vouchsafe\OpenAPI\Model\GetVerificationResponseEnrichmentsInner[] $enrichments enrichments
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationEnrichment[] $enrichments enrichments
      *
      * @return self
      */

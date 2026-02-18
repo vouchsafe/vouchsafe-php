@@ -36,6 +36,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * EvisaBaseExtractedDetails Class Doc Comment
  *
  * @category Class
+ * @description Extracted identity and status details from the eVisa verification. On a &#x60;pass&#x60; outcome, all fields for the sub-type will be populated. On a &#x60;fail&#x60; outcome, fields may be partially populated or empty depending on which validation step failed.
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -63,8 +64,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => 'string',
         'share_code' => 'string',
         'reference_number' => 'string',
-        'expiration_date' => 'string',
-        'valid_from' => 'string'
+        'expiration_date' => 'string'
     ];
 
     /**
@@ -80,8 +80,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => null,
         'share_code' => null,
         'reference_number' => null,
-        'expiration_date' => null,
-        'valid_from' => null
+        'expiration_date' => null
     ];
 
     /**
@@ -95,8 +94,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => false,
         'share_code' => false,
         'reference_number' => false,
-        'expiration_date' => true,
-        'valid_from' => true
+        'expiration_date' => true
     ];
 
     /**
@@ -190,8 +188,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => 'date_of_birth',
         'share_code' => 'share_code',
         'reference_number' => 'reference_number',
-        'expiration_date' => 'expiration_date',
-        'valid_from' => 'valid_from'
+        'expiration_date' => 'expiration_date'
     ];
 
     /**
@@ -205,8 +202,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => 'setDateOfBirth',
         'share_code' => 'setShareCode',
         'reference_number' => 'setReferenceNumber',
-        'expiration_date' => 'setExpirationDate',
-        'valid_from' => 'setValidFrom'
+        'expiration_date' => 'setExpirationDate'
     ];
 
     /**
@@ -220,8 +216,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         'date_of_birth' => 'getDateOfBirth',
         'share_code' => 'getShareCode',
         'reference_number' => 'getReferenceNumber',
-        'expiration_date' => 'getExpirationDate',
-        'valid_from' => 'getValidFrom'
+        'expiration_date' => 'getExpirationDate'
     ];
 
     /**
@@ -287,7 +282,6 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('share_code', $data ?? [], null);
         $this->setIfExists('reference_number', $data ?? [], null);
         $this->setIfExists('expiration_date', $data ?? [], null);
-        $this->setIfExists('valid_from', $data ?? [], null);
     }
 
     /**
@@ -480,7 +474,7 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets expiration_date
      *
-     * @param string|null $expiration_date expiration_date
+     * @param string|null $expiration_date Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      *
      * @return self
      */
@@ -497,40 +491,6 @@ class EvisaBaseExtractedDetails implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['expiration_date'] = $expiration_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets valid_from
-     *
-     * @return string|null
-     */
-    public function getValidFrom()
-    {
-        return $this->container['valid_from'];
-    }
-
-    /**
-     * Sets valid_from
-     *
-     * @param string|null $valid_from valid_from
-     *
-     * @return self
-     */
-    public function setValidFrom($valid_from)
-    {
-        if (is_null($valid_from)) {
-            array_push($this->openAPINullablesSetToNull, 'valid_from');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['valid_from'] = $valid_from;
 
         return $this;
     }

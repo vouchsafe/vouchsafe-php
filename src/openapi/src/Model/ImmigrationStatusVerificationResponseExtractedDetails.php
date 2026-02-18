@@ -64,9 +64,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => 'string',
         'reference_number' => 'string',
         'expiration_date' => 'string',
-        'valid_from' => 'string',
         'nationality' => 'string',
-        'immigration_status' => 'string'
+        'immigration_status' => 'string',
+        'valid_from' => 'string'
     ];
 
     /**
@@ -83,9 +83,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => null,
         'reference_number' => null,
         'expiration_date' => null,
-        'valid_from' => null,
         'nationality' => null,
-        'immigration_status' => null
+        'immigration_status' => null,
+        'valid_from' => null
     ];
 
     /**
@@ -100,9 +100,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => false,
         'reference_number' => false,
         'expiration_date' => true,
-        'valid_from' => true,
         'nationality' => false,
-        'immigration_status' => false
+        'immigration_status' => false,
+        'valid_from' => true
     ];
 
     /**
@@ -197,9 +197,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => 'share_code',
         'reference_number' => 'reference_number',
         'expiration_date' => 'expiration_date',
-        'valid_from' => 'valid_from',
         'nationality' => 'nationality',
-        'immigration_status' => 'immigration_status'
+        'immigration_status' => 'immigration_status',
+        'valid_from' => 'valid_from'
     ];
 
     /**
@@ -214,9 +214,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => 'setShareCode',
         'reference_number' => 'setReferenceNumber',
         'expiration_date' => 'setExpirationDate',
-        'valid_from' => 'setValidFrom',
         'nationality' => 'setNationality',
-        'immigration_status' => 'setImmigrationStatus'
+        'immigration_status' => 'setImmigrationStatus',
+        'valid_from' => 'setValidFrom'
     ];
 
     /**
@@ -231,9 +231,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         'share_code' => 'getShareCode',
         'reference_number' => 'getReferenceNumber',
         'expiration_date' => 'getExpirationDate',
-        'valid_from' => 'getValidFrom',
         'nationality' => 'getNationality',
-        'immigration_status' => 'getImmigrationStatus'
+        'immigration_status' => 'getImmigrationStatus',
+        'valid_from' => 'getValidFrom'
     ];
 
     /**
@@ -299,9 +299,9 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
         $this->setIfExists('share_code', $data ?? [], null);
         $this->setIfExists('reference_number', $data ?? [], null);
         $this->setIfExists('expiration_date', $data ?? [], null);
-        $this->setIfExists('valid_from', $data ?? [], null);
         $this->setIfExists('nationality', $data ?? [], null);
         $this->setIfExists('immigration_status', $data ?? [], null);
+        $this->setIfExists('valid_from', $data ?? [], null);
     }
 
     /**
@@ -494,7 +494,7 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
     /**
      * Sets expiration_date
      *
-     * @param string|null $expiration_date expiration_date
+     * @param string|null $expiration_date Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      *
      * @return self
      */
@@ -516,40 +516,6 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
     }
 
     /**
-     * Gets valid_from
-     *
-     * @return string|null
-     */
-    public function getValidFrom()
-    {
-        return $this->container['valid_from'];
-    }
-
-    /**
-     * Sets valid_from
-     *
-     * @param string|null $valid_from valid_from
-     *
-     * @return self
-     */
-    public function setValidFrom($valid_from)
-    {
-        if (is_null($valid_from)) {
-            array_push($this->openAPINullablesSetToNull, 'valid_from');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['valid_from'] = $valid_from;
-
-        return $this;
-    }
-
-    /**
      * Gets nationality
      *
      * @return string|null
@@ -562,7 +528,7 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
     /**
      * Sets nationality
      *
-     * @param string|null $nationality nationality
+     * @param string|null $nationality ISO 3166-1 alpha-3 nationality code (e.g. \"NGA\"). Only present for ImmigrationStatus.
      *
      * @return self
      */
@@ -589,7 +555,7 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
     /**
      * Sets immigration_status
      *
-     * @param string|null $immigration_status immigration_status
+     * @param string|null $immigration_status Immigration status string (e.g. \"Settled\", \"Skilled Worker\"). Only present for ImmigrationStatus.
      *
      * @return self
      */
@@ -599,6 +565,40 @@ class ImmigrationStatusVerificationResponseExtractedDetails implements ModelInte
             throw new \InvalidArgumentException('non-nullable immigration_status cannot be null');
         }
         $this->container['immigration_status'] = $immigration_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_from
+     *
+     * @return string|null
+     */
+    public function getValidFrom()
+    {
+        return $this->container['valid_from'];
+    }
+
+    /**
+     * Sets valid_from
+     *
+     * @param string|null $valid_from Start date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR). Only returned for `ImmigrationStatus` and `RightToRent` sub-types — not returned for `RightToWork`.
+     *
+     * @return self
+     */
+    public function setValidFrom($valid_from)
+    {
+        if (is_null($valid_from)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_from');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_from', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_from'] = $valid_from;
 
         return $this;
     }

@@ -59,12 +59,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
       */
     protected static $openAPITypes = [
         'verification_method' => 'string',
-        'billable' => 'bool',
-        'outcome' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\EvisaArtefact[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations',
         'evidence_type' => 'string',
-        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails'
+        'outcome' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
+        'billable' => 'bool',
+        'extracted_details' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails',
+        'artefacts' => '\Vouchsafe\OpenAPI\Model\EvisaArtefact[]',
+        'validations' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations'
     ];
 
     /**
@@ -76,12 +76,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
       */
     protected static $openAPIFormats = [
         'verification_method' => null,
-        'billable' => null,
-        'outcome' => null,
-        'artefacts' => null,
-        'validations' => null,
         'evidence_type' => null,
-        'extracted_details' => null
+        'outcome' => null,
+        'billable' => null,
+        'extracted_details' => null,
+        'artefacts' => null,
+        'validations' => null
     ];
 
     /**
@@ -91,12 +91,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
       */
     protected static array $openAPINullables = [
         'verification_method' => false,
-        'billable' => false,
-        'outcome' => false,
-        'artefacts' => false,
-        'validations' => false,
         'evidence_type' => false,
-        'extracted_details' => false
+        'outcome' => false,
+        'billable' => false,
+        'extracted_details' => false,
+        'artefacts' => false,
+        'validations' => false
     ];
 
     /**
@@ -186,12 +186,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
      */
     protected static $attributeMap = [
         'verification_method' => 'verification_method',
-        'billable' => 'billable',
-        'outcome' => 'outcome',
-        'artefacts' => 'artefacts',
-        'validations' => 'validations',
         'evidence_type' => 'evidence_type',
-        'extracted_details' => 'extracted_details'
+        'outcome' => 'outcome',
+        'billable' => 'billable',
+        'extracted_details' => 'extracted_details',
+        'artefacts' => 'artefacts',
+        'validations' => 'validations'
     ];
 
     /**
@@ -201,12 +201,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
      */
     protected static $setters = [
         'verification_method' => 'setVerificationMethod',
-        'billable' => 'setBillable',
-        'outcome' => 'setOutcome',
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations',
         'evidence_type' => 'setEvidenceType',
-        'extracted_details' => 'setExtractedDetails'
+        'outcome' => 'setOutcome',
+        'billable' => 'setBillable',
+        'extracted_details' => 'setExtractedDetails',
+        'artefacts' => 'setArtefacts',
+        'validations' => 'setValidations'
     ];
 
     /**
@@ -216,12 +216,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
      */
     protected static $getters = [
         'verification_method' => 'getVerificationMethod',
-        'billable' => 'getBillable',
-        'outcome' => 'getOutcome',
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations',
         'evidence_type' => 'getEvidenceType',
-        'extracted_details' => 'getExtractedDetails'
+        'outcome' => 'getOutcome',
+        'billable' => 'getBillable',
+        'extracted_details' => 'getExtractedDetails',
+        'artefacts' => 'getArtefacts',
+        'validations' => 'getValidations'
     ];
 
     /**
@@ -308,12 +308,12 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
     public function __construct(?array $data = null)
     {
         $this->setIfExists('verification_method', $data ?? [], null);
-        $this->setIfExists('billable', $data ?? [], null);
+        $this->setIfExists('evidence_type', $data ?? [], null);
         $this->setIfExists('outcome', $data ?? [], null);
+        $this->setIfExists('billable', $data ?? [], null);
+        $this->setIfExists('extracted_details', $data ?? [], null);
         $this->setIfExists('artefacts', $data ?? [], null);
         $this->setIfExists('validations', $data ?? [], null);
-        $this->setIfExists('evidence_type', $data ?? [], null);
-        $this->setIfExists('extracted_details', $data ?? [], null);
     }
 
     /**
@@ -355,18 +355,6 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
             );
         }
 
-        if ($this->container['billable'] === null) {
-            $invalidProperties[] = "'billable' can't be null";
-        }
-        if ($this->container['outcome'] === null) {
-            $invalidProperties[] = "'outcome' can't be null";
-        }
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
-        }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
-        }
         if ($this->container['evidence_type'] === null) {
             $invalidProperties[] = "'evidence_type' can't be null";
         }
@@ -379,8 +367,20 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
             );
         }
 
+        if ($this->container['outcome'] === null) {
+            $invalidProperties[] = "'outcome' can't be null";
+        }
+        if ($this->container['billable'] === null) {
+            $invalidProperties[] = "'billable' can't be null";
+        }
         if ($this->container['extracted_details'] === null) {
             $invalidProperties[] = "'extracted_details' can't be null";
+        }
+        if ($this->container['artefacts'] === null) {
+            $invalidProperties[] = "'artefacts' can't be null";
+        }
+        if ($this->container['validations'] === null) {
+            $invalidProperties[] = "'validations' can't be null";
         }
         return $invalidProperties;
     }
@@ -435,28 +435,38 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets billable
+     * Gets evidence_type
      *
-     * @return bool
+     * @return string
      */
-    public function getBillable()
+    public function getEvidenceType()
     {
-        return $this->container['billable'];
+        return $this->container['evidence_type'];
     }
 
     /**
-     * Sets billable
+     * Sets evidence_type
      *
-     * @param bool $billable billable
+     * @param string $evidence_type evidence_type
      *
      * @return self
      */
-    public function setBillable($billable)
+    public function setEvidenceType($evidence_type)
     {
-        if (is_null($billable)) {
-            throw new \InvalidArgumentException('non-nullable billable cannot be null');
+        if (is_null($evidence_type)) {
+            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
         }
-        $this->container['billable'] = $billable;
+        $allowedValues = $this->getEvidenceTypeAllowableValues();
+        if (!in_array($evidence_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
+                    $evidence_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['evidence_type'] = $evidence_type;
 
         return $this;
     }
@@ -484,6 +494,60 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('non-nullable outcome cannot be null');
         }
         $this->container['outcome'] = $outcome;
+
+        return $this;
+    }
+
+    /**
+     * Gets billable
+     *
+     * @return bool
+     */
+    public function getBillable()
+    {
+        return $this->container['billable'];
+    }
+
+    /**
+     * Sets billable
+     *
+     * @param bool $billable Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid.
+     *
+     * @return self
+     */
+    public function setBillable($billable)
+    {
+        if (is_null($billable)) {
+            throw new \InvalidArgumentException('non-nullable billable cannot be null');
+        }
+        $this->container['billable'] = $billable;
+
+        return $this;
+    }
+
+    /**
+     * Gets extracted_details
+     *
+     * @return \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails
+     */
+    public function getExtractedDetails()
+    {
+        return $this->container['extracted_details'];
+    }
+
+    /**
+     * Sets extracted_details
+     *
+     * @param \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails $extracted_details extracted_details
+     *
+     * @return self
+     */
+    public function setExtractedDetails($extracted_details)
+    {
+        if (is_null($extracted_details)) {
+            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
+        }
+        $this->container['extracted_details'] = $extracted_details;
 
         return $this;
     }
@@ -538,70 +602,6 @@ class ImmigrationStatusVerificationResponse implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('non-nullable validations cannot be null');
         }
         $this->container['validations'] = $validations;
-
-        return $this;
-    }
-
-    /**
-     * Gets evidence_type
-     *
-     * @return string
-     */
-    public function getEvidenceType()
-    {
-        return $this->container['evidence_type'];
-    }
-
-    /**
-     * Sets evidence_type
-     *
-     * @param string $evidence_type evidence_type
-     *
-     * @return self
-     */
-    public function setEvidenceType($evidence_type)
-    {
-        if (is_null($evidence_type)) {
-            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
-        }
-        $allowedValues = $this->getEvidenceTypeAllowableValues();
-        if (!in_array($evidence_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
-                    $evidence_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['evidence_type'] = $evidence_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets extracted_details
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails
-     */
-    public function getExtractedDetails()
-    {
-        return $this->container['extracted_details'];
-    }
-
-    /**
-     * Sets extracted_details
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseExtractedDetails $extracted_details extracted_details
-     *
-     * @return self
-     */
-    public function setExtractedDetails($extracted_details)
-    {
-        if (is_null($extracted_details)) {
-            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
-        }
-        $this->container['extracted_details'] = $extracted_details;
 
         return $this;
     }

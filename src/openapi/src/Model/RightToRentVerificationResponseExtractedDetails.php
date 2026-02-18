@@ -480,7 +480,7 @@ class RightToRentVerificationResponseExtractedDetails implements ModelInterface,
     /**
      * Sets expiration_date
      *
-     * @param string|null $expiration_date expiration_date
+     * @param string|null $expiration_date Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      *
      * @return self
      */
@@ -514,7 +514,7 @@ class RightToRentVerificationResponseExtractedDetails implements ModelInterface,
     /**
      * Sets valid_from
      *
-     * @param string|null $valid_from valid_from
+     * @param string|null $valid_from Start date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR). Only returned for `ImmigrationStatus` and `RightToRent` sub-types — not returned for `RightToWork`.
      *
      * @return self
      */

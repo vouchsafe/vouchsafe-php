@@ -1,6 +1,6 @@
 <?php
 /**
- * ImmigrationStatusVerificationResponseValidations
+ * ApiVerificationCheckAnyOf2Validations
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * ImmigrationStatusVerificationResponseValidations Class Doc Comment
+ * ApiVerificationCheckAnyOf2Validations Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImmigrationStatusVerificationResponseValidations implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerificationCheckAnyOf2Validations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImmigrationStatusVerificationResponse_validations';
+    protected static $openAPIModelName = 'Api_VerificationCheck__anyOf_2_validations';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @var string[]
       */
     protected static $openAPITypes = [
-        'evisa_exists' => '\Vouchsafe\OpenAPI\Model\EvisaExistsResult',
-        'required_fields_extracted' => '\Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult',
-        'evisa_started' => '\Vouchsafe\OpenAPI\Model\EvisaStartedResult',
-        'evisa_not_expired' => '\Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult'
+        'phone_verified' => '\Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1ValidationsEmailVerified'
     ];
 
     /**
@@ -72,10 +69,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'evisa_exists' => null,
-        'required_fields_extracted' => null,
-        'evisa_started' => null,
-        'evisa_not_expired' => null
+        'phone_verified' => null
     ];
 
     /**
@@ -84,10 +78,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'evisa_exists' => false,
-        'required_fields_extracted' => false,
-        'evisa_started' => false,
-        'evisa_not_expired' => false
+        'phone_verified' => false
     ];
 
     /**
@@ -176,10 +167,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $attributeMap = [
-        'evisa_exists' => 'evisa_exists',
-        'required_fields_extracted' => 'required_fields_extracted',
-        'evisa_started' => 'evisa_started',
-        'evisa_not_expired' => 'evisa_not_expired'
+        'phone_verified' => 'phone_verified'
     ];
 
     /**
@@ -188,10 +176,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $setters = [
-        'evisa_exists' => 'setEvisaExists',
-        'required_fields_extracted' => 'setRequiredFieldsExtracted',
-        'evisa_started' => 'setEvisaStarted',
-        'evisa_not_expired' => 'setEvisaNotExpired'
+        'phone_verified' => 'setPhoneVerified'
     ];
 
     /**
@@ -200,10 +185,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      * @var string[]
      */
     protected static $getters = [
-        'evisa_exists' => 'getEvisaExists',
-        'required_fields_extracted' => 'getRequiredFieldsExtracted',
-        'evisa_started' => 'getEvisaStarted',
-        'evisa_not_expired' => 'getEvisaNotExpired'
+        'phone_verified' => 'getPhoneVerified'
     ];
 
     /**
@@ -263,10 +245,7 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('evisa_exists', $data ?? [], null);
-        $this->setIfExists('required_fields_extracted', $data ?? [], null);
-        $this->setIfExists('evisa_started', $data ?? [], null);
-        $this->setIfExists('evisa_not_expired', $data ?? [], null);
+        $this->setIfExists('phone_verified', $data ?? [], null);
     }
 
     /**
@@ -312,109 +291,28 @@ class ImmigrationStatusVerificationResponseValidations implements ModelInterface
 
 
     /**
-     * Gets evisa_exists
+     * Gets phone_verified
      *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null
+     * @return \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1ValidationsEmailVerified|null
      */
-    public function getEvisaExists()
+    public function getPhoneVerified()
     {
-        return $this->container['evisa_exists'];
+        return $this->container['phone_verified'];
     }
 
     /**
-     * Sets evisa_exists
+     * Sets phone_verified
      *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaExistsResult|null $evisa_exists evisa_exists
+     * @param \Vouchsafe\OpenAPI\Model\ApiVerificationCheckAnyOf1ValidationsEmailVerified|null $phone_verified phone_verified
      *
      * @return self
      */
-    public function setEvisaExists($evisa_exists)
+    public function setPhoneVerified($phone_verified)
     {
-        if (is_null($evisa_exists)) {
-            throw new \InvalidArgumentException('non-nullable evisa_exists cannot be null');
+        if (is_null($phone_verified)) {
+            throw new \InvalidArgumentException('non-nullable phone_verified cannot be null');
         }
-        $this->container['evisa_exists'] = $evisa_exists;
-
-        return $this;
-    }
-
-    /**
-     * Gets required_fields_extracted
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null
-     */
-    public function getRequiredFieldsExtracted()
-    {
-        return $this->container['required_fields_extracted'];
-    }
-
-    /**
-     * Sets required_fields_extracted
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult|null $required_fields_extracted required_fields_extracted
-     *
-     * @return self
-     */
-    public function setRequiredFieldsExtracted($required_fields_extracted)
-    {
-        if (is_null($required_fields_extracted)) {
-            throw new \InvalidArgumentException('non-nullable required_fields_extracted cannot be null');
-        }
-        $this->container['required_fields_extracted'] = $required_fields_extracted;
-
-        return $this;
-    }
-
-    /**
-     * Gets evisa_started
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null
-     */
-    public function getEvisaStarted()
-    {
-        return $this->container['evisa_started'];
-    }
-
-    /**
-     * Sets evisa_started
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaStartedResult|null $evisa_started evisa_started
-     *
-     * @return self
-     */
-    public function setEvisaStarted($evisa_started)
-    {
-        if (is_null($evisa_started)) {
-            throw new \InvalidArgumentException('non-nullable evisa_started cannot be null');
-        }
-        $this->container['evisa_started'] = $evisa_started;
-
-        return $this;
-    }
-
-    /**
-     * Gets evisa_not_expired
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null
-     */
-    public function getEvisaNotExpired()
-    {
-        return $this->container['evisa_not_expired'];
-    }
-
-    /**
-     * Sets evisa_not_expired
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult|null $evisa_not_expired evisa_not_expired
-     *
-     * @return self
-     */
-    public function setEvisaNotExpired($evisa_not_expired)
-    {
-        if (is_null($evisa_not_expired)) {
-            throw new \InvalidArgumentException('non-nullable evisa_not_expired cannot be null');
-        }
-        $this->container['evisa_not_expired'] = $evisa_not_expired;
+        $this->container['phone_verified'] = $phone_verified;
 
         return $this;
     }

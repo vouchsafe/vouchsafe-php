@@ -36,6 +36,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * EvisaArtefact Class Doc Comment
  *
  * @category Class
+ * @description Artefact returned inline in the eVisa verification response. Download URLs are pre-signed and expire after 30 minutes.
  * @package  Vouchsafe\OpenAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -363,7 +364,7 @@ class EvisaArtefact implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets download_url
      *
-     * @param string $download_url download_url
+     * @param string $download_url Pre-signed download URL. Expires after `expires_in_seconds`.
      *
      * @return self
      */
@@ -390,7 +391,7 @@ class EvisaArtefact implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires_at
      *
-     * @param string $expires_at expires_at
+     * @param string $expires_at ISO 8601 timestamp when the download URL expires.
      *
      * @return self
      */
@@ -417,7 +418,7 @@ class EvisaArtefact implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expires_in_seconds
      *
-     * @param float $expires_in_seconds expires_in_seconds
+     * @param float $expires_in_seconds Time in seconds until the download URL expires (1800 seconds / 30 minutes).
      *
      * @return self
      */

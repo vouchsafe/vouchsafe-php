@@ -1,6 +1,6 @@
 <?php
 /**
- * RightToRentVerificationResponse
+ * ApiVerificationCheckAnyOfArtefactsInner
  *
  * PHP version 8.1
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Vouchsafe\OpenAPI\ObjectSerializer;
 
 /**
- * RightToRentVerificationResponse Class Doc Comment
+ * ApiVerificationCheckAnyOfArtefactsInner Class Doc Comment
  *
  * @category Class
  * @package  Vouchsafe\OpenAPI
@@ -41,7 +41,7 @@ use \Vouchsafe\OpenAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ApiVerificationCheckAnyOfArtefactsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RightToRentVerificationResponse';
+    protected static $openAPIModelName = 'Api_VerificationCheck__anyOf_artefacts_inner';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'verification_method' => 'string',
-        'evidence_type' => 'string',
-        'outcome' => '\Vouchsafe\OpenAPI\Model\ApiValidationStatus',
-        'billable' => 'bool',
-        'extracted_details' => '\Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails',
-        'artefacts' => '\Vouchsafe\OpenAPI\Model\EvisaArtefact[]',
-        'validations' => '\Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations'
+        'key' => 'string',
+        'role' => 'string'
     ];
 
     /**
@@ -75,13 +70,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'verification_method' => null,
-        'evidence_type' => null,
-        'outcome' => null,
-        'billable' => null,
-        'extracted_details' => null,
-        'artefacts' => null,
-        'validations' => null
+        'key' => null,
+        'role' => null
     ];
 
     /**
@@ -90,13 +80,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'verification_method' => false,
-        'evidence_type' => false,
-        'outcome' => false,
-        'billable' => false,
-        'extracted_details' => false,
-        'artefacts' => false,
-        'validations' => false
+        'key' => false,
+        'role' => false
     ];
 
     /**
@@ -185,13 +170,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'verification_method' => 'verification_method',
-        'evidence_type' => 'evidence_type',
-        'outcome' => 'outcome',
-        'billable' => 'billable',
-        'extracted_details' => 'extracted_details',
-        'artefacts' => 'artefacts',
-        'validations' => 'validations'
+        'key' => 'key',
+        'role' => 'role'
     ];
 
     /**
@@ -200,13 +180,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'verification_method' => 'setVerificationMethod',
-        'evidence_type' => 'setEvidenceType',
-        'outcome' => 'setOutcome',
-        'billable' => 'setBillable',
-        'extracted_details' => 'setExtractedDetails',
-        'artefacts' => 'setArtefacts',
-        'validations' => 'setValidations'
+        'key' => 'setKey',
+        'role' => 'setRole'
     ];
 
     /**
@@ -215,13 +190,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'verification_method' => 'getVerificationMethod',
-        'evidence_type' => 'getEvidenceType',
-        'outcome' => 'getOutcome',
-        'billable' => 'getBillable',
-        'extracted_details' => 'getExtractedDetails',
-        'artefacts' => 'getArtefacts',
-        'validations' => 'getValidations'
+        'key' => 'getKey',
+        'role' => 'getRole'
     ];
 
     /**
@@ -265,30 +235,21 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-    public const VERIFICATION_METHOD_EVISA = 'evisa';
-    public const EVIDENCE_TYPE_RIGHT_TO_RENT = 'right_to_rent';
+    public const ROLE_DOCUMENT = 'document';
+    public const ROLE_BACKSIDE = 'backside';
+    public const ROLE_FACE_SCAN = 'face_scan';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getVerificationMethodAllowableValues()
+    public function getRoleAllowableValues()
     {
         return [
-            self::VERIFICATION_METHOD_EVISA,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEvidenceTypeAllowableValues()
-    {
-        return [
-            self::EVIDENCE_TYPE_RIGHT_TO_RENT,
+            self::ROLE_DOCUMENT,
+            self::ROLE_BACKSIDE,
+            self::ROLE_FACE_SCAN,
         ];
     }
 
@@ -307,13 +268,8 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('verification_method', $data ?? [], null);
-        $this->setIfExists('evidence_type', $data ?? [], null);
-        $this->setIfExists('outcome', $data ?? [], null);
-        $this->setIfExists('billable', $data ?? [], null);
-        $this->setIfExists('extracted_details', $data ?? [], null);
-        $this->setIfExists('artefacts', $data ?? [], null);
-        $this->setIfExists('validations', $data ?? [], null);
+        $this->setIfExists('key', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
     }
 
     /**
@@ -343,45 +299,21 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
     {
         $invalidProperties = [];
 
-        if ($this->container['verification_method'] === null) {
-            $invalidProperties[] = "'verification_method' can't be null";
+        if ($this->container['key'] === null) {
+            $invalidProperties[] = "'key' can't be null";
         }
-        $allowedValues = $this->getVerificationMethodAllowableValues();
-        if (!is_null($this->container['verification_method']) && !in_array($this->container['verification_method'], $allowedValues, true)) {
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
+        }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'verification_method', must be one of '%s'",
-                $this->container['verification_method'],
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['evidence_type'] === null) {
-            $invalidProperties[] = "'evidence_type' can't be null";
-        }
-        $allowedValues = $this->getEvidenceTypeAllowableValues();
-        if (!is_null($this->container['evidence_type']) && !in_array($this->container['evidence_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'evidence_type', must be one of '%s'",
-                $this->container['evidence_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['outcome'] === null) {
-            $invalidProperties[] = "'outcome' can't be null";
-        }
-        if ($this->container['billable'] === null) {
-            $invalidProperties[] = "'billable' can't be null";
-        }
-        if ($this->container['extracted_details'] === null) {
-            $invalidProperties[] = "'extracted_details' can't be null";
-        }
-        if ($this->container['artefacts'] === null) {
-            $invalidProperties[] = "'artefacts' can't be null";
-        }
-        if ($this->container['validations'] === null) {
-            $invalidProperties[] = "'validations' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -398,210 +330,65 @@ class RightToRentVerificationResponse implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets verification_method
+     * Gets key
      *
      * @return string
      */
-    public function getVerificationMethod()
+    public function getKey()
     {
-        return $this->container['verification_method'];
+        return $this->container['key'];
     }
 
     /**
-     * Sets verification_method
+     * Sets key
      *
-     * @param string $verification_method verification_method
+     * @param string $key key
      *
      * @return self
      */
-    public function setVerificationMethod($verification_method)
+    public function setKey($key)
     {
-        if (is_null($verification_method)) {
-            throw new \InvalidArgumentException('non-nullable verification_method cannot be null');
+        if (is_null($key)) {
+            throw new \InvalidArgumentException('non-nullable key cannot be null');
         }
-        $allowedValues = $this->getVerificationMethodAllowableValues();
-        if (!in_array($verification_method, $allowedValues, true)) {
+        $this->container['key'] = $key;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param string $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            throw new \InvalidArgumentException('non-nullable role cannot be null');
+        }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!in_array($role, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'verification_method', must be one of '%s'",
-                    $verification_method,
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['verification_method'] = $verification_method;
-
-        return $this;
-    }
-
-    /**
-     * Gets evidence_type
-     *
-     * @return string
-     */
-    public function getEvidenceType()
-    {
-        return $this->container['evidence_type'];
-    }
-
-    /**
-     * Sets evidence_type
-     *
-     * @param string $evidence_type evidence_type
-     *
-     * @return self
-     */
-    public function setEvidenceType($evidence_type)
-    {
-        if (is_null($evidence_type)) {
-            throw new \InvalidArgumentException('non-nullable evidence_type cannot be null');
-        }
-        $allowedValues = $this->getEvidenceTypeAllowableValues();
-        if (!in_array($evidence_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'evidence_type', must be one of '%s'",
-                    $evidence_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['evidence_type'] = $evidence_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets outcome
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ApiValidationStatus
-     */
-    public function getOutcome()
-    {
-        return $this->container['outcome'];
-    }
-
-    /**
-     * Sets outcome
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ApiValidationStatus $outcome outcome
-     *
-     * @return self
-     */
-    public function setOutcome($outcome)
-    {
-        if (is_null($outcome)) {
-            throw new \InvalidArgumentException('non-nullable outcome cannot be null');
-        }
-        $this->container['outcome'] = $outcome;
-
-        return $this;
-    }
-
-    /**
-     * Gets billable
-     *
-     * @return bool
-     */
-    public function getBillable()
-    {
-        return $this->container['billable'];
-    }
-
-    /**
-     * Sets billable
-     *
-     * @param bool $billable Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid.
-     *
-     * @return self
-     */
-    public function setBillable($billable)
-    {
-        if (is_null($billable)) {
-            throw new \InvalidArgumentException('non-nullable billable cannot be null');
-        }
-        $this->container['billable'] = $billable;
-
-        return $this;
-    }
-
-    /**
-     * Gets extracted_details
-     *
-     * @return \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails
-     */
-    public function getExtractedDetails()
-    {
-        return $this->container['extracted_details'];
-    }
-
-    /**
-     * Sets extracted_details
-     *
-     * @param \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponseExtractedDetails $extracted_details extracted_details
-     *
-     * @return self
-     */
-    public function setExtractedDetails($extracted_details)
-    {
-        if (is_null($extracted_details)) {
-            throw new \InvalidArgumentException('non-nullable extracted_details cannot be null');
-        }
-        $this->container['extracted_details'] = $extracted_details;
-
-        return $this;
-    }
-
-    /**
-     * Gets artefacts
-     *
-     * @return \Vouchsafe\OpenAPI\Model\EvisaArtefact[]
-     */
-    public function getArtefacts()
-    {
-        return $this->container['artefacts'];
-    }
-
-    /**
-     * Sets artefacts
-     *
-     * @param \Vouchsafe\OpenAPI\Model\EvisaArtefact[] $artefacts artefacts
-     *
-     * @return self
-     */
-    public function setArtefacts($artefacts)
-    {
-        if (is_null($artefacts)) {
-            throw new \InvalidArgumentException('non-nullable artefacts cannot be null');
-        }
-        $this->container['artefacts'] = $artefacts;
-
-        return $this;
-    }
-
-    /**
-     * Gets validations
-     *
-     * @return \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations
-     */
-    public function getValidations()
-    {
-        return $this->container['validations'];
-    }
-
-    /**
-     * Sets validations
-     *
-     * @param \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponseValidations $validations validations
-     *
-     * @return self
-     */
-    public function setValidations($validations)
-    {
-        if (is_null($validations)) {
-            throw new \InvalidArgumentException('non-nullable validations cannot be null');
-        }
-        $this->container['validations'] = $validations;
+        $this->container['role'] = $role;
 
         return $this;
     }
