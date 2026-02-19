@@ -71,7 +71,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_bureau_verification_report' => '\Vouchsafe\OpenAPI\Model\CreditBureauVerificationReport',
         'online_footprint_verification_report' => '\Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport',
         'aml_verification_report' => '\Vouchsafe\OpenAPI\Model\AmlVerificationReport',
-        'metadata' => 'mixed',
+        'metadata' => '\Vouchsafe\OpenAPI\Model\SmartLookupMetadata',
         'created_at' => 'string'
     ];
 
@@ -119,7 +119,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_bureau_verification_report' => false,
         'online_footprint_verification_report' => false,
         'aml_verification_report' => false,
-        'metadata' => true,
+        'metadata' => false,
         'created_at' => false
     ];
 
@@ -411,7 +411,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['postcode'] === null && !$this->isNullableSetToNull('postcode')) {
             $invalidProperties[] = "'postcode' can't be null";
         }
-        if ($this->container['metadata'] === null && !$this->isNullableSetToNull('metadata')) {
+        if ($this->container['metadata'] === null) {
             $invalidProperties[] = "'metadata' can't be null";
         }
         if ($this->container['created_at'] === null) {
@@ -823,7 +823,7 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets metadata
      *
-     * @return mixed|null
+     * @return \Vouchsafe\OpenAPI\Model\SmartLookupMetadata
      */
     public function getMetadata()
     {
@@ -833,21 +833,14 @@ class GetSmartLookupResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets metadata
      *
-     * @param mixed|null $metadata Extra information about the checks performed. May include: - creditBureauVerification: Raw credit check data (identityMatches, residencyMatches, etc.) - onlineFootprintVerification: Email/phone validation data with scores and signals - amlVerification: Sanctions screening results  Structure depends on which checks were requested. May change without notice.
+     * @param \Vouchsafe\OpenAPI\Model\SmartLookupMetadata $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            array_push($this->openAPINullablesSetToNull, 'metadata');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metadata', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
 

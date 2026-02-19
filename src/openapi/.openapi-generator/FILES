@@ -3,12 +3,11 @@ git_push.sh
 src/Api/ArtefactsApi.php
 src/Api/AuthenticationApi.php
 src/Api/DigitalIDApi.php
-src/Api/EVisaVerificationApi.php
 src/Api/FlowsApi.php
 src/Api/SmartLookupsApi.php
-src/Api/SupportingDocumentVerificationApi.php
 src/Api/TeamApi.php
 src/Api/VerificationsApi.php
+src/Api/VerifyApi.php
 src/ApiException.php
 src/Configuration.php
 src/FormDataProcessor.php
@@ -136,6 +135,8 @@ src/Model/RightToWorkVerificationResponse.php
 src/Model/RightToWorkVerificationResponseExtractedDetails.php
 src/Model/SmartLookupInput.php
 src/Model/SmartLookupInputThresholds.php
+src/Model/SmartLookupMetadata.php
+src/Model/SmartLookupMetadataThresholds.php
 src/Model/SupportingDocumentEvidenceType.php
 src/Model/SupportingDocumentExtractedDetails.php
 src/Model/SupportingDocumentValidations.php

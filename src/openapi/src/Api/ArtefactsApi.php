@@ -75,7 +75,7 @@ class ArtefactsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getArtefacts' => [
+        'getArtefact' => [
             'application/json',
         ],
     ];
@@ -127,34 +127,34 @@ class ArtefactsApi
     }
 
     /**
-     * Operation getArtefacts
+     * Operation getArtefact
      *
      * @param  string $artefact_key artefact_key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefacts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefact'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Vouchsafe\OpenAPI\Model\GetArtefactsResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse
      */
-    public function getArtefacts($artefact_key, string $contentType = self::contentTypes['getArtefacts'][0])
+    public function getArtefact($artefact_key, string $contentType = self::contentTypes['getArtefact'][0])
     {
-        list($response) = $this->getArtefactsWithHttpInfo($artefact_key, $contentType);
+        list($response) = $this->getArtefactWithHttpInfo($artefact_key, $contentType);
         return $response;
     }
 
     /**
-     * Operation getArtefactsWithHttpInfo
+     * Operation getArtefactWithHttpInfo
      *
      * @param  string $artefact_key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefacts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefact'] to see the possible values for this operation
      *
      * @throws \Vouchsafe\OpenAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Vouchsafe\OpenAPI\Model\GetArtefactsResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse|\Vouchsafe\OpenAPI\Model\ApiErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getArtefactsWithHttpInfo($artefact_key, string $contentType = self::contentTypes['getArtefacts'][0])
+    public function getArtefactWithHttpInfo($artefact_key, string $contentType = self::contentTypes['getArtefact'][0])
     {
-        $request = $this->getArtefactsRequest($artefact_key, $contentType);
+        $request = $this->getArtefactRequest($artefact_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -268,17 +268,17 @@ class ArtefactsApi
     }
 
     /**
-     * Operation getArtefactsAsync
+     * Operation getArtefactAsync
      *
      * @param  string $artefact_key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefacts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getArtefactsAsync($artefact_key, string $contentType = self::contentTypes['getArtefacts'][0])
+    public function getArtefactAsync($artefact_key, string $contentType = self::contentTypes['getArtefact'][0])
     {
-        return $this->getArtefactsAsyncWithHttpInfo($artefact_key, $contentType)
+        return $this->getArtefactAsyncWithHttpInfo($artefact_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -287,18 +287,18 @@ class ArtefactsApi
     }
 
     /**
-     * Operation getArtefactsAsyncWithHttpInfo
+     * Operation getArtefactAsyncWithHttpInfo
      *
      * @param  string $artefact_key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefacts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getArtefactsAsyncWithHttpInfo($artefact_key, string $contentType = self::contentTypes['getArtefacts'][0])
+    public function getArtefactAsyncWithHttpInfo($artefact_key, string $contentType = self::contentTypes['getArtefact'][0])
     {
         $returnType = '\Vouchsafe\OpenAPI\Model\GetArtefactsResponse';
-        $request = $this->getArtefactsRequest($artefact_key, $contentType);
+        $request = $this->getArtefactRequest($artefact_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -337,21 +337,21 @@ class ArtefactsApi
     }
 
     /**
-     * Create request for operation 'getArtefacts'
+     * Create request for operation 'getArtefact'
      *
      * @param  string $artefact_key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefacts'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getArtefact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getArtefactsRequest($artefact_key, string $contentType = self::contentTypes['getArtefacts'][0])
+    public function getArtefactRequest($artefact_key, string $contentType = self::contentTypes['getArtefact'][0])
     {
 
         // verify the required parameter 'artefact_key' is set
         if ($artefact_key === null || (is_array($artefact_key) && count($artefact_key) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $artefact_key when calling getArtefacts'
+                'Missing the required parameter $artefact_key when calling getArtefact'
             );
         }
 
