@@ -2,7 +2,7 @@ name: auto-generate-openapi
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 jobs:
@@ -17,14 +17,13 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          distribution: "temurin"
-          java-version: "11"
+          php-version: "8.1"
 
-      - name: Install OpenAPI Generator
-        run: npm install -g @openapitools/openapi-generator-cli
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
 
       - name: Generate SDK
         run: make generate
@@ -43,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/openapi
+          git add open-api.json src/openapi
           git commit -m "chore: regenerate SDK"
 
           # Get the latest tag
