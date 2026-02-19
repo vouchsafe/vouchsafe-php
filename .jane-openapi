@@ -1,0 +1,6 @@
+<?php
+return [
+  'openapi-file' => __DIR__ . '/open-api.json',
+  'namespace'    => 'Vouchsafe\\OpenAPI',
+  'directory'    => __DIR__ . '/src/openapi/src',
+];
