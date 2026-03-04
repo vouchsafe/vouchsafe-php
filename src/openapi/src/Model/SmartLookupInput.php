@@ -49,7 +49,8 @@ class SmartLookupInput
      */
     protected $email;
     /**
-     * (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+     * (conditionally required) — Phone number in E.164 format. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+     * For CreditBureau checks, providing a UK phone number can improve match rates by enabling matching against mobile data.
      *
      * @var string
      */
@@ -199,7 +200,8 @@ class SmartLookupInput
         return $this;
     }
     /**
-     * (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+     * (conditionally required) — Phone number in E.164 format. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+     * For CreditBureau checks, providing a UK phone number can improve match rates by enabling matching against mobile data.
      *
      * @return string
      */
@@ -208,12 +210,13 @@ class SmartLookupInput
         return $this->phone;
     }
     /**
-     * (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
-     *
-     * @param string $phone
-     *
-     * @return self
-     */
+    * (conditionally required) — Phone number in E.164 format. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+    For CreditBureau checks, providing a UK phone number can improve match rates by enabling matching against mobile data.
+    *
+    * @param string $phone
+    *
+    * @return self
+    */
     public function setPhone(string $phone): self
     {
         $this->initialized['phone'] = true;
