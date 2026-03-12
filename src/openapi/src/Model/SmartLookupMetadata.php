@@ -37,6 +37,12 @@ class SmartLookupMetadata
      */
     protected $amlVerification;
     /**
+     * Construct a type with a set of properties K of type T
+     *
+     * @var RecordStringUnknown
+     */
+    protected $nfdVerification;
+    /**
      * The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50
      *
      * @return SmartLookupMetadataThresholds
@@ -122,6 +128,28 @@ class SmartLookupMetadata
     {
         $this->initialized['amlVerification'] = true;
         $this->amlVerification = $amlVerification;
+        return $this;
+    }
+    /**
+     * Construct a type with a set of properties K of type T
+     *
+     * @return RecordStringUnknown
+     */
+    public function getNfdVerification(): RecordStringUnknown
+    {
+        return $this->nfdVerification;
+    }
+    /**
+     * Construct a type with a set of properties K of type T
+     *
+     * @param RecordStringUnknown $nfdVerification
+     *
+     * @return self
+     */
+    public function setNfdVerification(RecordStringUnknown $nfdVerification): self
+    {
+        $this->initialized['nfdVerification'] = true;
+        $this->nfdVerification = $nfdVerification;
         return $this;
     }
 }

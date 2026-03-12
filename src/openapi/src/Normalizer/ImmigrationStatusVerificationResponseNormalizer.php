@@ -71,7 +71,7 @@ class ImmigrationStatusVerificationResponseNormalizer implements DenormalizerInt
         if (\array_key_exists('validations', $data)) {
             $value_2 = $data['validations'];
             if (is_array($data['validations'])) {
-                $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\EvisaValidations::class, 'json', $context);
+                $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaValidations::class, 'json', $context);
             } elseif (is_array($data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\RecordStringNever::class, 'json', $context);
             }

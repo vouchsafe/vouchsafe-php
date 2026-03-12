@@ -49,6 +49,9 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
         if (\array_key_exists('amlVerification', $data)) {
             $object->setAmlVerification($this->denormalizer->denormalize($data['amlVerification'], \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class, 'json', $context));
         }
+        if (\array_key_exists('nfdVerification', $data)) {
+            $object->setNfdVerification($this->denormalizer->denormalize($data['nfdVerification'], \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class, 'json', $context));
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -63,6 +66,9 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
         }
         if ($data->isInitialized('amlVerification') && null !== $data->getAmlVerification()) {
             $dataArray['amlVerification'] = $this->normalizer->normalize($data->getAmlVerification(), 'json', $context);
+        }
+        if ($data->isInitialized('nfdVerification') && null !== $data->getNfdVerification()) {
+            $dataArray['nfdVerification'] = $this->normalizer->normalize($data->getNfdVerification(), 'json', $context);
         }
         return $dataArray;
     }

@@ -65,6 +65,10 @@ class GetSmartLookupResponse
      */
     protected $amlVerificationReport;
     /**
+     * @var NfdVerificationReport
+     */
+    protected $nfdVerificationReport;
+    /**
      * @var SmartLookupMetadata
      */
     protected $metadata;
@@ -304,6 +308,24 @@ class GetSmartLookupResponse
     {
         $this->initialized['amlVerificationReport'] = true;
         $this->amlVerificationReport = $amlVerificationReport;
+        return $this;
+    }
+    /**
+     * @return NfdVerificationReport
+     */
+    public function getNfdVerificationReport(): NfdVerificationReport
+    {
+        return $this->nfdVerificationReport;
+    }
+    /**
+     * @param NfdVerificationReport $nfdVerificationReport
+     *
+     * @return self
+     */
+    public function setNfdVerificationReport(NfdVerificationReport $nfdVerificationReport): self
+    {
+        $this->initialized['nfdVerificationReport'] = true;
+        $this->nfdVerificationReport = $nfdVerificationReport;
         return $this;
     }
     /**

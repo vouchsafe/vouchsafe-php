@@ -298,6 +298,14 @@
         "type": "object",
         "additionalProperties": false
       },
+      "ImmigrationStatusApiValidationStatus": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "fail",
+          "inconclusive"
+        ]
+      },
       "ImmigrationStatusExtractedDetails": {
         "description": "Extracted details for `ImmigrationStatus` — includes all base fields plus `valid_from`, `nationality` and `immigration_status`.",
         "properties": {
@@ -426,6 +434,172 @@
         "type": "object",
         "additionalProperties": false
       },
+      "ImmigrationStatusEvisaStartedFailedReason": {
+        "type": "string",
+        "enum": [
+          "SHARE_CODE_ERROR",
+          "INCORRECT_DETAILS",
+          "EVISA_NOT_YET_VALID",
+          "UNRECOGNISED_INDEFINITE_STATUS"
+        ]
+      },
+      "ImmigrationStatusEvisaStartedResult": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ImmigrationStatusApiValidationStatus"
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/ImmigrationStatusEvisaStartedFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ImmigrationStatusEvisaNotExpiredFailedReason": {
+        "type": "string",
+        "enum": [
+          "SHARE_CODE_ERROR",
+          "INCORRECT_DETAILS",
+          "EVISA_NOT_YET_VALID",
+          "EXPIRY_DATE_PASSED",
+          "UNRECOGNISED_INDEFINITE_STATUS"
+        ]
+      },
+      "ImmigrationStatusEvisaNotExpiredResult": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ImmigrationStatusApiValidationStatus"
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/ImmigrationStatusEvisaNotExpiredFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ImmigrationStatusEvisaValidations": {
+        "properties": {
+          "evisa_exists": {
+            "$ref": "#/components/schemas/EvisaExistsResult"
+          },
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/EvisaRequiredFieldsExtractedResult"
+          },
+          "evisa_started": {
+            "$ref": "#/components/schemas/ImmigrationStatusEvisaStartedResult"
+          },
+          "evisa_not_expired": {
+            "$ref": "#/components/schemas/ImmigrationStatusEvisaNotExpiredResult"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ImmigrationStatusVerificationResponse": {
+        "properties": {
+          "verification_method": {
+            "type": "string",
+            "enum": [
+              "evisa"
+            ],
+            "nullable": false
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "immigration_status"
+            ],
+            "nullable": false
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/ImmigrationStatusApiValidationStatus"
+          },
+          "billable": {
+            "type": "boolean",
+            "description": "Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid."
+          },
+          "extracted_details": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ImmigrationStatusExtractedDetails"
+              },
+              {
+                "$ref": "#/components/schemas/Record_string.never_"
+              }
+            ]
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/EvisaArtefact"
+            },
+            "type": "array"
+          },
+          "validations": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ImmigrationStatusEvisaValidations"
+              },
+              {
+                "$ref": "#/components/schemas/Record_string.never_"
+              }
+            ]
+          }
+        },
+        "required": [
+          "verification_method",
+          "evidence_type",
+          "outcome",
+          "billable",
+          "extracted_details",
+          "artefacts",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaBaseExtractedDetails": {
+        "description": "Extracted identity and status details from the eVisa verification.\nOn a `pass` outcome, all fields for the sub-type will be populated.\nOn a `fail` outcome, fields may be partially populated or empty depending on which validation step failed.",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "date_of_birth": {
+            "type": "string"
+          },
+          "share_code": {
+            "type": "string"
+          },
+          "reference_number": {
+            "type": "string"
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR)."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RightToWorkExtractedDetails": {
+        "$ref": "#/components/schemas/EvisaBaseExtractedDetails",
+        "description": "Extracted details for `RightToWork` — includes all base fields."
+      },
       "EvisaStartedFailedReason": {
         "type": "string",
         "enum": [
@@ -496,99 +670,6 @@
         },
         "type": "object",
         "additionalProperties": false
-      },
-      "ImmigrationStatusVerificationResponse": {
-        "properties": {
-          "verification_method": {
-            "type": "string",
-            "enum": [
-              "evisa"
-            ],
-            "nullable": false
-          },
-          "evidence_type": {
-            "type": "string",
-            "enum": [
-              "immigration_status"
-            ],
-            "nullable": false
-          },
-          "outcome": {
-            "$ref": "#/components/schemas/ApiValidationStatus"
-          },
-          "billable": {
-            "type": "boolean",
-            "description": "Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid."
-          },
-          "extracted_details": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ImmigrationStatusExtractedDetails"
-              },
-              {
-                "$ref": "#/components/schemas/Record_string.never_"
-              }
-            ]
-          },
-          "artefacts": {
-            "items": {
-              "$ref": "#/components/schemas/EvisaArtefact"
-            },
-            "type": "array"
-          },
-          "validations": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/EvisaValidations"
-              },
-              {
-                "$ref": "#/components/schemas/Record_string.never_"
-              }
-            ]
-          }
-        },
-        "required": [
-          "verification_method",
-          "evidence_type",
-          "outcome",
-          "billable",
-          "extracted_details",
-          "artefacts",
-          "validations"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "EvisaBaseExtractedDetails": {
-        "description": "Extracted identity and status details from the eVisa verification.\nOn a `pass` outcome, all fields for the sub-type will be populated.\nOn a `fail` outcome, fields may be partially populated or empty depending on which validation step failed.",
-        "properties": {
-          "first_name": {
-            "type": "string"
-          },
-          "last_name": {
-            "type": "string"
-          },
-          "date_of_birth": {
-            "type": "string"
-          },
-          "share_code": {
-            "type": "string"
-          },
-          "reference_number": {
-            "type": "string"
-          },
-          "expiration_date": {
-            "type": "string",
-            "nullable": true,
-            "description": "Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR)."
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "RightToWorkExtractedDetails": {
-        "$ref": "#/components/schemas/EvisaBaseExtractedDetails",
-        "description": "Extracted details for `RightToWork` — includes all base fields."
       },
       "RightToWorkVerificationResponse": {
         "properties": {
@@ -3415,6 +3496,34 @@
         "type": "object",
         "additionalProperties": false
       },
+      "Record_NfdVerificationChecks.CheckResult_": {
+        "properties": {
+          "NFD_SEARCH": {
+            "$ref": "#/components/schemas/CheckResult"
+          }
+        },
+        "required": [
+          "NFD_SEARCH"
+        ],
+        "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "NfdVerificationReport": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/CheckState"
+          },
+          "checks": {
+            "$ref": "#/components/schemas/Record_NfdVerificationChecks.CheckResult_"
+          }
+        },
+        "required": [
+          "state",
+          "checks"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "Record_string.unknown_": {
         "properties": {},
         "additionalProperties": {},
@@ -3452,6 +3561,10 @@
           "amlVerification": {
             "$ref": "#/components/schemas/Record_string.unknown_",
             "description": "Raw sanctions screening results. Only present when AML check was performed."
+          },
+          "nfdVerification": {
+            "$ref": "#/components/schemas/Record_string.unknown_",
+            "description": "Raw CIFAS NFD search results. Only present when NFD check was performed."
           }
         },
         "required": [
@@ -3474,7 +3587,8 @@
               "enum": [
                 "CreditBureau",
                 "OnlineFootprint",
-                "AML"
+                "AML",
+                "NFD"
               ]
             },
             "type": "array"
@@ -3514,6 +3628,9 @@
           "aml_verification_report": {
             "$ref": "#/components/schemas/AmlVerificationReport"
           },
+          "nfd_verification_report": {
+            "$ref": "#/components/schemas/NfdVerificationReport"
+          },
           "metadata": {
             "$ref": "#/components/schemas/SmartLookupMetadata"
           },
@@ -3551,7 +3668,8 @@
               "enum": [
                 "CreditBureau",
                 "OnlineFootprint",
-                "AML"
+                "AML",
+                "NFD"
               ]
             },
             "type": "array",
@@ -4460,6 +4578,59 @@
                       }
                     }
                   },
+                  "ImmigrationStatus - Inconclusive": {
+                    "value": {
+                      "verification_method": "evisa",
+                      "evidence_type": "immigration_status",
+                      "outcome": "inconclusive",
+                      "billable": true,
+                      "extracted_details": {
+                        "first_name": "Jane",
+                        "last_name": "Sandbox",
+                        "date_of_birth": "1990-01-01",
+                        "share_code": "INC123456",
+                        "reference_number": "SANDBOX-REF-003",
+                        "expiration_date": null,
+                        "valid_from": null,
+                        "nationality": "NGA",
+                        "immigration_status": "Unrecognised"
+                      },
+                      "artefacts": [
+                        {
+                          "role": "document",
+                          "download_url": "https://app.vouchsafe.id/artefacts/evisa/JaneSandboxImmigrationStatus.pdf",
+                          "expires_at": "2026-01-30T12:00:00.000Z",
+                          "expires_in_seconds": 1800
+                        },
+                        {
+                          "role": "faceScan",
+                          "download_url": "https://app.vouchsafe.id/artefacts/evisa/JaneSandboxSquare.png",
+                          "expires_at": "2026-01-30T12:00:00.000Z",
+                          "expires_in_seconds": 1800
+                        }
+                      ],
+                      "validations": {
+                        "evisa_exists": {
+                          "status": "pass"
+                        },
+                        "required_fields_extracted": {
+                          "status": "pass"
+                        },
+                        "evisa_started": {
+                          "status": "inconclusive",
+                          "failed_reasons": [
+                            "UNRECOGNISED_INDEFINITE_STATUS"
+                          ]
+                        },
+                        "evisa_not_expired": {
+                          "status": "inconclusive",
+                          "failed_reasons": [
+                            "UNRECOGNISED_INDEFINITE_STATUS"
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "RightToWork - Pass": {
                     "value": {
                       "verification_method": "evisa",
@@ -4771,7 +4942,7 @@
             }
           }
         },
-        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nVerify a person's UK eVisa using their Home Office share code.\n\nThis endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa\nby providing their share code and date of birth. The share code is obtained by\nthe individual from the UK Home Office online service.\n\n**Supported verification types:**\n- `ImmigrationStatus` - Check a person's immigration status (e.g., Settled, Skilled Worker, Youth Mobility Scheme)\n- `RightToWork` - Check a person's right to work in the UK\n- `RightToRent` - Check a person's right to rent property in the UK\n\n> **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.\n\n**Response fields by sub-type:**\nThe response fields directly reflect the information available on a particular eVisa sub-type.\nOn a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.\n\n**Response summary:**\n| HTTP Status | Meaning | Action |\n|-------------|---------|--------|\n| `200` | Verification completed | Check the `outcome` field to determine if the verification was successful |\n| `422` | Share code locked out by GOV.UK | Retry with a new share code |\n| `503` | Service temporarily unavailable | Retry with exponential backoff |\n\n**Billing:**\nAn API call is billable when the eVisa was found on GOV.UK, regardless of whether the verification\noutcome is `pass` or `fail`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be\nretrieved, the response will have `billable: false` and you will not be charged.\nError responses (`HTTP 422`, `HTTP 503`) are also not billable and return an Error response body.\n\n**Artefacts:**\nOn a successful response, artefacts are returned inline with pre-signed download URLs.\nYou have **30 minutes** to download them before the URLs expire.\n\n\n**Sandbox testing:**\nUse these share codes in sandbox mode to test different outcomes:\n- `PASS12345` - Returns a successful verification with \"Pass\" outcome\n- `FAIL12345` - Returns a failed verification (e.g. expired status)\n- `ERROR1234` - Returns an error response\n- `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)\n- `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nVerify a person's UK eVisa using their Home Office share code.\n\nThis endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa\nby providing their share code and date of birth. The share code is obtained by\nthe individual from the UK Home Office online service.\n\n**Supported verification types:**\n- `ImmigrationStatus` - Check a person's immigration status (e.g., Settled, Skilled Worker, Youth Mobility Scheme)\n- `RightToWork` - Check a person's right to work in the UK\n- `RightToRent` - Check a person's right to rent property in the UK\n\n> **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.\n\n**Response fields by sub-type:**\nThe response fields directly reflect the information available on a particular eVisa sub-type.\nOn a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.\nOn an `inconclusive` outcome (see below), all identity fields are populated but date-based validations could not be performed.\n\n**Inconclusive outcome (`ImmigrationStatus` only):**\nSome immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:\n- `outcome: \"inconclusive\"`\n- `evisa_started` and `evisa_not_expired` both with `status: \"inconclusive\"` and `failed_reasons: [\"UNRECOGNISED_INDEFINITE_STATUS\"]`\n- `expiration_date: null` and `valid_from: null` in `extracted_details`\n\nThis outcome only applies to `ImmigrationStatus`. `RightToWork` and `RightToRent` always return dates from GOV.UK.\n\n**Response summary:**\n| HTTP Status | Meaning | Action |\n|-------------|---------|--------|\n| `200` | Verification completed | Check the `outcome` field (`pass`, `fail`, or `inconclusive`) |\n| `422` | Share code locked out by GOV.UK | Retry with a new share code |\n| `503` | Service temporarily unavailable | Retry with exponential backoff |\n\n**Billing:**\nAn API call is billable when the eVisa was found on GOV.UK, regardless of whether the verification\noutcome is `pass`, `fail`, or `inconclusive`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be\nretrieved, the response will have `billable: false` and you will not be charged.\nError responses (`HTTP 422`, `HTTP 503`) are also not billable and return an Error response body.\n\n**Artefacts:**\nOn a successful response, artefacts are returned inline with pre-signed download URLs.\nYou have **30 minutes** to download them before the URLs expire.\n\n\n**Sandbox testing:**\nUse these share codes in sandbox mode to test different outcomes:\n- `PASS12345` - Returns a successful verification with \"Pass\" outcome\n- `FAIL12345` - Returns a failed verification (e.g. expired status)\n- `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)\n- `ERROR1234` - Returns an error response\n- `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)\n- `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Verify"
         ],

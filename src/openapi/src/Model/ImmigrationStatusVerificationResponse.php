@@ -39,7 +39,7 @@ class ImmigrationStatusVerificationResponse
      */
     protected $artefacts;
     /**
-     * @var EvisaValidations|RecordStringNever
+     * @var ImmigrationStatusEvisaValidations|RecordStringNever
      */
     protected $validations;
     /**
@@ -155,14 +155,14 @@ class ImmigrationStatusVerificationResponse
         return $this;
     }
     /**
-     * @return EvisaValidations|RecordStringNever
+     * @return ImmigrationStatusEvisaValidations|RecordStringNever
      */
     public function getValidations()
     {
         return $this->validations;
     }
     /**
-     * @param EvisaValidations|RecordStringNever $validations
+     * @param ImmigrationStatusEvisaValidations|RecordStringNever $validations
      *
      * @return self
      */

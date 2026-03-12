@@ -46,15 +46,21 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult::class => \Vouchsafe\OpenAPI\Normalizer\EvisaRequiredFieldsExtractedResultNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaStartedResult::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusEvisaStartedResultNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaNotExpiredResult::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusEvisaNotExpiredResultNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaValidations::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusEvisaValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusVerificationResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\EvisaBaseExtractedDetailsNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\EvisaStartedResult::class => \Vouchsafe\OpenAPI\Normalizer\EvisaStartedResultNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult::class => \Vouchsafe\OpenAPI\Normalizer\EvisaNotExpiredResultNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\EvisaValidations::class => \Vouchsafe\OpenAPI\Normalizer\EvisaValidationsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusVerificationResponseNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\EvisaBaseExtractedDetailsNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RightToWorkVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\RightToWorkVerificationResponseNormalizer::class,
         
@@ -103,6 +109,10 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         \Vouchsafe\OpenAPI\Model\RecordAmlVerificationChecksCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\RecordAmlVerificationChecksCheckResultNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class => \Vouchsafe\OpenAPI\Normalizer\AmlVerificationReportNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\RecordNfdVerificationChecksCheckResultNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class => \Vouchsafe\OpenAPI\Normalizer\NfdVerificationReportNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class => \Vouchsafe\OpenAPI\Normalizer\RecordStringUnknownNormalizer::class,
         
@@ -222,11 +232,14 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\EvisaArtefact::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaExistsResult::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaRequiredFieldsExtractedResult::class => false,
+            \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaStartedResult::class => false,
+            \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaNotExpiredResult::class => false,
+            \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaStartedResult::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaValidations::class => false,
-            \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => false,
-            \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\RightToWorkVerificationResponse::class => false,
             \Vouchsafe\OpenAPI\Model\RightToRentExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponse::class => false,
@@ -251,6 +264,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport::class => false,
             \Vouchsafe\OpenAPI\Model\RecordAmlVerificationChecksCheckResult::class => false,
             \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class => false,
+            \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class => false,
+            \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class => false,
             \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class => false,

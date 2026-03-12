@@ -92,6 +92,9 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('aml_verification_report', $data)) {
             $object->setAmlVerificationReport($this->denormalizer->denormalize($data['aml_verification_report'], \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class, 'json', $context));
         }
+        if (\array_key_exists('nfd_verification_report', $data)) {
+            $object->setNfdVerificationReport($this->denormalizer->denormalize($data['nfd_verification_report'], \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class, 'json', $context));
+        }
         if (\array_key_exists('metadata', $data)) {
             $object->setMetadata($this->denormalizer->denormalize($data['metadata'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class, 'json', $context));
         }
@@ -131,6 +134,9 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         }
         if ($data->isInitialized('amlVerificationReport') && null !== $data->getAmlVerificationReport()) {
             $dataArray['aml_verification_report'] = $this->normalizer->normalize($data->getAmlVerificationReport(), 'json', $context);
+        }
+        if ($data->isInitialized('nfdVerificationReport') && null !== $data->getNfdVerificationReport()) {
+            $dataArray['nfd_verification_report'] = $this->normalizer->normalize($data->getNfdVerificationReport(), 'json', $context);
         }
         $dataArray['metadata'] = $this->normalizer->normalize($data->getMetadata(), 'json', $context);
         $dataArray['created_at'] = $data->getCreatedAt();
