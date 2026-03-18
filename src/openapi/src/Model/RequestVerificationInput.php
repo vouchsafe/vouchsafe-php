@@ -13,31 +13,31 @@ class RequestVerificationInput
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * The user's email address
+     * The user's email address.
      *
      * @var string
      */
     protected $email;
     /**
-     * The user's first name, if you have it
+     * The user's first name, if you have it.
      *
      * @var string
      */
     protected $firstName;
     /**
-     * The user's last name, if you have it
+     * The user's last name, if you have it.
      *
      * @var string
      */
     protected $lastName;
     /**
-     * The user's street address, if you have it
+     * The user's street address, if you have it.
      *
      * @var string
      */
     protected $streetAddress;
     /**
-     * The user's postcode, if you have it
+     * The user's postcode, if you have it.
      *
      * @var string
      */
@@ -61,7 +61,7 @@ class RequestVerificationInput
      */
     protected $workflowId;
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID.
      *
      * @var string
      */
@@ -75,7 +75,7 @@ class RequestVerificationInput
      */
     protected $redirectUrl;
     /**
-     * When will the verification session expire and the user cease getting reminders?
+     * When the verification session expires and the user stops getting reminders.
      * 
      * If not provided, the verification flow default will be used.
      *
@@ -83,7 +83,7 @@ class RequestVerificationInput
      */
     protected $expiresAt;
     /**
-     * The user's email address
+     * The user's email address.
      *
      * @return string
      */
@@ -92,7 +92,7 @@ class RequestVerificationInput
         return $this->email;
     }
     /**
-     * The user's email address
+     * The user's email address.
      *
      * @param string $email
      *
@@ -105,7 +105,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's first name, if you have it
+     * The user's first name, if you have it.
      *
      * @return string
      */
@@ -114,7 +114,7 @@ class RequestVerificationInput
         return $this->firstName;
     }
     /**
-     * The user's first name, if you have it
+     * The user's first name, if you have it.
      *
      * @param string $firstName
      *
@@ -127,7 +127,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's last name, if you have it
+     * The user's last name, if you have it.
      *
      * @return string
      */
@@ -136,7 +136,7 @@ class RequestVerificationInput
         return $this->lastName;
     }
     /**
-     * The user's last name, if you have it
+     * The user's last name, if you have it.
      *
      * @param string $lastName
      *
@@ -149,7 +149,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's street address, if you have it
+     * The user's street address, if you have it.
      *
      * @return string
      */
@@ -158,7 +158,7 @@ class RequestVerificationInput
         return $this->streetAddress;
     }
     /**
-     * The user's street address, if you have it
+     * The user's street address, if you have it.
      *
      * @param string $streetAddress
      *
@@ -171,7 +171,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's postcode, if you have it
+     * The user's postcode, if you have it.
      *
      * @return string
      */
@@ -180,7 +180,7 @@ class RequestVerificationInput
         return $this->postcode;
     }
     /**
-     * The user's postcode, if you have it
+     * The user's postcode, if you have it.
      *
      * @param string $postcode
      *
@@ -249,7 +249,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID.
      *
      * @return string
      */
@@ -258,7 +258,7 @@ class RequestVerificationInput
         return $this->externalId;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID.
      *
      * @param string $externalId
      *
@@ -297,7 +297,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * When will the verification session expire and the user cease getting reminders?
+     * When the verification session expires and the user stops getting reminders.
      * 
      * If not provided, the verification flow default will be used.
      *
@@ -308,7 +308,7 @@ class RequestVerificationInput
         return $this->expiresAt;
     }
     /**
-    * When will the verification session expire and the user cease getting reminders?
+    * When the verification session expires and the user stops getting reminders.
     
     If not provided, the verification flow default will be used.
     *

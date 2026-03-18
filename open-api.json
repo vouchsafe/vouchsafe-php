@@ -1015,19 +1015,19 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "A unique URL to redirect the user to or embed in an iframe"
+            "description": "A unique URL to redirect the user to or embed in an iframe."
           },
           "id": {
             "type": "string",
-            "description": "A unique ID for the verification session, for you to track progress"
+            "description": "A unique ID for the verification session, for you to track progress."
           },
           "workflow_id": {
             "type": "string",
-            "description": "The flow it belongs to"
+            "description": "The flow it belongs to."
           },
           "expires_at": {
             "type": "string",
-            "description": "When the user will stop getting reminders"
+            "description": "When the user will stop getting reminders."
           }
         },
         "required": [
@@ -1042,23 +1042,23 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "The user's email address"
+            "description": "The user's email address."
           },
           "first_name": {
             "type": "string",
-            "description": "The user's first name, if you have it"
+            "description": "The user's first name, if you have it."
           },
           "last_name": {
             "type": "string",
-            "description": "The user's last name, if you have it"
+            "description": "The user's last name, if you have it."
           },
           "street_address": {
             "type": "string",
-            "description": "The user's street address, if you have it"
+            "description": "The user's street address, if you have it."
           },
           "postcode": {
             "type": "string",
-            "description": "The user's postcode, if you have it"
+            "description": "The user's postcode, if you have it."
           },
           "date_of_birth": {
             "type": "string",
@@ -1070,7 +1070,7 @@
           },
           "external_id": {
             "type": "string",
-            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID"
+            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID."
           },
           "redirect_url": {
             "type": "string",
@@ -1078,7 +1078,7 @@
           },
           "expires_at": {
             "type": "string",
-            "description": "When will the verification session expire and the user cease getting reminders?\n\nIf not provided, the verification flow default will be used."
+            "description": "When the verification session expires and the user stops getting reminders.\n\nIf not provided, the verification flow default will be used."
           }
         },
         "required": [
@@ -1100,28 +1100,35 @@
           "ManuallyReviewed"
         ]
       },
+      "IdentityProfile": {
+        "type": "string",
+        "enum": [
+          "M1A",
+          "M2C"
+        ]
+      },
       "Verification": {
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID for tracking a verification session over time"
+            "description": "Unique ID for tracking a verification session over time."
           },
           "status": {
             "$ref": "#/components/schemas/CaseStatus",
-            "description": "Current status"
+            "description": "Current status."
           },
           "created_at": {
             "type": "string",
-            "description": "When it was originally requested or begun"
+            "description": "When it was originally requested or begun."
           },
           "expires_at": {
             "type": "string",
-            "description": "When the user will stop getting reminders"
+            "description": "When the user will stop getting reminders."
           },
           "email": {
             "type": "string",
             "nullable": true,
-            "description": "The originally supplied email address"
+            "description": "The originally supplied email address."
           },
           "redirect_url": {
             "type": "string",
@@ -1130,12 +1137,16 @@
           },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to"
+            "description": "The verification flow it belongs to."
           },
           "external_id": {
             "type": "string",
             "nullable": true,
-            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time."
+            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time."
+          },
+          "identity_profile": {
+            "$ref": "#/components/schemas/IdentityProfile",
+            "description": "The identity profile to use for this verification if flow is certified against the UK DIATF."
           }
         },
         "required": [
@@ -1199,7 +1210,1952 @@
         ],
         "type": "object"
       },
-      "PersonalRelationship": {
+      "StepStatusApi": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "fail",
+          "in_progress"
+        ]
+      },
+      "ArtefactApi": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "document",
+              "back_side",
+              "face_scan"
+            ]
+          },
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "key"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VideoSelfieCheckApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "video_selfie"
+            ],
+            "nullable": false,
+            "description": "A video selfie submission (in progress or submitted)."
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/StepStatusApi",
+            "description": "The overall outcome of the biometric check."
+          },
+          "total_attempts": {
+            "type": "number",
+            "format": "double",
+            "description": "Total number of video selfie attempts."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "validations": {
+            "properties": {
+              "referee_dissimilarity_check": {
+                "properties": {
+                  "score": {
+                    "type": "number",
+                    "format": "double",
+                    "nullable": true,
+                    "description": "Dissimilarity score, or null if unavailable."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pass",
+                      "fail"
+                    ],
+                    "description": "Whether the dissimilarity check passed or failed."
+                  }
+                },
+                "required": [
+                  "score",
+                  "status"
+                ],
+                "type": "object"
+              },
+              "liveness_check": {
+                "properties": {
+                  "score": {
+                    "type": "number",
+                    "format": "double",
+                    "nullable": true,
+                    "description": "Liveness score, or null if unavailable."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pass",
+                      "fail"
+                    ],
+                    "description": "Whether the liveness check passed or failed."
+                  }
+                },
+                "required": [
+                  "score",
+                  "status"
+                ],
+                "type": "object"
+              }
+            },
+            "type": "object",
+            "description": "Validations performed on the video selfie and their results."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "total_attempts",
+          "artefacts",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VerifyEmailCheckApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "verify_email"
+            ],
+            "nullable": false,
+            "description": "An email verification (in progress or confirmed), if enabled."
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/StepStatusApi",
+            "description": "The overall outcome of the email verification."
+          },
+          "validations": {
+            "properties": {
+              "email_verified": {
+                "properties": {
+                  "verified_at": {
+                    "type": "string",
+                    "description": "ISO 8601 timestamp for when the email address was verified."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pass"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "verified_at",
+                  "status"
+                ],
+                "type": "object",
+                "description": "Present only when the email address has been verified.\nOtherwise undefined."
+              }
+            },
+            "type": "object",
+            "description": "Validations performed on the email address."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VerifyPhoneNumberCheckApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "verify_phone_number"
+            ],
+            "nullable": false,
+            "description": "A phone number verification (in progress or confirmed), if configured."
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/StepStatusApi",
+            "description": "The overall outcome of the phone number verification."
+          },
+          "validations": {
+            "properties": {
+              "phone_verified": {
+                "properties": {
+                  "verified_at": {
+                    "type": "string",
+                    "description": "ISO 8601 timestamp for when the phone number was verified."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pass"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "verified_at",
+                  "status"
+                ],
+                "type": "object",
+                "description": "Present only when the phone number has been verified.\nOtherwise undefined."
+              }
+            },
+            "type": "object",
+            "description": "Validations performed on the phone number."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ValidationOutcomeApi": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReviewUserCheckApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "verify_user"
+            ],
+            "nullable": false,
+            "description": "A referee vouch of the user’s claims (in progress or confirmed)."
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/StepStatusApi",
+            "description": "The overall outcome of the referee verification."
+          },
+          "validations": {
+            "properties": {
+              "referee_confirmed_photo": {
+                "$ref": "#/components/schemas/ValidationOutcomeApi"
+              },
+              "referee_confirmed_date_of_birth": {
+                "$ref": "#/components/schemas/ValidationOutcomeApi"
+              },
+              "referee_confirmed_name": {
+                "$ref": "#/components/schemas/ValidationOutcomeApi"
+              }
+            },
+            "type": "object",
+            "description": "Claims being verified by the referee.\nAll claims \"pass\" when they accept and proceed, or \"fail\" when they reject.\nOtherwise undefined while they have not made a choice yet."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PhotoIdEvidenceApi": {
+        "type": "string",
+        "enum": [
+          "unfamiliar_photo_id",
+          "passport",
+          "driving_licence",
+          "young_scot",
+          "national_entitlement_card",
+          "national_id",
+          "citizen_card"
+        ]
+      },
+      "CitizenCardDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Document number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PassportDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Passport number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          },
+          "issuing_country": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing country code, if extracted. Otherwise null."
+          },
+          "mrz_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Raw MRZ string, if extracted. Otherwise null."
+          },
+          "icao_format": {
+            "type": "string",
+            "nullable": true,
+            "description": "ICAO MRZ format, if detected. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date",
+          "issuing_country",
+          "mrz_code",
+          "icao_format"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DrivingLicenceDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Licence number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          },
+          "issue_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issue date, if present and extracted. Otherwise null."
+          },
+          "issuing_country": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing country code, if extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date",
+          "issuing_country"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "YoungScotDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Card number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NecDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Card number (16 digits), if extracted. Otherwise null."
+          },
+          "smart_card_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "ITSO Shell Reference Number (18 digits), if extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "smart_card_number"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NationalIdDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Document number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          },
+          "issuing_country": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing country code, if extracted. Otherwise null."
+          },
+          "icao_format": {
+            "type": "string",
+            "nullable": true,
+            "description": "ICAO MRZ format, if detected. Otherwise null."
+          },
+          "mrz_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Raw MRZ string, if extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date",
+          "issuing_country",
+          "icao_format",
+          "mrz_code"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UnfamiliarPhotoIdDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Document number, if extracted. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date, if present and extracted. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "document_number",
+          "expiration_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PhotoIdExtractedDetailsApi": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CitizenCardDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/PassportDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/DrivingLicenceDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/YoungScotDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/NecDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/NationalIdDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/UnfamiliarPhotoIdDetailsApi"
+          }
+        ]
+      },
+      "PassportValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether key identifiers (for example number + DOB) match consistently."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          },
+          "icao_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the MRZ format is valid (TD3 expected)."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the issuing country is allowed."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "compound_identifiers_match",
+          "has_not_expired",
+          "icao_format_valid",
+          "issuing_country_allowed"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DrivingLicenceValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "security_features_present": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether expected security features are present."
+          },
+          "identifier_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the licence identifier format is valid."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is not a sample or marked for internal use."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "security_features_present",
+          "identifier_format_valid",
+          "not_sample_or_internal_use",
+          "has_not_expired"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NationalIdValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether key identifiers (for example number + DOB) match consistently."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          },
+          "icao_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the MRZ format is valid (TD1 expected)."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the issuing country is allowed."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "compound_identifiers_match",
+          "has_not_expired",
+          "icao_format_valid",
+          "issuing_country_allowed"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CitizenCardValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "matches_issuer_database": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the card details match the issuer database."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "matches_issuer_database",
+          "has_not_expired"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "YoungScotValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "security_features_present": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether expected security features are present."
+          },
+          "identifier_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the card identifier format is valid."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "security_features_present",
+          "identifier_format_valid",
+          "has_not_expired"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NecValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "security_features_present": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether expected security features are present."
+          },
+          "identifier_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the card identifier format is valid."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "security_features_present",
+          "identifier_format_valid"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UnfamiliarPhotoIdValidationApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "security_features_present": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether expected security features are present."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is in date."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "document_borders_detected",
+          "security_features_present",
+          "has_not_expired"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PhotoIdValidationsApi": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PassportValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/DrivingLicenceValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/NationalIdValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/CitizenCardValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/YoungScotValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/NecValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/UnfamiliarPhotoIdValidationApi"
+          }
+        ]
+      },
+      "PhotoIdEvidenceItemApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "photo_id"
+            ],
+            "nullable": false,
+            "description": "A submitted Photo ID evidence."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "The overall outcome of the document submission."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/PhotoIdEvidenceApi",
+            "description": "The type of photo ID submitted."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/PhotoIdExtractedDetailsApi",
+            "description": "Extracted details from the document.\nShape depends on evidence type."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/PhotoIdValidationsApi",
+            "description": "Validations performed on the document and their results.\nShape depends on evidence type."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "evidence_type",
+          "created_at",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SupportingDocumentEvidenceApi": {
+        "type": "string",
+        "enum": [
+          "birth_or_adoption_certificate",
+          "marriage_certificate",
+          "naturalisation_or_reg_certificate",
+          "education_certificate",
+          "paye_tax_summary",
+          "payslip",
+          "pension_annual_statement",
+          "benefits_letter",
+          "nhs_letter",
+          "bank_statement",
+          "credit_card_statement",
+          "mortgage_statement",
+          "insurance_policy_agreement",
+          "utility_bill",
+          "mobile_phone_bill",
+          "hmpps_letter"
+        ]
+      },
+      "SupportingDocumentDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if birth certificate was used."
+          },
+          "first_line_of_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "First line of address, if extracted. Otherwise null."
+          },
+          "postcode": {
+            "type": "string",
+            "nullable": true,
+            "description": "Postcode, if extracted. Otherwise null."
+          },
+          "document_category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SupportingDocumentEvidenceApi"
+              }
+            ],
+            "nullable": true,
+            "description": "What the uploaded document was categorised as."
+          },
+          "document_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "The date of the document."
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true,
+            "description": "The issuer of the document."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_category",
+          "document_date",
+          "issuer"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SupportingDocumentValidationsApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether required fields were extracted."
+          },
+          "category_match": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the uploaded document is an accepted category for this flow."
+          },
+          "document_age_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document age is within the allowed validity period (when applicable)."
+          },
+          "document_unique": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether this document is unique when multiple documents are uploaded."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether date fields are valid (for example DOB or document date)."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether names match other evidence (when applicable)."
+          },
+          "addresses_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether addresses match other evidence (when the document contains an address)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether dates of birth match other evidence (for example for birth certificates)."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee's name differs from the user (when applicable)."
+          },
+          "document_complete_and_legible": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is complete and readable. Set only after required checks pass."
+          },
+          "tampering_signals_check": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether tampering signals were found. Set only after required checks pass."
+          }
+        },
+        "required": [
+          "required_fields_extracted"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SupportingDocumentEvidenceItemApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "supporting_document"
+            ],
+            "nullable": false,
+            "description": "A submitted supporting document evidence.\nNote: If the verification flow requires multiple documents,\neach submission is returned as its own evidence item in the checks array."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "The overall outcome of the document submission."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/SupportingDocumentEvidenceApi",
+            "description": "The type of supporting document submitted."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/SupportingDocumentDetailsApi",
+            "description": "Extracted details from the document."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/SupportingDocumentValidationsApi",
+            "description": "Validations performed on the document and their results."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "evidence_type",
+          "created_at",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OpenBankingEvidenceApi": {
+        "type": "string",
+        "enum": [
+          "open_banking"
+        ]
+      },
+      "TransactionDataApi": {
+        "properties": {
+          "count": {
+            "type": "number",
+            "format": "double"
+          },
+          "last_date": {
+            "type": "string"
+          },
+          "earliest_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BankAccountDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "bank_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Bank name, if available. Otherwise null."
+          },
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "current",
+              "savings",
+              null
+            ],
+            "nullable": true,
+            "description": "Account type, if available. Otherwise null."
+          },
+          "transaction_data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionDataApi"
+              }
+            ],
+            "nullable": true,
+            "description": "Transaction summary and metadata, if available. Otherwise null."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "bank_name",
+          "account_type",
+          "transaction_data"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BankAccountValidationsApi": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether required fields were extracted from the connected account data."
+          },
+          "has_recent_transactions": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the account has recent transactions."
+          },
+          "non_zero_balance": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the account balance is non zero."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the account holder name matches other evidence."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether referee's name differs from the user."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "has_recent_transactions",
+          "non_zero_balance"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BankAccountEvidenceItemApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "bank_account"
+            ],
+            "nullable": false,
+            "description": "A submitted bank account evidence."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "The overall outcome of the bank account submission."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/OpenBankingEvidenceApi",
+            "description": "Evidence type for this step. Always \"open_banking\"."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/BankAccountDetailsApi",
+            "description": "Extracted details from the connected account data."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/BankAccountValidationsApi",
+            "description": "Validations performed on the connected bank account and their results."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "evidence_type",
+          "created_at",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaEvidenceApi": {
+        "type": "string",
+        "enum": [
+          "right_to_work",
+          "right_to_rent",
+          "immigration_status"
+        ]
+      },
+      "ImmigrationStatusDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "share_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Share code used to check a person's immigration status (e.g., Settled, Skilled Worker, Youth Mobility Scheme)."
+          },
+          "reference_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "GOV.UK reference number for the check, if evisa record was found. Otherwise null."
+          },
+          "immigration_status": {
+            "type": "string",
+            "nullable": true,
+            "description": "Immigration status label (for example Settled, Skilled Worker), if record was found. Otherwise null."
+          },
+          "nationality": {
+            "type": "string",
+            "nullable": true,
+            "description": "ISO 3166-1 alpha-3 nationality code (for example NGA), if record was found. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          },
+          "issue_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Start date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "share_code",
+          "reference_number",
+          "immigration_status",
+          "nationality",
+          "expiration_date",
+          "issue_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RightToWorkDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "share_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Share code used to check a person's right to work in the UK."
+          },
+          "reference_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "GOV.UK reference number for the check, if evisa record was found. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "share_code",
+          "reference_number",
+          "expiration_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RightToRentDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth, if extracted. Otherwise null."
+          },
+          "share_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Share code used to check a person's right to rent property in the UK."
+          },
+          "reference_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "GOV.UK reference number for the check, if evisa record was found. Otherwise null."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Expiry date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          },
+          "issue_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Start date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "share_code",
+          "reference_number",
+          "expiration_date",
+          "issue_date"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaExtractedDetailsApi": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ImmigrationStatusDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/RightToWorkDetailsApi"
+          },
+          {
+            "$ref": "#/components/schemas/RightToRentDetailsApi"
+          }
+        ]
+      },
+      "EvisaValidationsApi": {
+        "properties": {
+          "evisa_exists": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether an eVisa record was found for the provided details."
+          },
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether all required fields were extracted from the eVisa response."
+          },
+          "evisa_started": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the eVisa start date has begun. Only available on ImmigrationStatus and RightToRent evidence."
+          },
+          "evisa_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the eVisa has not expired, or is indefinite."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the eVisa photo matches the video selfie (with score)."
+          }
+        },
+        "required": [
+          "evisa_exists",
+          "required_fields_extracted",
+          "evisa_not_expired"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaEvidenceItemApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "evisa"
+            ],
+            "nullable": false,
+            "description": "A submitted eVisa evidence."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "The overall outcome of the eVisa submission"
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/EvisaEvidenceApi",
+            "description": "Type of eVisa evidence."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/EvisaExtractedDetailsApi",
+            "description": "Extracted details from the eVisa.\nShape depends on evidence type."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/EvisaValidationsApi",
+            "description": "Validations performed on the eVisa and their results."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "evidence_type",
+          "created_at",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VouchEvidenceApi": {
+        "type": "string",
+        "enum": [
+          "professional_referee",
+          "personal_referee"
+        ]
+      },
+      "PersonalRelationshipApi": {
         "type": "string",
         "enum": [
           "friend",
@@ -1208,1910 +3164,454 @@
           "relative"
         ]
       },
-      "Api_VerificationCheck_": {
+      "VouchDetailsApi": {
+        "properties": {
+          "referee_verification_id": {
+            "type": "string",
+            "description": "The referee verification ID. Results can be retrieved from the GetVerification endpoint."
+          },
+          "relationship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PersonalRelationshipApi"
+              }
+            ],
+            "nullable": true,
+            "description": "Relationship to the user when a personal referee is used."
+          },
+          "organisation": {
+            "type": "string",
+            "nullable": true,
+            "description": "The referee's organisation when a professional referee is used."
+          }
+        },
+        "required": [
+          "referee_verification_id"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VouchValidationsApi": {
+        "properties": {
+          "relationship_minimum_duration_met": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the minimum relationship duration was met."
+          },
+          "approved_professional_domain": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the email domain is on the approved list when a professional referee is used."
+          }
+        },
+        "required": [
+          "relationship_minimum_duration_met"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RefereeEvidenceItemApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "vouch"
+            ],
+            "nullable": false,
+            "description": "A submitted vouch evidence."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail",
+              "in_progress"
+            ],
+            "description": "The overall outcome of the referee verification."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/VouchEvidenceApi",
+            "description": "The referee type used."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when the vouch request was sent to the referee."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/VouchDetailsApi",
+            "description": "Details of the referee."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/VouchValidationsApi",
+            "description": "Validations performed on the vouching relationship and their results."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "evidence_type",
+          "created_at",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VerificationCheck": {
         "anyOf": [
           {
-            "properties": {
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "validations": {
-                "properties": {
-                  "referee_dissimilarity_check": {
-                    "properties": {
-                      "score": {
-                        "type": "number",
-                        "format": "double"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "score",
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "liveness_check": {
-                    "properties": {
-                      "score": {
-                        "type": "number",
-                        "format": "double"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "score",
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "video_selfie"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "artefacts",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/VideoSelfieCheckApi"
           },
           {
-            "properties": {
-              "validations": {
-                "properties": {
-                  "email_verified": {
-                    "properties": {
-                      "verified_at": {
-                        "type": "string"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "verified_at",
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "verify_email"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/VerifyEmailCheckApi"
           },
           {
-            "properties": {
-              "validations": {
-                "properties": {
-                  "phone_verified": {
-                    "properties": {
-                      "verified_at": {
-                        "type": "string"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "verified_at",
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "verify_phone_number"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/VerifyPhoneNumberCheckApi"
           },
           {
-            "properties": {
-              "validations": {
-                "properties": {
-                  "referee_confirmed_date_of_birth": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "referee_confirmed_name": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "referee_confirmed_photo": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "verify_user_details"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/ReviewUserCheckApi"
           },
           {
-            "properties": {
-              "extracted_details": {
-                "properties": {
-                  "smart_card_number": {
-                    "type": "string"
-                  },
-                  "mrz_code": {
-                    "type": "string"
-                  },
-                  "icao_format": {
-                    "type": "string"
-                  },
-                  "issuing_country": {
-                    "type": "string"
-                  },
-                  "issue_date": {
-                    "type": "string"
-                  },
-                  "expiration_date": {
-                    "type": "string"
-                  },
-                  "document_number": {
-                    "type": "string"
-                  },
-                  "postcode": {
-                    "type": "string"
-                  },
-                  "first_line_of_address": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "document_number",
-                  "first_name",
-                  "last_name"
-                ],
-                "type": "object"
-              },
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "evidence_type": {
-                "type": "string",
-                "enum": [
-                  "unfamiliar_photo_id",
-                  "passport",
-                  "driving_licence",
-                  "young_scot",
-                  "national_entitlement_card",
-                  "national_id",
-                  "citizen_card"
-                ]
-              },
-              "validations": {
-                "properties": {
-                  "referee_biometrics_dissimilar": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "referee_over18": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "issuing_country_allowed": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "icao_format_valid": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "names_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "dates_of_birth_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "has_not_expired": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "face_match": {
-                    "properties": {
-                      "score": {
-                        "type": "number",
-                        "format": "double"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "score",
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "not_sample_or_internal_use": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "identifier_format_valid": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "matches_issuer_database": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "compound_identifiers_match": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "security_features_present": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "document_borders_detected": {
-                    "properties": {
-                      "score": {
-                        "type": "number",
-                        "format": "double"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "score",
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "required_fields_extracted": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "document_borders_detected",
-                  "required_fields_extracted"
-                ],
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "photo_id"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "extracted_details",
-              "artefacts",
-              "evidence_type",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/PhotoIdEvidenceItemApi"
           },
           {
-            "properties": {
-              "extracted_details": {
-                "properties": {
-                  "issuer": {
-                    "type": "string"
-                  },
-                  "document_date": {
-                    "type": "string"
-                  },
-                  "document_category": {
-                    "type": "string",
-                    "enum": [
-                      "payslip",
-                      "pension_annual_statement",
-                      "benefits_letter",
-                      "hmpps_letter",
-                      "nhs_letter",
-                      "bank_statement",
-                      "credit_card_statement",
-                      "mortgage_statement",
-                      "utility_bill",
-                      "mobile_phone_bill",
-                      "birth_or_adoption_certificate",
-                      "marriage_certificate",
-                      "naturalisation_or_reg_certificate",
-                      "education_certificate",
-                      "paye_tax_summary",
-                      "insurance_policy_agreement",
-                      "older_person_bus_pass"
-                    ]
-                  },
-                  "postcode": {
-                    "type": "string"
-                  },
-                  "first_line_of_address": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "issuer",
-                  "document_date",
-                  "document_category",
-                  "first_name",
-                  "last_name"
-                ],
-                "type": "object"
-              },
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "evidence_type": {
-                "type": "string",
-                "enum": [
-                  "payslip",
-                  "pension_annual_statement",
-                  "benefits_letter",
-                  "hmpps_letter",
-                  "nhs_letter",
-                  "bank_statement",
-                  "credit_card_statement",
-                  "mortgage_statement",
-                  "utility_bill",
-                  "mobile_phone_bill",
-                  "birth_or_adoption_certificate",
-                  "marriage_certificate",
-                  "naturalisation_or_reg_certificate",
-                  "education_certificate",
-                  "paye_tax_summary",
-                  "insurance_policy_agreement",
-                  "older_person_bus_pass"
-                ]
-              },
-              "validations": {
-                "properties": {
-                  "referee_biometrics_dissimilar": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "addresses_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "dates_of_birth_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "names_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "date_fields_valid": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "tampering_signals_check": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "document_complete_and_legible": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "document_age_valid": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "document_unique": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "category_match": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "required_fields_extracted": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "required_fields_extracted"
-                ],
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "supporting_document"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "extracted_details",
-              "artefacts",
-              "evidence_type",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/SupportingDocumentEvidenceItemApi"
           },
           {
-            "properties": {
-              "extracted_details": {
-                "properties": {
-                  "transaction_data": {},
-                  "account_type": {
-                    "type": "string",
-                    "enum": [
-                      "cash:current",
-                      "savings"
-                    ]
-                  },
-                  "bank_name": {
-                    "type": "string"
-                  },
-                  "postcode": {
-                    "type": "string"
-                  },
-                  "first_line_of_address": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "transaction_data",
-                  "account_type",
-                  "bank_name",
-                  "first_name",
-                  "last_name"
-                ],
-                "type": "object"
-              },
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "evidence_type": {
-                "type": "string",
-                "enum": [
-                  "open_banking"
-                ],
-                "nullable": false
-              },
-              "validations": {
-                "properties": {
-                  "referee_biometrics_dissimilar": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "names_consistent": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "non_zero_balance": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "has_recent_transactions": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "required_fields_extracted": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "non_zero_balance",
-                  "has_recent_transactions",
-                  "required_fields_extracted"
-                ],
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "bank_account"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "extracted_details",
-              "artefacts",
-              "evidence_type",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/BankAccountEvidenceItemApi"
           },
           {
-            "properties": {
-              "extracted_details": {
-                "properties": {
-                  "immigration_status": {
-                    "type": "string"
-                  },
-                  "nationality": {
-                    "type": "string"
-                  },
-                  "issue_date": {
-                    "type": "string"
-                  },
-                  "expiration_date": {
-                    "type": "string"
-                  },
-                  "reference_number": {
-                    "type": "string"
-                  },
-                  "share_code": {
-                    "type": "string"
-                  },
-                  "postcode": {
-                    "type": "string"
-                  },
-                  "first_line_of_address": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string"
-                  },
-                  "first_name": {
-                    "type": "string"
-                  },
-                  "last_name": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "expiration_date",
-                  "reference_number",
-                  "share_code",
-                  "first_name",
-                  "last_name"
-                ],
-                "type": "object"
-              },
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "evidence_type": {
-                "type": "string",
-                "enum": [
-                  "right_to_work",
-                  "right_to_rent",
-                  "immigration_status",
-                  "unknown"
-                ]
-              },
-              "validations": {
-                "properties": {
-                  "face_match": {
-                    "properties": {
-                      "score": {
-                        "type": "number",
-                        "format": "double"
-                      },
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "score",
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "evisa_not_expired": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "evisa_started": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "required_fields_extracted": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "evisa_exists": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "evisa_not_expired",
-                  "evisa_started",
-                  "required_fields_extracted",
-                  "evisa_exists"
-                ],
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "evisa"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "extracted_details",
-              "artefacts",
-              "evidence_type",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/EvisaEvidenceItemApi"
           },
           {
-            "properties": {
-              "extracted_details": {
-                "properties": {
-                  "organisation": {
-                    "type": "string"
-                  },
-                  "relationship": {
-                    "$ref": "#/components/schemas/PersonalRelationship"
-                  },
-                  "referee_verification_id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "referee_verification_id"
-                ],
-                "type": "object"
-              },
-              "artefacts": {
-                "items": {
-                  "properties": {
-                    "key": {
-                      "type": "string"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "document",
-                        "backside",
-                        "face_scan"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "key",
-                    "role"
-                  ],
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "evidence_type": {
-                "type": "string",
-                "enum": [
-                  "professional_referee",
-                  "personal_referee"
-                ]
-              },
-              "validations": {
-                "properties": {
-                  "approved_professional_domain": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  },
-                  "relationship_minimum_duration_met": {
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "enum": [
-                          "pass",
-                          "fail",
-                          "error"
-                        ]
-                      }
-                    },
-                    "additionalProperties": {},
-                    "required": [
-                      "status"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "relationship_minimum_duration_met"
-                ],
-                "type": "object"
-              },
-              "created_at": {
-                "type": "string"
-              },
-              "total_attempts": {
-                "type": "number",
-                "format": "double"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "in_progress",
-                  "error"
-                ]
-              },
-              "step": {
-                "type": "string",
-                "enum": [
-                  "vouch"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "extracted_details",
-              "artefacts",
-              "evidence_type",
-              "validations",
-              "outcome",
-              "step"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/RefereeEvidenceItemApi"
           }
         ]
       },
-      "FraudFlag": {
+      "AmlCheckKindApi": {
+        "type": "string",
         "enum": [
-          "FACE_SCAN_BLOCKED",
-          "NAME_SUSPICIOUS",
-          "BURNER_EMAIL",
-          "BLOCKED_EMAIL",
-          "BURNER_PHONE_NUMBER",
-          "HIGH_RISK_COUNTRY_PHONE_NUMBER",
-          "FRAUD_SUSPICION"
+          "aml_sanctions"
         ],
-        "type": "string"
+        "nullable": false
       },
-      "Api_VerificationEnrichment_": {
-        "anyOf": [
-          {
+      "EnrichmentStatusApi": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "fail",
+          "error"
+        ]
+      },
+      "AmlMatchApi": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "first_seen": {
+            "type": "string"
+          },
+          "last_seen": {
+            "type": "string"
+          },
+          "properties": {
             "properties": {
-              "details": {
-                "properties": {
-                  "matches": {
+              "birth_country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
                     "items": {
-                      "properties": {
-                        "properties": {
-                          "properties": {
-                            "birth_country": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                }
-                              ]
-                            },
-                            "birth_place": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                }
-                              ]
-                            },
-                            "birth_date": {
-                              "type": "string"
-                            },
-                            "position": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                }
-                              ]
-                            },
-                            "country": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                }
-                              ]
-                            },
-                            "notes": {
-                              "anyOf": [
-                                {
-                                  "type": "string"
-                                },
-                                {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "birth_country",
-                            "birth_place",
-                            "birth_date",
-                            "position",
-                            "country",
-                            "notes"
-                          ],
-                          "type": "object"
-                        },
-                        "last_seen": {
-                          "type": "string"
-                        },
-                        "first_seen": {
-                          "type": "string"
-                        },
-                        "score": {
-                          "type": "number",
-                          "format": "double"
-                        },
-                        "caption": {
-                          "type": "string"
-                        },
-                        "id": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "properties",
-                        "score",
-                        "caption",
-                        "id"
-                      ],
-                      "type": "object"
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "birth_place": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "birth_date": {
+                "type": "string"
+              },
+              "position": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "country": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "notes": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "birth_country",
+              "birth_place",
+              "birth_date",
+              "position",
+              "country",
+              "notes"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "caption",
+          "score",
+          "properties"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AmlCheckApi": {
+        "properties": {
+          "check": {
+            "$ref": "#/components/schemas/AmlCheckKindApi"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/EnrichmentStatusApi"
+          },
+          "details": {
+            "properties": {
+              "matches": {
+                "items": {
+                  "$ref": "#/components/schemas/AmlMatchApi"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "matches"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "check",
+          "outcome",
+          "details"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OfaCheckKindApi": {
+        "type": "string",
+        "enum": [
+          "email_footprint_analysis",
+          "phone_footprint_analysis"
+        ]
+      },
+      "OfaCheckApi": {
+        "properties": {
+          "check": {
+            "$ref": "#/components/schemas/OfaCheckKindApi"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/EnrichmentStatusApi"
+          },
+          "details": {
+            "properties": {
+              "signals": {
+                "properties": {
+                  "negative": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "positive": {
+                    "items": {
+                      "type": "string"
                     },
                     "type": "array"
                   }
                 },
                 "required": [
-                  "matches"
+                  "negative",
+                  "positive"
                 ],
                 "type": "object"
               },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "error"
-                ]
-              },
-              "check": {
-                "type": "string",
-                "enum": [
-                  "aml_sanctions"
-                ],
-                "nullable": false
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
               }
             },
             "required": [
-              "details",
-              "outcome",
-              "check"
+              "signals",
+              "score"
             ],
             "type": "object"
+          }
+        },
+        "required": [
+          "check",
+          "outcome",
+          "details"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RadarCheckKindApi": {
+        "type": "string",
+        "enum": [
+          "radar"
+        ],
+        "nullable": false
+      },
+      "MatchedFraudsterFlagApi": {
+        "type": "string",
+        "enum": [
+          "FACE_SCAN_BLOCKED",
+          "BLOCKED_EMAIL",
+          "NAME_SUSPICIOUS",
+          "FRAUD_SUSPICION"
+        ]
+      },
+      "RiskApi": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "RadarCheckApi": {
+        "properties": {
+          "check": {
+            "$ref": "#/components/schemas/RadarCheckKindApi"
           },
-          {
+          "outcome": {
+            "$ref": "#/components/schemas/EnrichmentStatusApi"
+          },
+          "details": {
             "properties": {
-              "details": {
+              "validations": {
                 "properties": {
-                  "signals": {
+                  "not_disposable_email": {
+                    "$ref": "#/components/schemas/ValidationOutcomeApi"
+                  },
+                  "no_known_fraudster_match": {
                     "properties": {
-                      "negative": {
-                        "items": {},
+                      "risk": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/RiskApi"
+                          }
+                        ],
+                        "nullable": true
+                      },
+                      "messages": {
+                        "items": {
+                          "type": "string"
+                        },
                         "type": "array"
                       },
-                      "positive": {
-                        "items": {},
+                      "flags": {
+                        "items": {
+                          "$ref": "#/components/schemas/MatchedFraudsterFlagApi"
+                        },
                         "type": "array"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "pass",
+                          "fail"
+                        ]
                       }
                     },
                     "required": [
-                      "negative",
-                      "positive"
+                      "risk",
+                      "messages",
+                      "flags",
+                      "status"
                     ],
                     "type": "object"
                   },
-                  "score": {
-                    "type": "number",
-                    "format": "double"
+                  "normal_velocity_detected": {
+                    "$ref": "#/components/schemas/ValidationOutcomeApi"
                   }
                 },
                 "required": [
-                  "signals",
-                  "score"
+                  "no_known_fraudster_match",
+                  "normal_velocity_detected"
                 ],
                 "type": "object"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "error"
-                ]
-              },
-              "check": {
-                "type": "string",
-                "enum": [
-                  "email_footprint_analysis",
-                  "phone_footprint_analysis"
-                ]
               }
             },
             "required": [
-              "details",
-              "outcome",
-              "check"
+              "validations"
             ],
             "type": "object"
+          }
+        },
+        "required": [
+          "check",
+          "outcome",
+          "details"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VerificationEnrichment": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AmlCheckApi"
           },
           {
-            "properties": {
-              "details": {
-                "properties": {
-                  "validations": {
-                    "properties": {
-                      "not_disposable_email": {
-                        "properties": {
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "pass",
-                              "fail",
-                              "error"
-                            ]
-                          }
-                        },
-                        "additionalProperties": {},
-                        "required": [
-                          "status"
-                        ],
-                        "type": "object"
-                      },
-                      "no_known_fraudster_match": {
-                        "properties": {
-                          "risk": {
-                            "type": "string",
-                            "enum": [
-                              "low",
-                              "medium",
-                              "high"
-                            ]
-                          },
-                          "messages": {
-                            "items": {
-                              "type": "string"
-                            },
-                            "type": "array"
-                          },
-                          "flags": {
-                            "items": {
-                              "$ref": "#/components/schemas/FraudFlag"
-                            },
-                            "type": "array"
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "pass",
-                              "fail",
-                              "error"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "risk",
-                          "messages",
-                          "flags",
-                          "status"
-                        ],
-                        "type": "object"
-                      },
-                      "normal_velocity_detected": {
-                        "properties": {
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "pass",
-                              "fail",
-                              "error"
-                            ]
-                          }
-                        },
-                        "additionalProperties": {},
-                        "required": [
-                          "status"
-                        ],
-                        "type": "object"
-                      }
-                    },
-                    "required": [
-                      "no_known_fraudster_match",
-                      "normal_velocity_detected"
-                    ],
-                    "type": "object"
-                  }
-                },
-                "required": [
-                  "validations"
-                ],
-                "type": "object"
-              },
-              "outcome": {
-                "type": "string",
-                "enum": [
-                  "pass",
-                  "fail",
-                  "error"
-                ]
-              },
-              "check": {
-                "type": "string",
-                "enum": [
-                  "radar"
-                ],
-                "nullable": false
-              }
-            },
-            "required": [
-              "details",
-              "outcome",
-              "check"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/OfaCheckApi"
+          },
+          {
+            "$ref": "#/components/schemas/RadarCheckApi"
           }
         ]
       },
@@ -3119,24 +3619,24 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique ID for tracking a verification session over time"
+            "description": "Unique ID for tracking a verification session over time."
           },
           "status": {
             "$ref": "#/components/schemas/CaseStatus",
-            "description": "Current status"
+            "description": "Current status."
           },
           "created_at": {
             "type": "string",
-            "description": "When it was originally requested or begun"
+            "description": "When it was originally requested or begun."
           },
           "expires_at": {
             "type": "string",
-            "description": "When the user will stop getting reminders"
+            "description": "When the user will stop getting reminders."
           },
           "email": {
             "type": "string",
             "nullable": true,
-            "description": "The originally supplied email address"
+            "description": "The originally supplied email address."
           },
           "redirect_url": {
             "type": "string",
@@ -3145,29 +3645,34 @@
           },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to"
+            "description": "The verification flow it belongs to."
           },
           "external_id": {
             "type": "string",
             "nullable": true,
-            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time."
+            "description": "An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time."
+          },
+          "identity_profile": {
+            "$ref": "#/components/schemas/IdentityProfile",
+            "description": "The identity profile to use for this verification if flow is certified against the UK DIATF."
           },
           "claim_details": {
             "$ref": "#/components/schemas/ClaimDetails",
-            "description": "The derived identity and residency details"
+            "description": "The derived identity and residency details."
           },
           "checks": {
             "items": {
-              "$ref": "#/components/schemas/Api_VerificationCheck_"
+              "$ref": "#/components/schemas/VerificationCheck"
             },
             "type": "array",
-            "description": "The collected evidence and validations performed"
+            "description": "The evidence collected and validated."
           },
           "enrichments": {
             "items": {
-              "$ref": "#/components/schemas/Api_VerificationEnrichment_"
+              "$ref": "#/components/schemas/VerificationEnrichment"
             },
-            "type": "array"
+            "type": "array",
+            "description": "The enrichments performed on the verification."
           }
         },
         "required": [

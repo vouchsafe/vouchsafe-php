@@ -13,7 +13,7 @@ class Verification
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Unique ID for tracking a verification session over time
+     * Unique ID for tracking a verification session over time.
      *
      * @var string
      */
@@ -23,19 +23,19 @@ class Verification
      */
     protected $status;
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @var string
      */
     protected $createdAt;
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @var string
      */
     protected $expiresAt;
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @var string|null
      */
@@ -47,19 +47,23 @@ class Verification
      */
     protected $redirectUrl;
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @var string
      */
     protected $workflowId;
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @var string|null
      */
     protected $externalId;
     /**
-     * Unique ID for tracking a verification session over time
+     * @var string
+     */
+    protected $identityProfile;
+    /**
+     * Unique ID for tracking a verification session over time.
      *
      * @return string
      */
@@ -68,7 +72,7 @@ class Verification
         return $this->id;
     }
     /**
-     * Unique ID for tracking a verification session over time
+     * Unique ID for tracking a verification session over time.
      *
      * @param string $id
      *
@@ -99,7 +103,7 @@ class Verification
         return $this;
     }
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @return string
      */
@@ -108,7 +112,7 @@ class Verification
         return $this->createdAt;
     }
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @param string $createdAt
      *
@@ -121,7 +125,7 @@ class Verification
         return $this;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @return string
      */
@@ -130,7 +134,7 @@ class Verification
         return $this->expiresAt;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @param string $expiresAt
      *
@@ -143,7 +147,7 @@ class Verification
         return $this;
     }
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @return string|null
      */
@@ -152,7 +156,7 @@ class Verification
         return $this->email;
     }
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @param string|null $email
      *
@@ -187,7 +191,7 @@ class Verification
         return $this;
     }
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @return string
      */
@@ -196,7 +200,7 @@ class Verification
         return $this->workflowId;
     }
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @param string $workflowId
      *
@@ -209,7 +213,7 @@ class Verification
         return $this;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @return string|null
      */
@@ -218,7 +222,7 @@ class Verification
         return $this->externalId;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @param string|null $externalId
      *
@@ -228,6 +232,24 @@ class Verification
     {
         $this->initialized['externalId'] = true;
         $this->externalId = $externalId;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getIdentityProfile(): string
+    {
+        return $this->identityProfile;
+    }
+    /**
+     * @param string $identityProfile
+     *
+     * @return self
+     */
+    public function setIdentityProfile(string $identityProfile): self
+    {
+        $this->initialized['identityProfile'] = true;
+        $this->identityProfile = $identityProfile;
         return $this;
     }
 }

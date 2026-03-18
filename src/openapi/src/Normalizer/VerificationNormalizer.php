@@ -70,6 +70,9 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         elseif (\array_key_exists('external_id', $data) && $data['external_id'] === null) {
             $object->setExternalId(null);
         }
+        if (\array_key_exists('identity_profile', $data)) {
+            $object->setIdentityProfile($data['identity_profile']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -83,6 +86,9 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['redirect_url'] = $data->getRedirectUrl();
         $dataArray['workflow_id'] = $data->getWorkflowId();
         $dataArray['external_id'] = $data->getExternalId();
+        if ($data->isInitialized('identityProfile') && null !== $data->getIdentityProfile()) {
+            $dataArray['identity_profile'] = $data->getIdentityProfile();
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -13,7 +13,7 @@ class GetVerificationResponse
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Unique ID for tracking a verification session over time
+     * Unique ID for tracking a verification session over time.
      *
      * @var string
      */
@@ -23,19 +23,19 @@ class GetVerificationResponse
      */
     protected $status;
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @var string
      */
     protected $createdAt;
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @var string
      */
     protected $expiresAt;
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @var string|null
      */
@@ -47,33 +47,39 @@ class GetVerificationResponse
      */
     protected $redirectUrl;
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @var string
      */
     protected $workflowId;
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @var string|null
      */
     protected $externalId;
     /**
+     * @var string
+     */
+    protected $identityProfile;
+    /**
      * @var ClaimDetails
      */
     protected $claimDetails;
     /**
-     * The collected evidence and validations performed
+     * The evidence collected and validated.
      *
-     * @var list<mixed>
+     * @var list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>
      */
     protected $checks;
     /**
-     * @var list<mixed>
+     * The enrichments performed on the verification.
+     *
+     * @var list<AmlCheckApi>|list<OfaCheckApi>|list<RadarCheckApi>
      */
     protected $enrichments;
     /**
-     * Unique ID for tracking a verification session over time
+     * Unique ID for tracking a verification session over time.
      *
      * @return string
      */
@@ -82,7 +88,7 @@ class GetVerificationResponse
         return $this->id;
     }
     /**
-     * Unique ID for tracking a verification session over time
+     * Unique ID for tracking a verification session over time.
      *
      * @param string $id
      *
@@ -113,7 +119,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @return string
      */
@@ -122,7 +128,7 @@ class GetVerificationResponse
         return $this->createdAt;
     }
     /**
-     * When it was originally requested or begun
+     * When it was originally requested or begun.
      *
      * @param string $createdAt
      *
@@ -135,7 +141,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @return string
      */
@@ -144,7 +150,7 @@ class GetVerificationResponse
         return $this->expiresAt;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @param string $expiresAt
      *
@@ -157,7 +163,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @return string|null
      */
@@ -166,7 +172,7 @@ class GetVerificationResponse
         return $this->email;
     }
     /**
-     * The originally supplied email address
+     * The originally supplied email address.
      *
      * @param string|null $email
      *
@@ -201,7 +207,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @return string
      */
@@ -210,7 +216,7 @@ class GetVerificationResponse
         return $this->workflowId;
     }
     /**
-     * The verification flow it belongs to
+     * The verification flow it belongs to.
      *
      * @param string $workflowId
      *
@@ -223,7 +229,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @return string|null
      */
@@ -232,7 +238,7 @@ class GetVerificationResponse
         return $this->externalId;
     }
     /**
-     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+     * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
      *
      * @param string|null $externalId
      *
@@ -242,6 +248,24 @@ class GetVerificationResponse
     {
         $this->initialized['externalId'] = true;
         $this->externalId = $externalId;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getIdentityProfile(): string
+    {
+        return $this->identityProfile;
+    }
+    /**
+     * @param string $identityProfile
+     *
+     * @return self
+     */
+    public function setIdentityProfile(string $identityProfile): self
+    {
+        $this->initialized['identityProfile'] = true;
+        $this->identityProfile = $identityProfile;
         return $this;
     }
     /**
@@ -263,18 +287,18 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * The collected evidence and validations performed
+     * The evidence collected and validated.
      *
-     * @return list<mixed>
+     * @return list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>
      */
     public function getChecks(): array
     {
         return $this->checks;
     }
     /**
-     * The collected evidence and validations performed
+     * The evidence collected and validated.
      *
-     * @param list<mixed> $checks
+     * @param list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi> $checks
      *
      * @return self
      */
@@ -285,14 +309,18 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * @return list<mixed>
+     * The enrichments performed on the verification.
+     *
+     * @return list<AmlCheckApi>|list<OfaCheckApi>|list<RadarCheckApi>
      */
     public function getEnrichments(): array
     {
         return $this->enrichments;
     }
     /**
-     * @param list<mixed> $enrichments
+     * The enrichments performed on the verification.
+     *
+     * @param list<AmlCheckApi>|list<OfaCheckApi>|list<RadarCheckApi> $enrichments
      *
      * @return self
      */

@@ -88,6 +88,148 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ClaimDetails::class => \Vouchsafe\OpenAPI\Normalizer\ClaimDetailsNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\ArtefactApi::class => \Vouchsafe\OpenAPI\Normalizer\ArtefactApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsRefereeDissimilarityCheck::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsRefereeDissimilarityCheckNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsLivenessCheck::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsLivenessCheckNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\VerifyEmailCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApiValidations::class => \Vouchsafe\OpenAPI\Normalizer\VerifyEmailCheckApiValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApiValidationsEmailVerified::class => \Vouchsafe\OpenAPI\Normalizer\VerifyEmailCheckApiValidationsEmailVerifiedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\VerifyPhoneNumberCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApiValidations::class => \Vouchsafe\OpenAPI\Normalizer\VerifyPhoneNumberCheckApiValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApiValidationsPhoneVerified::class => \Vouchsafe\OpenAPI\Normalizer\VerifyPhoneNumberCheckApiValidationsPhoneVerifiedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class => \Vouchsafe\OpenAPI\Normalizer\ValidationOutcomeApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\ReviewUserCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ReviewUserCheckApiValidations::class => \Vouchsafe\OpenAPI\Normalizer\ReviewUserCheckApiValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\CitizenCardDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\CitizenCardDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PassportDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\PassportDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\YoungScotDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\YoungScotDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NecDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\NecDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PassportValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\PassportValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PassportValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\PassportValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PassportValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\PassportValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\CitizenCardValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\CitizenCardValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\CitizenCardValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\CitizenCardValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\CitizenCardValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\CitizenCardValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\YoungScotValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\YoungScotValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\YoungScotValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\YoungScotValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\YoungScotValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\YoungScotValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NecValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\NecValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NecValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\NecValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NecValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\NecValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PhotoIdEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\PhotoIdEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\SupportingDocumentValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentValidationsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\SupportingDocumentEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\TransactionDataApi::class => \Vouchsafe\OpenAPI\Normalizer\TransactionDataApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\BankAccountDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\BankAccountDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\BankAccountDetailsApiTransactionData::class => \Vouchsafe\OpenAPI\Normalizer\BankAccountDetailsApiTransactionDataNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\BankAccountValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\BankAccountValidationsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\BankAccountEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\BankAccountEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ImmigrationStatusDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RightToWorkDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\RightToWorkDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RightToRentDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\RightToRentDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\EvisaValidationsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaValidationsApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\EvisaValidationsApiFaceMatchNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\EvisaEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VouchDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\VouchDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\VouchValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\VouchValidationsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\RefereeEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AmlMatchApi::class => \Vouchsafe\OpenAPI\Normalizer\AmlMatchApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AmlMatchApiProperties::class => \Vouchsafe\OpenAPI\Normalizer\AmlMatchApiPropertiesNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AmlCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\AmlCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AmlCheckApiDetails::class => \Vouchsafe\OpenAPI\Normalizer\AmlCheckApiDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\OfaCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\OfaCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\OfaCheckApiDetails::class => \Vouchsafe\OpenAPI\Normalizer\OfaCheckApiDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\OfaCheckApiDetailsSignals::class => \Vouchsafe\OpenAPI\Normalizer\OfaCheckApiDetailsSignalsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RadarCheckApi::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RadarCheckApiDetails::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidations::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiDetailsValidationsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidationsNoKnownFraudsterMatch::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiDetailsValidationsNoKnownFraudsterMatchNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\GetVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetVerificationResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\CreateTeamResponse::class => \Vouchsafe\OpenAPI\Normalizer\CreateTeamResponseNormalizer::class,
@@ -253,6 +395,77 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\RequestVerificationInput::class => false,
             \Vouchsafe\OpenAPI\Model\Verification::class => false,
             \Vouchsafe\OpenAPI\Model\ClaimDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\ArtefactApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsRefereeDissimilarityCheck::class => false,
+            \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsLivenessCheck::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApiValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApiValidationsEmailVerified::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApiValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyPhoneNumberCheckApiValidationsPhoneVerified::class => false,
+            \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class => false,
+            \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\ReviewUserCheckApiValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\CitizenCardDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\YoungScotDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\NecDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\CitizenCardValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\CitizenCardValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\CitizenCardValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\YoungScotValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\YoungScotValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\YoungScotValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\NecValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\NecValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\NecValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApi::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiDocumentBordersDetected::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\PhotoIdEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\SupportingDocumentValidationsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\SupportingDocumentEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\TransactionDataApi::class => false,
+            \Vouchsafe\OpenAPI\Model\BankAccountDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\BankAccountDetailsApiTransactionData::class => false,
+            \Vouchsafe\OpenAPI\Model\BankAccountValidationsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\BankAccountEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\ImmigrationStatusDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\RightToWorkDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\RightToRentDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaValidationsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaValidationsApiFaceMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VouchDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\VouchValidationsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\AmlMatchApi::class => false,
+            \Vouchsafe\OpenAPI\Model\AmlMatchApiProperties::class => false,
+            \Vouchsafe\OpenAPI\Model\AmlCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\AmlCheckApiDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\OfaCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\OfaCheckApiDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\OfaCheckApiDetailsSignals::class => false,
+            \Vouchsafe\OpenAPI\Model\RadarCheckApi::class => false,
+            \Vouchsafe\OpenAPI\Model\RadarCheckApiDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidationsNoKnownFraudsterMatch::class => false,
             \Vouchsafe\OpenAPI\Model\GetVerificationResponse::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamResponse::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials::class => false,

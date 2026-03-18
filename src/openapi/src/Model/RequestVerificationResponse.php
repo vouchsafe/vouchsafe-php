@@ -13,31 +13,31 @@ class RequestVerificationResponse
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * A unique URL to redirect the user to or embed in an iframe
+     * A unique URL to redirect the user to or embed in an iframe.
      *
      * @var string
      */
     protected $url;
     /**
-     * A unique ID for the verification session, for you to track progress
+     * A unique ID for the verification session, for you to track progress.
      *
      * @var string
      */
     protected $id;
     /**
-     * The flow it belongs to
+     * The flow it belongs to.
      *
      * @var string
      */
     protected $workflowId;
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @var string
      */
     protected $expiresAt;
     /**
-     * A unique URL to redirect the user to or embed in an iframe
+     * A unique URL to redirect the user to or embed in an iframe.
      *
      * @return string
      */
@@ -46,7 +46,7 @@ class RequestVerificationResponse
         return $this->url;
     }
     /**
-     * A unique URL to redirect the user to or embed in an iframe
+     * A unique URL to redirect the user to or embed in an iframe.
      *
      * @param string $url
      *
@@ -59,7 +59,7 @@ class RequestVerificationResponse
         return $this;
     }
     /**
-     * A unique ID for the verification session, for you to track progress
+     * A unique ID for the verification session, for you to track progress.
      *
      * @return string
      */
@@ -68,7 +68,7 @@ class RequestVerificationResponse
         return $this->id;
     }
     /**
-     * A unique ID for the verification session, for you to track progress
+     * A unique ID for the verification session, for you to track progress.
      *
      * @param string $id
      *
@@ -81,7 +81,7 @@ class RequestVerificationResponse
         return $this;
     }
     /**
-     * The flow it belongs to
+     * The flow it belongs to.
      *
      * @return string
      */
@@ -90,7 +90,7 @@ class RequestVerificationResponse
         return $this->workflowId;
     }
     /**
-     * The flow it belongs to
+     * The flow it belongs to.
      *
      * @param string $workflowId
      *
@@ -103,7 +103,7 @@ class RequestVerificationResponse
         return $this;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @return string
      */
@@ -112,7 +112,7 @@ class RequestVerificationResponse
         return $this->expiresAt;
     }
     /**
-     * When the user will stop getting reminders
+     * When the user will stop getting reminders.
      *
      * @param string $expiresAt
      *
