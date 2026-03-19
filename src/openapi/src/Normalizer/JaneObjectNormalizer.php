@@ -272,48 +272,6 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\Flow::class => \Vouchsafe\OpenAPI\Normalizer\FlowNormalizer::class,
         
-        \Vouchsafe\OpenAPI\Model\CreateDigitalIdSessionResponse::class => \Vouchsafe\OpenAPI\Normalizer\CreateDigitalIdSessionResponseNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\KnownClaims::class => \Vouchsafe\OpenAPI\Normalizer\KnownClaimsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\KnownClaimsAddress::class => \Vouchsafe\OpenAPI\Normalizer\KnownClaimsAddressNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\CreateDigitalIdSessionInput::class => \Vouchsafe\OpenAPI\Normalizer\CreateDigitalIdSessionInputNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\VerifiedClaims::class => \Vouchsafe\OpenAPI\Normalizer\VerifiedClaimsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\VerifiedClaimsDocument::class => \Vouchsafe\OpenAPI\Normalizer\VerifiedClaimsDocumentNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\VerifiedClaimsAddress::class => \Vouchsafe\OpenAPI\Normalizer\VerifiedClaimsAddressNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\RadarResult::class => \Vouchsafe\OpenAPI\Normalizer\RadarResultNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentCheckResultNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\RecordStringEnrichmentCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\RecordStringEnrichmentCheckResultNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentVerificationReport::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentVerificationReportNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\Enrichments::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentsAml::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsAmlNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentsOnlineFootprint::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsOnlineFootprintNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentsCreditBureau::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsCreditBureauNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentsAddressVerification::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsAddressVerificationNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\EnrichmentsRadar::class => \Vouchsafe\OpenAPI\Normalizer\EnrichmentsRadarNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\DigitalIdSession::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdSessionNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\DigitalIdSessionEnrichments::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdSessionEnrichmentsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\DigitalIdSessionVerifiedClaims::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdSessionVerifiedClaimsNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\DigitalIdSessionKnownClaims::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdSessionKnownClaimsNormalizer::class,
-        
         \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => \Vouchsafe\OpenAPI\Normalizer\AuthenticateResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AuthenticateInput::class => \Vouchsafe\OpenAPI\Normalizer\AuthenticateInputNormalizer::class,
@@ -487,27 +445,6 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds::class => false,
             \Vouchsafe\OpenAPI\Model\PostcodeResponse::class => false,
             \Vouchsafe\OpenAPI\Model\Flow::class => false,
-            \Vouchsafe\OpenAPI\Model\CreateDigitalIdSessionResponse::class => false,
-            \Vouchsafe\OpenAPI\Model\KnownClaims::class => false,
-            \Vouchsafe\OpenAPI\Model\KnownClaimsAddress::class => false,
-            \Vouchsafe\OpenAPI\Model\CreateDigitalIdSessionInput::class => false,
-            \Vouchsafe\OpenAPI\Model\VerifiedClaims::class => false,
-            \Vouchsafe\OpenAPI\Model\VerifiedClaimsDocument::class => false,
-            \Vouchsafe\OpenAPI\Model\VerifiedClaimsAddress::class => false,
-            \Vouchsafe\OpenAPI\Model\RadarResult::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentCheckResult::class => false,
-            \Vouchsafe\OpenAPI\Model\RecordStringEnrichmentCheckResult::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentVerificationReport::class => false,
-            \Vouchsafe\OpenAPI\Model\Enrichments::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentsAml::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentsOnlineFootprint::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentsCreditBureau::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentsAddressVerification::class => false,
-            \Vouchsafe\OpenAPI\Model\EnrichmentsRadar::class => false,
-            \Vouchsafe\OpenAPI\Model\DigitalIdSession::class => false,
-            \Vouchsafe\OpenAPI\Model\DigitalIdSessionEnrichments::class => false,
-            \Vouchsafe\OpenAPI\Model\DigitalIdSessionVerifiedClaims::class => false,
-            \Vouchsafe\OpenAPI\Model\DigitalIdSessionKnownClaims::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateInput::class => false,
             \Vouchsafe\OpenAPI\Model\GetArtefactsResponse::class => false,
