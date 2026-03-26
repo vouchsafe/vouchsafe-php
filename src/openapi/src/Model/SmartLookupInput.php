@@ -68,6 +68,13 @@ class SmartLookupInput
      */
     protected $thresholds;
     /**
+     * (optional) When true, enables ongoing AML monitoring for this lookup.
+     * Requires AML to be included in checks. Requires the Alerts feature entitlement.
+     *
+     * @var bool
+     */
+    protected $alertsEnabled;
+    /**
      * (required) — Given name(s)
      *
      * @return string
@@ -265,6 +272,30 @@ class SmartLookupInput
     {
         $this->initialized['thresholds'] = true;
         $this->thresholds = $thresholds;
+        return $this;
+    }
+    /**
+     * (optional) When true, enables ongoing AML monitoring for this lookup.
+     * Requires AML to be included in checks. Requires the Alerts feature entitlement.
+     *
+     * @return bool
+     */
+    public function getAlertsEnabled(): bool
+    {
+        return $this->alertsEnabled;
+    }
+    /**
+    * (optional) When true, enables ongoing AML monitoring for this lookup.
+    Requires AML to be included in checks. Requires the Alerts feature entitlement.
+    *
+    * @param bool $alertsEnabled
+    *
+    * @return self
+    */
+    public function setAlertsEnabled(bool $alertsEnabled): self
+    {
+        $this->initialized['alertsEnabled'] = true;
+        $this->alertsEnabled = $alertsEnabled;
         return $this;
     }
 }

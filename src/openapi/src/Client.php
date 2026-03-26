@@ -380,6 +380,67 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
     {
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetArtefact($artefactKey), $fetch);
     }
+    /**
+     * List monitored accounts.
+     *
+     * Returns accounts that have ongoing AML/sanctions monitoring enabled,
+     * with summary info including current alert status.
+     *
+     * Use cursor-based pagination to iterate through results.
+     *
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * @param array{
+     *    "status"?: string, //Filter by alert status
+     *    "cursor"?: string, //Cursor for pagination (ID of last item from previous page)
+     * } $queryParameters
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\ListAccountsUnauthorizedException
+     * @throws \Vouchsafe\OpenAPI\Exception\ListAccountsForbiddenException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\ListAlertAccountsResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function listAccounts(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ListAccounts($queryParameters), $fetch);
+    }
+    /**
+     * Get full account detail.
+     *
+     * Returns the account's personal details, all alerts, and matched entities.
+     *
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * @param string $id The account ID (SmartLookup ID)
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\GetAccountDetailUnauthorizedException
+     * @throws \Vouchsafe\OpenAPI\Exception\GetAccountDetailForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\GetAccountDetailNotFoundException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function getAccountDetail(string $id, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetAccountDetail($id), $fetch);
+    }
+    /**
+     * Toggle ongoing monitoring for an account.
+     *
+     * Enable or disable AML/sanctions screening for an existing account.
+     *
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * @param string $id The account ID (SmartLookup ID)
+     * @param \Vouchsafe\OpenAPI\Model\ToggleAlertsInput $requestBody
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\ToggleAlertsBadRequestException
+     * @throws \Vouchsafe\OpenAPI\Exception\ToggleAlertsUnauthorizedException
+     * @throws \Vouchsafe\OpenAPI\Exception\ToggleAlertsForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\ToggleAlertsNotFoundException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\ToggleAlertsResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function toggleAlerts(string $id, \Vouchsafe\OpenAPI\Model\ToggleAlertsInput $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ToggleAlerts($id, $requestBody), $fetch);
+    }
     public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = [])
     {
         if (null === $httpClient) {

@@ -73,6 +73,10 @@ class GetSmartLookupResponse
      */
     protected $metadata;
     /**
+     * @var string|null
+     */
+    protected $alertsEnabledAt;
+    /**
      * @var string
      */
     protected $createdAt;
@@ -344,6 +348,24 @@ class GetSmartLookupResponse
     {
         $this->initialized['metadata'] = true;
         $this->metadata = $metadata;
+        return $this;
+    }
+    /**
+     * @return string|null
+     */
+    public function getAlertsEnabledAt(): ?string
+    {
+        return $this->alertsEnabledAt;
+    }
+    /**
+     * @param string|null $alertsEnabledAt
+     *
+     * @return self
+     */
+    public function setAlertsEnabledAt(?string $alertsEnabledAt): self
+    {
+        $this->initialized['alertsEnabledAt'] = true;
+        $this->alertsEnabledAt = $alertsEnabledAt;
         return $this;
     }
     /**

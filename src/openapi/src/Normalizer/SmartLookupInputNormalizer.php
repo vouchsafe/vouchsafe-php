@@ -34,6 +34,9 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new \Vouchsafe\OpenAPI\Model\SmartLookupInput();
+        if (\array_key_exists('alerts_enabled', $data) && \is_int($data['alerts_enabled'])) {
+            $data['alerts_enabled'] = (bool) $data['alerts_enabled'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -68,6 +71,9 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
         if (\array_key_exists('thresholds', $data)) {
             $object->setThresholds($this->denormalizer->denormalize($data['thresholds'], \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds::class, 'json', $context));
         }
+        if (\array_key_exists('alerts_enabled', $data)) {
+            $object->setAlertsEnabled($data['alerts_enabled']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -97,6 +103,9 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
         }
         if ($data->isInitialized('thresholds') && null !== $data->getThresholds()) {
             $dataArray['thresholds'] = $this->normalizer->normalize($data->getThresholds(), 'json', $context);
+        }
+        if ($data->isInitialized('alertsEnabled') && null !== $data->getAlertsEnabled()) {
+            $dataArray['alerts_enabled'] = $data->getAlertsEnabled();
         }
         return $dataArray;
     }

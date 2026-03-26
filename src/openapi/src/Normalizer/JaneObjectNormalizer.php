@@ -278,6 +278,20 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\GetArtefactsResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetArtefactsResponseNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\AlertAccountResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertAccountResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ListAlertAccountsResponse::class => \Vouchsafe\OpenAPI\Normalizer\ListAlertAccountsResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertMatchResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AlertResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertAccountDetailResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ToggleAlertsResponse::class => \Vouchsafe\OpenAPI\Normalizer\ToggleAlertsResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ToggleAlertsInput::class => \Vouchsafe\OpenAPI\Normalizer\ToggleAlertsInputNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => \Vouchsafe\OpenAPI\Normalizer\VerifySupportingDocumentsPostBodyNormalizer::class,
         
         \Jane\Component\JsonSchemaRuntime\Reference::class => \Vouchsafe\OpenAPI\Runtime\Normalizer\ReferenceNormalizer::class,
@@ -448,6 +462,13 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateInput::class => false,
             \Vouchsafe\OpenAPI\Model\GetArtefactsResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AlertAccountResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\ListAlertAccountsResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AlertResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\ToggleAlertsResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\ToggleAlertsInput::class => false,
             \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => false,
             \Jane\Component\JsonSchemaRuntime\Reference::class => false,
         ];

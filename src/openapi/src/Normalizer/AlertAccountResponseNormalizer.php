@@ -1,0 +1,98 @@
+<?php
+
+namespace Vouchsafe\OpenAPI\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use Vouchsafe\OpenAPI\Runtime\Normalizer\CheckArray;
+use Vouchsafe\OpenAPI\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+class AlertAccountResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use CheckArray;
+    use ValidatorTrait;
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+    {
+        return $type === \Vouchsafe\OpenAPI\Model\AlertAccountResponse::class;
+    }
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+    {
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\AlertAccountResponse::class;
+    }
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        $object = new \Vouchsafe\OpenAPI\Model\AlertAccountResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (\array_key_exists('id', $data)) {
+            $object->setId($data['id']);
+        }
+        if (\array_key_exists('first_name', $data) && $data['first_name'] !== null) {
+            $object->setFirstName($data['first_name']);
+        }
+        elseif (\array_key_exists('first_name', $data) && $data['first_name'] === null) {
+            $object->setFirstName(null);
+        }
+        if (\array_key_exists('last_name', $data) && $data['last_name'] !== null) {
+            $object->setLastName($data['last_name']);
+        }
+        elseif (\array_key_exists('last_name', $data) && $data['last_name'] === null) {
+            $object->setLastName(null);
+        }
+        if (\array_key_exists('alerts_enabled_at', $data) && $data['alerts_enabled_at'] !== null) {
+            $object->setAlertsEnabledAt($data['alerts_enabled_at']);
+        }
+        elseif (\array_key_exists('alerts_enabled_at', $data) && $data['alerts_enabled_at'] === null) {
+            $object->setAlertsEnabledAt(null);
+        }
+        if (\array_key_exists('last_screened_at', $data) && $data['last_screened_at'] !== null) {
+            $object->setLastScreenedAt($data['last_screened_at']);
+        }
+        elseif (\array_key_exists('last_screened_at', $data) && $data['last_screened_at'] === null) {
+            $object->setLastScreenedAt(null);
+        }
+        if (\array_key_exists('created_at', $data)) {
+            $object->setCreatedAt($data['created_at']);
+        }
+        if (\array_key_exists('status', $data)) {
+            $object->setStatus($data['status']);
+        }
+        if (\array_key_exists('risk_type', $data) && $data['risk_type'] !== null) {
+            $object->setRiskType($data['risk_type']);
+        }
+        elseif (\array_key_exists('risk_type', $data) && $data['risk_type'] === null) {
+            $object->setRiskType(null);
+        }
+        return $object;
+    }
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        $dataArray['id'] = $data->getId();
+        $dataArray['first_name'] = $data->getFirstName();
+        $dataArray['last_name'] = $data->getLastName();
+        $dataArray['alerts_enabled_at'] = $data->getAlertsEnabledAt();
+        $dataArray['last_screened_at'] = $data->getLastScreenedAt();
+        $dataArray['created_at'] = $data->getCreatedAt();
+        $dataArray['status'] = $data->getStatus();
+        $dataArray['risk_type'] = $data->getRiskType();
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Vouchsafe\OpenAPI\Model\AlertAccountResponse::class => false];
+    }
+}

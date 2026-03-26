@@ -4140,6 +4140,10 @@
           "metadata": {
             "$ref": "#/components/schemas/SmartLookupMetadata"
           },
+          "alerts_enabled_at": {
+            "type": "string",
+            "nullable": true
+          },
           "created_at": {
             "type": "string"
           }
@@ -4153,6 +4157,7 @@
           "first_line_of_address",
           "postcode",
           "metadata",
+          "alerts_enabled_at",
           "created_at"
         ],
         "type": "object",
@@ -4218,6 +4223,10 @@
             },
             "type": "object",
             "description": "(conditionally required) — Used to set a threshold for OnlineFootprint and AML checks, otherwise defaulting to 50 and 96 for OnlineFootprint and AML respectively"
+          },
+          "alerts_enabled": {
+            "type": "boolean",
+            "description": "(optional) When true, enables ongoing AML monitoring for this lookup.\nRequires AML to be included in checks. Requires the Alerts feature entitlement."
           }
         },
         "required": [
@@ -4351,6 +4360,224 @@
           "download_url",
           "expires_at",
           "expires_in_seconds"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AlertAccountStatus": {
+        "type": "string",
+        "enum": [
+          "new",
+          "acknowledged",
+          "clear"
+        ]
+      },
+      "AlertAccountResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "alerts_enabled_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "last_screened_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AlertAccountStatus"
+          },
+          "risk_type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "first_name",
+          "last_name",
+          "alerts_enabled_at",
+          "last_screened_at",
+          "created_at",
+          "status",
+          "risk_type"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ListAlertAccountsResponse": {
+        "properties": {
+          "accounts": {
+            "items": {
+              "$ref": "#/components/schemas/AlertAccountResponse"
+            },
+            "type": "array"
+          },
+          "next_cursor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "accounts",
+          "next_cursor"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AlertMatchResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "opensanctions_id": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "entity_type": {
+            "type": "string"
+          },
+          "datasets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "score": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "id",
+          "opensanctions_id",
+          "caption",
+          "entity_type",
+          "datasets",
+          "score"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AlertResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "acknowledged_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/AlertMatchResponse"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "acknowledged_at",
+          "matches"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AlertAccountDetailResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true
+          },
+          "alerts_enabled_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "last_screened_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "alerts": {
+            "items": {
+              "$ref": "#/components/schemas/AlertResponse"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "date_of_birth",
+          "alerts_enabled_at",
+          "last_screened_at",
+          "created_at",
+          "alerts"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ToggleAlertsResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "enum": [
+              true
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ToggleAlertsInput": {
+        "properties": {
+          "alerts_enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "alerts_enabled"
         ],
         "type": "object",
         "additionalProperties": false
@@ -5678,6 +5905,7 @@
                           "residencyLastUpdate": "2026-01-23"
                         }
                       },
+                      "alerts_enabled_at": null,
                       "created_at": "2025-08-10T12:00:00Z"
                     }
                   },
@@ -5717,6 +5945,7 @@
                           }
                         }
                       },
+                      "alerts_enabled_at": "2025-08-10T12:00:00Z",
                       "created_at": "2025-08-10T12:00:00Z"
                     }
                   },
@@ -5783,6 +6012,7 @@
                           }
                         }
                       },
+                      "alerts_enabled_at": null,
                       "created_at": "2025-08-10T12:00:00Z"
                     }
                   }
@@ -6194,6 +6424,276 @@
             }
           }
         ]
+      }
+    },
+    "/alerts/accounts": {
+      "get": {
+        "operationId": "ListAccounts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAlertAccountsResponse"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "accounts": [
+                        {
+                          "id": "sl_abc",
+                          "first_name": "Ava",
+                          "last_name": "Cole",
+                          "alerts_enabled_at": "2025-08-01T10:00:00Z",
+                          "last_screened_at": "2025-09-01T10:00:00Z",
+                          "created_at": "2025-08-01T10:00:00Z",
+                          "status": "new",
+                          "risk_type": "us_ofac_sdn"
+                        }
+                      ],
+                      "next_cursor": "sl_abc"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Feature not available on your plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "List monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "tags": [
+          "Alerts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "description": "Filter by alert status",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AlertAccountStatus"
+            }
+          },
+          {
+            "description": "Cursor for pagination (ID of last item from previous page)",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/alerts/accounts/{id}": {
+      "get": {
+        "operationId": "GetAccountDetail",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertAccountDetailResponse"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "id": "sl_abc",
+                      "first_name": "Ava",
+                      "last_name": "Cole",
+                      "email": "ava@example.com",
+                      "date_of_birth": "1990-01-01",
+                      "alerts_enabled_at": "2025-08-01T10:00:00Z",
+                      "last_screened_at": "2025-09-01T10:00:00Z",
+                      "created_at": "2025-08-01T10:00:00Z",
+                      "alerts": [
+                        {
+                          "id": "alert_123",
+                          "created_at": "2025-09-01T10:00:00Z",
+                          "acknowledged_at": null,
+                          "matches": [
+                            {
+                              "id": "match_456",
+                              "opensanctions_id": "NK-abc123",
+                              "caption": "Ava Cole",
+                              "entity_type": "Person",
+                              "datasets": [
+                                "us_ofac_sdn"
+                              ],
+                              "score": 0.92
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Feature not available on your plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "tags": [
+          "Alerts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The account ID (SmartLookup ID)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ToggleAlerts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToggleAlertsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Feature not available on your plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Toggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "tags": [
+          "Alerts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The account ID (SmartLookup ID)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleAlertsInput"
+              }
+            }
+          }
+        }
       }
     }
   },

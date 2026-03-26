@@ -98,6 +98,12 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('metadata', $data)) {
             $object->setMetadata($this->denormalizer->denormalize($data['metadata'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class, 'json', $context));
         }
+        if (\array_key_exists('alerts_enabled_at', $data) && $data['alerts_enabled_at'] !== null) {
+            $object->setAlertsEnabledAt($data['alerts_enabled_at']);
+        }
+        elseif (\array_key_exists('alerts_enabled_at', $data) && $data['alerts_enabled_at'] === null) {
+            $object->setAlertsEnabledAt(null);
+        }
         if (\array_key_exists('created_at', $data)) {
             $object->setCreatedAt($data['created_at']);
         }
@@ -139,6 +145,7 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
             $dataArray['nfd_verification_report'] = $this->normalizer->normalize($data->getNfdVerificationReport(), 'json', $context);
         }
         $dataArray['metadata'] = $this->normalizer->normalize($data->getMetadata(), 'json', $context);
+        $dataArray['alerts_enabled_at'] = $data->getAlertsEnabledAt();
         $dataArray['created_at'] = $data->getCreatedAt();
         return $dataArray;
     }
