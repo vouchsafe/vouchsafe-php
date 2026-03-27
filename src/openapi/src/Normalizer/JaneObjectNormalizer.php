@@ -282,6 +282,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ListAlertAccountsResponse::class => \Vouchsafe\OpenAPI\Normalizer\ListAlertAccountsResponseNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\DatasetReference::class => \Vouchsafe\OpenAPI\Normalizer\DatasetReferenceNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertMatchResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AlertResponse::class => \Vouchsafe\OpenAPI\Normalizer\AlertResponseNormalizer::class,
@@ -464,6 +466,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\GetArtefactsResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AlertAccountResponse::class => false,
             \Vouchsafe\OpenAPI\Model\ListAlertAccountsResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\DatasetReference::class => false,
             \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AlertResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse::class => false,

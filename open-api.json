@@ -4437,6 +4437,22 @@
         "type": "object",
         "additionalProperties": false
       },
+      "DatasetReference": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "AlertMatchResponse": {
         "properties": {
           "id": {
@@ -4453,7 +4469,7 @@
           },
           "datasets": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/DatasetReference"
             },
             "type": "array"
           },
@@ -6480,7 +6496,7 @@
             }
           }
         },
-        "description": "List monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nList monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Alerts"
         ],
@@ -6545,7 +6561,10 @@
                               "caption": "Ava Cole",
                               "entity_type": "Person",
                               "datasets": [
-                                "us_ofac_sdn"
+                                {
+                                  "id": "us_ofac_sdn",
+                                  "title": "US OFAC Specially Designated Nationals (SDN) List"
+                                }
                               ],
                               "score": 0.92
                             }
@@ -6589,7 +6608,7 @@
             }
           }
         },
-        "description": "Get full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nGet full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Alerts"
         ],
@@ -6664,7 +6683,7 @@
             }
           }
         },
-        "description": "Toggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nToggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Alerts"
         ],

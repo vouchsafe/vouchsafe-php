@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class DatasetReferenceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,11 +19,11 @@ class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerI
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class;
+        return $type === \Vouchsafe\OpenAPI\Model\DatasetReference::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\DatasetReference::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
@@ -33,34 +33,15 @@ class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\AlertMatchResponse();
-        if (\array_key_exists('score', $data) && \is_int($data['score'])) {
-            $data['score'] = (double) $data['score'];
-        }
+        $object = new \Vouchsafe\OpenAPI\Model\DatasetReference();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
         }
-        if (\array_key_exists('opensanctions_id', $data)) {
-            $object->setOpensanctionsId($data['opensanctions_id']);
-        }
-        if (\array_key_exists('caption', $data)) {
-            $object->setCaption($data['caption']);
-        }
-        if (\array_key_exists('entity_type', $data)) {
-            $object->setEntityType($data['entity_type']);
-        }
-        if (\array_key_exists('datasets', $data)) {
-            $values = [];
-            foreach ($data['datasets'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\DatasetReference::class, 'json', $context);
-            }
-            $object->setDatasets($values);
-        }
-        if (\array_key_exists('score', $data)) {
-            $object->setScore($data['score']);
+        if (\array_key_exists('title', $data)) {
+            $object->setTitle($data['title']);
         }
         return $object;
     }
@@ -68,19 +49,11 @@ class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerI
     {
         $dataArray = [];
         $dataArray['id'] = $data->getId();
-        $dataArray['opensanctions_id'] = $data->getOpensanctionsId();
-        $dataArray['caption'] = $data->getCaption();
-        $dataArray['entity_type'] = $data->getEntityType();
-        $values = [];
-        foreach ($data->getDatasets() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
-        }
-        $dataArray['datasets'] = $values;
-        $dataArray['score'] = $data->getScore();
+        $dataArray['title'] = $data->getTitle();
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\AlertMatchResponse::class => false];
+        return [\Vouchsafe\OpenAPI\Model\DatasetReference::class => false];
     }
 }

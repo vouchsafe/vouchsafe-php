@@ -381,6 +381,10 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetArtefact($artefactKey), $fetch);
     }
     /**
+     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+     * <strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+     * </div>
+     *
      * List monitored accounts.
      *
      * Returns accounts that have ongoing AML/sanctions monitoring enabled,
@@ -404,6 +408,10 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ListAccounts($queryParameters), $fetch);
     }
     /**
+     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+     * <strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+     * </div>
+     *
      * Get full account detail.
      *
      * Returns the account's personal details, all alerts, and matched entities.
@@ -422,6 +430,10 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetAccountDetail($id), $fetch);
     }
     /**
+     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+     * <strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+     * </div>
+     *
      * Toggle ongoing monitoring for an account.
      *
      * Enable or disable AML/sanctions screening for an existing account.

@@ -29,7 +29,7 @@ class AlertMatchResponse
      */
     protected $entityType;
     /**
-     * @var list<string>
+     * @var list<DatasetReference>
      */
     protected $datasets;
     /**
@@ -109,14 +109,14 @@ class AlertMatchResponse
         return $this;
     }
     /**
-     * @return list<string>
+     * @return list<DatasetReference>
      */
     public function getDatasets(): array
     {
         return $this->datasets;
     }
     /**
-     * @param list<string> $datasets
+     * @param list<DatasetReference> $datasets
      *
      * @return self
      */
