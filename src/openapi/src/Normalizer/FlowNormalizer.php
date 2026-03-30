@@ -27,18 +27,18 @@ class FlowNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\Flow();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\Flow();
         if (\array_key_exists('tokens_per_verification', $data) && \is_int($data['tokens_per_verification'])) {
             $data['tokens_per_verification'] = (double) $data['tokens_per_verification'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);

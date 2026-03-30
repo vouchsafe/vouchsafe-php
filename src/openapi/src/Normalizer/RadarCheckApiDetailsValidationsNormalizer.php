@@ -27,15 +27,15 @@ class RadarCheckApiDetailsValidationsNormalizer implements DenormalizerInterface
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidations();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidations();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('not_disposable_email', $data)) {
             $object->setNotDisposableEmail($this->denormalizer->denormalize($data['not_disposable_email'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));

@@ -27,18 +27,18 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\ApiErrorResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\ApiErrorResponse();
         if (\array_key_exists('status_code', $data) && \is_int($data['status_code'])) {
             $data['status_code'] = (double) $data['status_code'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('status_code', $data)) {
             $object->setStatusCode($data['status_code']);

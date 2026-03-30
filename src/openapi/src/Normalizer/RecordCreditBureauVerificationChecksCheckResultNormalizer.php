@@ -27,15 +27,15 @@ class RecordCreditBureauVerificationChecksCheckResultNormalizer implements Denor
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('IDENTITY_MATCH', $data)) {
             $object->setIDENTITYMATCH($this->denormalizer->denormalize($data['IDENTITY_MATCH'], \Vouchsafe\OpenAPI\Model\CheckResult::class, 'json', $context));

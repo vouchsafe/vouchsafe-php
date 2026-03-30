@@ -27,15 +27,15 @@ class RightToWorkInputPayloadNormalizer implements DenormalizerInterface, Normal
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\RightToWorkInputPayload();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Vouchsafe\OpenAPI\Model\RightToWorkInputPayload();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('company_name', $data)) {
             $object->setCompanyName($data['company_name']);

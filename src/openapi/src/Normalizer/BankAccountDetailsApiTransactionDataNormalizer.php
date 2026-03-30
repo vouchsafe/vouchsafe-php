@@ -27,18 +27,18 @@ class BankAccountDetailsApiTransactionDataNormalizer implements DenormalizerInte
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\BankAccountDetailsApiTransactionData();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\BankAccountDetailsApiTransactionData();
         if (\array_key_exists('count', $data) && \is_int($data['count'])) {
             $data['count'] = (double) $data['count'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('count', $data)) {
             $object->setCount($data['count']);

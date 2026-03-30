@@ -27,18 +27,18 @@ class EvisaArtefactNormalizer implements DenormalizerInterface, NormalizerInterf
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\EvisaArtefact();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\EvisaArtefact();
         if (\array_key_exists('expires_in_seconds', $data) && \is_int($data['expires_in_seconds'])) {
             $data['expires_in_seconds'] = (double) $data['expires_in_seconds'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('role', $data)) {
             $object->setRole($data['role']);

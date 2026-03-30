@@ -27,18 +27,18 @@ class GetArtefactsResponseNormalizer implements DenormalizerInterface, Normalize
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\GetArtefactsResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\GetArtefactsResponse();
         if (\array_key_exists('expires_in_seconds', $data) && \is_int($data['expires_in_seconds'])) {
             $data['expires_in_seconds'] = (double) $data['expires_in_seconds'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('artefact_key', $data)) {
             $object->setArtefactKey($data['artefact_key']);

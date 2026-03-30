@@ -27,15 +27,15 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadata();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadata();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('thresholds', $data)) {
             $object->setThresholds($this->denormalizer->denormalize($data['thresholds'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class, 'json', $context));

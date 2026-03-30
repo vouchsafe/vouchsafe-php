@@ -27,18 +27,18 @@ class RightToRentVerificationResponseNormalizer implements DenormalizerInterface
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Vouchsafe\OpenAPI\Model\RightToRentVerificationResponse();
         if (\array_key_exists('billable', $data) && \is_int($data['billable'])) {
             $data['billable'] = (bool) $data['billable'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('verification_method', $data)) {
             $object->setVerificationMethod($data['verification_method']);
