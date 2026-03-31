@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class NfdVerificationReportNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class AdverseMediaArticleNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class NfdVerificationReportNormalizer implements DenormalizerInterface, Normaliz
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class;
+        return $type === \Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\NfdVerificationReport();
+        $object = new \Vouchsafe\OpenAPI\Model\AdverseMediaArticle();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,23 +37,45 @@ class NfdVerificationReportNormalizer implements DenormalizerInterface, Normaliz
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        if (\array_key_exists('state', $data)) {
-            $object->setState($data['state']);
+        if (\array_key_exists('score', $data) && \is_int($data['score'])) {
+            $data['score'] = (double) $data['score'];
         }
-        if (\array_key_exists('checks', $data)) {
-            $object->setChecks($this->denormalizer->denormalize($data['checks'], \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class, 'json', $context));
+        if (\array_key_exists('title', $data)) {
+            $object->setTitle($data['title']);
+        }
+        if (\array_key_exists('link', $data)) {
+            $object->setLink($data['link']);
+        }
+        if (\array_key_exists('source', $data)) {
+            $object->setSource($data['source']);
+        }
+        if (\array_key_exists('published_at', $data) && $data['published_at'] !== null) {
+            $object->setPublishedAt($data['published_at']);
+        }
+        elseif (\array_key_exists('published_at', $data) && $data['published_at'] === null) {
+            $object->setPublishedAt(null);
+        }
+        if (\array_key_exists('snippet', $data)) {
+            $object->setSnippet($data['snippet']);
+        }
+        if (\array_key_exists('score', $data)) {
+            $object->setScore($data['score']);
         }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['state'] = $data->getState();
-        $dataArray['checks'] = $this->normalizer->normalize($data->getChecks(), 'json', $context);
+        $dataArray['title'] = $data->getTitle();
+        $dataArray['link'] = $data->getLink();
+        $dataArray['source'] = $data->getSource();
+        $dataArray['published_at'] = $data->getPublishedAt();
+        $dataArray['snippet'] = $data->getSnippet();
+        $dataArray['score'] = $data->getScore();
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\NfdVerificationReport::class => false];
+        return [\Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class => false];
     }
 }

@@ -20,6 +20,14 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
      *
      * If you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.
      *
+     * #### Expiry
+     *
+     * Verifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.
+     *
+     * You can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`).
+     *
+     * **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
+     *
      * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      * @param \Vouchsafe\OpenAPI\Model\RequestVerificationInput $requestBody
      */

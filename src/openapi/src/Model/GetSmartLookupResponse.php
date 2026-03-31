@@ -65,14 +65,18 @@ class GetSmartLookupResponse
      */
     protected $amlVerificationReport;
     /**
-     * @var NfdVerificationReport
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     *
+     * @var bool
      */
-    protected $nfdVerificationReport;
+    protected $billable;
     /**
-     * @var SmartLookupMetadata
+     * @var SmartLookupMetadataApi
      */
     protected $metadata;
     /**
+     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     *
      * @var string|null
      */
     protected $alertsEnabledAt;
@@ -315,42 +319,48 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
-     * @return NfdVerificationReport
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     *
+     * @return bool
      */
-    public function getNfdVerificationReport(): NfdVerificationReport
+    public function getBillable(): bool
     {
-        return $this->nfdVerificationReport;
+        return $this->billable;
     }
     /**
-     * @param NfdVerificationReport $nfdVerificationReport
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     *
+     * @param bool $billable
      *
      * @return self
      */
-    public function setNfdVerificationReport(NfdVerificationReport $nfdVerificationReport): self
+    public function setBillable(bool $billable): self
     {
-        $this->initialized['nfdVerificationReport'] = true;
-        $this->nfdVerificationReport = $nfdVerificationReport;
+        $this->initialized['billable'] = true;
+        $this->billable = $billable;
         return $this;
     }
     /**
-     * @return SmartLookupMetadata
+     * @return SmartLookupMetadataApi
      */
-    public function getMetadata(): SmartLookupMetadata
+    public function getMetadata(): SmartLookupMetadataApi
     {
         return $this->metadata;
     }
     /**
-     * @param SmartLookupMetadata $metadata
+     * @param SmartLookupMetadataApi $metadata
      *
      * @return self
      */
-    public function setMetadata(SmartLookupMetadata $metadata): self
+    public function setMetadata(SmartLookupMetadataApi $metadata): self
     {
         $this->initialized['metadata'] = true;
         $this->metadata = $metadata;
         return $this;
     }
     /**
+     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     *
      * @return string|null
      */
     public function getAlertsEnabledAt(): ?string
@@ -358,6 +368,8 @@ class GetSmartLookupResponse
         return $this->alertsEnabledAt;
     }
     /**
+     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     *
      * @param string|null $alertsEnabledAt
      *
      * @return self

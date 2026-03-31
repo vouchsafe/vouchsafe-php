@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class SmartLookupMetadataThresholdsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class AdverseMediaInputNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class SmartLookupMetadataThresholdsNormalizer implements DenormalizerInterface, 
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class;
+        return $type === \Vouchsafe\OpenAPI\Model\AdverseMediaInput::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\AdverseMediaInput::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds();
+        $object = new \Vouchsafe\OpenAPI\Model\AdverseMediaInput();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,41 +37,44 @@ class SmartLookupMetadataThresholdsNormalizer implements DenormalizerInterface, 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        if (\array_key_exists('onlineFootprint', $data) && \is_int($data['onlineFootprint'])) {
-            $data['onlineFootprint'] = (double) $data['onlineFootprint'];
+        if (\array_key_exists('threshold', $data) && \is_int($data['threshold'])) {
+            $data['threshold'] = (double) $data['threshold'];
         }
-        if (\array_key_exists('aml', $data) && \is_int($data['aml'])) {
-            $data['aml'] = (double) $data['aml'];
+        if (\array_key_exists('first_name', $data)) {
+            $object->setFirstName($data['first_name']);
         }
-        if (\array_key_exists('onlineFootprint', $data)) {
-            $object->setOnlineFootprint($data['onlineFootprint']);
-            unset($data['onlineFootprint']);
+        if (\array_key_exists('middle_names', $data)) {
+            $object->setMiddleNames($data['middle_names']);
         }
-        if (\array_key_exists('aml', $data)) {
-            $object->setAml($data['aml']);
-            unset($data['aml']);
+        if (\array_key_exists('last_name', $data)) {
+            $object->setLastName($data['last_name']);
         }
-        foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value;
-            }
+        if (\array_key_exists('location', $data)) {
+            $object->setLocation($data['location']);
+        }
+        if (\array_key_exists('threshold', $data)) {
+            $object->setThreshold($data['threshold']);
         }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['onlineFootprint'] = $data->getOnlineFootprint();
-        $dataArray['aml'] = $data->getAml();
-        foreach ($data as $key => $value) {
-            if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value;
-            }
+        $dataArray['first_name'] = $data->getFirstName();
+        if ($data->isInitialized('middleNames') && null !== $data->getMiddleNames()) {
+            $dataArray['middle_names'] = $data->getMiddleNames();
+        }
+        $dataArray['last_name'] = $data->getLastName();
+        if ($data->isInitialized('location') && null !== $data->getLocation()) {
+            $dataArray['location'] = $data->getLocation();
+        }
+        if ($data->isInitialized('threshold') && null !== $data->getThreshold()) {
+            $dataArray['threshold'] = $data->getThreshold();
         }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class => false];
+        return [\Vouchsafe\OpenAPI\Model\AdverseMediaInput::class => false];
     }
 }

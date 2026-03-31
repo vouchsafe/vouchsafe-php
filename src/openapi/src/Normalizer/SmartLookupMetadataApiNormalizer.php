@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class SmartLookupMetadataNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class SmartLookupMetadataApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class;
+        return $type === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadata();
+        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,8 +37,14 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
+        if (\array_key_exists('billable', $data) && \is_int($data['billable'])) {
+            $data['billable'] = (bool) $data['billable'];
+        }
         if (\array_key_exists('thresholds', $data)) {
-            $object->setThresholds($this->denormalizer->denormalize($data['thresholds'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class, 'json', $context));
+            $object->setThresholds($this->denormalizer->denormalize($data['thresholds'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class, 'json', $context));
+        }
+        if (\array_key_exists('billable', $data)) {
+            $object->setBillable($data['billable']);
         }
         if (\array_key_exists('creditBureauVerification', $data)) {
             $object->setCreditBureauVerification($this->denormalizer->denormalize($data['creditBureauVerification'], \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class, 'json', $context));
@@ -49,15 +55,15 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
         if (\array_key_exists('amlVerification', $data)) {
             $object->setAmlVerification($this->denormalizer->denormalize($data['amlVerification'], \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class, 'json', $context));
         }
-        if (\array_key_exists('nfdVerification', $data)) {
-            $object->setNfdVerification($this->denormalizer->denormalize($data['nfdVerification'], \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class, 'json', $context));
-        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
         $dataArray['thresholds'] = $this->normalizer->normalize($data->getThresholds(), 'json', $context);
+        if ($data->isInitialized('billable') && null !== $data->getBillable()) {
+            $dataArray['billable'] = $data->getBillable();
+        }
         if ($data->isInitialized('creditBureauVerification') && null !== $data->getCreditBureauVerification()) {
             $dataArray['creditBureauVerification'] = $this->normalizer->normalize($data->getCreditBureauVerification(), 'json', $context);
         }
@@ -67,13 +73,10 @@ class SmartLookupMetadataNormalizer implements DenormalizerInterface, Normalizer
         if ($data->isInitialized('amlVerification') && null !== $data->getAmlVerification()) {
             $dataArray['amlVerification'] = $this->normalizer->normalize($data->getAmlVerification(), 'json', $context);
         }
-        if ($data->isInitialized('nfdVerification') && null !== $data->getNfdVerification()) {
-            $dataArray['nfdVerification'] = $this->normalizer->normalize($data->getNfdVerification(), 'json', $context);
-        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class => false];
+        return [\Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class => false];
     }
 }

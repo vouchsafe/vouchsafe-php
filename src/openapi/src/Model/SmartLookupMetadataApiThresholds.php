@@ -2,7 +2,7 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class SmartLookupMetadataThresholds extends \ArrayObject
+class SmartLookupMetadataApiThresholds extends \ArrayObject
 {
     /**
      * @var array

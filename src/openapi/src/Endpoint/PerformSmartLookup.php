@@ -16,6 +16,16 @@ class PerformSmartLookup extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint 
      *   - `OnlineFootprint` checking against public traces of the user's online activity
      *   - `AML` checking international sanctions database, watchlists and other lists of high-risk people
      *
+     * ### Caching and billing
+     *
+     * To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
+     *
+     * - **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
+     * - **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
+     * - **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+     *
+     * The `billable` field in the response body indicates whether tokens were charged for this call.
+     *
      * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      * @param \Vouchsafe\OpenAPI\Model\SmartLookupInput $requestBody
      */

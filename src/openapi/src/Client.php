@@ -166,6 +166,14 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * If you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.
      *
+     * #### Expiry
+     *
+     * Verifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.
+     *
+     * You can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`).
+     *
+     * **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
+     *
      * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      * @param \Vouchsafe\OpenAPI\Model\RequestVerificationInput $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -266,6 +274,16 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *   - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll
      *   - `OnlineFootprint` checking against public traces of the user's online activity
      *   - `AML` checking international sanctions database, watchlists and other lists of high-risk people
+     *
+     * ### Caching and billing
+     *
+     * To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
+     *
+     * - **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
+     * - **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
+     * - **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+     *
+     * The `billable` field in the response body indicates whether tokens were charged for this call.
      *
      * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      * @param \Vouchsafe\OpenAPI\Model\SmartLookupInput $requestBody
@@ -452,6 +470,29 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
     public function toggleAlerts(string $id, \Vouchsafe\OpenAPI\Model\ToggleAlertsInput $requestBody, string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ToggleAlerts($id, $requestBody), $fetch);
+    }
+    /**
+     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+     * <strong style="color: #c62828;">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.
+     * </div>
+     *
+     * Screen an individual against recent news coverage for adverse or negative reporting.
+     *
+     * Each article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.
+     *
+     * All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
+     *
+     * Providing a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.
+     * @param \Vouchsafe\OpenAPI\Model\AdverseMediaInput $requestBody
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\PerformAdverseMediaCheckBadRequestException
+     * @throws \Vouchsafe\OpenAPI\Exception\PerformAdverseMediaCheckUnauthorizedException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\AdverseMediaResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function performAdverseMediaCheck(\Vouchsafe\OpenAPI\Model\AdverseMediaInput $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\PerformAdverseMediaCheck($requestBody), $fetch);
     }
     public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = [])
     {

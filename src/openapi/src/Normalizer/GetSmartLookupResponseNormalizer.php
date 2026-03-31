@@ -37,6 +37,9 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
+        if (\array_key_exists('billable', $data) && \is_int($data['billable'])) {
+            $data['billable'] = (bool) $data['billable'];
+        }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
         }
@@ -92,11 +95,11 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         if (\array_key_exists('aml_verification_report', $data)) {
             $object->setAmlVerificationReport($this->denormalizer->denormalize($data['aml_verification_report'], \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class, 'json', $context));
         }
-        if (\array_key_exists('nfd_verification_report', $data)) {
-            $object->setNfdVerificationReport($this->denormalizer->denormalize($data['nfd_verification_report'], \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class, 'json', $context));
+        if (\array_key_exists('billable', $data)) {
+            $object->setBillable($data['billable']);
         }
         if (\array_key_exists('metadata', $data)) {
-            $object->setMetadata($this->denormalizer->denormalize($data['metadata'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class, 'json', $context));
+            $object->setMetadata($this->denormalizer->denormalize($data['metadata'], \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class, 'json', $context));
         }
         if (\array_key_exists('alerts_enabled_at', $data) && $data['alerts_enabled_at'] !== null) {
             $object->setAlertsEnabledAt($data['alerts_enabled_at']);
@@ -141,9 +144,7 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         if ($data->isInitialized('amlVerificationReport') && null !== $data->getAmlVerificationReport()) {
             $dataArray['aml_verification_report'] = $this->normalizer->normalize($data->getAmlVerificationReport(), 'json', $context);
         }
-        if ($data->isInitialized('nfdVerificationReport') && null !== $data->getNfdVerificationReport()) {
-            $dataArray['nfd_verification_report'] = $this->normalizer->normalize($data->getNfdVerificationReport(), 'json', $context);
-        }
+        $dataArray['billable'] = $data->getBillable();
         $dataArray['metadata'] = $this->normalizer->normalize($data->getMetadata(), 'json', $context);
         $dataArray['alerts_enabled_at'] = $data->getAlertsEnabledAt();
         $dataArray['created_at'] = $data->getCreatedAt();

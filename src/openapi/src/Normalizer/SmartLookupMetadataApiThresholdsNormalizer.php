@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class RecordNfdVerificationChecksCheckResultNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class SmartLookupMetadataApiThresholdsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class RecordNfdVerificationChecksCheckResultNormalizer implements DenormalizerIn
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class;
+        return $type === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult();
+        $object = new \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,9 +37,19 @@ class RecordNfdVerificationChecksCheckResultNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        if (\array_key_exists('NFD_SEARCH', $data)) {
-            $object->setNFDSEARCH($this->denormalizer->denormalize($data['NFD_SEARCH'], \Vouchsafe\OpenAPI\Model\CheckResult::class, 'json', $context));
-            unset($data['NFD_SEARCH']);
+        if (\array_key_exists('onlineFootprint', $data) && \is_int($data['onlineFootprint'])) {
+            $data['onlineFootprint'] = (double) $data['onlineFootprint'];
+        }
+        if (\array_key_exists('aml', $data) && \is_int($data['aml'])) {
+            $data['aml'] = (double) $data['aml'];
+        }
+        if (\array_key_exists('onlineFootprint', $data)) {
+            $object->setOnlineFootprint($data['onlineFootprint']);
+            unset($data['onlineFootprint']);
+        }
+        if (\array_key_exists('aml', $data)) {
+            $object->setAml($data['aml']);
+            unset($data['aml']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -51,7 +61,8 @@ class RecordNfdVerificationChecksCheckResultNormalizer implements DenormalizerIn
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['NFD_SEARCH'] = $this->normalizer->normalize($data->getNFDSEARCH(), 'json', $context);
+        $dataArray['onlineFootprint'] = $data->getOnlineFootprint();
+        $dataArray['aml'] = $data->getAml();
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
@@ -61,6 +72,6 @@ class RecordNfdVerificationChecksCheckResultNormalizer implements DenormalizerIn
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class => false];
+        return [\Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class => false];
     }
 }

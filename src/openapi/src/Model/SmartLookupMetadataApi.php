@@ -2,7 +2,7 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class SmartLookupMetadata
+class SmartLookupMetadataApi
 {
     /**
      * @var array
@@ -15,9 +15,15 @@ class SmartLookupMetadata
     /**
      * The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50
      *
-     * @var SmartLookupMetadataThresholds
+     * @var SmartLookupMetadataApiThresholds
      */
     protected $thresholds;
+    /**
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. Defaults to true for lookups predating this field.
+     *
+     * @var bool
+     */
+    protected $billable;
     /**
      * Construct a type with a set of properties K of type T
      *
@@ -37,31 +43,47 @@ class SmartLookupMetadata
      */
     protected $amlVerification;
     /**
-     * Construct a type with a set of properties K of type T
-     *
-     * @var RecordStringUnknown
-     */
-    protected $nfdVerification;
-    /**
      * The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50
      *
-     * @return SmartLookupMetadataThresholds
+     * @return SmartLookupMetadataApiThresholds
      */
-    public function getThresholds(): SmartLookupMetadataThresholds
+    public function getThresholds(): SmartLookupMetadataApiThresholds
     {
         return $this->thresholds;
     }
     /**
      * The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50
      *
-     * @param SmartLookupMetadataThresholds $thresholds
+     * @param SmartLookupMetadataApiThresholds $thresholds
      *
      * @return self
      */
-    public function setThresholds(SmartLookupMetadataThresholds $thresholds): self
+    public function setThresholds(SmartLookupMetadataApiThresholds $thresholds): self
     {
         $this->initialized['thresholds'] = true;
         $this->thresholds = $thresholds;
+        return $this;
+    }
+    /**
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. Defaults to true for lookups predating this field.
+     *
+     * @return bool
+     */
+    public function getBillable(): bool
+    {
+        return $this->billable;
+    }
+    /**
+     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. Defaults to true for lookups predating this field.
+     *
+     * @param bool $billable
+     *
+     * @return self
+     */
+    public function setBillable(bool $billable): self
+    {
+        $this->initialized['billable'] = true;
+        $this->billable = $billable;
         return $this;
     }
     /**
@@ -128,28 +150,6 @@ class SmartLookupMetadata
     {
         $this->initialized['amlVerification'] = true;
         $this->amlVerification = $amlVerification;
-        return $this;
-    }
-    /**
-     * Construct a type with a set of properties K of type T
-     *
-     * @return RecordStringUnknown
-     */
-    public function getNfdVerification(): RecordStringUnknown
-    {
-        return $this->nfdVerification;
-    }
-    /**
-     * Construct a type with a set of properties K of type T
-     *
-     * @param RecordStringUnknown $nfdVerification
-     *
-     * @return self
-     */
-    public function setNfdVerification(RecordStringUnknown $nfdVerification): self
-    {
-        $this->initialized['nfdVerification'] = true;
-        $this->nfdVerification = $nfdVerification;
         return $this;
     }
 }

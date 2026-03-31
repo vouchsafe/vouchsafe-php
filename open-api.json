@@ -1078,7 +1078,7 @@
           },
           "expires_at": {
             "type": "string",
-            "description": "When the verification session expires and the user stops getting reminders.\n\nIf not provided, the verification flow default will be used."
+            "description": "When the verification session expires and the user stops getting reminders.\n\nIf provided, this overrides the verification flow default. Format as ISO 8601"
           }
         },
         "required": [
@@ -4002,41 +4002,13 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Record_NfdVerificationChecks.CheckResult_": {
-        "properties": {
-          "NFD_SEARCH": {
-            "$ref": "#/components/schemas/CheckResult"
-          }
-        },
-        "required": [
-          "NFD_SEARCH"
-        ],
-        "type": "object",
-        "description": "Construct a type with a set of properties K of type T"
-      },
-      "NfdVerificationReport": {
-        "properties": {
-          "state": {
-            "$ref": "#/components/schemas/CheckState"
-          },
-          "checks": {
-            "$ref": "#/components/schemas/Record_NfdVerificationChecks.CheckResult_"
-          }
-        },
-        "required": [
-          "state",
-          "checks"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "Record_string.unknown_": {
         "properties": {},
         "additionalProperties": {},
         "type": "object",
         "description": "Construct a type with a set of properties K of type T"
       },
-      "SmartLookupMetadata": {
+      "SmartLookupMetadataApi": {
         "properties": {
           "thresholds": {
             "properties": {
@@ -4056,6 +4028,10 @@
             "type": "object",
             "description": "The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50"
           },
+          "billable": {
+            "type": "boolean",
+            "description": "Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. Defaults to true for lookups predating this field."
+          },
           "creditBureauVerification": {
             "$ref": "#/components/schemas/Record_string.unknown_",
             "description": "Raw credit check data (identityMatches, residencyMatches, etc.). Only present when CreditBureau check was performed."
@@ -4067,10 +4043,6 @@
           "amlVerification": {
             "$ref": "#/components/schemas/Record_string.unknown_",
             "description": "Raw sanctions screening results. Only present when AML check was performed."
-          },
-          "nfdVerification": {
-            "$ref": "#/components/schemas/Record_string.unknown_",
-            "description": "Raw CIFAS NFD search results. Only present when NFD check was performed."
           }
         },
         "required": [
@@ -4093,8 +4065,7 @@
               "enum": [
                 "CreditBureau",
                 "OnlineFootprint",
-                "AML",
-                "NFD"
+                "AML"
               ]
             },
             "type": "array"
@@ -4134,15 +4105,17 @@
           "aml_verification_report": {
             "$ref": "#/components/schemas/AmlVerificationReport"
           },
-          "nfd_verification_report": {
-            "$ref": "#/components/schemas/NfdVerificationReport"
+          "billable": {
+            "type": "boolean",
+            "description": "Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache."
           },
           "metadata": {
-            "$ref": "#/components/schemas/SmartLookupMetadata"
+            "$ref": "#/components/schemas/SmartLookupMetadataApi"
           },
           "alerts_enabled_at": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts)."
           },
           "created_at": {
             "type": "string"
@@ -4156,6 +4129,7 @@
           "last_name",
           "first_line_of_address",
           "postcode",
+          "billable",
           "metadata",
           "alerts_enabled_at",
           "created_at"
@@ -4179,8 +4153,7 @@
               "enum": [
                 "CreditBureau",
                 "OnlineFootprint",
-                "AML",
-                "NFD"
+                "AML"
               ]
             },
             "type": "array",
@@ -4594,6 +4567,118 @@
         },
         "required": [
           "alerts_enabled"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AdverseMediaArticle": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Headline of the news article"
+          },
+          "link": {
+            "type": "string",
+            "description": "URL to the original article"
+          },
+          "source": {
+            "type": "string",
+            "description": "Name of the publication"
+          },
+          "published_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Publication date as an ISO 8601 timestamp, or null if the date could not be determined"
+          },
+          "snippet": {
+            "type": "string",
+            "description": "Short excerpt from the article"
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Adversity score (0–100) assigned by the screening model, adjusted for recency.\nHigher scores indicate more serious adverse content."
+          }
+        },
+        "required": [
+          "title",
+          "link",
+          "source",
+          "published_at",
+          "snippet",
+          "score"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AdverseMediaResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL"
+            ],
+            "description": "Whether the check passed or failed"
+          },
+          "threshold": {
+            "type": "number",
+            "format": "double",
+            "description": "The threshold used for this check"
+          },
+          "strong_matches": {
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaArticle"
+            },
+            "type": "array",
+            "description": "Articles that scored at or above the threshold"
+          },
+          "all_results": {
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaArticle"
+            },
+            "type": "array",
+            "description": "All articles found, including weak matches, for audit purposes"
+          }
+        },
+        "required": [
+          "status",
+          "threshold",
+          "strong_matches",
+          "all_results"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AdverseMediaInput": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "description": "Given name"
+          },
+          "middle_names": {
+            "type": "string",
+            "description": "Middle name(s), space-separated. Including middle names improves search precision."
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Family name"
+          },
+          "location": {
+            "type": "string",
+            "description": "City, county, or country. Strongly recommended: including a location significantly improves\nsearch precision and reduces false positives for common names.",
+            "example": "Glasgow"
+          },
+          "threshold": {
+            "type": "number",
+            "format": "double",
+            "description": "Adversity score threshold (0–100). Articles scoring at or above this value are\ntreated as strong matches and will cause the check to fail. Defaults to 70.",
+            "example": 70
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name"
         ],
         "type": "object",
         "additionalProperties": false
@@ -5367,7 +5452,7 @@
                     "value": {
                       "url": "https://app.vouchsafe.id/verify/123abc",
                       "id": "456def",
-                      "expires_at": "2025-08-01T12:00:00Z"
+                      "expires_at": "2025-08-08T12:00:00Z"
                     }
                   }
                 }
@@ -5405,7 +5490,7 @@
             }
           }
         },
-        "description": "Request a new verification.\n\nProvide the user's email and the ID of one of your verification flows to send them through.\n\nVouchsafe will respond with:\n\n- a URL to redirect to the user to\n- a unique ID for you to track the verification\n\nIf you have enabled \"On request creation\" emails in your flow, this also sends them an email.\n\nYou can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.\n\nIf you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Request a new verification.\n\nProvide the user's email and the ID of one of your verification flows to send them through.\n\nVouchsafe will respond with:\n\n- a URL to redirect to the user to\n- a unique ID for you to track the verification\n\nIf you have enabled \"On request creation\" emails in your flow, this also sends them an email.\n\nYou can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.\n\nIf you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.\n\n#### Expiry\n\nVerifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.\n\nYou can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). \n\n**Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Verifications"
         ],
@@ -5921,6 +6006,7 @@
                           "residencyLastUpdate": "2026-01-23"
                         }
                       },
+                      "billable": true,
                       "alerts_enabled_at": null,
                       "created_at": "2025-08-10T12:00:00Z"
                     }
@@ -5961,6 +6047,7 @@
                           }
                         }
                       },
+                      "billable": true,
                       "alerts_enabled_at": "2025-08-10T12:00:00Z",
                       "created_at": "2025-08-10T12:00:00Z"
                     }
@@ -6028,6 +6115,7 @@
                           }
                         }
                       },
+                      "billable": true,
                       "alerts_enabled_at": null,
                       "created_at": "2025-08-10T12:00:00Z"
                     }
@@ -6067,7 +6155,7 @@
             }
           }
         },
-        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n### Caching and billing\n\nTo avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):\n\n- **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)\n- **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)\n- **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)\n\nThe `billable` field in the response body indicates whether tokens were charged for this call.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Smart Lookups"
         ],
@@ -6709,6 +6797,116 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ToggleAlertsInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adverse-media": {
+      "post": {
+        "operationId": "PerformAdverseMediaCheck",
+        "responses": {
+          "200": {
+            "description": "Check performed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdverseMediaResponse"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "status": "PASS",
+                      "threshold": 70,
+                      "strong_matches": [],
+                      "all_results": [
+                        {
+                          "title": "Chloe Coleman stars in new Amazon Prime series",
+                          "link": "https://example.com/article/1",
+                          "source": "Entertainment Weekly",
+                          "published_at": "2024-03-15T10:00:00.000Z",
+                          "snippet": "Actress Chloe Coleman discusses her latest role in the upcoming Amazon Prime series.",
+                          "score": 5
+                        }
+                      ]
+                    }
+                  },
+                  "Example 2": {
+                    "value": {
+                      "status": "FAIL",
+                      "threshold": 70,
+                      "strong_matches": [
+                        {
+                          "title": "Putin signs decree expanding sanctions on foreign assets amid ongoing conflict",
+                          "link": "https://example.com/article/2",
+                          "source": "Reuters",
+                          "published_at": "2024-06-01T09:00:00.000Z",
+                          "snippet": "Vladimir Putin has signed a decree imposing further retaliatory sanctions as Western pressure over the war in Ukraine intensifies.",
+                          "score": 88
+                        }
+                      ],
+                      "all_results": [
+                        {
+                          "title": "Putin signs decree expanding sanctions on foreign assets amid ongoing conflict",
+                          "link": "https://example.com/article/2",
+                          "source": "Reuters",
+                          "published_at": "2024-06-01T09:00:00.000Z",
+                          "snippet": "Vladimir Putin has signed a decree imposing further retaliatory sanctions as Western pressure over the war in Ukraine intensifies.",
+                          "score": 88
+                        },
+                        {
+                          "title": "Putin attends Victory Day parade in Moscow",
+                          "link": "https://example.com/article/3",
+                          "source": "BBC News",
+                          "published_at": "2024-05-09T10:00:00.000Z",
+                          "snippet": "Russian President Vladimir Putin presided over the annual Victory Day military parade in Red Square.",
+                          "score": 12
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.\n</div>\n\nScreen an individual against recent news coverage for adverse or negative reporting.\n\nEach article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.\n\nAll articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.\n\nProviding a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.",
+        "tags": [
+          "Adverse Media"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdverseMediaInput"
               }
             }
           }

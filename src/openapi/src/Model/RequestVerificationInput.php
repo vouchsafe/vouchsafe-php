@@ -77,7 +77,7 @@ class RequestVerificationInput
     /**
      * When the verification session expires and the user stops getting reminders.
      * 
-     * If not provided, the verification flow default will be used.
+     * If provided, this overrides the verification flow default. Format as ISO 8601
      *
      * @var string
      */
@@ -299,7 +299,7 @@ class RequestVerificationInput
     /**
      * When the verification session expires and the user stops getting reminders.
      * 
-     * If not provided, the verification flow default will be used.
+     * If provided, this overrides the verification flow default. Format as ISO 8601
      *
      * @return string
      */
@@ -310,7 +310,7 @@ class RequestVerificationInput
     /**
     * When the verification session expires and the user stops getting reminders.
     
-    If not provided, the verification flow default will be used.
+    If provided, this overrides the verification flow default. Format as ISO 8601
     *
     * @param string $expiresAt
     *

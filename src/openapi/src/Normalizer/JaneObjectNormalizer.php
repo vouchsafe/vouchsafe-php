@@ -252,15 +252,11 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class => \Vouchsafe\OpenAPI\Normalizer\AmlVerificationReportNormalizer::class,
         
-        \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\RecordNfdVerificationChecksCheckResultNormalizer::class,
-        
-        \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class => \Vouchsafe\OpenAPI\Normalizer\NfdVerificationReportNormalizer::class,
-        
         \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class => \Vouchsafe\OpenAPI\Normalizer\RecordStringUnknownNormalizer::class,
         
-        \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupMetadataNormalizer::class,
+        \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupMetadataApiNormalizer::class,
         
-        \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupMetadataThresholdsNormalizer::class,
+        \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupMetadataApiThresholdsNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetSmartLookupResponseNormalizer::class,
         
@@ -293,6 +289,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         \Vouchsafe\OpenAPI\Model\ToggleAlertsResponse::class => \Vouchsafe\OpenAPI\Normalizer\ToggleAlertsResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\ToggleAlertsInput::class => \Vouchsafe\OpenAPI\Normalizer\ToggleAlertsInputNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class => \Vouchsafe\OpenAPI\Normalizer\AdverseMediaArticleNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AdverseMediaResponse::class => \Vouchsafe\OpenAPI\Normalizer\AdverseMediaResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AdverseMediaInput::class => \Vouchsafe\OpenAPI\Normalizer\AdverseMediaInputNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => \Vouchsafe\OpenAPI\Normalizer\VerifySupportingDocumentsPostBodyNormalizer::class,
         
@@ -451,11 +453,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\OnlineFootprintVerificationReport::class => false,
             \Vouchsafe\OpenAPI\Model\RecordAmlVerificationChecksCheckResult::class => false,
             \Vouchsafe\OpenAPI\Model\AmlVerificationReport::class => false,
-            \Vouchsafe\OpenAPI\Model\RecordNfdVerificationChecksCheckResult::class => false,
-            \Vouchsafe\OpenAPI\Model\NfdVerificationReport::class => false,
             \Vouchsafe\OpenAPI\Model\RecordStringUnknown::class => false,
-            \Vouchsafe\OpenAPI\Model\SmartLookupMetadata::class => false,
-            \Vouchsafe\OpenAPI\Model\SmartLookupMetadataThresholds::class => false,
+            \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class => false,
+            \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class => false,
             \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupInput::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds::class => false,
@@ -472,6 +472,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse::class => false,
             \Vouchsafe\OpenAPI\Model\ToggleAlertsResponse::class => false,
             \Vouchsafe\OpenAPI\Model\ToggleAlertsInput::class => false,
+            \Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class => false,
+            \Vouchsafe\OpenAPI\Model\AdverseMediaResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AdverseMediaInput::class => false,
             \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => false,
             \Jane\Component\JsonSchemaRuntime\Reference::class => false,
         ];
