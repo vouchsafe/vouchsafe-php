@@ -38,6 +38,48 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ApiErrorResponse::class => \Vouchsafe\OpenAPI\Normalizer\ApiErrorResponseNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\PassportExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\PassportExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PASSCardExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\PASSCardExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\Pass::class => \Vouchsafe\OpenAPI\Normalizer\PassNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD3OrFailedReasonINCOMPLETEMRZDATA::class => \Vouchsafe\OpenAPI\Normalizer\FailFailedReasonMRZNOTTD3OrFailedReasonINCOMPLETEMRZDATANormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailMrzPhotoIdFailedReason::class => \Vouchsafe\OpenAPI\Normalizer\FailMrzPhotoIdFailedReasonNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailSpecimenErrorCode::class => \Vouchsafe\OpenAPI\Normalizer\FailSpecimenErrorCodeNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailTamperingErrorCode::class => \Vouchsafe\OpenAPI\Normalizer\FailTamperingErrorCodeNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class => \Vouchsafe\OpenAPI\Normalizer\FailDocumentFaceErrorCodeNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PassportValidation::class => \Vouchsafe\OpenAPI\Normalizer\PassportValidationNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD1OrFailedReasonINCOMPLETEMRZDATA::class => \Vouchsafe\OpenAPI\Normalizer\FailFailedReasonMRZNOTTD1OrFailedReasonINCOMPLETEMRZDATANormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\NationalIdValidation::class => \Vouchsafe\OpenAPI\Normalizer\NationalIdValidationNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailDrivingLicenceFailedReason::class => \Vouchsafe\OpenAPI\Normalizer\FailDrivingLicenceFailedReasonNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DrivingLicenceValidation::class => \Vouchsafe\OpenAPI\Normalizer\DrivingLicenceValidationNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class => \Vouchsafe\OpenAPI\Normalizer\FailPASSCardFailedReasonNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PASSCardValidation::class => \Vouchsafe\OpenAPI\Normalizer\PASSCardValidationNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\FailUnfamiliarPhotoIdFailedReason::class => \Vouchsafe\OpenAPI\Normalizer\FailUnfamiliarPhotoIdFailedReasonNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidation::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PhotoIdVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\PhotoIdVerificationResponseNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\ImmigrationStatusExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusExtractedDetailsNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\EvisaArtefact::class => \Vouchsafe\OpenAPI\Normalizer\EvisaArtefactNormalizer::class,
@@ -298,6 +340,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => \Vouchsafe\OpenAPI\Normalizer\VerifySupportingDocumentsPostBodyNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\VerifyPhotoIdPostBody::class => \Vouchsafe\OpenAPI\Normalizer\VerifyPhotoIdPostBodyNormalizer::class,
+        
         \Jane\Component\JsonSchemaRuntime\Reference::class => \Vouchsafe\OpenAPI\Runtime\Normalizer\ReferenceNormalizer::class,
     ], $normalizersCache = [];
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
@@ -346,6 +390,27 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\SupportingDocumentValidations::class => false,
             \Vouchsafe\OpenAPI\Model\SupportingDocumentVerificationResponse::class => false,
             \Vouchsafe\OpenAPI\Model\ApiErrorResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\PASSCardExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\Pass::class => false,
+            \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD3OrFailedReasonINCOMPLETEMRZDATA::class => false,
+            \Vouchsafe\OpenAPI\Model\FailMrzPhotoIdFailedReason::class => false,
+            \Vouchsafe\OpenAPI\Model\FailSpecimenErrorCode::class => false,
+            \Vouchsafe\OpenAPI\Model\FailTamperingErrorCode::class => false,
+            \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class => false,
+            \Vouchsafe\OpenAPI\Model\PassportValidation::class => false,
+            \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD1OrFailedReasonINCOMPLETEMRZDATA::class => false,
+            \Vouchsafe\OpenAPI\Model\NationalIdValidation::class => false,
+            \Vouchsafe\OpenAPI\Model\FailDrivingLicenceFailedReason::class => false,
+            \Vouchsafe\OpenAPI\Model\DrivingLicenceValidation::class => false,
+            \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class => false,
+            \Vouchsafe\OpenAPI\Model\PASSCardValidation::class => false,
+            \Vouchsafe\OpenAPI\Model\FailUnfamiliarPhotoIdFailedReason::class => false,
+            \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidation::class => false,
+            \Vouchsafe\OpenAPI\Model\PhotoIdVerificationResponse::class => false,
             \Vouchsafe\OpenAPI\Model\ImmigrationStatusExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaArtefact::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaExistsResult::class => false,
@@ -476,6 +541,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\AdverseMediaResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AdverseMediaInput::class => false,
             \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody::class => false,
+            \Vouchsafe\OpenAPI\Model\VerifyPhotoIdPostBody::class => false,
             \Jane\Component\JsonSchemaRuntime\Reference::class => false,
         ];
     }

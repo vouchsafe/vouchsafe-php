@@ -18,11 +18,7 @@ class PerformSmartLookup extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint 
      *
      * ### Caching and billing
      *
-     * To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
-     *
-     * - **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
-     * - **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
-     * - **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+     * To make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.
      *
      * The `billable` field in the response body indicates whether tokens were charged for this call.
      *

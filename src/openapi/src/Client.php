@@ -63,6 +63,43 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      * <strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
      * </div>
      *
+     * This endpoint extracts details from a photo ID, validates the fields, and optionally matches the document photo to a face scan.
+     *
+     * You provide:
+     * - `sub_type` (required) - must be one of:
+     *    - `Passport`
+     *    - `NationalId` (MRZ-enabled IDs only)
+     *    - `DrivingLicence` (GB and EU countries)
+     *    - `PASSCard` (including Citizencard and Young Scot)
+     *    - `UnfamiliarPhotoId`
+     * - `front` (required) - the front of the photo ID document.
+     * - `back` (`NationalId` only) - the back of the photo ID document.
+     * - `country_code` (`DrivingLicence` only) - the issuing country as an ISO 3166-1 alpha-2 (e.g. `GB`, `DE`, `FR`).
+     * - `face_scan` (optional) - a face image to compare with the photo on the document.
+     *
+     * > **File requirements:** Max 10MB per file; JPEG or PNG only.
+     *
+     * > **Sandbox testing:** In sandbox mode, the endpoint returns a mock “pass” response. It echoes back your reference values. It does not process the document.
+     * @param \Vouchsafe\OpenAPI\Model\VerifyPhotoIdPostBody $requestBody
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdBadRequestException
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdUnauthorizedException
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdUnprocessableEntityException
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdNotImplementedException
+     * @throws \Vouchsafe\OpenAPI\Exception\VerifyPhotoIdServiceUnavailableException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\PhotoIdVerificationResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function verifyPhotoId(\Vouchsafe\OpenAPI\Model\VerifyPhotoIdPostBody $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\VerifyPhotoId($requestBody), $fetch);
+    }
+    /**
+     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+     * <strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+     * </div>
+     *
      * Verify a person's UK eVisa using their Home Office share code.
      *
      * This endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa
@@ -277,11 +314,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * ### Caching and billing
      *
-     * To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
-     *
-     * - **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
-     * - **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
-     * - **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+     * To make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.
      *
      * The `billable` field in the response body indicates whether tokens were charged for this call.
      *
@@ -482,7 +515,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
      *
-     * Providing a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.
+     * Providing a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.
      * @param \Vouchsafe\OpenAPI\Model\AdverseMediaInput $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\PerformAdverseMediaCheckBadRequestException

@@ -298,6 +298,1622 @@
         "type": "object",
         "additionalProperties": false
       },
+      "PhotoIdMethodResponse": {
+        "type": "string",
+        "enum": [
+          "passport",
+          "driving_licence",
+          "pass_card",
+          "national_id",
+          "unfamiliar_photo_id"
+        ]
+      },
+      "PassportExtractedDetails": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted first name, or null if unavailable."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted last name, or null if unavailable."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted card or document number, or null if unavailable."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted date of birth (YYYY-MM-DD), or null if unavailable."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted expiry date (YYYY-MM-DD), or null if unavailable."
+          },
+          "issuing_country": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing country as an ISO 3166-1 alpha-3 code (e.g. \"GBR\"), or null if unavailable."
+          },
+          "icao_format": {
+            "type": "string",
+            "nullable": true,
+            "description": "ICAO document format (e.g. \"TD3\"), or null if unavailable."
+          },
+          "mrz_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Raw MRZ string extracted from the document, or null if unavailable."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_number",
+          "date_of_birth",
+          "expiration_date",
+          "issuing_country",
+          "icao_format",
+          "mrz_code"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "NationalIdExtractedDetails": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted first name, or null if unavailable."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted last name, or null if unavailable."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted card or document number, or null if unavailable."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted date of birth (YYYY-MM-DD), or null if unavailable."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted expiry date (YYYY-MM-DD), or null if unavailable."
+          },
+          "issuing_country": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing country as an ISO 3166-1 alpha-3 code (e.g. \"GBR\"), or null if unavailable."
+          },
+          "icao_format": {
+            "type": "string",
+            "nullable": true,
+            "description": "ICAO document format (e.g. \"TD1\"), or null if unavailable."
+          },
+          "mrz_code": {
+            "type": "string",
+            "nullable": true,
+            "description": "Raw MRZ string extracted from the document, or null if unavailable."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_number",
+          "date_of_birth",
+          "expiration_date",
+          "issuing_country",
+          "icao_format",
+          "mrz_code"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DrivingLicenceCountryCode": {
+        "type": "string",
+        "enum": [
+          "GB",
+          "US",
+          "AT",
+          "BE",
+          "BG",
+          "HR",
+          "CY",
+          "CZ",
+          "DK",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "HU",
+          "IE",
+          "IT",
+          "LV",
+          "LT",
+          "LU",
+          "MT",
+          "NL",
+          "PL",
+          "PT",
+          "RO",
+          "SK",
+          "SI",
+          "ES",
+          "SE",
+          "CH",
+          "IS",
+          "NO",
+          "AD",
+          "AE",
+          "AF",
+          "AG",
+          "AL",
+          "AM",
+          "AO",
+          "AR",
+          "AU",
+          "AZ",
+          "BA",
+          "BB",
+          "BD",
+          "BF",
+          "BH",
+          "BI",
+          "BJ",
+          "BN",
+          "BO",
+          "BR",
+          "BS",
+          "BT",
+          "BW",
+          "BY",
+          "BZ",
+          "CA",
+          "CD",
+          "CF",
+          "CG",
+          "CI",
+          "CK",
+          "CL",
+          "CM",
+          "CN",
+          "CO",
+          "CR",
+          "CU",
+          "CV",
+          "DJ",
+          "DM",
+          "DO",
+          "DZ",
+          "EC",
+          "EG",
+          "ER",
+          "ET",
+          "FJ",
+          "FM",
+          "GA",
+          "GD",
+          "GE",
+          "GH",
+          "GM",
+          "GN",
+          "GQ",
+          "GT",
+          "GW",
+          "GY",
+          "HN",
+          "HT",
+          "ID",
+          "IL",
+          "IN",
+          "IQ",
+          "IR",
+          "JM",
+          "JO",
+          "JP",
+          "KE",
+          "KG",
+          "KH",
+          "KI",
+          "KM",
+          "KN",
+          "KP",
+          "KR",
+          "KW",
+          "KZ",
+          "LA",
+          "LB",
+          "LC",
+          "LI",
+          "LK",
+          "LR",
+          "LS",
+          "LY",
+          "MA",
+          "MC",
+          "MD",
+          "ME",
+          "MG",
+          "MK",
+          "ML",
+          "MM",
+          "MN",
+          "MR",
+          "MU",
+          "MV",
+          "MW",
+          "MX",
+          "MY",
+          "MZ",
+          "NA",
+          "NE",
+          "NG",
+          "NI",
+          "NP",
+          "NR",
+          "NZ",
+          "OM",
+          "PA",
+          "PE",
+          "PG",
+          "PH",
+          "PK",
+          "PW",
+          "PS",
+          "PY",
+          "QA",
+          "RS",
+          "RU",
+          "RW",
+          "SA",
+          "SB",
+          "SC",
+          "SD",
+          "SG",
+          "SL",
+          "SM",
+          "SN",
+          "SO",
+          "SR",
+          "SS",
+          "ST",
+          "SV",
+          "SY",
+          "SZ",
+          "TD",
+          "TG",
+          "TH",
+          "TJ",
+          "TL",
+          "TM",
+          "TN",
+          "TO",
+          "TR",
+          "TT",
+          "TV",
+          "TW",
+          "TZ",
+          "UA",
+          "UG",
+          "UY",
+          "UZ",
+          "VC",
+          "VE",
+          "VN",
+          "VU",
+          "WS",
+          "YE",
+          "ZA",
+          "ZM",
+          "ZW"
+        ],
+        "nullable": false
+      },
+      "DrivingLicenceExtractedDetails": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted first name, or null if unavailable."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted last name, or null if unavailable."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted card or document number, or null if unavailable."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted date of birth (YYYY-MM-DD), or null if unavailable."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted expiry date (YYYY-MM-DD), or null if unavailable."
+          },
+          "issuing_authority": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing authority (e.g. \"DVLA\"), or null if unavailable."
+          },
+          "date_of_issue": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date the licence was issued (YYYY-MM-DD), or null if unavailable."
+          },
+          "issuing_country": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DrivingLicenceCountryCode"
+              }
+            ],
+            "nullable": true,
+            "description": "Issuing country code, or null if unavailable."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_number",
+          "date_of_birth",
+          "expiration_date",
+          "issuing_authority",
+          "date_of_issue",
+          "issuing_country"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PASSCardExtractedDetails": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted first name, or null if unavailable."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted last name, or null if unavailable."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted card or document number, or null if unavailable."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted date of birth (YYYY-MM-DD), or null if unavailable."
+          },
+          "expiration_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted expiry date (YYYY-MM-DD), or null if unavailable."
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issuing organisation e.g. \"citizencard\", \"young-scot\"."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_number",
+          "date_of_birth",
+          "expiration_date",
+          "issuer"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UnfamiliarPhotoIdExtractedDetails": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted first name, or null if unavailable."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted last name, or null if unavailable."
+          },
+          "document_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Extracted card or document number, or null if unavailable."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "description": "Extracted date of birth (YYYY-MM-DD), or undefined if not available."
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "Extracted expiry date (YYYY-MM-DD), or undefined if not available."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "document_number"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PhotoIdExtractedDetails": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PassportExtractedDetails"
+          },
+          {
+            "$ref": "#/components/schemas/NationalIdExtractedDetails"
+          },
+          {
+            "$ref": "#/components/schemas/DrivingLicenceExtractedDetails"
+          },
+          {
+            "$ref": "#/components/schemas/PASSCardExtractedDetails"
+          },
+          {
+            "$ref": "#/components/schemas/UnfamiliarPhotoIdExtractedDetails"
+          }
+        ]
+      },
+      "Pass": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FailedReason.MRZ_NOT_TD3": {
+        "enum": [
+          "MRZ_NOT_TD3"
+        ],
+        "type": "string"
+      },
+      "FailedReason.INCOMPLETE_MRZ_DATA": {
+        "enum": [
+          "INCOMPLETE_MRZ_DATA"
+        ],
+        "type": "string"
+      },
+      "Fail_FailedReason.MRZ_NOT_TD3-or-FailedReason.INCOMPLETE_MRZ_DATA_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/FailedReason.MRZ_NOT_TD3"
+                },
+                {
+                  "$ref": "#/components/schemas/FailedReason.INCOMPLETE_MRZ_DATA"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_FailedReason.MRZ_NOT_TD3-or-FailedReason.INCOMPLETE_MRZ_DATA_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_FailedReason.MRZ_NOT_TD3-or-FailedReason.INCOMPLETE_MRZ_DATA_"
+          }
+        ]
+      },
+      "FailedReason.INVALID_MRZ_CODE": {
+        "enum": [
+          "INVALID_MRZ_CODE"
+        ],
+        "type": "string"
+      },
+      "FailedReason.VIZ_MRZ_MISMATCH": {
+        "enum": [
+          "VIZ_MRZ_MISMATCH"
+        ],
+        "type": "string"
+      },
+      "FailedReason.INVALID_DOCUMENT_DATE_FORMAT": {
+        "enum": [
+          "INVALID_DOCUMENT_DATE_FORMAT"
+        ],
+        "type": "string"
+      },
+      "FailedReason.EXPIRY_DATE_PASSED": {
+        "enum": [
+          "EXPIRY_DATE_PASSED"
+        ],
+        "type": "string"
+      },
+      "MrzPhotoIdFailedReason": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.INCOMPLETE_MRZ_DATA"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_MRZ_CODE"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.VIZ_MRZ_MISMATCH"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          }
+        ]
+      },
+      "Fail_MrzPhotoIdFailedReason_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/MrzPhotoIdFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_MrzPhotoIdFailedReason_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_MrzPhotoIdFailedReason_"
+          }
+        ]
+      },
+      "CompoundIdentifiersCheck_MrzPhotoIdFailedReason_": {
+        "anyOf": [
+          {
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "status"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "mismatches": {}
+                },
+                "required": [
+                  "mismatches"
+                ],
+                "type": "object"
+              },
+              "failed_reasons": {
+                "items": {
+                  "$ref": "#/components/schemas/MrzPhotoIdFailedReason"
+                },
+                "type": "array"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "fail"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "failed_reasons",
+              "status"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "FailedReason.WATERMARK_TEXT_DETECTED": {
+        "enum": [
+          "WATERMARK_TEXT_DETECTED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.SAMPLE_DOCUMENT_NUMBER_DETECTED": {
+        "enum": [
+          "SAMPLE_DOCUMENT_NUMBER_DETECTED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.SAMPLE_NAME_DETECTED": {
+        "enum": [
+          "SAMPLE_NAME_DETECTED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.SAMPLE_MRZ_CODE_DETECTED": {
+        "enum": [
+          "SAMPLE_MRZ_CODE_DETECTED"
+        ],
+        "type": "string"
+      },
+      "SpecimenErrorCode": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.WATERMARK_TEXT_DETECTED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.SAMPLE_DOCUMENT_NUMBER_DETECTED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.SAMPLE_NAME_DETECTED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.SAMPLE_MRZ_CODE_DETECTED"
+          }
+        ]
+      },
+      "Fail_SpecimenErrorCode_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/SpecimenErrorCode"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_SpecimenErrorCode_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_SpecimenErrorCode_"
+          }
+        ]
+      },
+      "FailedReason.DOCUMENT_LOOKS_LIKE_SCREENSHOT": {
+        "enum": [
+          "DOCUMENT_LOOKS_LIKE_SCREENSHOT"
+        ],
+        "type": "string"
+      },
+      "FailedReason.DOCUMENT_TEXT_TAMPERED": {
+        "enum": [
+          "DOCUMENT_TEXT_TAMPERED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.DOCUMENT_COLOR_PROFILE_CHANGED": {
+        "enum": [
+          "DOCUMENT_COLOR_PROFILE_CHANGED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.DOCUMENT_TAMPERED_INCONCLUSIVE": {
+        "enum": [
+          "DOCUMENT_TAMPERED_INCONCLUSIVE"
+        ],
+        "type": "string"
+      },
+      "FailedReason.POSSIBLY_TAMPERED": {
+        "enum": [
+          "POSSIBLY_TAMPERED"
+        ],
+        "type": "string"
+      },
+      "TamperingErrorCode": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_LOOKS_LIKE_SCREENSHOT"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_TEXT_TAMPERED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_COLOR_PROFILE_CHANGED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_TAMPERED_INCONCLUSIVE"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.POSSIBLY_TAMPERED"
+          }
+        ]
+      },
+      "Fail_TamperingErrorCode_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/TamperingErrorCode"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_TamperingErrorCode_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_TamperingErrorCode_"
+          }
+        ]
+      },
+      "FailedReason.LOW_DOC_TYPE_MATCH": {
+        "enum": [
+          "LOW_DOC_TYPE_MATCH"
+        ],
+        "type": "string"
+      },
+      "FailedReason.MEDIUM_DOC_TYPE_MATCH": {
+        "enum": [
+          "MEDIUM_DOC_TYPE_MATCH"
+        ],
+        "type": "string"
+      },
+      "DocumentDimensionsErrorCode": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.LOW_DOC_TYPE_MATCH"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.MEDIUM_DOC_TYPE_MATCH"
+          }
+        ]
+      },
+      "ScoreCheck_DocumentDimensionsErrorCode_": {
+        "anyOf": [
+          {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "failed_reasons": {
+                "items": {
+                  "$ref": "#/components/schemas/DocumentDimensionsErrorCode"
+                },
+                "type": "array"
+              },
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "fail"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "failed_reasons",
+              "score",
+              "status"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "FailedReason.NO_FACE_ON_DOCUMENT": {
+        "enum": [
+          "NO_FACE_ON_DOCUMENT"
+        ],
+        "type": "string"
+      },
+      "DocumentFaceErrorCode": {
+        "$ref": "#/components/schemas/FailedReason.NO_FACE_ON_DOCUMENT"
+      },
+      "Fail_DocumentFaceErrorCode_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentFaceErrorCode"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_DocumentFaceErrorCode_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_DocumentFaceErrorCode_"
+          }
+        ]
+      },
+      "FailedReason.LOW_ID_FACE_MATCH": {
+        "enum": [
+          "LOW_ID_FACE_MATCH"
+        ],
+        "type": "string"
+      },
+      "FailedReason.MEDIUM_ID_FACE_MATCH": {
+        "enum": [
+          "MEDIUM_ID_FACE_MATCH"
+        ],
+        "type": "string"
+      },
+      "FaceMatchErrorCode": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.LOW_ID_FACE_MATCH"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.MEDIUM_ID_FACE_MATCH"
+          }
+        ]
+      },
+      "ScoreCheck_FaceMatchErrorCode_": {
+        "anyOf": [
+          {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "failed_reasons": {
+                "items": {
+                  "$ref": "#/components/schemas/FaceMatchErrorCode"
+                },
+                "type": "array"
+              },
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "fail"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "failed_reasons",
+              "score",
+              "status"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "PassportValidation": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
+            "description": "Whether all required fields were successfully extracted from the document."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/CompoundIdentifiersCheck_MrzPhotoIdFailedReason_",
+            "description": "Whether all visual identifiers match encoded data."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
+            "description": "Whether the card has not passed its expiry date."
+          },
+          "not_specimen": {
+            "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
+            "description": "Whether the document appears to be a specimen or sample card rather than a real issued document."
+          },
+          "not_screenshot": {
+            "$ref": "#/components/schemas/Check_TamperingErrorCode_",
+            "description": "Whether the document appears to be a screenshot or has moire patterns indicating a photographed screen."
+          },
+          "document_dimensions_matched": {
+            "$ref": "#/components/schemas/ScoreCheck_DocumentDimensionsErrorCode_",
+            "description": "Whether the document dimensions matched the expected dimensions for the document type."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/Check_DocumentFaceErrorCode_",
+            "description": "Whether a face was detected within the document's bounding box."
+          },
+          "face_match": {
+            "$ref": "#/components/schemas/ScoreCheck_FaceMatchErrorCode_",
+            "description": "Whether the document photo matched the face scan. Absent if no face scan was provided."
+          },
+          "icao_format_valid": {
+            "$ref": "#/components/schemas/Check_FailedReason.MRZ_NOT_TD3-or-FailedReason.INCOMPLETE_MRZ_DATA_",
+            "description": "Whether the document follows the expected ICAO format."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "compound_identifiers_match",
+          "has_not_expired",
+          "not_specimen",
+          "not_screenshot",
+          "document_dimensions_matched",
+          "document_contains_face",
+          "icao_format_valid"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FailedReason.MRZ_NOT_TD1": {
+        "enum": [
+          "MRZ_NOT_TD1"
+        ],
+        "type": "string"
+      },
+      "Fail_FailedReason.MRZ_NOT_TD1-or-FailedReason.INCOMPLETE_MRZ_DATA_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/FailedReason.MRZ_NOT_TD1"
+                },
+                {
+                  "$ref": "#/components/schemas/FailedReason.INCOMPLETE_MRZ_DATA"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_FailedReason.MRZ_NOT_TD1-or-FailedReason.INCOMPLETE_MRZ_DATA_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_FailedReason.MRZ_NOT_TD1-or-FailedReason.INCOMPLETE_MRZ_DATA_"
+          }
+        ]
+      },
+      "NationalIdValidation": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
+            "description": "Whether all required fields were successfully extracted from the document."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/CompoundIdentifiersCheck_MrzPhotoIdFailedReason_",
+            "description": "Whether all visual identifiers match encoded data."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
+            "description": "Whether the card has not passed its expiry date."
+          },
+          "not_specimen": {
+            "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
+            "description": "Whether the document appears to be a specimen or sample card rather than a real issued document."
+          },
+          "not_screenshot": {
+            "$ref": "#/components/schemas/Check_TamperingErrorCode_",
+            "description": "Whether the document appears to be a screenshot or has moire patterns indicating a photographed screen."
+          },
+          "document_dimensions_matched": {
+            "$ref": "#/components/schemas/ScoreCheck_DocumentDimensionsErrorCode_",
+            "description": "Whether the document dimensions matched the expected dimensions for the document type."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/Check_DocumentFaceErrorCode_",
+            "description": "Whether a face was detected within the document's bounding box."
+          },
+          "face_match": {
+            "$ref": "#/components/schemas/ScoreCheck_FaceMatchErrorCode_",
+            "description": "Whether the document photo matched the face scan. Absent if no face scan was provided."
+          },
+          "icao_format_valid": {
+            "$ref": "#/components/schemas/Check_FailedReason.MRZ_NOT_TD1-or-FailedReason.INCOMPLETE_MRZ_DATA_",
+            "description": "Whether the document follows the expected ICAO format."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "compound_identifiers_match",
+          "has_not_expired",
+          "not_specimen",
+          "not_screenshot",
+          "document_dimensions_matched",
+          "document_contains_face",
+          "icao_format_valid"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FailedReason.PARTIAL_EXTRACTION": {
+        "enum": [
+          "PARTIAL_EXTRACTION"
+        ],
+        "type": "string"
+      },
+      "FailedReason.DOCUMENT_FEATURE_MISSING": {
+        "enum": [
+          "DOCUMENT_FEATURE_MISSING"
+        ],
+        "type": "string"
+      },
+      "FailedReason.INVALID_ID_FORMAT": {
+        "enum": [
+          "INVALID_ID_FORMAT"
+        ],
+        "type": "string"
+      },
+      "FailedReason.CONTAINS_UNWANTED_PHRASES": {
+        "enum": [
+          "CONTAINS_UNWANTED_PHRASES"
+        ],
+        "type": "string"
+      },
+      "FailedReason.INVALID_ISSUING_AUTHORITY": {
+        "enum": [
+          "INVALID_ISSUING_AUTHORITY"
+        ],
+        "type": "string"
+      },
+      "DrivingLicenceFailedReason": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.PARTIAL_EXTRACTION"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_FEATURE_MISSING"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_ID_FORMAT"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.CONTAINS_UNWANTED_PHRASES"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_ISSUING_AUTHORITY"
+          }
+        ]
+      },
+      "Fail_DrivingLicenceFailedReason_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/DrivingLicenceFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_DrivingLicenceFailedReason_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_DrivingLicenceFailedReason_"
+          }
+        ]
+      },
+      "DrivingLicenceValidation": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/Check_DrivingLicenceFailedReason_",
+            "description": "Whether all required fields were successfully extracted from the document."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/Check_DrivingLicenceFailedReason_",
+            "description": "Whether the licence has not passed its expiry date."
+          },
+          "not_specimen": {
+            "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
+            "description": "Whether the document appears to be a specimen or sample rather than a real issued document."
+          },
+          "not_screenshot": {
+            "$ref": "#/components/schemas/Check_TamperingErrorCode_",
+            "description": "Whether the document appears to be a screenshot or has moire patterns indicating a photographed screen."
+          },
+          "document_dimensions_matched": {
+            "$ref": "#/components/schemas/ScoreCheck_DocumentDimensionsErrorCode_",
+            "description": "Whether the document dimensions matched the expected dimensions for the document type."
+          },
+          "document_features_present": {
+            "$ref": "#/components/schemas/Check_DrivingLicenceFailedReason_",
+            "description": "Whether the expected security features are present in the document."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/Check_DocumentFaceErrorCode_",
+            "description": "Whether a face was detected within the document's bounding box."
+          },
+          "face_match": {
+            "$ref": "#/components/schemas/ScoreCheck_FaceMatchErrorCode_",
+            "description": "Whether the document photo matched the face scan. Absent if no face scan was provided."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "has_not_expired",
+          "not_specimen",
+          "not_screenshot",
+          "document_dimensions_matched",
+          "document_features_present",
+          "document_contains_face"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FailedReason.ISSUER_MATCH_NOT_FOUND": {
+        "enum": [
+          "ISSUER_MATCH_NOT_FOUND"
+        ],
+        "type": "string"
+      },
+      "FailedReason.INVALID_CARD_NUMBER": {
+        "enum": [
+          "INVALID_CARD_NUMBER"
+        ],
+        "type": "string"
+      },
+      "FailedReason.VIZ_DOES_NOT_MATCH_API": {
+        "enum": [
+          "VIZ_DOES_NOT_MATCH_API"
+        ],
+        "type": "string"
+      },
+      "PASSCardFailedReason": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.ISSUER_MATCH_NOT_FOUND"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.PARTIAL_EXTRACTION"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_CARD_NUMBER"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.VIZ_DOES_NOT_MATCH_API"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
+          }
+        ]
+      },
+      "Fail_PASSCardFailedReason_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/PASSCardFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_PASSCardFailedReason_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_PASSCardFailedReason_"
+          }
+        ]
+      },
+      "CompoundIdentifiersCheck_PASSCardFailedReason_": {
+        "anyOf": [
+          {
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "status"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "mismatches": {}
+                },
+                "required": [
+                  "mismatches"
+                ],
+                "type": "object"
+              },
+              "failed_reasons": {
+                "items": {
+                  "$ref": "#/components/schemas/PASSCardFailedReason"
+                },
+                "type": "array"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "fail"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "failed_reasons",
+              "status"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "PASSCardValidation": {
+        "properties": {
+          "matches_issuer_database": {
+            "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
+            "description": "Whether the card details matched the issuer's database.\nAbsent when issuer verification was not performed — e.g. YoungScot cards issued\nby individual councils cannot be verified against a central database."
+          },
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
+            "description": "Whether all required fields were successfully extracted from the document."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/CompoundIdentifiersCheck_PASSCardFailedReason_",
+            "description": "Whether all visual identifiers match encoded data.\nAbsent when issuer verification was not performed — e.g. YoungScot cards issued\nby individual councils cannot be verified against a central database."
+          },
+          "identifier_format_valid": {
+            "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
+            "description": "Whether the extracted identifier (e.g. card number) matches the expected format."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
+            "description": "Whether the card has not expired, if it was issued with an expiry date."
+          },
+          "not_specimen": {
+            "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
+            "description": "Whether the document appears to be a specimen or sample card rather than a real issued document."
+          },
+          "not_screenshot": {
+            "$ref": "#/components/schemas/Check_TamperingErrorCode_",
+            "description": "Whether the document appears to be a screenshot or has moire patterns indicating a photographed screen."
+          },
+          "document_dimensions_matched": {
+            "$ref": "#/components/schemas/ScoreCheck_DocumentDimensionsErrorCode_",
+            "description": "Whether the document dimensions matched the expected dimensions for the document type."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/Check_DocumentFaceErrorCode_",
+            "description": "Whether a face was detected within the document's bounding box."
+          },
+          "face_match": {
+            "$ref": "#/components/schemas/ScoreCheck_FaceMatchErrorCode_",
+            "description": "Whether the document photo matched the face scan. Absent if no face scan was provided."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "compound_identifiers_match",
+          "identifier_format_valid",
+          "not_specimen",
+          "not_screenshot",
+          "document_dimensions_matched",
+          "document_contains_face"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UnfamiliarPhotoIdFailedReason": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/FailedReason.PARTIAL_EXTRACTION"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
+          }
+        ]
+      },
+      "Fail_UnfamiliarPhotoIdFailedReason_": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "fail"
+            ],
+            "nullable": false
+          },
+          "failed_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/UnfamiliarPhotoIdFailedReason"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "failed_reasons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Check_UnfamiliarPhotoIdFailedReason_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Pass"
+          },
+          {
+            "$ref": "#/components/schemas/Fail_UnfamiliarPhotoIdFailedReason_"
+          }
+        ]
+      },
+      "UnfamiliarPhotoIdValidation": {
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/Check_UnfamiliarPhotoIdFailedReason_",
+            "description": "Whether the required fields (first_name, last_name, document_number) were successfully extracted."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/Check_UnfamiliarPhotoIdFailedReason_",
+            "description": "Whether the document has not passed its expiry date. Absent if no expiry date was found."
+          },
+          "not_specimen": {
+            "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
+            "description": "Whether the document appears to be a specimen or sample rather than a real issued document."
+          },
+          "not_screenshot": {
+            "$ref": "#/components/schemas/Check_TamperingErrorCode_",
+            "description": "Whether the document appears to be a screenshot or has moire patterns indicating a photographed screen."
+          },
+          "document_dimensions_matched": {
+            "$ref": "#/components/schemas/ScoreCheck_DocumentDimensionsErrorCode_",
+            "description": "Whether the document dimensions matched the expected dimensions for the document type."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/Check_DocumentFaceErrorCode_",
+            "description": "Whether a face was detected within the document's bounding box."
+          },
+          "face_match": {
+            "$ref": "#/components/schemas/ScoreCheck_FaceMatchErrorCode_",
+            "description": "Whether the document photo matched the face scan. Absent if no face scan was provided."
+          }
+        },
+        "required": [
+          "required_fields_extracted",
+          "not_specimen",
+          "not_screenshot",
+          "document_dimensions_matched",
+          "document_contains_face"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PhotoIdValidation": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PassportValidation"
+          },
+          {
+            "$ref": "#/components/schemas/NationalIdValidation"
+          },
+          {
+            "$ref": "#/components/schemas/DrivingLicenceValidation"
+          },
+          {
+            "$ref": "#/components/schemas/PASSCardValidation"
+          },
+          {
+            "$ref": "#/components/schemas/UnfamiliarPhotoIdValidation"
+          }
+        ]
+      },
+      "PhotoIdVerificationResponse": {
+        "properties": {
+          "evidence_type": {
+            "$ref": "#/components/schemas/PhotoIdMethodResponse"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/PhotoIdExtractedDetails"
+          },
+          "validations": {
+            "$ref": "#/components/schemas/PhotoIdValidation"
+          }
+        },
+        "required": [
+          "evidence_type",
+          "outcome",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "ImmigrationStatusApiValidationStatus": {
         "type": "string",
         "enum": [
@@ -4941,6 +6557,127 @@
         }
       }
     },
+    "/verify/photo-id": {
+      "post": {
+        "operationId": "VerifyPhotoId",
+        "responses": {
+          "200": {
+            "description": "Verification completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoIdVerificationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid payload or share code format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Trial expired or feature not available on your plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity - share code has been locked out by GOV.UK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Not implemented - RightToWork and RightToRent are coming soon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service temporarily unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nThis endpoint extracts details from a photo ID, validates the fields, and optionally matches the document photo to a face scan.\n\nYou provide:\n- `sub_type` (required) - must be one of:\n   - `Passport`\n   - `NationalId` (MRZ-enabled IDs only)\n   - `DrivingLicence` (GB and EU countries)\n   - `PASSCard` (including Citizencard and Young Scot)\n   - `UnfamiliarPhotoId`\n- `front` (required) - the front of the photo ID document.\n- `back` (`NationalId` only) - the back of the photo ID document.\n- `country_code` (`DrivingLicence` only) - the issuing country as an ISO 3166-1 alpha-2 (e.g. `GB`, `DE`, `FR`).\n- `face_scan` (optional) - a face image to compare with the photo on the document.\n\n> **File requirements:** Max 10MB per file; JPEG or PNG only.\n\n> **Sandbox testing:** In sandbox mode, the endpoint returns a mock “pass” response. It echoes back your reference values. It does not process the document.",
+        "tags": [
+          "Verify"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sub_type": {
+                    "type": "string"
+                  },
+                  "front": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "back": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "country_code": {
+                    "type": "string"
+                  },
+                  "face_scan": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "sub_type",
+                  "front"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/verify/evisa": {
       "post": {
         "operationId": "VerifyEvisa",
@@ -6155,7 +7892,7 @@
             }
           }
         },
-        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n### Caching and billing\n\nTo avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):\n\n- **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)\n- **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)\n- **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)\n\nThe `billable` field in the response body indicates whether tokens were charged for this call.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n### Caching and billing\n\nTo make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.\n\nThe `billable` field in the response body indicates whether tokens were charged for this call.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Smart Lookups"
         ],
@@ -6891,7 +8628,7 @@
             }
           }
         },
-        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.\n</div>\n\nScreen an individual against recent news coverage for adverse or negative reporting.\n\nEach article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.\n\nAll articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.\n\nProviding a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.\n</div>\n\nScreen an individual against recent news coverage for adverse or negative reporting.\n\nEach article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.\n\nAll articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.\n\nProviding a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.",
         "tags": [
           "Adverse Media"
         ],

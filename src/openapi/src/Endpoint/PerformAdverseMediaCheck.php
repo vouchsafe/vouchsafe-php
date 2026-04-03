@@ -15,7 +15,7 @@ class PerformAdverseMediaCheck extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEnd
      *
      * All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
      *
-     * Providing a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.
+     * Providing a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.
      * @param \Vouchsafe\OpenAPI\Model\AdverseMediaInput $requestBody
      */
     public function __construct(\Vouchsafe\OpenAPI\Model\AdverseMediaInput $requestBody)
