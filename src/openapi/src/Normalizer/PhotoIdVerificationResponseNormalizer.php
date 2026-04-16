@@ -37,6 +37,15 @@ class PhotoIdVerificationResponseNormalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
+        if (\array_key_exists('billable', $data) && \is_int($data['billable'])) {
+            $data['billable'] = (bool) $data['billable'];
+        }
+        if (\array_key_exists('verification_method', $data)) {
+            $object->setVerificationMethod($data['verification_method']);
+        }
+        if (\array_key_exists('billable', $data)) {
+            $object->setBillable($data['billable']);
+        }
         if (\array_key_exists('evidence_type', $data)) {
             $object->setEvidenceType($data['evidence_type']);
         }
@@ -78,6 +87,8 @@ class PhotoIdVerificationResponseNormalizer implements DenormalizerInterface, No
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
+        $dataArray['verification_method'] = $data->getVerificationMethod();
+        $dataArray['billable'] = $data->getBillable();
         $dataArray['evidence_type'] = $data->getEvidenceType();
         $dataArray['outcome'] = $data->getOutcome();
         $value = $data->getExtractedDetails();

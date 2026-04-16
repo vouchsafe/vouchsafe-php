@@ -96,7 +96,11 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusVerificationResponseNormalizer::class,
         
-        \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\EvisaBaseExtractedDetailsNormalizer::class,
+        \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccess::class => \Vouchsafe\OpenAPI\Normalizer\EvisaConditionsSuccessNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaConditionsFailed::class => \Vouchsafe\OpenAPI\Normalizer\EvisaConditionsFailedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\RightToWorkExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\RightToWorkExtractedDetailsNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\EvisaStartedResult::class => \Vouchsafe\OpenAPI\Normalizer\EvisaStartedResultNormalizer::class,
         
@@ -419,7 +423,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaNotExpiredResult::class => false,
             \Vouchsafe\OpenAPI\Model\ImmigrationStatusEvisaValidations::class => false,
             \Vouchsafe\OpenAPI\Model\ImmigrationStatusVerificationResponse::class => false,
-            \Vouchsafe\OpenAPI\Model\EvisaBaseExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccess::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaConditionsFailed::class => false,
+            \Vouchsafe\OpenAPI\Model\RightToWorkExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaStartedResult::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaNotExpiredResult::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaValidations::class => false,

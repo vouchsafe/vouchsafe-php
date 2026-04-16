@@ -15,6 +15,14 @@ class PhotoIdVerificationResponse
     /**
      * @var string
      */
+    protected $verificationMethod;
+    /**
+     * @var bool
+     */
+    protected $billable;
+    /**
+     * @var string
+     */
     protected $evidenceType;
     /**
      * @var string
@@ -28,6 +36,42 @@ class PhotoIdVerificationResponse
      * @var PassportValidation|NationalIdValidation|DrivingLicenceValidation|PASSCardValidation|UnfamiliarPhotoIdValidation
      */
     protected $validations;
+    /**
+     * @return string
+     */
+    public function getVerificationMethod(): string
+    {
+        return $this->verificationMethod;
+    }
+    /**
+     * @param string $verificationMethod
+     *
+     * @return self
+     */
+    public function setVerificationMethod(string $verificationMethod): self
+    {
+        $this->initialized['verificationMethod'] = true;
+        $this->verificationMethod = $verificationMethod;
+        return $this;
+    }
+    /**
+     * @return bool
+     */
+    public function getBillable(): bool
+    {
+        return $this->billable;
+    }
+    /**
+     * @param bool $billable
+     *
+     * @return self
+     */
+    public function setBillable(bool $billable): self
+    {
+        $this->initialized['billable'] = true;
+        $this->billable = $billable;
+        return $this;
+    }
     /**
      * @return string
      */

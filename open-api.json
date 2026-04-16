@@ -1888,6 +1888,16 @@
       },
       "PhotoIdVerificationResponse": {
         "properties": {
+          "verification_method": {
+            "type": "string",
+            "enum": [
+              "photo_id"
+            ],
+            "nullable": false
+          },
+          "billable": {
+            "type": "boolean"
+          },
           "evidence_type": {
             "$ref": "#/components/schemas/PhotoIdMethodResponse"
           },
@@ -1906,6 +1916,8 @@
           }
         },
         "required": [
+          "verification_method",
+          "billable",
           "evidence_type",
           "outcome",
           "extracted_details",
@@ -2185,8 +2197,60 @@
         "type": "object",
         "additionalProperties": false
       },
-      "EvisaBaseExtractedDetails": {
-        "description": "Extracted identity and status details from the eVisa verification.\nOn a `pass` outcome, all fields for the sub-type will be populated.\nOn a `fail` outcome, fields may be partially populated or empty depending on which validation step failed.",
+      "EvisaConditionsSuccess": {
+        "properties": {
+          "extraction_success": {
+            "type": "boolean",
+            "enum": [
+              true
+            ],
+            "nullable": false
+          },
+          "max_weekly_hours": {
+            "type": "string",
+            "nullable": true
+          },
+          "no_self_employment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "extraction_success",
+          "max_weekly_hours",
+          "no_self_employment"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaConditionsFailed": {
+        "properties": {
+          "extraction_success": {
+            "type": "boolean",
+            "enum": [
+              false
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "extraction_success"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaConditionsApiResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EvisaConditionsSuccess"
+          },
+          {
+            "$ref": "#/components/schemas/EvisaConditionsFailed"
+          }
+        ]
+      },
+      "RightToWorkExtractedDetails": {
+        "description": "Extracted details for `RightToWork` — includes all base fields plus optional `evisa_conditions`.",
         "properties": {
           "first_name": {
             "type": "string"
@@ -2207,14 +2271,14 @@
             "type": "string",
             "nullable": true,
             "description": "Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR)."
+          },
+          "evisa_conditions": {
+            "$ref": "#/components/schemas/EvisaConditionsApiResponse",
+            "description": "Structured employment conditions extracted from the eVisa"
           }
         },
         "type": "object",
         "additionalProperties": false
-      },
-      "RightToWorkExtractedDetails": {
-        "$ref": "#/components/schemas/EvisaBaseExtractedDetails",
-        "description": "Extracted details for `RightToWork` — includes all base fields."
       },
       "EvisaStartedFailedReason": {
         "type": "string",
@@ -6852,7 +6916,12 @@
                         "date_of_birth": "1996-06-07",
                         "share_code": "PASS12345",
                         "reference_number": "SANDBOX-REF-001",
-                        "expiration_date": "2031-08-02"
+                        "expiration_date": "2031-08-02",
+                        "evisa_conditions": {
+                          "extraction_success": true,
+                          "max_weekly_hours": "only be done for up to 20 hours per week in total, even if they have more than one part-time job",
+                          "no_self_employment": null
+                        }
                       },
                       "artefacts": [
                         {
@@ -6896,7 +6965,12 @@
                         "date_of_birth": "1996-06-07",
                         "share_code": "FAIL12345",
                         "reference_number": "SANDBOX-REF-002",
-                        "expiration_date": "2024-01-01"
+                        "expiration_date": "2024-01-01",
+                        "evisa_conditions": {
+                          "extraction_success": true,
+                          "max_weekly_hours": "only be done for up to 20 hours per week in total, even if they have more than one part-time job",
+                          "no_self_employment": null
+                        }
                       },
                       "artefacts": [
                         {
@@ -7151,7 +7225,7 @@
             }
           }
         },
-        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nVerify a person's UK eVisa using their Home Office share code.\n\nThis endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa\nby providing their share code and date of birth. The share code is obtained by\nthe individual from the UK Home Office online service.\n\n**Supported verification types:**\n- `ImmigrationStatus` - Check a person's immigration status (e.g., Settled, Skilled Worker, Youth Mobility Scheme)\n- `RightToWork` - Check a person's right to work in the UK\n- `RightToRent` - Check a person's right to rent property in the UK\n\n> **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.\n\n**Response fields by sub-type:**\nThe response fields directly reflect the information available on a particular eVisa sub-type.\nOn a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.\nOn an `inconclusive` outcome (see below), all identity fields are populated but date-based validations could not be performed.\n\n**Inconclusive outcome (`ImmigrationStatus` only):**\nSome immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:\n- `outcome: \"inconclusive\"`\n- `evisa_started` and `evisa_not_expired` both with `status: \"inconclusive\"` and `failed_reasons: [\"UNRECOGNISED_INDEFINITE_STATUS\"]`\n- `expiration_date: null` and `valid_from: null` in `extracted_details`\n\nThis outcome only applies to `ImmigrationStatus`. `RightToWork` and `RightToRent` always return dates from GOV.UK.\n\n**Response summary:**\n| HTTP Status | Meaning | Action |\n|-------------|---------|--------|\n| `200` | Verification completed | Check the `outcome` field (`pass`, `fail`, or `inconclusive`) |\n| `422` | Share code locked out by GOV.UK | Retry with a new share code |\n| `503` | Service temporarily unavailable | Retry with exponential backoff |\n\n**Billing:**\nAn API call is billable when the eVisa was found on GOV.UK, regardless of whether the verification\noutcome is `pass`, `fail`, or `inconclusive`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be\nretrieved, the response will have `billable: false` and you will not be charged.\nError responses (`HTTP 422`, `HTTP 503`) are also not billable and return an Error response body.\n\n**Artefacts:**\nOn a successful response, artefacts are returned inline with pre-signed download URLs.\nYou have **30 minutes** to download them before the URLs expire.\n\n\n**Sandbox testing:**\nUse these share codes in sandbox mode to test different outcomes:\n- `PASS12345` - Returns a successful verification with \"Pass\" outcome\n- `FAIL12345` - Returns a failed verification (e.g. expired status)\n- `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)\n- `ERROR1234` - Returns an error response\n- `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)\n- `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Verify a person's UK eVisa using their Home Office share code.\n\nThis endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa\nby providing their share code and date of birth. The share code is obtained by\nthe individual from the UK Home Office online service.\n\n**Supported verification types:**\n- `ImmigrationStatus` - Check a person's immigration status (e.g., Settled, Skilled Worker, Youth Mobility Scheme)\n- `RightToWork` - Check a person's right to work in the UK\n- `RightToRent` - Check a person's right to rent property in the UK\n\n> **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.\n\n**Response summary:**\n| HTTP Status | Meaning | Action |\n|-------------|---------|--------|\n| `200` | Verification completed | Check the `outcome` field (`pass`, `fail`, or `inconclusive`) |\n| `422` | Share code locked out by GOV.UK | Retry with a new share code |\n| `503` | Service temporarily unavailable | Retry with exponential backoff |\n\n**Billing:**\nAn API call is billable when the eVisa was found on GOV.UK, regardless of whether the verification\noutcome is `pass`, `fail`, or `inconclusive`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be\nretrieved, the response will have `billable: false` and you will not be charged.\nError responses (`HTTP 422`, `HTTP 503`) are also not billable and return an Error response body.\n\n**Artefacts:**\nOn a successful response, artefacts are returned inline with pre-signed download URLs.\nYou have **30 minutes** to download them before the URLs expire.\n\n\n**Sandbox testing:**\nUse these share codes in [sandbox mode](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work) to test different outcomes:\n- `PASS12345` - Returns a successful verification with \"Pass\" outcome\n- `FAIL12345` - Returns a failed verification (e.g. expired status)\n- `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)\n- `ERROR1234` - Returns an error response\n- `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)\n- `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)\n**Response fields by outcome:**\n- `pass`: all fields for the sub-type will be populated.\n- `fail`: `extracted_details` may be partially populated or empty depending on which validation step failed.\n- `inconclusive`: all identity fields are populated but date-based validations could not be performed.\n\n**Inconclusive outcome (`ImmigrationStatus` only):**\nSome immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:\n- `outcome: \"inconclusive\"`\n- `evisa_started` and `evisa_not_expired` both with `status: \"inconclusive\"` and `failed_reasons: [\"UNRECOGNISED_INDEFINITE_STATUS\"]`\n- `expiration_date: null` and `valid_from: null` in `extracted_details`\n\n**eVisa conditions:**\n> This feature is experimental and only available for `RightToWork` eVisas.\nThe `evisa_conditions` object (within `extracted_details`) contains employment conditions extracted\nverbatim from the eVisa text. Each field is the exact phrase as it appears on GOV.UK, or `null`\nif that condition could not be extracted from the eVisa.\n\nAlways check `extraction_success` before using these fields:\n- **`true`**: conditions were successfully extracted — each non-null value is a verbatim quote from the eVisa\n- **`false`**: extraction could not be performed — manually review the conditions on the eVisa\n\n**Available fields:**\n\n- `max_weekly_hours` (string | null): verbatim phrase stating a limit on weekly working hours, or `null` if uncapped.\n  Covers both primary job caps (e.g. student term-time limit) and additional part-time caps (e.g. sponsored workers).\n\n- `no_self_employment` (string | null): verbatim phrase prohibiting running a business or being self-employed,\n  or `null` if no such prohibition is stated.",
         "tags": [
           "Verify"
         ],

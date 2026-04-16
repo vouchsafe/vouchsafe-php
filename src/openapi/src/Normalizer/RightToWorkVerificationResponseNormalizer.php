@@ -55,7 +55,7 @@ class RightToWorkVerificationResponseNormalizer implements DenormalizerInterface
         if (\array_key_exists('extracted_details', $data)) {
             $value = $data['extracted_details'];
             if (is_array($data['extracted_details'])) {
-                $value = $data['extracted_details'];
+                $value = $this->denormalizer->denormalize($data['extracted_details'], \Vouchsafe\OpenAPI\Model\RightToWorkExtractedDetails::class, 'json', $context);
             } elseif (is_array($data['extracted_details'])) {
                 $value = $this->denormalizer->denormalize($data['extracted_details'], \Vouchsafe\OpenAPI\Model\RecordStringNever::class, 'json', $context);
             }
@@ -88,7 +88,7 @@ class RightToWorkVerificationResponseNormalizer implements DenormalizerInterface
         $dataArray['billable'] = $data->getBillable();
         $value = $data->getExtractedDetails();
         if (is_object($data->getExtractedDetails())) {
-            $value = $data->getExtractedDetails();
+            $value = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
         } elseif (is_object($data->getExtractedDetails())) {
             $value = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
         }

@@ -2,7 +2,7 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class EvisaBaseExtractedDetails
+class RightToWorkExtractedDetails
 {
     /**
      * @var array
@@ -38,6 +38,10 @@ class EvisaBaseExtractedDetails
      * @var string|null
      */
     protected $expirationDate;
+    /**
+     * @var EvisaConditionsSuccess|EvisaConditionsFailed
+     */
+    protected $evisaConditions;
     /**
      * @return string
      */
@@ -148,6 +152,24 @@ class EvisaBaseExtractedDetails
     {
         $this->initialized['expirationDate'] = true;
         $this->expirationDate = $expirationDate;
+        return $this;
+    }
+    /**
+     * @return EvisaConditionsSuccess|EvisaConditionsFailed
+     */
+    public function getEvisaConditions()
+    {
+        return $this->evisaConditions;
+    }
+    /**
+     * @param EvisaConditionsSuccess|EvisaConditionsFailed $evisaConditions
+     *
+     * @return self
+     */
+    public function setEvisaConditions($evisaConditions): self
+    {
+        $this->initialized['evisaConditions'] = true;
+        $this->evisaConditions = $evisaConditions;
         return $this;
     }
 }

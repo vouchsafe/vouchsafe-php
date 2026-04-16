@@ -31,7 +31,7 @@ class RightToWorkVerificationResponse
      */
     protected $billable;
     /**
-     * @var object|RecordStringNever
+     * @var RightToWorkExtractedDetails|RecordStringNever
      */
     protected $extractedDetails;
     /**
@@ -119,14 +119,14 @@ class RightToWorkVerificationResponse
         return $this;
     }
     /**
-     * @return object|RecordStringNever
+     * @return RightToWorkExtractedDetails|RecordStringNever
      */
     public function getExtractedDetails()
     {
         return $this->extractedDetails;
     }
     /**
-     * @param object|RecordStringNever $extractedDetails
+     * @param RightToWorkExtractedDetails|RecordStringNever $extractedDetails
      *
      * @return self
      */
