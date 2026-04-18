@@ -19,7 +19,8 @@
           "credit_card_statement",
           "mortgage_statement",
           "utility_bill",
-          "mobile_phone_bill"
+          "mobile_phone_bill",
+          "paye_tax_summary"
         ]
       },
       "ApiValidationStatus": {
@@ -1729,7 +1730,7 @@
         "properties": {
           "matches_issuer_database": {
             "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
-            "description": "Whether the card details matched the issuer's database.\nAbsent when issuer verification was not performed — e.g. YoungScot cards issued\nby individual councils cannot be verified against a central database."
+            "description": "Whether the card details matched the issuer's database.\nAbsent when issuer verification was not performed"
           },
           "required_fields_extracted": {
             "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
@@ -1737,7 +1738,7 @@
           },
           "compound_identifiers_match": {
             "$ref": "#/components/schemas/CompoundIdentifiersCheck_PASSCardFailedReason_",
-            "description": "Whether all visual identifiers match encoded data.\nAbsent when issuer verification was not performed — e.g. YoungScot cards issued\nby individual councils cannot be verified against a central database."
+            "description": "Whether all visual identifiers match encoded data.\nAbsent when issuer verification was not performed"
           },
           "identifier_format_valid": {
             "$ref": "#/components/schemas/Check_PASSCardFailedReason_",
@@ -2541,8 +2542,8 @@
               },
               "job_title": {
                 "type": "string",
-                "description": "Job title of the person being verified",
-                "example": "Software Engineer"
+                "description": "Job title of the person conducting or responsible for the verification",
+                "example": "Compliance Officer"
               },
               "company_name": {
                 "type": "string",

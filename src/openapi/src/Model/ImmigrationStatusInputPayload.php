@@ -19,7 +19,7 @@ class ImmigrationStatusInputPayload extends \ArrayObject
      */
     protected $reason;
     /**
-     * Job title of the person being verified
+     * Job title of the person conducting or responsible for the verification
      *
      * @var string
      */
@@ -65,7 +65,7 @@ class ImmigrationStatusInputPayload extends \ArrayObject
         return $this;
     }
     /**
-     * Job title of the person being verified
+     * Job title of the person conducting or responsible for the verification
      *
      * @return string
      */
@@ -74,7 +74,7 @@ class ImmigrationStatusInputPayload extends \ArrayObject
         return $this->jobTitle;
     }
     /**
-     * Job title of the person being verified
+     * Job title of the person conducting or responsible for the verification
      *
      * @param string $jobTitle
      *
