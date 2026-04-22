@@ -49,6 +49,10 @@ class RightToWorkDetailsApi
      */
     protected $expirationDate;
     /**
+     * @var EvisaConditionsSuccessApi|EvisaConditionsFailedApi
+     */
+    protected $evisaConditions;
+    /**
      * First name, if extracted. Otherwise null.
      *
      * @return string|null
@@ -178,6 +182,24 @@ class RightToWorkDetailsApi
     {
         $this->initialized['expirationDate'] = true;
         $this->expirationDate = $expirationDate;
+        return $this;
+    }
+    /**
+     * @return EvisaConditionsSuccessApi|EvisaConditionsFailedApi
+     */
+    public function getEvisaConditions()
+    {
+        return $this->evisaConditions;
+    }
+    /**
+     * @param EvisaConditionsSuccessApi|EvisaConditionsFailedApi $evisaConditions
+     *
+     * @return self
+     */
+    public function setEvisaConditions($evisaConditions): self
+    {
+        $this->initialized['evisaConditions'] = true;
+        $this->evisaConditions = $evisaConditions;
         return $this;
     }
 }

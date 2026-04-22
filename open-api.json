@@ -4619,6 +4619,58 @@
         "type": "object",
         "additionalProperties": false
       },
+      "EvisaConditionsSuccessApi": {
+        "properties": {
+          "extraction_success": {
+            "type": "boolean",
+            "enum": [
+              true
+            ],
+            "nullable": false
+          },
+          "max_weekly_hours": {
+            "type": "string",
+            "nullable": true
+          },
+          "no_self_employment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "extraction_success",
+          "max_weekly_hours",
+          "no_self_employment"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaConditionsFailedApi": {
+        "properties": {
+          "extraction_success": {
+            "type": "boolean",
+            "enum": [
+              false
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "extraction_success"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvisaConditionsApi": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EvisaConditionsSuccessApi"
+          },
+          {
+            "$ref": "#/components/schemas/EvisaConditionsFailedApi"
+          }
+        ]
+      },
       "RightToWorkDetailsApi": {
         "properties": {
           "first_name": {
@@ -4650,6 +4702,10 @@
             "type": "string",
             "nullable": true,
             "description": "Expiry date in yyyy-MM-dd, or null for indefinite statuses (for example Settled, ILR)."
+          },
+          "evisa_conditions": {
+            "$ref": "#/components/schemas/EvisaConditionsApi",
+            "description": "Employment conditions extracted from the eVisa. Only present for RightToWork."
           }
         },
         "required": [

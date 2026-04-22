@@ -73,6 +73,15 @@ class RightToWorkDetailsApiNormalizer implements DenormalizerInterface, Normaliz
         elseif (\array_key_exists('expiration_date', $data) && $data['expiration_date'] === null) {
             $object->setExpirationDate(null);
         }
+        if (\array_key_exists('evisa_conditions', $data)) {
+            $value = $data['evisa_conditions'];
+            if (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '1') and isset($data['evisa_conditions']['max_weekly_hours']) and isset($data['evisa_conditions']['no_self_employment'])) {
+                $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccessApi::class, 'json', $context);
+            } elseif (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '')) {
+                $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsFailedApi::class, 'json', $context);
+            }
+            $object->setEvisaConditions($value);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -84,6 +93,15 @@ class RightToWorkDetailsApiNormalizer implements DenormalizerInterface, Normaliz
         $dataArray['share_code'] = $data->getShareCode();
         $dataArray['reference_number'] = $data->getReferenceNumber();
         $dataArray['expiration_date'] = $data->getExpirationDate();
+        if ($data->isInitialized('evisaConditions') && null !== $data->getEvisaConditions()) {
+            $value = $data->getEvisaConditions();
+            if (is_object($data->getEvisaConditions())) {
+                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+            } elseif (is_object($data->getEvisaConditions())) {
+                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+            }
+            $dataArray['evisa_conditions'] = $value;
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

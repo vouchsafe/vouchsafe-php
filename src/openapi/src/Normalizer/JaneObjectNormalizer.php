@@ -238,6 +238,10 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ImmigrationStatusDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\ImmigrationStatusDetailsApiNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccessApi::class => \Vouchsafe\OpenAPI\Normalizer\EvisaConditionsSuccessApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\EvisaConditionsFailedApi::class => \Vouchsafe\OpenAPI\Normalizer\EvisaConditionsFailedApiNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\RightToWorkDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\RightToWorkDetailsApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RightToRentDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\RightToRentDetailsApiNormalizer::class,
@@ -494,6 +498,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\BankAccountValidationsApi::class => false,
             \Vouchsafe\OpenAPI\Model\BankAccountEvidenceItemApi::class => false,
             \Vouchsafe\OpenAPI\Model\ImmigrationStatusDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccessApi::class => false,
+            \Vouchsafe\OpenAPI\Model\EvisaConditionsFailedApi::class => false,
             \Vouchsafe\OpenAPI\Model\RightToWorkDetailsApi::class => false,
             \Vouchsafe\OpenAPI\Model\RightToRentDetailsApi::class => false,
             \Vouchsafe\OpenAPI\Model\EvisaValidationsApi::class => false,
