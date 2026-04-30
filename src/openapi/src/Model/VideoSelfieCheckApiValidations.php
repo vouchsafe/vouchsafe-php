@@ -13,6 +13,13 @@ class VideoSelfieCheckApiValidations extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
+     * Whether the face matches previously submitted evidence.
+     * Only present in v2 verifications.
+     *
+     * @var VideoSelfieCheckApiValidationsFaceMatch
+     */
+    protected $faceMatch;
+    /**
      * @var VideoSelfieCheckApiValidationsRefereeDissimilarityCheck
      */
     protected $refereeDissimilarityCheck;
@@ -20,6 +27,30 @@ class VideoSelfieCheckApiValidations extends \ArrayObject
      * @var VideoSelfieCheckApiValidationsLivenessCheck
      */
     protected $livenessCheck;
+    /**
+     * Whether the face matches previously submitted evidence.
+     * Only present in v2 verifications.
+     *
+     * @return VideoSelfieCheckApiValidationsFaceMatch
+     */
+    public function getFaceMatch(): VideoSelfieCheckApiValidationsFaceMatch
+    {
+        return $this->faceMatch;
+    }
+    /**
+    * Whether the face matches previously submitted evidence.
+    Only present in v2 verifications.
+    *
+    * @param VideoSelfieCheckApiValidationsFaceMatch $faceMatch
+    *
+    * @return self
+    */
+    public function setFaceMatch(VideoSelfieCheckApiValidationsFaceMatch $faceMatch): self
+    {
+        $this->initialized['faceMatch'] = true;
+        $this->faceMatch = $faceMatch;
+        return $this;
+    }
     /**
      * @return VideoSelfieCheckApiValidationsRefereeDissimilarityCheck
      */

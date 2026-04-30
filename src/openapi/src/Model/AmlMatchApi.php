@@ -13,22 +13,32 @@ class AmlMatchApi
         return array_key_exists($property, $this->initialized);
     }
     /**
+     * Unique identifier for the matched entity.
+     *
      * @var string
      */
     protected $id;
     /**
+     * Display name of the matched entity.
+     *
      * @var string
      */
     protected $caption;
     /**
+     * Similarity score for this match.
+     *
      * @var float
      */
     protected $score;
     /**
+     * ISO 8601 date when the entity was first seen in the sanctions list.
+     *
      * @var string
      */
     protected $firstSeen;
     /**
+     * ISO 8601 date when the entity was last seen in the sanctions list.
+     *
      * @var string
      */
     protected $lastSeen;
@@ -37,6 +47,8 @@ class AmlMatchApi
      */
     protected $properties;
     /**
+     * Unique identifier for the matched entity.
+     *
      * @return string
      */
     public function getId(): string
@@ -44,6 +56,8 @@ class AmlMatchApi
         return $this->id;
     }
     /**
+     * Unique identifier for the matched entity.
+     *
      * @param string $id
      *
      * @return self
@@ -55,6 +69,8 @@ class AmlMatchApi
         return $this;
     }
     /**
+     * Display name of the matched entity.
+     *
      * @return string
      */
     public function getCaption(): string
@@ -62,6 +78,8 @@ class AmlMatchApi
         return $this->caption;
     }
     /**
+     * Display name of the matched entity.
+     *
      * @param string $caption
      *
      * @return self
@@ -73,6 +91,8 @@ class AmlMatchApi
         return $this;
     }
     /**
+     * Similarity score for this match.
+     *
      * @return float
      */
     public function getScore(): float
@@ -80,6 +100,8 @@ class AmlMatchApi
         return $this->score;
     }
     /**
+     * Similarity score for this match.
+     *
      * @param float $score
      *
      * @return self
@@ -91,6 +113,8 @@ class AmlMatchApi
         return $this;
     }
     /**
+     * ISO 8601 date when the entity was first seen in the sanctions list.
+     *
      * @return string
      */
     public function getFirstSeen(): string
@@ -98,6 +122,8 @@ class AmlMatchApi
         return $this->firstSeen;
     }
     /**
+     * ISO 8601 date when the entity was first seen in the sanctions list.
+     *
      * @param string $firstSeen
      *
      * @return self
@@ -109,6 +135,8 @@ class AmlMatchApi
         return $this;
     }
     /**
+     * ISO 8601 date when the entity was last seen in the sanctions list.
+     *
      * @return string
      */
     public function getLastSeen(): string
@@ -116,6 +144,8 @@ class AmlMatchApi
         return $this->lastSeen;
     }
     /**
+     * ISO 8601 date when the entity was last seen in the sanctions list.
+     *
      * @param string $lastSeen
      *
      * @return self

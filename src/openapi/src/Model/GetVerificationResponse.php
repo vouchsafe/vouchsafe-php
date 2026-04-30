@@ -69,7 +69,7 @@ class GetVerificationResponse
     /**
      * The evidence collected and validated.
      *
-     * @var list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>
+     * @var list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>|list<StepIdentityDigitalIdApi>|list<StepIdentityPhotoIdApi>|list<StepIdentityVouchApi>|list<StepAddressDigitalIdApi>|list<StepAddressCreditReferenceAgencyApi>|list<StepAddressSupportingDocumentApi>
      */
     protected $checks;
     /**
@@ -289,7 +289,7 @@ class GetVerificationResponse
     /**
      * The evidence collected and validated.
      *
-     * @return list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>
+     * @return list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>|list<StepIdentityDigitalIdApi>|list<StepIdentityPhotoIdApi>|list<StepIdentityVouchApi>|list<StepAddressDigitalIdApi>|list<StepAddressCreditReferenceAgencyApi>|list<StepAddressSupportingDocumentApi>
      */
     public function getChecks(): array
     {
@@ -298,7 +298,7 @@ class GetVerificationResponse
     /**
      * The evidence collected and validated.
      *
-     * @param list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi> $checks
+     * @param list<VideoSelfieCheckApi>|list<VerifyEmailCheckApi>|list<VerifyPhoneNumberCheckApi>|list<ReviewUserCheckApi>|list<PhotoIdEvidenceItemApi>|list<SupportingDocumentEvidenceItemApi>|list<BankAccountEvidenceItemApi>|list<EvisaEvidenceItemApi>|list<RefereeEvidenceItemApi>|list<StepIdentityDigitalIdApi>|list<StepIdentityPhotoIdApi>|list<StepIdentityVouchApi>|list<StepAddressDigitalIdApi>|list<StepAddressCreditReferenceAgencyApi>|list<StepAddressSupportingDocumentApi> $checks
      *
      * @return self
      */

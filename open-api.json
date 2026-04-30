@@ -1070,6 +1070,12 @@
         ],
         "type": "string"
       },
+      "FailedReason.DOCUMENT_LOOKS_LIKE_PRINT_COPY": {
+        "enum": [
+          "DOCUMENT_LOOKS_LIKE_PRINT_COPY"
+        ],
+        "type": "string"
+      },
       "FailedReason.POSSIBLY_TAMPERED": {
         "enum": [
           "POSSIBLY_TAMPERED"
@@ -1089,6 +1095,9 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.DOCUMENT_TAMPERED_INCONCLUSIVE"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_LOOKS_LIKE_PRINT_COPY"
           },
           {
             "$ref": "#/components/schemas/FailedReason.POSSIBLY_TAMPERED"
@@ -2948,6 +2957,22 @@
           },
           "validations": {
             "properties": {
+              "face_match": {
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pass",
+                      "fail"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ],
+                "type": "object",
+                "description": "Whether the face matches previously submitted evidence.\nOnly present in v2 verifications."
+              },
               "referee_dissimilarity_check": {
                 "properties": {
                   "score": {
@@ -3138,6 +3163,10 @@
           "outcome": {
             "$ref": "#/components/schemas/StepStatusApi",
             "description": "The overall outcome of the referee verification."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Rejection reason supplied by the referee. Only present in v2 verifications."
           },
           "validations": {
             "properties": {
@@ -4992,6 +5021,504 @@
         "type": "object",
         "additionalProperties": false
       },
+      "DigitalIdVerificationMethodApi": {
+        "type": "string",
+        "enum": [
+          "sweden_bank_id",
+          "one_id",
+          "yoti",
+          "nigeria_nin_lookup",
+          "uk_immigration_status_evisa",
+          "uk_right_to_rent_evisa",
+          "uk_right_to_work_evisa"
+        ]
+      },
+      "DigitalIdExtractedDetailsApi": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "First name, if extracted. Otherwise null."
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "Last name, if extracted. Otherwise null."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date of birth (YYYY-MM-DD), if extracted. Otherwise null."
+          },
+          "first_line_of_address": {
+            "type": "string",
+            "nullable": true,
+            "description": "First line of address, if extracted. Otherwise null."
+          },
+          "postcode": {
+            "type": "string",
+            "nullable": true,
+            "description": "Postcode, if extracted. Otherwise null."
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Phone number, if provided by the provider."
+          },
+          "nationality": {
+            "type": "string",
+            "description": "Nationality, if provided by the provider."
+          },
+          "document_number": {
+            "type": "string",
+            "description": "Document number, if provided by the provider."
+          },
+          "document_type": {
+            "type": "string",
+            "description": "Document type (for example IdCard), if provided by the provider."
+          },
+          "issue_date": {
+            "type": "string",
+            "description": "Document issue date (YYYY-MM-DD), if provided by the provider."
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "Document expiration date (YYYY-MM-DD), if provided by the provider."
+          },
+          "issuing_country": {
+            "type": "string",
+            "description": "Issuing country, if provided by the provider."
+          },
+          "immigration_status": {
+            "type": "string",
+            "description": "Immigration status, if provided by the provider (eVisa flows)."
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "date_of_birth",
+          "first_line_of_address",
+          "postcode"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DigitalIdValidationsApi": {
+        "properties": {
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the applicant's name matches other evidence on the case."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document has not expired. Only present if an expiration date was provided."
+          },
+          "evisa_exists": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether an eVisa record was found for the provided details. Only present for eVisa flows."
+          },
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether all required fields were extracted from the eVisa response. Only present for eVisa flows."
+          },
+          "evisa_started": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the eVisa start date has begun. Only present for ImmigrationStatus and RightToRent."
+          },
+          "evisa_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the eVisa has not expired, or is indefinite. Only present for eVisa flows."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StepIdentityDigitalIdApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_identity"
+            ],
+            "nullable": false,
+            "description": "Proof of identity step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the evidence submission."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "digital_id"
+            ],
+            "nullable": false,
+            "description": "The method used to verify identity."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/DigitalIdVerificationMethodApi",
+            "description": "The specific type of evidence submitted."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/DigitalIdExtractedDetailsApi",
+            "description": "Extracted details from the evidence. Shape depends on evidence type."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/DigitalIdValidationsApi",
+            "description": "Validations performed on the evidence. Shape depends on evidence type."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "evidence_type",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StepIdentityPhotoIdApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_identity"
+            ],
+            "nullable": false,
+            "description": "Proof of identity step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the evidence submission."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "photo_id"
+            ],
+            "nullable": false,
+            "description": "The method used to verify identity."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/PhotoIdEvidenceApi",
+            "description": "The specific type of evidence submitted."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/PhotoIdExtractedDetailsApi",
+            "description": "Extracted details from the evidence. Shape depends on evidence type."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/PhotoIdValidationsApi",
+            "description": "Validations performed on the evidence. Shape depends on evidence type."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "evidence_type",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StepIdentityVouchApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_identity"
+            ],
+            "nullable": false,
+            "description": "Proof of identity step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the evidence submission."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "vouch"
+            ],
+            "nullable": false,
+            "description": "The method used to verify identity."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/VouchEvidenceApi",
+            "description": "The specific type of evidence submitted."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/VouchDetailsApi",
+            "description": "Extracted details from the evidence. Shape depends on evidence type."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/VouchValidationsApi",
+            "description": "Validations performed on the evidence. Shape depends on evidence type."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "evidence_type",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StepAddressDigitalIdApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_address"
+            ],
+            "nullable": false,
+            "description": "Proof of address step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the address verification."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "digital_id"
+            ],
+            "nullable": false,
+            "description": "The method used to verify address."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/DigitalIdVerificationMethodApi",
+            "description": "The digital ID provider used."
+          },
+          "extracted_details": {
+            "properties": {
+              "postcode": {
+                "type": "string",
+                "nullable": true
+              },
+              "first_line_of_address": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "required": [
+              "postcode",
+              "first_line_of_address"
+            ],
+            "type": "object",
+            "description": "Extracted address details."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "evidence_type",
+          "extracted_details"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AddressSource": {
+        "type": "string",
+        "enum": [
+          "digital_id",
+          "manual_entry",
+          "claims_to_verify"
+        ]
+      },
+      "StepAddressCreditReferenceAgencyApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_address"
+            ],
+            "nullable": false,
+            "description": "Proof of address step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the address verification."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "credit_reference_agency"
+            ],
+            "nullable": false,
+            "description": "The method used to verify address."
+          },
+          "extracted_details": {
+            "properties": {
+              "address_source": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AddressSource"
+                  }
+                ],
+                "nullable": true,
+                "description": "Source of the address information."
+              },
+              "postcode": {
+                "type": "string",
+                "nullable": true,
+                "description": "Postcode of the address."
+              },
+              "first_line_of_address": {
+                "type": "string",
+                "nullable": true,
+                "description": "First line of the address."
+              }
+            },
+            "required": [
+              "postcode",
+              "first_line_of_address"
+            ],
+            "type": "object",
+            "description": "Extracted address details."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "extracted_details"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StepAddressSupportingDocumentApi": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "step_address"
+            ],
+            "nullable": false,
+            "description": "Proof of address step — only present for v2 verifications."
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "fail"
+            ],
+            "description": "Overall outcome of the address verification."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "ISO 8601 timestamp for when this evidence attempt was started."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "supporting_document"
+            ],
+            "nullable": false,
+            "description": "The method used to verify address."
+          },
+          "evidence_type": {
+            "$ref": "#/components/schemas/SupportingDocumentEvidenceApi",
+            "description": "The type of supporting document submitted."
+          },
+          "artefacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtefactApi"
+            },
+            "type": "array",
+            "description": "Files captured or uploaded for this evidence item."
+          },
+          "extracted_details": {
+            "$ref": "#/components/schemas/SupportingDocumentDetailsApi",
+            "description": "Extracted details from the document."
+          },
+          "validations": {
+            "$ref": "#/components/schemas/SupportingDocumentValidationsApi",
+            "description": "Validations performed on the document."
+          }
+        },
+        "required": [
+          "step",
+          "outcome",
+          "created_at",
+          "method",
+          "evidence_type",
+          "artefacts",
+          "extracted_details",
+          "validations"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "VerificationCheck": {
         "anyOf": [
           {
@@ -5020,6 +5547,24 @@
           },
           {
             "$ref": "#/components/schemas/RefereeEvidenceItemApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepIdentityDigitalIdApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepIdentityPhotoIdApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepIdentityVouchApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepAddressDigitalIdApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepAddressCreditReferenceAgencyApi"
+          },
+          {
+            "$ref": "#/components/schemas/StepAddressSupportingDocumentApi"
           }
         ]
       },
@@ -5041,20 +5586,25 @@
       "AmlMatchApi": {
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the matched entity."
           },
           "caption": {
-            "type": "string"
+            "type": "string",
+            "description": "Display name of the matched entity."
           },
           "score": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Similarity score for this match."
           },
           "first_seen": {
-            "type": "string"
+            "type": "string",
+            "description": "ISO 8601 date when the entity was first seen in the sanctions list."
           },
           "last_seen": {
-            "type": "string"
+            "type": "string",
+            "description": "ISO 8601 date when the entity was last seen in the sanctions list."
           },
           "properties": {
             "properties": {
@@ -5069,7 +5619,8 @@
                     },
                     "type": "array"
                   }
-                ]
+                ],
+                "description": "Country of birth of the entity."
               },
               "birth_place": {
                 "anyOf": [
@@ -5082,10 +5633,12 @@
                     },
                     "type": "array"
                   }
-                ]
+                ],
+                "description": "Place of birth of the entity."
               },
               "birth_date": {
-                "type": "string"
+                "type": "string",
+                "description": "Date of birth of the entity."
               },
               "position": {
                 "anyOf": [
@@ -5098,7 +5651,8 @@
                     },
                     "type": "array"
                   }
-                ]
+                ],
+                "description": "Known positions or roles held by the entity."
               },
               "country": {
                 "anyOf": [
@@ -5111,7 +5665,8 @@
                     },
                     "type": "array"
                   }
-                ]
+                ],
+                "description": "Countries associated with the entity."
               },
               "notes": {
                 "anyOf": [
@@ -5124,7 +5679,8 @@
                     },
                     "type": "array"
                   }
-                ]
+                ],
+                "description": "Freeform notes associated with the entity."
               }
             },
             "required": [
@@ -5150,10 +5706,12 @@
       "AmlCheckApi": {
         "properties": {
           "check": {
-            "$ref": "#/components/schemas/AmlCheckKindApi"
+            "$ref": "#/components/schemas/AmlCheckKindApi",
+            "description": "The type of AML check performed."
           },
           "outcome": {
-            "$ref": "#/components/schemas/EnrichmentStatusApi"
+            "$ref": "#/components/schemas/EnrichmentStatusApi",
+            "description": "Overall outcome of the AML check."
           },
           "details": {
             "properties": {
@@ -5161,11 +5719,19 @@
                 "items": {
                   "$ref": "#/components/schemas/AmlMatchApi"
                 },
-                "type": "array"
+                "type": "array",
+                "description": "Sanctions list matches found. Empty when the check passed."
+              },
+              "threshold": {
+                "type": "number",
+                "format": "double",
+                "nullable": true,
+                "description": "The score threshold above which a match is considered a hit."
               }
             },
             "required": [
-              "matches"
+              "matches",
+              "threshold"
             ],
             "type": "object"
           }
@@ -5188,10 +5754,12 @@
       "OfaCheckApi": {
         "properties": {
           "check": {
-            "$ref": "#/components/schemas/OfaCheckKindApi"
+            "$ref": "#/components/schemas/OfaCheckKindApi",
+            "description": "The type of online footprint check performed."
           },
           "outcome": {
-            "$ref": "#/components/schemas/EnrichmentStatusApi"
+            "$ref": "#/components/schemas/EnrichmentStatusApi",
+            "description": "Overall outcome of the footprint check."
           },
           "details": {
             "properties": {
@@ -5201,13 +5769,15 @@
                     "items": {
                       "type": "string"
                     },
-                    "type": "array"
+                    "type": "array",
+                    "description": "Signals that contributed negatively to the footprint score."
                   },
                   "positive": {
                     "items": {
                       "type": "string"
                     },
-                    "type": "array"
+                    "type": "array",
+                    "description": "Signals that contributed positively to the footprint score."
                   }
                 },
                 "required": [
@@ -5219,12 +5789,20 @@
               "score": {
                 "type": "number",
                 "format": "double",
-                "nullable": true
+                "nullable": true,
+                "description": "Footprint score for the supplied contact detail, or null if unavailable."
+              },
+              "threshold": {
+                "type": "number",
+                "format": "double",
+                "nullable": true,
+                "description": "The minimum score required to pass the footprint check."
               }
             },
             "required": [
               "signals",
-              "score"
+              "score",
+              "threshold"
             ],
             "type": "object"
           }
@@ -5264,17 +5842,20 @@
       "RadarCheckApi": {
         "properties": {
           "check": {
-            "$ref": "#/components/schemas/RadarCheckKindApi"
+            "$ref": "#/components/schemas/RadarCheckKindApi",
+            "description": "The type of Radar check performed."
           },
           "outcome": {
-            "$ref": "#/components/schemas/EnrichmentStatusApi"
+            "$ref": "#/components/schemas/EnrichmentStatusApi",
+            "description": "Overall outcome of the Radar check."
           },
           "details": {
             "properties": {
               "validations": {
                 "properties": {
                   "not_disposable_email": {
-                    "$ref": "#/components/schemas/ValidationOutcomeApi"
+                    "$ref": "#/components/schemas/ValidationOutcomeApi",
+                    "description": "Whether the email address is not a disposable address. Only present when an email was provided."
                   },
                   "no_known_fraudster_match": {
                     "properties": {
@@ -5284,19 +5865,22 @@
                             "$ref": "#/components/schemas/RiskApi"
                           }
                         ],
-                        "nullable": true
+                        "nullable": true,
+                        "description": "Aggregated risk level derived from matched flags, or null if no flags matched."
                       },
                       "messages": {
                         "items": {
                           "type": "string"
                         },
-                        "type": "array"
+                        "type": "array",
+                        "description": "Human-readable descriptions for each matched flag."
                       },
                       "flags": {
                         "items": {
                           "$ref": "#/components/schemas/MatchedFraudsterFlagApi"
                         },
-                        "type": "array"
+                        "type": "array",
+                        "description": "Fraudster flags that were matched. Empty when the check passed."
                       },
                       "status": {
                         "type": "string",
@@ -5312,10 +5896,12 @@
                       "flags",
                       "status"
                     ],
-                    "type": "object"
+                    "type": "object",
+                    "description": "Whether the identity matches any known fraudster records."
                   },
                   "normal_velocity_detected": {
-                    "$ref": "#/components/schemas/ValidationOutcomeApi"
+                    "$ref": "#/components/schemas/ValidationOutcomeApi",
+                    "description": "Whether the submission velocity is within normal bounds."
                   }
                 },
                 "required": [
@@ -7580,6 +8166,7 @@
                           "check": "email_footprint_analysis",
                           "outcome": "fail",
                           "details": {
+                            "threshold": null,
                             "score": 18,
                             "signals": {
                               "positive": [],

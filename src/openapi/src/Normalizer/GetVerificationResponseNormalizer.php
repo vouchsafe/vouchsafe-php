@@ -98,6 +98,18 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
                     $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\EvisaEvidenceItemApi::class, 'json', $context);
                 } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'vouch') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail' or $value['outcome'] == 'in_progress')) and (isset($value['evidence_type']) and ($value['evidence_type'] == 'professional_referee' or $value['evidence_type'] == 'personal_referee')) and isset($value['created_at']) and isset($value['extracted_details']) and isset($value['validations'])) {
                     $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_identity') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'digital_id') and (isset($value['evidence_type']) and ($value['evidence_type'] == 'sweden_bank_id' or $value['evidence_type'] == 'one_id' or $value['evidence_type'] == 'yoti' or $value['evidence_type'] == 'nigeria_nin_lookup' or $value['evidence_type'] == 'uk_immigration_status_evisa' or $value['evidence_type'] == 'uk_right_to_rent_evisa' or $value['evidence_type'] == 'uk_right_to_work_evisa')) and isset($value['artefacts']) and isset($value['extracted_details']) and isset($value['validations'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepIdentityDigitalIdApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_identity') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'photo_id') and (isset($value['evidence_type']) and ($value['evidence_type'] == 'unfamiliar_photo_id' or $value['evidence_type'] == 'passport' or $value['evidence_type'] == 'driving_licence' or $value['evidence_type'] == 'young_scot' or $value['evidence_type'] == 'national_entitlement_card' or $value['evidence_type'] == 'national_id' or $value['evidence_type'] == 'citizen_card')) and isset($value['artefacts']) and isset($value['extracted_details']) and isset($value['validations'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepIdentityPhotoIdApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_identity') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'vouch') and (isset($value['evidence_type']) and ($value['evidence_type'] == 'professional_referee' or $value['evidence_type'] == 'personal_referee')) and isset($value['extracted_details']) and isset($value['validations'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepIdentityVouchApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_address') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'digital_id') and (isset($value['evidence_type']) and ($value['evidence_type'] == 'sweden_bank_id' or $value['evidence_type'] == 'one_id' or $value['evidence_type'] == 'yoti' or $value['evidence_type'] == 'nigeria_nin_lookup' or $value['evidence_type'] == 'uk_immigration_status_evisa' or $value['evidence_type'] == 'uk_right_to_rent_evisa' or $value['evidence_type'] == 'uk_right_to_work_evisa')) and isset($value['extracted_details'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_address') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'credit_reference_agency') and isset($value['extracted_details'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class, 'json', $context);
+                } elseif (is_array($value) and (isset($value['step']) and $value['step'] == 'step_address') and (isset($value['outcome']) and ($value['outcome'] == 'pass' or $value['outcome'] == 'fail')) and isset($value['created_at']) and (isset($value['method']) and $value['method'] == 'supporting_document') and (isset($value['evidence_type']) and ($value['evidence_type'] == 'birth_or_adoption_certificate' or $value['evidence_type'] == 'marriage_certificate' or $value['evidence_type'] == 'naturalisation_or_reg_certificate' or $value['evidence_type'] == 'education_certificate' or $value['evidence_type'] == 'paye_tax_summary' or $value['evidence_type'] == 'payslip' or $value['evidence_type'] == 'pension_annual_statement' or $value['evidence_type'] == 'benefits_letter' or $value['evidence_type'] == 'nhs_letter' or $value['evidence_type'] == 'bank_statement' or $value['evidence_type'] == 'credit_card_statement' or $value['evidence_type'] == 'mortgage_statement' or $value['evidence_type'] == 'insurance_policy_agreement' or $value['evidence_type'] == 'utility_bill' or $value['evidence_type'] == 'mobile_phone_bill' or $value['evidence_type'] == 'hmpps_letter')) and isset($value['artefacts']) and isset($value['extracted_details']) and isset($value['validations'])) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\StepAddressSupportingDocumentApi::class, 'json', $context);
                 }
                 $values[] = $value_1;
             }
@@ -139,6 +151,18 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
         foreach ($data->getChecks() as $value) {
             $value_1 = $value;
             if (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
+                $value_1 = $this->normalizer->normalize($value, 'json', $context);
+            } elseif (is_object($value)) {
                 $value_1 = $this->normalizer->normalize($value, 'json', $context);
             } elseif (is_object($value)) {
                 $value_1 = $this->normalizer->normalize($value, 'json', $context);

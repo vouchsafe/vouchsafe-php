@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class StepAddressCreditReferenceAgencyApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class;
+        return $type === \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi();
+        $object = new \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -43,11 +43,14 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
         if (\array_key_exists('outcome', $data)) {
             $object->setOutcome($data['outcome']);
         }
-        if (\array_key_exists('reason', $data)) {
-            $object->setReason($data['reason']);
+        if (\array_key_exists('created_at', $data)) {
+            $object->setCreatedAt($data['created_at']);
         }
-        if (\array_key_exists('validations', $data)) {
-            $object->setValidations($this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\ReviewUserCheckApiValidations::class, 'json', $context));
+        if (\array_key_exists('method', $data)) {
+            $object->setMethod($data['method']);
+        }
+        if (\array_key_exists('extracted_details', $data)) {
+            $object->setExtractedDetails($this->denormalizer->denormalize($data['extracted_details'], \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class, 'json', $context));
         }
         return $object;
     }
@@ -56,14 +59,13 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
         $dataArray = [];
         $dataArray['step'] = $data->getStep();
         $dataArray['outcome'] = $data->getOutcome();
-        if ($data->isInitialized('reason') && null !== $data->getReason()) {
-            $dataArray['reason'] = $data->getReason();
-        }
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+        $dataArray['created_at'] = $data->getCreatedAt();
+        $dataArray['method'] = $data->getMethod();
+        $dataArray['extracted_details'] = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class => false];
+        return [\Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class => false];
     }
 }

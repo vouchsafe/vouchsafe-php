@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class VideoSelfieCheckApiValidationsFaceMatchNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class;
+        return $type === \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\ReviewUserCheckApi();
+        $object = new \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,33 +37,30 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        if (\array_key_exists('step', $data)) {
-            $object->setStep($data['step']);
+        if (\array_key_exists('status', $data)) {
+            $object->setStatus($data['status']);
+            unset($data['status']);
         }
-        if (\array_key_exists('outcome', $data)) {
-            $object->setOutcome($data['outcome']);
-        }
-        if (\array_key_exists('reason', $data)) {
-            $object->setReason($data['reason']);
-        }
-        if (\array_key_exists('validations', $data)) {
-            $object->setValidations($this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\ReviewUserCheckApiValidations::class, 'json', $context));
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['step'] = $data->getStep();
-        $dataArray['outcome'] = $data->getOutcome();
-        if ($data->isInitialized('reason') && null !== $data->getReason()) {
-            $dataArray['reason'] = $data->getReason();
+        $dataArray['status'] = $data->getStatus();
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $dataArray[$key] = $value;
+            }
         }
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\ReviewUserCheckApi::class => false];
+        return [\Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class => false];
     }
 }

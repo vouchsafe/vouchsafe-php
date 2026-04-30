@@ -140,6 +140,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsFaceMatchNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsRefereeDissimilarityCheck::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsRefereeDissimilarityCheckNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsLivenessCheck::class => \Vouchsafe\OpenAPI\Normalizer\VideoSelfieCheckApiValidationsLivenessCheckNormalizer::class,
@@ -257,6 +259,26 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         \Vouchsafe\OpenAPI\Model\VouchValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\VouchValidationsApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\RefereeEvidenceItemApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdExtractedDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\DigitalIdValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdValidationsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepIdentityDigitalIdApi::class => \Vouchsafe\OpenAPI\Normalizer\StepIdentityDigitalIdApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepIdentityPhotoIdApi::class => \Vouchsafe\OpenAPI\Normalizer\StepIdentityPhotoIdApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepIdentityVouchApi::class => \Vouchsafe\OpenAPI\Normalizer\StepIdentityVouchApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApi::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressDigitalIdApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressDigitalIdApiExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressCreditReferenceAgencyApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressSupportingDocumentApi::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressSupportingDocumentApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AmlMatchApi::class => \Vouchsafe\OpenAPI\Normalizer\AmlMatchApiNormalizer::class,
         
@@ -449,6 +471,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\ArtefactApi::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApi::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => false,
+            \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsRefereeDissimilarityCheck::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsLivenessCheck::class => false,
             \Vouchsafe\OpenAPI\Model\VerifyEmailCheckApi::class => false,
@@ -508,6 +531,16 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\VouchDetailsApi::class => false,
             \Vouchsafe\OpenAPI\Model\VouchValidationsApi::class => false,
             \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\DigitalIdValidationsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepIdentityDigitalIdApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepIdentityPhotoIdApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepIdentityVouchApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressSupportingDocumentApi::class => false,
             \Vouchsafe\OpenAPI\Model\AmlMatchApi::class => false,
             \Vouchsafe\OpenAPI\Model\AmlMatchApiProperties::class => false,
             \Vouchsafe\OpenAPI\Model\AmlCheckApi::class => false,

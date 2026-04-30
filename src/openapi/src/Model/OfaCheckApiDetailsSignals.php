@@ -13,14 +13,20 @@ class OfaCheckApiDetailsSignals extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
+     * Signals that contributed negatively to the footprint score.
+     *
      * @var list<string>
      */
     protected $negative;
     /**
+     * Signals that contributed positively to the footprint score.
+     *
      * @var list<string>
      */
     protected $positive;
     /**
+     * Signals that contributed negatively to the footprint score.
+     *
      * @return list<string>
      */
     public function getNegative(): array
@@ -28,6 +34,8 @@ class OfaCheckApiDetailsSignals extends \ArrayObject
         return $this->negative;
     }
     /**
+     * Signals that contributed negatively to the footprint score.
+     *
      * @param list<string> $negative
      *
      * @return self
@@ -39,6 +47,8 @@ class OfaCheckApiDetailsSignals extends \ArrayObject
         return $this;
     }
     /**
+     * Signals that contributed positively to the footprint score.
+     *
      * @return list<string>
      */
     public function getPositive(): array
@@ -46,6 +56,8 @@ class OfaCheckApiDetailsSignals extends \ArrayObject
         return $this->positive;
     }
     /**
+     * Signals that contributed positively to the footprint score.
+     *
      * @param list<string> $positive
      *
      * @return self

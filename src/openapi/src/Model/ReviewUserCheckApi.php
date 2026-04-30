@@ -23,6 +23,12 @@ class ReviewUserCheckApi
      */
     protected $outcome;
     /**
+     * Rejection reason supplied by the referee. Only present in v2 verifications.
+     *
+     * @var string
+     */
+    protected $reason;
+    /**
      * Claims being verified by the referee.
      * All claims "pass" when they accept and proceed, or "fail" when they reject.
      * Otherwise undefined while they have not made a choice yet.
@@ -68,6 +74,28 @@ class ReviewUserCheckApi
     {
         $this->initialized['outcome'] = true;
         $this->outcome = $outcome;
+        return $this;
+    }
+    /**
+     * Rejection reason supplied by the referee. Only present in v2 verifications.
+     *
+     * @return string
+     */
+    public function getReason(): string
+    {
+        return $this->reason;
+    }
+    /**
+     * Rejection reason supplied by the referee. Only present in v2 verifications.
+     *
+     * @param string $reason
+     *
+     * @return self
+     */
+    public function setReason(string $reason): self
+    {
+        $this->initialized['reason'] = true;
+        $this->reason = $reason;
         return $this;
     }
     /**

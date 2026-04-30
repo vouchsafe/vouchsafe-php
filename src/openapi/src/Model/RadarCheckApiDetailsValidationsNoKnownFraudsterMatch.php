@@ -13,14 +13,20 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
+     * Aggregated risk level derived from matched flags, or null if no flags matched.
+     *
      * @var string|null
      */
     protected $risk;
     /**
+     * Human-readable descriptions for each matched flag.
+     *
      * @var list<string>
      */
     protected $messages;
     /**
+     * Fraudster flags that were matched. Empty when the check passed.
+     *
      * @var list<string>
      */
     protected $flags;
@@ -29,6 +35,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
      */
     protected $status;
     /**
+     * Aggregated risk level derived from matched flags, or null if no flags matched.
+     *
      * @return string|null
      */
     public function getRisk(): ?string
@@ -36,6 +44,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return $this->risk;
     }
     /**
+     * Aggregated risk level derived from matched flags, or null if no flags matched.
+     *
      * @param string|null $risk
      *
      * @return self
@@ -47,6 +57,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return $this;
     }
     /**
+     * Human-readable descriptions for each matched flag.
+     *
      * @return list<string>
      */
     public function getMessages(): array
@@ -54,6 +66,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return $this->messages;
     }
     /**
+     * Human-readable descriptions for each matched flag.
+     *
      * @param list<string> $messages
      *
      * @return self
@@ -65,6 +79,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return $this;
     }
     /**
+     * Fraudster flags that were matched. Empty when the check passed.
+     *
      * @return list<string>
      */
     public function getFlags(): array
@@ -72,6 +88,8 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatch extends \ArrayObject
         return $this->flags;
     }
     /**
+     * Fraudster flags that were matched. Empty when the check passed.
+     *
      * @param list<string> $flags
      *
      * @return self

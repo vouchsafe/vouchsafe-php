@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface,
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class;
+        return $type === \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations();
+        $object = new \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -37,17 +37,26 @@ class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        if (\array_key_exists('face_match', $data)) {
-            $object->setFaceMatch($this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsFaceMatch::class, 'json', $context));
-            unset($data['face_match']);
+        if (\array_key_exists('address_source', $data) && $data['address_source'] !== null) {
+            $object->setAddressSource($data['address_source']);
+            unset($data['address_source']);
         }
-        if (\array_key_exists('referee_dissimilarity_check', $data)) {
-            $object->setRefereeDissimilarityCheck($this->denormalizer->denormalize($data['referee_dissimilarity_check'], \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsRefereeDissimilarityCheck::class, 'json', $context));
-            unset($data['referee_dissimilarity_check']);
+        elseif (\array_key_exists('address_source', $data) && $data['address_source'] === null) {
+            $object->setAddressSource(null);
         }
-        if (\array_key_exists('liveness_check', $data)) {
-            $object->setLivenessCheck($this->denormalizer->denormalize($data['liveness_check'], \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidationsLivenessCheck::class, 'json', $context));
-            unset($data['liveness_check']);
+        if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
+            $object->setPostcode($data['postcode']);
+            unset($data['postcode']);
+        }
+        elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
+            $object->setPostcode(null);
+        }
+        if (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] !== null) {
+            $object->setFirstLineOfAddress($data['first_line_of_address']);
+            unset($data['first_line_of_address']);
+        }
+        elseif (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] === null) {
+            $object->setFirstLineOfAddress(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -59,15 +68,11 @@ class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface,
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $this->normalizer->normalize($data->getFaceMatch(), 'json', $context);
+        if ($data->isInitialized('addressSource')) {
+            $dataArray['address_source'] = $data->getAddressSource();
         }
-        if ($data->isInitialized('refereeDissimilarityCheck') && null !== $data->getRefereeDissimilarityCheck()) {
-            $dataArray['referee_dissimilarity_check'] = $this->normalizer->normalize($data->getRefereeDissimilarityCheck(), 'json', $context);
-        }
-        if ($data->isInitialized('livenessCheck') && null !== $data->getLivenessCheck()) {
-            $dataArray['liveness_check'] = $this->normalizer->normalize($data->getLivenessCheck(), 'json', $context);
-        }
+        $dataArray['postcode'] = $data->getPostcode();
+        $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
@@ -77,6 +82,6 @@ class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface,
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => false];
+        return [\Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class => false];
     }
 }

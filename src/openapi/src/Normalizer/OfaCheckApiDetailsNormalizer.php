@@ -40,6 +40,9 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         if (\array_key_exists('score', $data) && \is_int($data['score'])) {
             $data['score'] = (double) $data['score'];
         }
+        if (\array_key_exists('threshold', $data) && \is_int($data['threshold'])) {
+            $data['threshold'] = (double) $data['threshold'];
+        }
         if (\array_key_exists('signals', $data)) {
             $object->setSignals($this->denormalizer->denormalize($data['signals'], \Vouchsafe\OpenAPI\Model\OfaCheckApiDetailsSignals::class, 'json', $context));
             unset($data['signals']);
@@ -50,6 +53,13 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         }
         elseif (\array_key_exists('score', $data) && $data['score'] === null) {
             $object->setScore(null);
+        }
+        if (\array_key_exists('threshold', $data) && $data['threshold'] !== null) {
+            $object->setThreshold($data['threshold']);
+            unset($data['threshold']);
+        }
+        elseif (\array_key_exists('threshold', $data) && $data['threshold'] === null) {
+            $object->setThreshold(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -63,6 +73,7 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         $dataArray = [];
         $dataArray['signals'] = $this->normalizer->normalize($data->getSignals(), 'json', $context);
         $dataArray['score'] = $data->getScore();
+        $dataArray['threshold'] = $data->getThreshold();
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;

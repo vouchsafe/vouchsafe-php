@@ -17,6 +17,8 @@ class RadarCheckApiDetailsValidations extends \ArrayObject
      */
     protected $notDisposableEmail;
     /**
+     * Whether the identity matches any known fraudster records.
+     *
      * @var RadarCheckApiDetailsValidationsNoKnownFraudsterMatch
      */
     protected $noKnownFraudsterMatch;
@@ -43,6 +45,8 @@ class RadarCheckApiDetailsValidations extends \ArrayObject
         return $this;
     }
     /**
+     * Whether the identity matches any known fraudster records.
+     *
      * @return RadarCheckApiDetailsValidationsNoKnownFraudsterMatch
      */
     public function getNoKnownFraudsterMatch(): RadarCheckApiDetailsValidationsNoKnownFraudsterMatch
@@ -50,6 +54,8 @@ class RadarCheckApiDetailsValidations extends \ArrayObject
         return $this->noKnownFraudsterMatch;
     }
     /**
+     * Whether the identity matches any known fraudster records.
+     *
      * @param RadarCheckApiDetailsValidationsNoKnownFraudsterMatch $noKnownFraudsterMatch
      *
      * @return self

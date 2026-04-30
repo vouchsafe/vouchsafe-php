@@ -17,7 +17,7 @@ class FailTamperingErrorCode
      */
     protected $status;
     /**
-     * @var list<string>|list<string>|list<string>|list<string>|list<string>
+     * @var list<string>|list<string>|list<string>|list<string>|list<string>|list<string>
      */
     protected $failedReasons;
     /**
@@ -39,14 +39,14 @@ class FailTamperingErrorCode
         return $this;
     }
     /**
-     * @return list<string>|list<string>|list<string>|list<string>|list<string>
+     * @return list<string>|list<string>|list<string>|list<string>|list<string>|list<string>
      */
     public function getFailedReasons(): array
     {
         return $this->failedReasons;
     }
     /**
-     * @param list<string>|list<string>|list<string>|list<string>|list<string> $failedReasons
+     * @param list<string>|list<string>|list<string>|list<string>|list<string>|list<string> $failedReasons
      *
      * @return self
      */

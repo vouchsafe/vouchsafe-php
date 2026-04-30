@@ -37,6 +37,9 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
+        if (\array_key_exists('threshold', $data) && \is_int($data['threshold'])) {
+            $data['threshold'] = (double) $data['threshold'];
+        }
         if (\array_key_exists('matches', $data)) {
             $values = [];
             foreach ($data['matches'] as $value) {
@@ -44,6 +47,13 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
             }
             $object->setMatches($values);
             unset($data['matches']);
+        }
+        if (\array_key_exists('threshold', $data) && $data['threshold'] !== null) {
+            $object->setThreshold($data['threshold']);
+            unset($data['threshold']);
+        }
+        elseif (\array_key_exists('threshold', $data) && $data['threshold'] === null) {
+            $object->setThreshold(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -60,6 +70,7 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
             $values[] = $this->normalizer->normalize($value, 'json', $context);
         }
         $dataArray['matches'] = $values;
+        $dataArray['threshold'] = $data->getThreshold();
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
