@@ -2827,7 +2827,7 @@
           },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to."
+            "description": "The verification flow it belongs to. For v2 referee cases, this is not present."
           },
           "external_id": {
             "type": "string",
@@ -2846,7 +2846,6 @@
           "expires_at",
           "email",
           "redirect_url",
-          "workflow_id",
           "external_id"
         ],
         "type": "object",
@@ -3614,7 +3613,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           },
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
@@ -3629,7 +3628,6 @@
           "required_fields_extracted",
           "document_borders_detected",
           "compound_identifiers_match",
-          "has_not_expired",
           "icao_format_valid",
           "issuing_country_allowed"
         ],
@@ -3716,7 +3714,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           }
         },
         "required": [
@@ -3724,8 +3722,7 @@
           "document_borders_detected",
           "security_features_present",
           "identifier_format_valid",
-          "not_sample_or_internal_use",
-          "has_not_expired"
+          "not_sample_or_internal_use"
         ],
         "type": "object",
         "additionalProperties": false
@@ -3802,7 +3799,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           },
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
@@ -3817,7 +3814,6 @@
           "required_fields_extracted",
           "document_borders_detected",
           "compound_identifiers_match",
-          "has_not_expired",
           "icao_format_valid",
           "issuing_country_allowed"
         ],
@@ -3896,14 +3892,13 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           }
         },
         "required": [
           "required_fields_extracted",
           "document_borders_detected",
-          "matches_issuer_database",
-          "has_not_expired"
+          "matches_issuer_database"
         ],
         "type": "object",
         "additionalProperties": false
@@ -3984,15 +3979,14 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           }
         },
         "required": [
           "required_fields_extracted",
           "document_borders_detected",
           "security_features_present",
-          "identifier_format_valid",
-          "has_not_expired"
+          "identifier_format_valid"
         ],
         "type": "object",
         "additionalProperties": false
@@ -4153,14 +4147,13 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date."
+            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
           }
         },
         "required": [
           "required_fields_extracted",
           "document_borders_detected",
-          "security_features_present",
-          "has_not_expired"
+          "security_features_present"
         ],
         "type": "object",
         "additionalProperties": false
@@ -5968,7 +5961,7 @@
           },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to."
+            "description": "The verification flow it belongs to. For v2 referee cases, this is not present."
           },
           "external_id": {
             "type": "string",
@@ -6005,7 +5998,6 @@
           "expires_at",
           "email",
           "redirect_url",
-          "workflow_id",
           "external_id",
           "claim_details",
           "checks",

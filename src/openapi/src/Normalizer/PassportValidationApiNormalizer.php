@@ -93,7 +93,9 @@ class PassportValidationApiNormalizer implements DenormalizerInterface, Normaliz
             $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
         }
         $dataArray['compound_identifiers_match'] = $this->normalizer->normalize($data->getCompoundIdentifiersMatch(), 'json', $context);
-        $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
+            $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        }
         $dataArray['icao_format_valid'] = $this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context);
         $dataArray['issuing_country_allowed'] = $this->normalizer->normalize($data->getIssuingCountryAllowed(), 'json', $context);
         return $dataArray;

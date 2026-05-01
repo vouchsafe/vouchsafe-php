@@ -47,7 +47,7 @@ class GetVerificationResponse
      */
     protected $redirectUrl;
     /**
-     * The verification flow it belongs to.
+     * The verification flow it belongs to. For v2 referee cases, this is not present.
      *
      * @var string
      */
@@ -207,7 +207,7 @@ class GetVerificationResponse
         return $this;
     }
     /**
-     * The verification flow it belongs to.
+     * The verification flow it belongs to. For v2 referee cases, this is not present.
      *
      * @return string
      */
@@ -216,7 +216,7 @@ class GetVerificationResponse
         return $this->workflowId;
     }
     /**
-     * The verification flow it belongs to.
+     * The verification flow it belongs to. For v2 referee cases, this is not present.
      *
      * @param string $workflowId
      *

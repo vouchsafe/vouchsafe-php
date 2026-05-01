@@ -84,7 +84,9 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['expires_at'] = $data->getExpiresAt();
         $dataArray['email'] = $data->getEmail();
         $dataArray['redirect_url'] = $data->getRedirectUrl();
-        $dataArray['workflow_id'] = $data->getWorkflowId();
+        if ($data->isInitialized('workflowId') && null !== $data->getWorkflowId()) {
+            $dataArray['workflow_id'] = $data->getWorkflowId();
+        }
         $dataArray['external_id'] = $data->getExternalId();
         if ($data->isInitialized('identityProfile') && null !== $data->getIdentityProfile()) {
             $dataArray['identity_profile'] = $data->getIdentityProfile();

@@ -91,7 +91,9 @@ class YoungScotValidationApiNormalizer implements DenormalizerInterface, Normali
         }
         $dataArray['security_features_present'] = $this->normalizer->normalize($data->getSecurityFeaturesPresent(), 'json', $context);
         $dataArray['identifier_format_valid'] = $this->normalizer->normalize($data->getIdentifierFormatValid(), 'json', $context);
-        $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
+            $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

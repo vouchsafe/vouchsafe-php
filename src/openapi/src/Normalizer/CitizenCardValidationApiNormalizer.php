@@ -87,7 +87,9 @@ class CitizenCardValidationApiNormalizer implements DenormalizerInterface, Norma
             $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
         }
         $dataArray['matches_issuer_database'] = $this->normalizer->normalize($data->getMatchesIssuerDatabase(), 'json', $context);
-        $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
+            $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
