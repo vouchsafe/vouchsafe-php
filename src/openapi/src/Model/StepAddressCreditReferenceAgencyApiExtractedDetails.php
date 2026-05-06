@@ -31,6 +31,18 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
      */
     protected $firstLineOfAddress;
     /**
+     * Last name that was checked against the credit bureau.
+     *
+     * @var string|null
+     */
+    protected $lastName;
+    /**
+     * First name that was checked against the credit bureau.
+     *
+     * @var string|null
+     */
+    protected $firstName;
+    /**
      * Source of the address information.
      *
      * @return string|null
@@ -94,6 +106,50 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
     {
         $this->initialized['firstLineOfAddress'] = true;
         $this->firstLineOfAddress = $firstLineOfAddress;
+        return $this;
+    }
+    /**
+     * Last name that was checked against the credit bureau.
+     *
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+    /**
+     * Last name that was checked against the credit bureau.
+     *
+     * @param string|null $lastName
+     *
+     * @return self
+     */
+    public function setLastName(?string $lastName): self
+    {
+        $this->initialized['lastName'] = true;
+        $this->lastName = $lastName;
+        return $this;
+    }
+    /**
+     * First name that was checked against the credit bureau.
+     *
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+    /**
+     * First name that was checked against the credit bureau.
+     *
+     * @param string|null $firstName
+     *
+     * @return self
+     */
+    public function setFirstName(?string $firstName): self
+    {
+        $this->initialized['firstName'] = true;
+        $this->firstName = $firstName;
         return $this;
     }
 }

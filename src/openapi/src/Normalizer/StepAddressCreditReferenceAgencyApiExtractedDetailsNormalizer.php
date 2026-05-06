@@ -58,6 +58,20 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         elseif (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] === null) {
             $object->setFirstLineOfAddress(null);
         }
+        if (\array_key_exists('last_name', $data) && $data['last_name'] !== null) {
+            $object->setLastName($data['last_name']);
+            unset($data['last_name']);
+        }
+        elseif (\array_key_exists('last_name', $data) && $data['last_name'] === null) {
+            $object->setLastName(null);
+        }
+        if (\array_key_exists('first_name', $data) && $data['first_name'] !== null) {
+            $object->setFirstName($data['first_name']);
+            unset($data['first_name']);
+        }
+        elseif (\array_key_exists('first_name', $data) && $data['first_name'] === null) {
+            $object->setFirstName(null);
+        }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value;
@@ -73,6 +87,8 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         $dataArray['postcode'] = $data->getPostcode();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
+        $dataArray['last_name'] = $data->getLastName();
+        $dataArray['first_name'] = $data->getFirstName();
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;

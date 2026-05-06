@@ -5429,11 +5429,23 @@
                 "type": "string",
                 "nullable": true,
                 "description": "First line of the address."
+              },
+              "last_name": {
+                "type": "string",
+                "nullable": true,
+                "description": "Last name that was checked against the credit bureau."
+              },
+              "first_name": {
+                "type": "string",
+                "nullable": true,
+                "description": "First name that was checked against the credit bureau."
               }
             },
             "required": [
               "postcode",
-              "first_line_of_address"
+              "first_line_of_address",
+              "last_name",
+              "first_name"
             ],
             "type": "object",
             "description": "Extracted address details."
