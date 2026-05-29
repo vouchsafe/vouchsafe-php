@@ -6147,6 +6147,7 @@
             "enum": [
               "Trial",
               "PAYG",
+              "Lite",
               "Flex",
               "Enterprise"
             ],
