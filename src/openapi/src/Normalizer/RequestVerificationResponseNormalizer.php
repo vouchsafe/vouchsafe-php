@@ -43,6 +43,9 @@ class RequestVerificationResponseNormalizer implements DenormalizerInterface, No
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
         }
+        if (\array_key_exists('flow_id', $data)) {
+            $object->setFlowId($data['flow_id']);
+        }
         if (\array_key_exists('workflow_id', $data)) {
             $object->setWorkflowId($data['workflow_id']);
         }
@@ -56,6 +59,7 @@ class RequestVerificationResponseNormalizer implements DenormalizerInterface, No
         $dataArray = [];
         $dataArray['url'] = $data->getUrl();
         $dataArray['id'] = $data->getId();
+        $dataArray['flow_id'] = $data->getFlowId();
         if ($data->isInitialized('workflowId') && null !== $data->getWorkflowId()) {
             $dataArray['workflow_id'] = $data->getWorkflowId();
         }

@@ -55,6 +55,9 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         if (\array_key_exists('date_of_birth', $data)) {
             $object->setDateOfBirth($data['date_of_birth']);
         }
+        if (\array_key_exists('flow_id', $data)) {
+            $object->setFlowId($data['flow_id']);
+        }
         if (\array_key_exists('workflow_id', $data)) {
             $object->setWorkflowId($data['workflow_id']);
         }
@@ -87,6 +90,9 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         }
         if ($data->isInitialized('dateOfBirth') && null !== $data->getDateOfBirth()) {
             $dataArray['date_of_birth'] = $data->getDateOfBirth();
+        }
+        if ($data->isInitialized('flowId') && null !== $data->getFlowId()) {
+            $dataArray['flow_id'] = $data->getFlowId();
         }
         if ($data->isInitialized('workflowId') && null !== $data->getWorkflowId()) {
             $dataArray['workflow_id'] = $data->getWorkflowId();

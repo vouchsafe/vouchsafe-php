@@ -47,9 +47,15 @@ class Verification
      */
     protected $redirectUrl;
     /**
-     * The verification flow it belongs to. For v2 referee cases, this is not present.
+     * The verification flow it belongs to.
      *
-     * @var string
+     * @var string|null
+     */
+    protected $flowId;
+    /**
+     * To be deprecated - Use flow_id instead.
+     *
+     * @var string|null
      */
     protected $workflowId;
     /**
@@ -191,22 +197,44 @@ class Verification
         return $this;
     }
     /**
-     * The verification flow it belongs to. For v2 referee cases, this is not present.
+     * The verification flow it belongs to.
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkflowId(): string
+    public function getFlowId(): ?string
+    {
+        return $this->flowId;
+    }
+    /**
+     * The verification flow it belongs to.
+     *
+     * @param string|null $flowId
+     *
+     * @return self
+     */
+    public function setFlowId(?string $flowId): self
+    {
+        $this->initialized['flowId'] = true;
+        $this->flowId = $flowId;
+        return $this;
+    }
+    /**
+     * To be deprecated - Use flow_id instead.
+     *
+     * @return string|null
+     */
+    public function getWorkflowId(): ?string
     {
         return $this->workflowId;
     }
     /**
-     * The verification flow it belongs to. For v2 referee cases, this is not present.
+     * To be deprecated - Use flow_id instead.
      *
-     * @param string $workflowId
+     * @param string|null $workflowId
      *
      * @return self
      */
-    public function setWorkflowId(string $workflowId): self
+    public function setWorkflowId(?string $workflowId): self
     {
         $this->initialized['workflowId'] = true;
         $this->workflowId = $workflowId;

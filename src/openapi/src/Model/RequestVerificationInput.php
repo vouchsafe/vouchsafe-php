@@ -51,11 +51,17 @@ class RequestVerificationInput
     /**
      * Which verification flow to use.
      * 
-     * Get the flow ID from the URL of the builder page.
+     * Get the flow ID from the URL of the flows page.
      * 
-     * For example: `/admin/teams/abc123/builder/[workflow_id]`
+     * For example: `/admin/teams/abc123/flows/[flow_id]`
      * 
      * If not provided, the last published flow is used instead.
+     *
+     * @var string
+     */
+    protected $flowId;
+    /**
+     * To be deprecated - Use flow_id instead.
      *
      * @var string
      */
@@ -217,11 +223,39 @@ class RequestVerificationInput
     /**
      * Which verification flow to use.
      * 
-     * Get the flow ID from the URL of the builder page.
+     * Get the flow ID from the URL of the flows page.
      * 
-     * For example: `/admin/teams/abc123/builder/[workflow_id]`
+     * For example: `/admin/teams/abc123/flows/[flow_id]`
      * 
      * If not provided, the last published flow is used instead.
+     *
+     * @return string
+     */
+    public function getFlowId(): string
+    {
+        return $this->flowId;
+    }
+    /**
+    * Which verification flow to use.
+    
+    Get the flow ID from the URL of the flows page.
+    
+    For example: `/admin/teams/abc123/flows/[flow_id]`
+    
+    If not provided, the last published flow is used instead.
+    *
+    * @param string $flowId
+    *
+    * @return self
+    */
+    public function setFlowId(string $flowId): self
+    {
+        $this->initialized['flowId'] = true;
+        $this->flowId = $flowId;
+        return $this;
+    }
+    /**
+     * To be deprecated - Use flow_id instead.
      *
      * @return string
      */
@@ -230,18 +264,12 @@ class RequestVerificationInput
         return $this->workflowId;
     }
     /**
-    * Which verification flow to use.
-    
-    Get the flow ID from the URL of the builder page.
-    
-    For example: `/admin/teams/abc123/builder/[workflow_id]`
-    
-    If not provided, the last published flow is used instead.
-    *
-    * @param string $workflowId
-    *
-    * @return self
-    */
+     * To be deprecated - Use flow_id instead.
+     *
+     * @param string $workflowId
+     *
+     * @return self
+     */
     public function setWorkflowId(string $workflowId): self
     {
         $this->initialized['workflowId'] = true;

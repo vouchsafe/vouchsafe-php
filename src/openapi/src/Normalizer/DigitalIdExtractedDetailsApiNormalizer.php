@@ -91,6 +91,15 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         if (\array_key_exists('immigration_status', $data)) {
             $object->setImmigrationStatus($data['immigration_status']);
         }
+        if (\array_key_exists('evisa_conditions', $data)) {
+            $value = $data['evisa_conditions'];
+            if (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '1') and isset($data['evisa_conditions']['max_weekly_hours']) and isset($data['evisa_conditions']['no_self_employment'])) {
+                $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccessApi::class, 'json', $context);
+            } elseif (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '')) {
+                $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsFailedApi::class, 'json', $context);
+            }
+            $object->setEvisaConditions($value);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -124,6 +133,15 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         }
         if ($data->isInitialized('immigrationStatus') && null !== $data->getImmigrationStatus()) {
             $dataArray['immigration_status'] = $data->getImmigrationStatus();
+        }
+        if ($data->isInitialized('evisaConditions') && null !== $data->getEvisaConditions()) {
+            $value = $data->getEvisaConditions();
+            if (is_object($data->getEvisaConditions())) {
+                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+            } elseif (is_object($data->getEvisaConditions())) {
+                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+            }
+            $dataArray['evisa_conditions'] = $value;
         }
         return $dataArray;
     }

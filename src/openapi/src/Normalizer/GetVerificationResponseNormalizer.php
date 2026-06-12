@@ -61,8 +61,17 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
         elseif (\array_key_exists('redirect_url', $data) && $data['redirect_url'] === null) {
             $object->setRedirectUrl(null);
         }
-        if (\array_key_exists('workflow_id', $data)) {
+        if (\array_key_exists('flow_id', $data) && $data['flow_id'] !== null) {
+            $object->setFlowId($data['flow_id']);
+        }
+        elseif (\array_key_exists('flow_id', $data) && $data['flow_id'] === null) {
+            $object->setFlowId(null);
+        }
+        if (\array_key_exists('workflow_id', $data) && $data['workflow_id'] !== null) {
             $object->setWorkflowId($data['workflow_id']);
+        }
+        elseif (\array_key_exists('workflow_id', $data) && $data['workflow_id'] === null) {
+            $object->setWorkflowId(null);
         }
         if (\array_key_exists('external_id', $data) && $data['external_id'] !== null) {
             $object->setExternalId($data['external_id']);
@@ -141,7 +150,10 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
         $dataArray['expires_at'] = $data->getExpiresAt();
         $dataArray['email'] = $data->getEmail();
         $dataArray['redirect_url'] = $data->getRedirectUrl();
-        if ($data->isInitialized('workflowId') && null !== $data->getWorkflowId()) {
+        if ($data->isInitialized('flowId')) {
+            $dataArray['flow_id'] = $data->getFlowId();
+        }
+        if ($data->isInitialized('workflowId')) {
             $dataArray['workflow_id'] = $data->getWorkflowId();
         }
         $dataArray['external_id'] = $data->getExternalId();

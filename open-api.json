@@ -2711,9 +2711,13 @@
             "type": "string",
             "description": "A unique ID for the verification session, for you to track progress."
           },
-          "workflow_id": {
+          "flow_id": {
             "type": "string",
             "description": "The flow it belongs to."
+          },
+          "workflow_id": {
+            "type": "string",
+            "description": "To be deprecated - use flow_id instead."
           },
           "expires_at": {
             "type": "string",
@@ -2723,6 +2727,7 @@
         "required": [
           "url",
           "id",
+          "flow_id",
           "expires_at"
         ],
         "type": "object",
@@ -2754,9 +2759,13 @@
             "type": "string",
             "description": "The user's date of birth, if you have it. Format as YYYY-MM-DD or ISO 8601"
           },
+          "flow_id": {
+            "type": "string",
+            "description": "Which verification flow to use.\n\nGet the flow ID from the URL of the flows page.\n\nFor example: `/admin/teams/abc123/flows/[flow_id]`\n\nIf not provided, the last published flow is used instead."
+          },
           "workflow_id": {
             "type": "string",
-            "description": "Which verification flow to use.\n\nGet the flow ID from the URL of the builder page.\n\nFor example: `/admin/teams/abc123/builder/[workflow_id]`\n\nIf not provided, the last published flow is used instead."
+            "description": "To be deprecated - Use flow_id instead."
           },
           "external_id": {
             "type": "string",
@@ -2825,9 +2834,15 @@
             "nullable": true,
             "description": "Where to send the user upon success. If null, the verification flow default will be used."
           },
+          "flow_id": {
+            "type": "string",
+            "nullable": true,
+            "description": "The verification flow it belongs to."
+          },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to. For v2 referee cases, this is not present."
+            "nullable": true,
+            "description": "To be deprecated - Use flow_id instead."
           },
           "external_id": {
             "type": "string",
@@ -5084,6 +5099,10 @@
           "immigration_status": {
             "type": "string",
             "description": "Immigration status, if provided by the provider (eVisa flows)."
+          },
+          "evisa_conditions": {
+            "$ref": "#/components/schemas/EvisaConditionsApi",
+            "description": "Employment conditions extracted from the eVisa. Only present for RightToWork."
           }
         },
         "required": [
@@ -5971,9 +5990,15 @@
             "nullable": true,
             "description": "Where to send the user upon success. If null, the verification flow default will be used."
           },
+          "flow_id": {
+            "type": "string",
+            "nullable": true,
+            "description": "The verification flow it belongs to."
+          },
           "workflow_id": {
             "type": "string",
-            "description": "The verification flow it belongs to. For v2 referee cases, this is not present."
+            "nullable": true,
+            "description": "To be deprecated - Use flow_id instead."
           },
           "external_id": {
             "type": "string",
@@ -7911,6 +7936,7 @@
                     "value": {
                       "url": "https://app.vouchsafe.id/verify/123abc",
                       "id": "456def",
+                      "flow_id": "123abc",
                       "expires_at": "2025-08-08T12:00:00Z"
                     }
                   }
@@ -7990,7 +8016,7 @@
                         "expires_at": "2025-08-15T10:00:00Z",
                         "email": "ava@example.com",
                         "redirect_url": "https://yourapp.example.com/return",
-                        "workflow_id": "123abc",
+                        "flow_id": "123abc",
                         "external_id": "user_42"
                       },
                       {
@@ -8000,8 +8026,9 @@
                         "expires_at": "2025-08-03T09:10:00Z",
                         "email": "sam@example.com",
                         "redirect_url": null,
-                        "workflow_id": "456def",
-                        "external_id": null
+                        "flow_id": "456def",
+                        "external_id": null,
+                        "identity_profile": "M1A"
                       }
                     ]
                   }
@@ -8072,7 +8099,7 @@
                       "expires_at": "2025-08-15T10:00:00Z",
                       "email": "ava@example.com",
                       "redirect_url": "https://yourapp.example.com/return",
-                      "workflow_id": "123abc",
+                      "flow_id": "123abc",
                       "external_id": "user_42",
                       "claim_details": {
                         "email": "ava@example.com",

@@ -29,6 +29,12 @@ class RequestVerificationResponse
      *
      * @var string
      */
+    protected $flowId;
+    /**
+     * To be deprecated - use flow_id instead.
+     *
+     * @var string
+     */
     protected $workflowId;
     /**
      * When the user will stop getting reminders.
@@ -85,12 +91,34 @@ class RequestVerificationResponse
      *
      * @return string
      */
+    public function getFlowId(): string
+    {
+        return $this->flowId;
+    }
+    /**
+     * The flow it belongs to.
+     *
+     * @param string $flowId
+     *
+     * @return self
+     */
+    public function setFlowId(string $flowId): self
+    {
+        $this->initialized['flowId'] = true;
+        $this->flowId = $flowId;
+        return $this;
+    }
+    /**
+     * To be deprecated - use flow_id instead.
+     *
+     * @return string
+     */
     public function getWorkflowId(): string
     {
         return $this->workflowId;
     }
     /**
-     * The flow it belongs to.
+     * To be deprecated - use flow_id instead.
      *
      * @param string $workflowId
      *

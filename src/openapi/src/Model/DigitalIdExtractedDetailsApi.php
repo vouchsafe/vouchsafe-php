@@ -91,6 +91,10 @@ class DigitalIdExtractedDetailsApi
      */
     protected $immigrationStatus;
     /**
+     * @var EvisaConditionsSuccessApi|EvisaConditionsFailedApi
+     */
+    protected $evisaConditions;
+    /**
      * First name, if extracted. Otherwise null.
      *
      * @return string|null
@@ -374,6 +378,24 @@ class DigitalIdExtractedDetailsApi
     {
         $this->initialized['immigrationStatus'] = true;
         $this->immigrationStatus = $immigrationStatus;
+        return $this;
+    }
+    /**
+     * @return EvisaConditionsSuccessApi|EvisaConditionsFailedApi
+     */
+    public function getEvisaConditions()
+    {
+        return $this->evisaConditions;
+    }
+    /**
+     * @param EvisaConditionsSuccessApi|EvisaConditionsFailedApi $evisaConditions
+     *
+     * @return self
+     */
+    public function setEvisaConditions($evisaConditions): self
+    {
+        $this->initialized['evisaConditions'] = true;
+        $this->evisaConditions = $evisaConditions;
         return $this;
     }
 }
