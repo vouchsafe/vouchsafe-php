@@ -91,6 +91,24 @@ class DigitalIdExtractedDetailsApi
      */
     protected $immigrationStatus;
     /**
+     * UK Home Office share code. Only present for eVisa flows.
+     *
+     * @var string
+     */
+    protected $shareCode;
+    /**
+     * GOV.UK reference number for the check. Only present for eVisa flows.
+     *
+     * @var string
+     */
+    protected $referenceNumber;
+    /**
+     * Start date (YYYY-MM-DD) of the immigration permission. Only present for ImmigrationStatus and RightToRent eVisa flows.
+     *
+     * @var string
+     */
+    protected $validFrom;
+    /**
      * @var EvisaConditionsSuccessApi|EvisaConditionsFailedApi
      */
     protected $evisaConditions;
@@ -378,6 +396,72 @@ class DigitalIdExtractedDetailsApi
     {
         $this->initialized['immigrationStatus'] = true;
         $this->immigrationStatus = $immigrationStatus;
+        return $this;
+    }
+    /**
+     * UK Home Office share code. Only present for eVisa flows.
+     *
+     * @return string
+     */
+    public function getShareCode(): string
+    {
+        return $this->shareCode;
+    }
+    /**
+     * UK Home Office share code. Only present for eVisa flows.
+     *
+     * @param string $shareCode
+     *
+     * @return self
+     */
+    public function setShareCode(string $shareCode): self
+    {
+        $this->initialized['shareCode'] = true;
+        $this->shareCode = $shareCode;
+        return $this;
+    }
+    /**
+     * GOV.UK reference number for the check. Only present for eVisa flows.
+     *
+     * @return string
+     */
+    public function getReferenceNumber(): string
+    {
+        return $this->referenceNumber;
+    }
+    /**
+     * GOV.UK reference number for the check. Only present for eVisa flows.
+     *
+     * @param string $referenceNumber
+     *
+     * @return self
+     */
+    public function setReferenceNumber(string $referenceNumber): self
+    {
+        $this->initialized['referenceNumber'] = true;
+        $this->referenceNumber = $referenceNumber;
+        return $this;
+    }
+    /**
+     * Start date (YYYY-MM-DD) of the immigration permission. Only present for ImmigrationStatus and RightToRent eVisa flows.
+     *
+     * @return string
+     */
+    public function getValidFrom(): string
+    {
+        return $this->validFrom;
+    }
+    /**
+     * Start date (YYYY-MM-DD) of the immigration permission. Only present for ImmigrationStatus and RightToRent eVisa flows.
+     *
+     * @param string $validFrom
+     *
+     * @return self
+     */
+    public function setValidFrom(string $validFrom): self
+    {
+        $this->initialized['validFrom'] = true;
+        $this->validFrom = $validFrom;
         return $this;
     }
     /**

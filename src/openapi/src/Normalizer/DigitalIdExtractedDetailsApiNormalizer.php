@@ -91,6 +91,15 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         if (\array_key_exists('immigration_status', $data)) {
             $object->setImmigrationStatus($data['immigration_status']);
         }
+        if (\array_key_exists('share_code', $data)) {
+            $object->setShareCode($data['share_code']);
+        }
+        if (\array_key_exists('reference_number', $data)) {
+            $object->setReferenceNumber($data['reference_number']);
+        }
+        if (\array_key_exists('valid_from', $data)) {
+            $object->setValidFrom($data['valid_from']);
+        }
         if (\array_key_exists('evisa_conditions', $data)) {
             $value = $data['evisa_conditions'];
             if (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '1') and isset($data['evisa_conditions']['max_weekly_hours']) and isset($data['evisa_conditions']['no_self_employment'])) {
@@ -133,6 +142,15 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         }
         if ($data->isInitialized('immigrationStatus') && null !== $data->getImmigrationStatus()) {
             $dataArray['immigration_status'] = $data->getImmigrationStatus();
+        }
+        if ($data->isInitialized('shareCode') && null !== $data->getShareCode()) {
+            $dataArray['share_code'] = $data->getShareCode();
+        }
+        if ($data->isInitialized('referenceNumber') && null !== $data->getReferenceNumber()) {
+            $dataArray['reference_number'] = $data->getReferenceNumber();
+        }
+        if ($data->isInitialized('validFrom') && null !== $data->getValidFrom()) {
+            $dataArray['valid_from'] = $data->getValidFrom();
         }
         if ($data->isInitialized('evisaConditions') && null !== $data->getEvisaConditions()) {
             $value = $data->getEvisaConditions();

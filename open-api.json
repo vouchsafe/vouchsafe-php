@@ -5100,6 +5100,18 @@
             "type": "string",
             "description": "Immigration status, if provided by the provider (eVisa flows)."
           },
+          "share_code": {
+            "type": "string",
+            "description": "UK Home Office share code. Only present for eVisa flows."
+          },
+          "reference_number": {
+            "type": "string",
+            "description": "GOV.UK reference number for the check. Only present for eVisa flows."
+          },
+          "valid_from": {
+            "type": "string",
+            "description": "Start date (YYYY-MM-DD) of the immigration permission. Only present for ImmigrationStatus and RightToRent eVisa flows."
+          },
           "evisa_conditions": {
             "$ref": "#/components/schemas/EvisaConditionsApi",
             "description": "Employment conditions extracted from the eVisa. Only present for RightToWork."
