@@ -47,6 +47,10 @@ class YoungScotValidationApi
     /**
      * @var ValidationOutcomeApi
      */
+    protected $tamperingSignalsCheck;
+    /**
+     * @var ValidationOutcomeApi
+     */
     protected $securityFeaturesPresent;
     /**
      * @var ValidationOutcomeApi
@@ -188,6 +192,24 @@ class YoungScotValidationApi
     {
         $this->initialized['refereeBiometricsDissimilar'] = true;
         $this->refereeBiometricsDissimilar = $refereeBiometricsDissimilar;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getTamperingSignalsCheck(): ValidationOutcomeApi
+    {
+        return $this->tamperingSignalsCheck;
+    }
+    /**
+     * @param ValidationOutcomeApi $tamperingSignalsCheck
+     *
+     * @return self
+     */
+    public function setTamperingSignalsCheck(ValidationOutcomeApi $tamperingSignalsCheck): self
+    {
+        $this->initialized['tamperingSignalsCheck'] = true;
+        $this->tamperingSignalsCheck = $tamperingSignalsCheck;
         return $this;
     }
     /**

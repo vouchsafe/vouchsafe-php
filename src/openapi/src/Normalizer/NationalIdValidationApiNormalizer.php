@@ -58,6 +58,9 @@ class NationalIdValidationApiNormalizer implements DenormalizerInterface, Normal
         if (\array_key_exists('referee_biometrics_dissimilar', $data)) {
             $object->setRefereeBiometricsDissimilar($this->denormalizer->denormalize($data['referee_biometrics_dissimilar'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
+        if (\array_key_exists('tampering_signals_check', $data)) {
+            $object->setTamperingSignalsCheck($this->denormalizer->denormalize($data['tampering_signals_check'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
         if (\array_key_exists('compound_identifiers_match', $data)) {
             $object->setCompoundIdentifiersMatch($this->denormalizer->denormalize($data['compound_identifiers_match'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
@@ -91,6 +94,9 @@ class NationalIdValidationApiNormalizer implements DenormalizerInterface, Normal
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
             $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+        }
+        if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
+            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
         }
         $dataArray['compound_identifiers_match'] = $this->normalizer->normalize($data->getCompoundIdentifiersMatch(), 'json', $context);
         if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {

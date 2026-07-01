@@ -58,6 +58,9 @@ class CitizenCardValidationApiNormalizer implements DenormalizerInterface, Norma
         if (\array_key_exists('referee_biometrics_dissimilar', $data)) {
             $object->setRefereeBiometricsDissimilar($this->denormalizer->denormalize($data['referee_biometrics_dissimilar'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
+        if (\array_key_exists('tampering_signals_check', $data)) {
+            $object->setTamperingSignalsCheck($this->denormalizer->denormalize($data['tampering_signals_check'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
         if (\array_key_exists('matches_issuer_database', $data)) {
             $object->setMatchesIssuerDatabase($this->denormalizer->denormalize($data['matches_issuer_database'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
@@ -85,6 +88,9 @@ class CitizenCardValidationApiNormalizer implements DenormalizerInterface, Norma
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
             $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+        }
+        if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
+            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
         }
         $dataArray['matches_issuer_database'] = $this->normalizer->normalize($data->getMatchesIssuerDatabase(), 'json', $context);
         if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {

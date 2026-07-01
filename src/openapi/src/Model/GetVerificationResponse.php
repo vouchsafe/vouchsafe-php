@@ -29,6 +29,14 @@ class GetVerificationResponse
      */
     protected $createdAt;
     /**
+     * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+     * if it has not been erased. The status and timestamps are retained, but personal data fields
+     * (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
+     *
+     * @var string|null
+     */
+    protected $erasedAt;
+    /**
      * When the user will stop getting reminders.
      *
      * @var string
@@ -144,6 +152,32 @@ class GetVerificationResponse
     {
         $this->initialized['createdAt'] = true;
         $this->createdAt = $createdAt;
+        return $this;
+    }
+    /**
+     * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+     * if it has not been erased. The status and timestamps are retained, but personal data fields
+     * (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
+     *
+     * @return string|null
+     */
+    public function getErasedAt(): ?string
+    {
+        return $this->erasedAt;
+    }
+    /**
+    * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+    if it has not been erased. The status and timestamps are retained, but personal data fields
+    (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
+    *
+    * @param string|null $erasedAt
+    *
+    * @return self
+    */
+    public function setErasedAt(?string $erasedAt): self
+    {
+        $this->initialized['erasedAt'] = true;
+        $this->erasedAt = $erasedAt;
         return $this;
     }
     /**

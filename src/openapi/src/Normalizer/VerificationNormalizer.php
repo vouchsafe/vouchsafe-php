@@ -46,6 +46,12 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (\array_key_exists('created_at', $data)) {
             $object->setCreatedAt($data['created_at']);
         }
+        if (\array_key_exists('erased_at', $data) && $data['erased_at'] !== null) {
+            $object->setErasedAt($data['erased_at']);
+        }
+        elseif (\array_key_exists('erased_at', $data) && $data['erased_at'] === null) {
+            $object->setErasedAt(null);
+        }
         if (\array_key_exists('expires_at', $data)) {
             $object->setExpiresAt($data['expires_at']);
         }
@@ -90,6 +96,9 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['id'] = $data->getId();
         $dataArray['status'] = $data->getStatus();
         $dataArray['created_at'] = $data->getCreatedAt();
+        if ($data->isInitialized('erasedAt')) {
+            $dataArray['erased_at'] = $data->getErasedAt();
+        }
         $dataArray['expires_at'] = $data->getExpiresAt();
         $dataArray['email'] = $data->getEmail();
         $dataArray['redirect_url'] = $data->getRedirectUrl();

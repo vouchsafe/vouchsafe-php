@@ -58,6 +58,9 @@ class DrivingLicenceValidationApiNormalizer implements DenormalizerInterface, No
         if (\array_key_exists('referee_biometrics_dissimilar', $data)) {
             $object->setRefereeBiometricsDissimilar($this->denormalizer->denormalize($data['referee_biometrics_dissimilar'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
+        if (\array_key_exists('tampering_signals_check', $data)) {
+            $object->setTamperingSignalsCheck($this->denormalizer->denormalize($data['tampering_signals_check'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
         if (\array_key_exists('security_features_present', $data)) {
             $object->setSecurityFeaturesPresent($this->denormalizer->denormalize($data['security_features_present'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
@@ -91,6 +94,9 @@ class DrivingLicenceValidationApiNormalizer implements DenormalizerInterface, No
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
             $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+        }
+        if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
+            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
         }
         $dataArray['security_features_present'] = $this->normalizer->normalize($data->getSecurityFeaturesPresent(), 'json', $context);
         $dataArray['identifier_format_valid'] = $this->normalizer->normalize($data->getIdentifierFormatValid(), 'json', $context);

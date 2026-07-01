@@ -47,6 +47,10 @@ class NationalIdValidationApi
     /**
      * @var ValidationOutcomeApi
      */
+    protected $tamperingSignalsCheck;
+    /**
+     * @var ValidationOutcomeApi
+     */
     protected $compoundIdentifiersMatch;
     /**
      * @var ValidationOutcomeApi
@@ -192,6 +196,24 @@ class NationalIdValidationApi
     {
         $this->initialized['refereeBiometricsDissimilar'] = true;
         $this->refereeBiometricsDissimilar = $refereeBiometricsDissimilar;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getTamperingSignalsCheck(): ValidationOutcomeApi
+    {
+        return $this->tamperingSignalsCheck;
+    }
+    /**
+     * @param ValidationOutcomeApi $tamperingSignalsCheck
+     *
+     * @return self
+     */
+    public function setTamperingSignalsCheck(ValidationOutcomeApi $tamperingSignalsCheck): self
+    {
+        $this->initialized['tamperingSignalsCheck'] = true;
+        $this->tamperingSignalsCheck = $tamperingSignalsCheck;
         return $this;
     }
     /**
