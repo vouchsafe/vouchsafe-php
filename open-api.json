@@ -2824,7 +2824,12 @@
           "erased_at": {
             "type": "string",
             "nullable": true,
-            "description": "When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`\nif it has not been erased. The status and timestamps are retained, but personal data fields\n(`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased."
+            "description": "When the personal data for this verification was erased to fulfil an erasure request, or `null`\nif it has not been erased. The status and timestamps are retained, but personal data fields\n(`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased."
+          },
+          "erased_by": {
+            "type": "string",
+            "nullable": true,
+            "description": "Email of the operator who erased the personal data, or `null` if it has not been erased."
           },
           "expires_at": {
             "type": "string",
@@ -6025,7 +6030,12 @@
           "erased_at": {
             "type": "string",
             "nullable": true,
-            "description": "When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`\nif it has not been erased. The status and timestamps are retained, but personal data fields\n(`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased."
+            "description": "When the personal data for this verification was erased to fulfil an erasure request, or `null`\nif it has not been erased. The status and timestamps are retained, but personal data fields\n(`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased."
+          },
+          "erased_by": {
+            "type": "string",
+            "nullable": true,
+            "description": "Email of the operator who erased the personal data, or `null` if it has not been erased."
           },
           "expires_at": {
             "type": "string",
@@ -8148,6 +8158,7 @@
                       "status": "ReadyForReview",
                       "created_at": "2025-08-01T10:00:00Z",
                       "erased_at": null,
+                      "erased_by": null,
                       "expires_at": "2025-08-15T10:00:00Z",
                       "email": "ava@example.com",
                       "redirect_url": "https://yourapp.example.com/return",
@@ -8322,7 +8333,7 @@
             }
           }
         },
-        "description": "Get a single verification by ID.\n\nReturns the latest status, claim details and results for a verification you previously requested.\n\nVouchsafe will respond with:\n\n- the verification status and timestamps\n- the identity claim details (e.g. name, email, phone number)\n- the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations\n- results of any background checks (e.g. radar, online footprint analysis, aml sanctions)\n\n#### Downloading files (artefacts)\n\nSome checks may include an `artefacts` array (for example: face scan or document images).\nFor security reasons, the verification response only contains an `artefact key` — not the file itself.\n\nTo download an artefact, use:\n\n- `GET /artefacts/{artefact_key}`\n\nThis returns a **time-limited pre-signed URL** which can be used to download the file.\n\n#### Erased verifications (GDPR)\n\nIf the data subject has exercised their right to erasure, the verification's `erased_at`\ntimestamp will be set. The verification's `status` and timestamps are retained so you keep an\naudit trail, but all personal data (claim details, extracted document details, artefacts and\nenrichments) will be empty. Check `erased_at` to distinguish an erased verification from one\nthat simply never collected that data.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Get a single verification by ID.\n\nReturns the latest status, claim details and results for a verification you previously requested.\n\nVouchsafe will respond with:\n\n- the verification status and timestamps\n- the identity claim details (e.g. name, email, phone number)\n- the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations\n- results of any background checks (e.g. radar, online footprint analysis, aml sanctions)\n\n#### Downloading files (artefacts)\n\nSome checks may include an `artefacts` array (for example: face scan or document images).\nFor security reasons, the verification response only contains an `artefact key` — not the file itself.\n\nTo download an artefact, use:\n\n- `GET /artefacts/{artefact_key}`\n\nThis returns a **time-limited pre-signed URL** which can be used to download the file.\n\n#### Erased verifications\n\nIf the data subject has exercised their right to erasure, the verification's `erased_at`\ntimestamp will be set, and `erased_by` records the operator who ran the erasure. The\nverification's `status` and timestamps are retained so you keep an audit trail, but all\npersonal data (claim details, extracted document details, artefacts and enrichments) will be\nempty. Check `erased_at` to distinguish an erased verification from one that simply never\ncollected that data.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Verifications"
         ],

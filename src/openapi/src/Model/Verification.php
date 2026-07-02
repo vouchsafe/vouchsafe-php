@@ -29,13 +29,19 @@ class Verification
      */
     protected $createdAt;
     /**
-     * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+     * When the personal data for this verification was erased to fulfil an erasure request, or `null`
      * if it has not been erased. The status and timestamps are retained, but personal data fields
      * (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
      *
      * @var string|null
      */
     protected $erasedAt;
+    /**
+     * Email of the operator who erased the personal data, or `null` if it has not been erased.
+     *
+     * @var string|null
+     */
+    protected $erasedBy;
     /**
      * When the user will stop getting reminders.
      *
@@ -139,7 +145,7 @@ class Verification
         return $this;
     }
     /**
-     * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+     * When the personal data for this verification was erased to fulfil an erasure request, or `null`
      * if it has not been erased. The status and timestamps are retained, but personal data fields
      * (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
      *
@@ -150,7 +156,7 @@ class Verification
         return $this->erasedAt;
     }
     /**
-    * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+    * When the personal data for this verification was erased to fulfil an erasure request, or `null`
     if it has not been erased. The status and timestamps are retained, but personal data fields
     (`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
     *
@@ -162,6 +168,28 @@ class Verification
     {
         $this->initialized['erasedAt'] = true;
         $this->erasedAt = $erasedAt;
+        return $this;
+    }
+    /**
+     * Email of the operator who erased the personal data, or `null` if it has not been erased.
+     *
+     * @return string|null
+     */
+    public function getErasedBy(): ?string
+    {
+        return $this->erasedBy;
+    }
+    /**
+     * Email of the operator who erased the personal data, or `null` if it has not been erased.
+     *
+     * @param string|null $erasedBy
+     *
+     * @return self
+     */
+    public function setErasedBy(?string $erasedBy): self
+    {
+        $this->initialized['erasedBy'] = true;
+        $this->erasedBy = $erasedBy;
         return $this;
     }
     /**
