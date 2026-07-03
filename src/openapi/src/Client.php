@@ -107,6 +107,15 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      * - `RightToWork` - Check a person's right to work in the UK
      * - `RightToRent` - Check a person's right to rent property in the UK
      *
+     * **Share code format:**
+     * Each share code begins with a letter that identifies its type. Submitting a code whose prefix does not
+     * match the requested `sub_type` returns `HTTP 400` with a `payload.share_code` error detail.
+     * | sub_type | Expected prefix |
+     * |----------|-----------------|
+     * | `ImmigrationStatus` | `S` |
+     * | `RightToWork` | `W` |
+     * | `RightToRent` | `R` |
+     *
      * > **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.
      *
      * **Response summary:**
@@ -129,6 +138,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * **Sandbox testing:**
      * Use these share codes in [sandbox mode](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work) to test different outcomes:
+     * > Sandbox codes are exempt from the prefix check — they work with any `sub_type`.
      * - `PASS12345` - Returns a successful verification with "Pass" outcome
      * - `FAIL12345` - Returns a failed verification (e.g. expired status)
      * - `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)
