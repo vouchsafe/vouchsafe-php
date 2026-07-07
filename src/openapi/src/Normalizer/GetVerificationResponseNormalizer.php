@@ -151,6 +151,12 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
             }
             $object->setEnrichments($values_1);
         }
+        if (\array_key_exists('refusal_reason', $data) && $data['refusal_reason'] !== null) {
+            $object->setRefusalReason($this->denormalizer->denormalize($data['refusal_reason'], \Vouchsafe\OpenAPI\Model\GetVerificationResponseRefusalReason::class, 'json', $context));
+        }
+        elseif (\array_key_exists('refusal_reason', $data) && $data['refusal_reason'] === null) {
+            $object->setRefusalReason(null);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -229,6 +235,9 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
             $values_1[] = $value_3;
         }
         $dataArray['enrichments'] = $values_1;
+        if ($data->isInitialized('refusalReason')) {
+            $dataArray['refusal_reason'] = $this->normalizer->normalize($data->getRefusalReason(), 'json', $context);
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -99,6 +99,12 @@ class GetVerificationResponse
      */
     protected $enrichments;
     /**
+     * Customer-facing reason the verification was auto-refused, or null when there is none.
+     *
+     * @var GetVerificationResponseRefusalReason|null
+     */
+    protected $refusalReason;
+    /**
      * Unique ID for tracking a verification session over time.
      *
      * @return string
@@ -418,6 +424,28 @@ class GetVerificationResponse
     {
         $this->initialized['enrichments'] = true;
         $this->enrichments = $enrichments;
+        return $this;
+    }
+    /**
+     * Customer-facing reason the verification was auto-refused, or null when there is none.
+     *
+     * @return GetVerificationResponseRefusalReason|null
+     */
+    public function getRefusalReason(): ?GetVerificationResponseRefusalReason
+    {
+        return $this->refusalReason;
+    }
+    /**
+     * Customer-facing reason the verification was auto-refused, or null when there is none.
+     *
+     * @param GetVerificationResponseRefusalReason|null $refusalReason
+     *
+     * @return self
+     */
+    public function setRefusalReason(?GetVerificationResponseRefusalReason $refusalReason): self
+    {
+        $this->initialized['refusalReason'] = true;
+        $this->refusalReason = $refusalReason;
         return $this;
     }
 }

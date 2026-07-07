@@ -302,7 +302,11 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidationsNoKnownFraudsterMatch::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiDetailsValidationsNoKnownFraudsterMatchNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\RefusalReasonApi::class => \Vouchsafe\OpenAPI\Normalizer\RefusalReasonApiNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\GetVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetVerificationResponseNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\GetVerificationResponseRefusalReason::class => \Vouchsafe\OpenAPI\Normalizer\GetVerificationResponseRefusalReasonNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\CreateTeamResponse::class => \Vouchsafe\OpenAPI\Normalizer\CreateTeamResponseNormalizer::class,
         
@@ -552,7 +556,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\RadarCheckApiDetails::class => false,
             \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidations::class => false,
             \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidationsNoKnownFraudsterMatch::class => false,
+            \Vouchsafe\OpenAPI\Model\RefusalReasonApi::class => false,
             \Vouchsafe\OpenAPI\Model\GetVerificationResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\GetVerificationResponseRefusalReason::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamResponse::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamInput::class => false,
