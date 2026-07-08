@@ -67,6 +67,12 @@ class PassportExtractedDetailsNormalizer implements DenormalizerInterface, Norma
         elseif (\array_key_exists('expiration_date', $data) && $data['expiration_date'] === null) {
             $object->setExpirationDate(null);
         }
+        if (\array_key_exists('date_of_issue', $data) && $data['date_of_issue'] !== null) {
+            $object->setDateOfIssue($data['date_of_issue']);
+        }
+        elseif (\array_key_exists('date_of_issue', $data) && $data['date_of_issue'] === null) {
+            $object->setDateOfIssue(null);
+        }
         if (\array_key_exists('issuing_country', $data) && $data['issuing_country'] !== null) {
             $object->setIssuingCountry($data['issuing_country']);
         }
@@ -95,6 +101,7 @@ class PassportExtractedDetailsNormalizer implements DenormalizerInterface, Norma
         $dataArray['document_number'] = $data->getDocumentNumber();
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['expiration_date'] = $data->getExpirationDate();
+        $dataArray['date_of_issue'] = $data->getDateOfIssue();
         $dataArray['issuing_country'] = $data->getIssuingCountry();
         $dataArray['icao_format'] = $data->getIcaoFormat();
         $dataArray['mrz_code'] = $data->getMrzCode();

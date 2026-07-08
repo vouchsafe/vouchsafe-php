@@ -336,6 +336,11 @@
             "nullable": true,
             "description": "Extracted expiry date (YYYY-MM-DD), or null if unavailable."
           },
+          "date_of_issue": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date the passport was issued (YYYY-MM-DD), or null if unavailable. Sourced from the VIZ, not the MRZ."
+          },
           "issuing_country": {
             "type": "string",
             "nullable": true,
@@ -358,6 +363,7 @@
           "document_number",
           "date_of_birth",
           "expiration_date",
+          "date_of_issue",
           "issuing_country",
           "icao_format",
           "mrz_code"
@@ -3292,6 +3298,11 @@
             "type": "string",
             "nullable": true,
             "description": "Expiry date, if present and extracted. Otherwise null."
+          },
+          "issue_date": {
+            "type": "string",
+            "nullable": true,
+            "description": "Issue date, if present and extracted. Otherwise null."
           },
           "issuing_country": {
             "type": "string",

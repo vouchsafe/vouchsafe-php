@@ -67,6 +67,12 @@ class PassportDetailsApiNormalizer implements DenormalizerInterface, NormalizerI
         elseif (\array_key_exists('expiration_date', $data) && $data['expiration_date'] === null) {
             $object->setExpirationDate(null);
         }
+        if (\array_key_exists('issue_date', $data) && $data['issue_date'] !== null) {
+            $object->setIssueDate($data['issue_date']);
+        }
+        elseif (\array_key_exists('issue_date', $data) && $data['issue_date'] === null) {
+            $object->setIssueDate(null);
+        }
         if (\array_key_exists('issuing_country', $data) && $data['issuing_country'] !== null) {
             $object->setIssuingCountry($data['issuing_country']);
         }
@@ -95,6 +101,9 @@ class PassportDetailsApiNormalizer implements DenormalizerInterface, NormalizerI
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['document_number'] = $data->getDocumentNumber();
         $dataArray['expiration_date'] = $data->getExpirationDate();
+        if ($data->isInitialized('issueDate')) {
+            $dataArray['issue_date'] = $data->getIssueDate();
+        }
         $dataArray['issuing_country'] = $data->getIssuingCountry();
         $dataArray['mrz_code'] = $data->getMrzCode();
         $dataArray['icao_format'] = $data->getIcaoFormat();

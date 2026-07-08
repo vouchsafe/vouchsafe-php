@@ -43,6 +43,12 @@ class PassportDetailsApi
      */
     protected $expirationDate;
     /**
+     * Issue date, if present and extracted. Otherwise null.
+     *
+     * @var string|null
+     */
+    protected $issueDate;
+    /**
      * Issuing country code, if extracted. Otherwise null.
      *
      * @var string|null
@@ -168,6 +174,28 @@ class PassportDetailsApi
     {
         $this->initialized['expirationDate'] = true;
         $this->expirationDate = $expirationDate;
+        return $this;
+    }
+    /**
+     * Issue date, if present and extracted. Otherwise null.
+     *
+     * @return string|null
+     */
+    public function getIssueDate(): ?string
+    {
+        return $this->issueDate;
+    }
+    /**
+     * Issue date, if present and extracted. Otherwise null.
+     *
+     * @param string|null $issueDate
+     *
+     * @return self
+     */
+    public function setIssueDate(?string $issueDate): self
+    {
+        $this->initialized['issueDate'] = true;
+        $this->issueDate = $issueDate;
         return $this;
     }
     /**

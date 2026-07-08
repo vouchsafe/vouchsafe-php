@@ -43,6 +43,12 @@ class PassportExtractedDetails
      */
     protected $expirationDate;
     /**
+     * Date the passport was issued (YYYY-MM-DD), or null if unavailable. Sourced from the VIZ, not the MRZ.
+     *
+     * @var string|null
+     */
+    protected $dateOfIssue;
+    /**
      * Issuing country as an ISO 3166-1 alpha-3 code (e.g. "GBR"), or null if unavailable.
      *
      * @var string|null
@@ -168,6 +174,28 @@ class PassportExtractedDetails
     {
         $this->initialized['expirationDate'] = true;
         $this->expirationDate = $expirationDate;
+        return $this;
+    }
+    /**
+     * Date the passport was issued (YYYY-MM-DD), or null if unavailable. Sourced from the VIZ, not the MRZ.
+     *
+     * @return string|null
+     */
+    public function getDateOfIssue(): ?string
+    {
+        return $this->dateOfIssue;
+    }
+    /**
+     * Date the passport was issued (YYYY-MM-DD), or null if unavailable. Sourced from the VIZ, not the MRZ.
+     *
+     * @param string|null $dateOfIssue
+     *
+     * @return self
+     */
+    public function setDateOfIssue(?string $dateOfIssue): self
+    {
+        $this->initialized['dateOfIssue'] = true;
+        $this->dateOfIssue = $dateOfIssue;
         return $this;
     }
     /**
