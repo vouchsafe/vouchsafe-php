@@ -33,10 +33,20 @@ class ClaimDetails extends \ArrayObject
      */
     protected $dateOfBirth;
     /**
+     * Structured address, or `null` for verifications with only the flat address fields.
+     *
+     * @var ClaimDetailsAddress|null
+     */
+    protected $address;
+    /**
+     * To be deprecated. Use `address` instead.
+     *
      * @var string|null
      */
     protected $firstLineOfAddress;
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @var string|null
      */
     protected $postcode;
@@ -131,6 +141,30 @@ class ClaimDetails extends \ArrayObject
         return $this;
     }
     /**
+     * Structured address, or `null` for verifications with only the flat address fields.
+     *
+     * @return ClaimDetailsAddress|null
+     */
+    public function getAddress(): ?ClaimDetailsAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address, or `null` for verifications with only the flat address fields.
+     *
+     * @param ClaimDetailsAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?ClaimDetailsAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
+        return $this;
+    }
+    /**
+     * To be deprecated. Use `address` instead.
+     *
      * @return string|null
      */
     public function getFirstLineOfAddress(): ?string
@@ -138,6 +172,8 @@ class ClaimDetails extends \ArrayObject
         return $this->firstLineOfAddress;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @param string|null $firstLineOfAddress
      *
      * @return self
@@ -149,6 +185,8 @@ class ClaimDetails extends \ArrayObject
         return $this;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @return string|null
      */
     public function getPostcode(): ?string
@@ -156,6 +194,8 @@ class ClaimDetails extends \ArrayObject
         return $this->postcode;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @param string|null $postcode
      *
      * @return self

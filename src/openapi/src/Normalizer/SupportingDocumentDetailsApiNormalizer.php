@@ -67,6 +67,12 @@ class SupportingDocumentDetailsApiNormalizer implements DenormalizerInterface, N
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
         }
+        if (\array_key_exists('address', $data) && $data['address'] !== null) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApiAddress::class, 'json', $context));
+        }
+        elseif (\array_key_exists('address', $data) && $data['address'] === null) {
+            $object->setAddress(null);
+        }
         if (\array_key_exists('document_category', $data) && $data['document_category'] !== null) {
             $object->setDocumentCategory($data['document_category']);
         }
@@ -100,6 +106,9 @@ class SupportingDocumentDetailsApiNormalizer implements DenormalizerInterface, N
         }
         if ($data->isInitialized('postcode')) {
             $dataArray['postcode'] = $data->getPostcode();
+        }
+        if ($data->isInitialized('address')) {
+            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
         }
         $dataArray['document_category'] = $data->getDocumentCategory();
         $dataArray['document_date'] = $data->getDocumentDate();

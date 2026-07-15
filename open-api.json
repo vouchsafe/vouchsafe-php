@@ -2739,6 +2739,40 @@
         "type": "object",
         "additionalProperties": false
       },
+      "AddressClaimInput": {
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "Residence/building number, e.g. \"10\" or \"Flat 1\". Required unless `building_name` is provided."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "Building name, e.g. \"Rose Cottage\". Required unless `residence_number` is provided."
+          },
+          "street": {
+            "type": "string",
+            "description": "Street / road name. Optional — some addresses have no street."
+          },
+          "city": {
+            "type": "string",
+            "description": "City / town. Required."
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postcode. Optional — not all countries use postcodes. Must be a valid postcode when provided."
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county. Optional."
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code, e.g. \"GB\". Required."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
       "RequestVerificationInput": {
         "properties": {
           "email": {
@@ -2753,13 +2787,17 @@
             "type": "string",
             "description": "The user's last name, if you have it."
           },
+          "address": {
+            "$ref": "#/components/schemas/AddressClaimInput",
+            "description": "The user's address, if you have it. Takes precedence over the deprecated `street_address` and `postcode` fields."
+          },
           "street_address": {
             "type": "string",
-            "description": "The user's street address, if you have it."
+            "description": "To be deprecated. Use `address` instead."
           },
           "postcode": {
             "type": "string",
-            "description": "The user's postcode, if you have it."
+            "description": "To be deprecated. Use `address` instead."
           },
           "date_of_birth": {
             "type": "string",
@@ -2888,6 +2926,40 @@
         },
         "type": "array"
       },
+      "Address": {
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "House or flat number, e.g. \"10\" or \"Flat 1\"."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "House or building name, e.g. \"Rose Cottage\"."
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county."
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
       "ClaimDetails": {
         "properties": {
           "email": {
@@ -2910,13 +2982,24 @@
             "type": "string",
             "nullable": true
           },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "nullable": true,
+            "description": "Structured address, or `null` for verifications with only the flat address fields."
+          },
           "first_line_of_address": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "To be deprecated. Use `address` instead."
           },
           "postcode": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "To be deprecated. Use `address` instead."
           }
         },
         "required": [
@@ -4322,6 +4405,41 @@
           "hmpps_letter"
         ]
       },
+      "AddressDetailsApi": {
+        "description": "A person's address, split into separate fields.\nStreet and postcode can be empty — some countries' addresses don't have them.",
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "House or flat number, e.g. \"10\" or \"Flat 1\"."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "House or building name, e.g. \"Rose Cottage\"."
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code."
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
       "SupportingDocumentDetailsApi": {
         "properties": {
           "first_name": {
@@ -4348,6 +4466,15 @@
             "type": "string",
             "nullable": true,
             "description": "Postcode, if extracted. Otherwise null."
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddressDetailsApi"
+              }
+            ],
+            "nullable": true,
+            "description": "Structured address, or null when only inline fields are available."
           },
           "document_category": {
             "allOf": [
@@ -5117,6 +5244,15 @@
             "nullable": true,
             "description": "Postcode, if extracted. Otherwise null."
           },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddressDetailsApi"
+              }
+            ],
+            "nullable": true,
+            "description": "Structured address, if available."
+          },
           "phone_number": {
             "type": "string",
             "description": "Phone number, if provided by the provider."
@@ -5423,6 +5559,15 @@
           },
           "extracted_details": {
             "properties": {
+              "address": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AddressDetailsApi"
+                  }
+                ],
+                "nullable": true,
+                "description": "Structured address, or null for legacy records with only inline fields."
+              },
               "postcode": {
                 "type": "string",
                 "nullable": true
@@ -5433,6 +5578,7 @@
               }
             },
             "required": [
+              "address",
               "postcode",
               "first_line_of_address"
             ],
@@ -5500,6 +5646,15 @@
                 "nullable": true,
                 "description": "Source of the address information."
               },
+              "address": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AddressDetailsApi"
+                  }
+                ],
+                "nullable": true,
+                "description": "Structured address, or null for legacy records with only inline fields."
+              },
               "postcode": {
                 "type": "string",
                 "nullable": true,
@@ -5522,6 +5677,7 @@
               }
             },
             "required": [
+              "address",
               "postcode",
               "first_line_of_address",
               "last_name",
@@ -6304,6 +6460,40 @@
       "GetTeamResponse": {
         "$ref": "#/components/schemas/Team"
       },
+      "PublicAddress": {
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "House or flat number, e.g. \"10\" or \"Flat 1\"."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "House or building name, e.g. \"Rose Cottage\"."
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county."
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
       "CheckState": {
         "type": "string",
         "enum": [
@@ -6531,11 +6721,22 @@
           },
           "first_line_of_address": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "To be deprecated. Use `address` instead."
           },
           "postcode": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "To be deprecated. Use `address` instead."
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PublicAddress"
+              }
+            ],
+            "nullable": true,
+            "description": "Structured address."
           },
           "date_of_birth": {
             "type": "string"
@@ -6580,11 +6781,46 @@
           "last_name",
           "first_line_of_address",
           "postcode",
+          "address",
           "billable",
           "metadata",
           "alerts_enabled_at",
           "created_at"
         ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AddressInput": {
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "Residence/building number, e.g. \"10\" or \"Flat 1\". Required (or `building_name`) for CreditBureau."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "Building name, e.g. \"Rose Cottage\". Required (or `residence_number`) for CreditBureau."
+          },
+          "street": {
+            "type": "string",
+            "description": "Street / road name. Required for CreditBureau."
+          },
+          "city": {
+            "type": "string",
+            "description": "City / town. Required for CreditBureau."
+          },
+          "postcode": {
+            "type": "string",
+            "description": "Postcode. Required for CreditBureau."
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county. Optional."
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code, e.g. \"GB\". Required for CreditBureau."
+          }
+        },
         "type": "object",
         "additionalProperties": false
       },
@@ -6610,13 +6846,17 @@
             "type": "array",
             "description": "(required)"
           },
+          "address": {
+            "$ref": "#/components/schemas/AddressInput",
+            "description": "Structured address. Required for CreditBureau."
+          },
           "first_line_of_address": {
             "type": "string",
-            "description": "(conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint"
+            "description": "To be deprecated. Use `address` instead."
           },
           "postcode": {
             "type": "string",
-            "description": "(conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional."
+            "description": "To be deprecated. Use `address` instead."
           },
           "email": {
             "type": "string",
@@ -6661,17 +6901,65 @@
         "type": "object",
         "additionalProperties": false
       },
+      "PostcodeFormattedAddress": {
+        "properties": {
+          "residence_number": {
+            "type": "string",
+            "description": "At least one of `residence_number` or `building_name` is present when available."
+          },
+          "building_name": {
+            "type": "string",
+            "description": "At least one of `residence_number` or `building_name` is present when available."
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county."
+          },
+          "country_code": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code."
+          }
+        },
+        "required": [
+          "postcode",
+          "country",
+          "country_code"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "PostcodeResponse": {
         "properties": {
           "addresses": {
             "items": {
               "type": "string"
             },
-            "type": "array"
+            "type": "array",
+            "description": "Single-line addresses."
+          },
+          "addresses_formatted": {
+            "items": {
+              "$ref": "#/components/schemas/PostcodeFormattedAddress"
+            },
+            "type": "array",
+            "description": "Structured addresses. Feed straight into POST /smart-lookups."
           }
         },
         "required": [
-          "addresses"
+          "addresses",
+          "addresses_formatted"
         ],
         "type": "object",
         "additionalProperties": false
@@ -8207,8 +8495,17 @@
                         "first_name": "Ava",
                         "last_name": "Morales",
                         "date_of_birth": null,
-                        "first_line_of_address": null,
-                        "postcode": null
+                        "first_line_of_address": "10, Downing St",
+                        "postcode": "SW1A 2AA",
+                        "address": {
+                          "residence_number": "10",
+                          "street": "Downing St",
+                          "city": "London",
+                          "postcode": "SW1A 2AA",
+                          "country": "United Kingdom",
+                          "region": "England",
+                          "country_code": "GB"
+                        }
                       },
                       "checks": [
                         {
@@ -8549,8 +8846,17 @@
                       ],
                       "first_name": "Ava",
                       "last_name": "Cole",
-                      "first_line_of_address": "10 Downing St",
+                      "first_line_of_address": "10, Downing St",
                       "postcode": "SW1A 2AA",
+                      "address": {
+                        "residence_number": "10",
+                        "street": "Downing St",
+                        "city": "London",
+                        "postcode": "SW1A 2AA",
+                        "country": "United Kingdom",
+                        "region": "England",
+                        "country_code": "GB"
+                      },
                       "credit_bureau_verification_report": {
                         "state": "PARTIAL",
                         "checks": {
@@ -8609,6 +8915,7 @@
                       "last_name": "Doe",
                       "first_line_of_address": null,
                       "postcode": null,
+                      "address": null,
                       "date_of_birth": "1990-01-01",
                       "aml_verification_report": {
                         "state": "PASS",
@@ -8650,6 +8957,7 @@
                       "last_name": "Smith",
                       "first_line_of_address": null,
                       "postcode": null,
+                      "address": null,
                       "email": "jane@example.com",
                       "phone": "+1234567890",
                       "online_footprint_verification_report": {
@@ -8780,6 +9088,16 @@
                     "value": {
                       "addresses": [
                         "10, Downing Street, London"
+                      ],
+                      "addresses_formatted": [
+                        {
+                          "residence_number": "10",
+                          "street": "Downing Street",
+                          "city": "London",
+                          "postcode": "SW1A 2AA",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        }
                       ]
                     }
                   }

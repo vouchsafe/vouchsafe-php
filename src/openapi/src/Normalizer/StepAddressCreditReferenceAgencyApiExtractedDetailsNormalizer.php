@@ -44,6 +44,13 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         elseif (\array_key_exists('address_source', $data) && $data['address_source'] === null) {
             $object->setAddressSource(null);
         }
+        if (\array_key_exists('address', $data) && $data['address'] !== null) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetailsAddress::class, 'json', $context));
+            unset($data['address']);
+        }
+        elseif (\array_key_exists('address', $data) && $data['address'] === null) {
+            $object->setAddress(null);
+        }
         if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
             $object->setPostcode($data['postcode']);
             unset($data['postcode']);
@@ -85,6 +92,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         if ($data->isInitialized('addressSource')) {
             $dataArray['address_source'] = $data->getAddressSource();
         }
+        $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
         $dataArray['postcode'] = $data->getPostcode();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['last_name'] = $data->getLastName();

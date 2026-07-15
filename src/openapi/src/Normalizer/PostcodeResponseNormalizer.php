@@ -44,6 +44,13 @@ class PostcodeResponseNormalizer implements DenormalizerInterface, NormalizerInt
             }
             $object->setAddresses($values);
         }
+        if (\array_key_exists('addresses_formatted', $data)) {
+            $values_1 = [];
+            foreach ($data['addresses_formatted'] as $value_1) {
+                $values_1[] = $this->denormalizer->denormalize($value_1, \Vouchsafe\OpenAPI\Model\PostcodeFormattedAddress::class, 'json', $context);
+            }
+            $object->setAddressesFormatted($values_1);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -54,6 +61,11 @@ class PostcodeResponseNormalizer implements DenormalizerInterface, NormalizerInt
             $values[] = $value;
         }
         $dataArray['addresses'] = $values;
+        $values_1 = [];
+        foreach ($data->getAddressesFormatted() as $value_1) {
+            $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+        }
+        $dataArray['addresses_formatted'] = $values_1;
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

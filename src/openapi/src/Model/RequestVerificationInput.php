@@ -31,13 +31,17 @@ class RequestVerificationInput
      */
     protected $lastName;
     /**
-     * The user's street address, if you have it.
+     * @var AddressClaimInput
+     */
+    protected $address;
+    /**
+     * To be deprecated. Use `address` instead.
      *
      * @var string
      */
     protected $streetAddress;
     /**
-     * The user's postcode, if you have it.
+     * To be deprecated. Use `address` instead.
      *
      * @var string
      */
@@ -155,7 +159,25 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's street address, if you have it.
+     * @return AddressClaimInput
+     */
+    public function getAddress(): AddressClaimInput
+    {
+        return $this->address;
+    }
+    /**
+     * @param AddressClaimInput $address
+     *
+     * @return self
+     */
+    public function setAddress(AddressClaimInput $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
+        return $this;
+    }
+    /**
+     * To be deprecated. Use `address` instead.
      *
      * @return string
      */
@@ -164,7 +186,7 @@ class RequestVerificationInput
         return $this->streetAddress;
     }
     /**
-     * The user's street address, if you have it.
+     * To be deprecated. Use `address` instead.
      *
      * @param string $streetAddress
      *
@@ -177,7 +199,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * The user's postcode, if you have it.
+     * To be deprecated. Use `address` instead.
      *
      * @return string
      */
@@ -186,7 +208,7 @@ class RequestVerificationInput
         return $this->postcode;
     }
     /**
-     * The user's postcode, if you have it.
+     * To be deprecated. Use `address` instead.
      *
      * @param string $postcode
      *

@@ -128,11 +128,17 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\RequestVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\RequestVerificationResponseNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\AddressClaimInput::class => \Vouchsafe\OpenAPI\Normalizer\AddressClaimInputNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\RequestVerificationInput::class => \Vouchsafe\OpenAPI\Normalizer\RequestVerificationInputNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\Verification::class => \Vouchsafe\OpenAPI\Normalizer\VerificationNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\Address::class => \Vouchsafe\OpenAPI\Normalizer\AddressNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\ClaimDetails::class => \Vouchsafe\OpenAPI\Normalizer\ClaimDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\ClaimDetailsAddress::class => \Vouchsafe\OpenAPI\Normalizer\ClaimDetailsAddressNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\ArtefactApi::class => \Vouchsafe\OpenAPI\Normalizer\ArtefactApiNormalizer::class,
         
@@ -222,7 +228,11 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\PhotoIdEvidenceItemApi::class => \Vouchsafe\OpenAPI\Normalizer\PhotoIdEvidenceItemApiNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\AddressDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\AddressDetailsApiNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentDetailsApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApiAddress::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentDetailsApiAddressNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\SupportingDocumentValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentValidationsApiNormalizer::class,
         
@@ -262,6 +272,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApi::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdExtractedDetailsApiNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApiAddress::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdExtractedDetailsApiAddressNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\DigitalIdValidationsApi::class => \Vouchsafe\OpenAPI\Normalizer\DigitalIdValidationsApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\StepIdentityDigitalIdApi::class => \Vouchsafe\OpenAPI\Normalizer\StepIdentityDigitalIdApiNormalizer::class,
@@ -274,9 +286,13 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressDigitalIdApiExtractedDetailsNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetailsAddress::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressDigitalIdApiExtractedDetailsAddressNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressCreditReferenceAgencyApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetailsAddress::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressCreditReferenceAgencyApiExtractedDetailsAddressNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\StepAddressSupportingDocumentApi::class => \Vouchsafe\OpenAPI\Normalizer\StepAddressSupportingDocumentApiNormalizer::class,
         
@@ -316,6 +332,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\Team::class => \Vouchsafe\OpenAPI\Normalizer\TeamNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\PublicAddress::class => \Vouchsafe\OpenAPI\Normalizer\PublicAddressNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\CheckResult::class => \Vouchsafe\OpenAPI\Normalizer\CheckResultNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult::class => \Vouchsafe\OpenAPI\Normalizer\RecordCreditBureauVerificationChecksCheckResultNormalizer::class,
@@ -336,9 +354,15 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetSmartLookupResponseNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\GetSmartLookupResponseAddress::class => \Vouchsafe\OpenAPI\Normalizer\GetSmartLookupResponseAddressNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\AddressInput::class => \Vouchsafe\OpenAPI\Normalizer\AddressInputNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\SmartLookupInput::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupInputNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds::class => \Vouchsafe\OpenAPI\Normalizer\SmartLookupInputThresholdsNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\PostcodeFormattedAddress::class => \Vouchsafe\OpenAPI\Normalizer\PostcodeFormattedAddressNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\PostcodeResponse::class => \Vouchsafe\OpenAPI\Normalizer\PostcodeResponseNormalizer::class,
         
@@ -469,9 +493,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\RightToRentInput::class => false,
             \Vouchsafe\OpenAPI\Model\RightToRentInputPayload::class => false,
             \Vouchsafe\OpenAPI\Model\RequestVerificationResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\AddressClaimInput::class => false,
             \Vouchsafe\OpenAPI\Model\RequestVerificationInput::class => false,
             \Vouchsafe\OpenAPI\Model\Verification::class => false,
+            \Vouchsafe\OpenAPI\Model\Address::class => false,
             \Vouchsafe\OpenAPI\Model\ClaimDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\ClaimDetailsAddress::class => false,
             \Vouchsafe\OpenAPI\Model\ArtefactApi::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApi::class => false,
             \Vouchsafe\OpenAPI\Model\VideoSelfieCheckApiValidations::class => false,
@@ -516,7 +543,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiDocumentBordersDetected::class => false,
             \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiFaceMatch::class => false,
             \Vouchsafe\OpenAPI\Model\PhotoIdEvidenceItemApi::class => false,
+            \Vouchsafe\OpenAPI\Model\AddressDetailsApi::class => false,
             \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\SupportingDocumentDetailsApiAddress::class => false,
             \Vouchsafe\OpenAPI\Model\SupportingDocumentValidationsApi::class => false,
             \Vouchsafe\OpenAPI\Model\SupportingDocumentEvidenceItemApi::class => false,
             \Vouchsafe\OpenAPI\Model\TransactionDataApi::class => false,
@@ -536,14 +565,17 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\VouchValidationsApi::class => false,
             \Vouchsafe\OpenAPI\Model\RefereeEvidenceItemApi::class => false,
             \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApi::class => false,
+            \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApiAddress::class => false,
             \Vouchsafe\OpenAPI\Model\DigitalIdValidationsApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepIdentityDigitalIdApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepIdentityPhotoIdApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepIdentityVouchApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetailsAddress::class => false,
             \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApi::class => false,
             \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetails::class => false,
+            \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetailsAddress::class => false,
             \Vouchsafe\OpenAPI\Model\StepAddressSupportingDocumentApi::class => false,
             \Vouchsafe\OpenAPI\Model\AmlMatchApi::class => false,
             \Vouchsafe\OpenAPI\Model\AmlMatchApiProperties::class => false,
@@ -563,6 +595,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\CreateTeamResponseCredentials::class => false,
             \Vouchsafe\OpenAPI\Model\CreateTeamInput::class => false,
             \Vouchsafe\OpenAPI\Model\Team::class => false,
+            \Vouchsafe\OpenAPI\Model\PublicAddress::class => false,
             \Vouchsafe\OpenAPI\Model\CheckResult::class => false,
             \Vouchsafe\OpenAPI\Model\RecordCreditBureauVerificationChecksCheckResult::class => false,
             \Vouchsafe\OpenAPI\Model\CreditBureauVerificationReport::class => false,
@@ -573,8 +606,11 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApi::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupMetadataApiThresholds::class => false,
             \Vouchsafe\OpenAPI\Model\GetSmartLookupResponse::class => false,
+            \Vouchsafe\OpenAPI\Model\GetSmartLookupResponseAddress::class => false,
+            \Vouchsafe\OpenAPI\Model\AddressInput::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupInput::class => false,
             \Vouchsafe\OpenAPI\Model\SmartLookupInputThresholds::class => false,
+            \Vouchsafe\OpenAPI\Model\PostcodeFormattedAddress::class => false,
             \Vouchsafe\OpenAPI\Model\PostcodeResponse::class => false,
             \Vouchsafe\OpenAPI\Model\Flow::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => false,

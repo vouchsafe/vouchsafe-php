@@ -67,6 +67,12 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
         }
+        if (\array_key_exists('address', $data) && $data['address'] !== null) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\DigitalIdExtractedDetailsApiAddress::class, 'json', $context));
+        }
+        elseif (\array_key_exists('address', $data) && $data['address'] === null) {
+            $object->setAddress(null);
+        }
         if (\array_key_exists('phone_number', $data)) {
             $object->setPhoneNumber($data['phone_number']);
         }
@@ -119,6 +125,9 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['postcode'] = $data->getPostcode();
+        if ($data->isInitialized('address')) {
+            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        }
         if ($data->isInitialized('phoneNumber') && null !== $data->getPhoneNumber()) {
             $dataArray['phone_number'] = $data->getPhoneNumber();
         }

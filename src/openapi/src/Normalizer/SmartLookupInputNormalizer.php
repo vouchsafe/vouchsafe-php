@@ -53,6 +53,9 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
             }
             $object->setChecks($values);
         }
+        if (\array_key_exists('address', $data)) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\AddressInput::class, 'json', $context));
+        }
         if (\array_key_exists('first_line_of_address', $data)) {
             $object->setFirstLineOfAddress($data['first_line_of_address']);
         }
@@ -86,6 +89,9 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
             $values[] = $value;
         }
         $dataArray['checks'] = $values;
+        if ($data->isInitialized('address') && null !== $data->getAddress()) {
+            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        }
         if ($data->isInitialized('firstLineOfAddress') && null !== $data->getFirstLineOfAddress()) {
             $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         }

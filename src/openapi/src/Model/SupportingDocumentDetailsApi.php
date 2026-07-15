@@ -43,6 +43,12 @@ class SupportingDocumentDetailsApi
      */
     protected $postcode;
     /**
+     * Structured address, or null when only inline fields are available.
+     *
+     * @var SupportingDocumentDetailsApiAddress|null
+     */
+    protected $address;
+    /**
      * What the uploaded document was categorised as.
      *
      * @var string|null
@@ -168,6 +174,28 @@ class SupportingDocumentDetailsApi
     {
         $this->initialized['postcode'] = true;
         $this->postcode = $postcode;
+        return $this;
+    }
+    /**
+     * Structured address, or null when only inline fields are available.
+     *
+     * @return SupportingDocumentDetailsApiAddress|null
+     */
+    public function getAddress(): ?SupportingDocumentDetailsApiAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address, or null when only inline fields are available.
+     *
+     * @param SupportingDocumentDetailsApiAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?SupportingDocumentDetailsApiAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
         return $this;
     }
     /**

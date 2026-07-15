@@ -19,6 +19,12 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
      */
     protected $addressSource;
     /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @var StepAddressCreditReferenceAgencyApiExtractedDetailsAddress|null
+     */
+    protected $address;
+    /**
      * Postcode of the address.
      *
      * @var string|null
@@ -62,6 +68,28 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
     {
         $this->initialized['addressSource'] = true;
         $this->addressSource = $addressSource;
+        return $this;
+    }
+    /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @return StepAddressCreditReferenceAgencyApiExtractedDetailsAddress|null
+     */
+    public function getAddress(): ?StepAddressCreditReferenceAgencyApiExtractedDetailsAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @param StepAddressCreditReferenceAgencyApiExtractedDetailsAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?StepAddressCreditReferenceAgencyApiExtractedDetailsAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
         return $this;
     }
     /**

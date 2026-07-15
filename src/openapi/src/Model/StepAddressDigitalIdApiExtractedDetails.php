@@ -13,6 +13,12 @@ class StepAddressDigitalIdApiExtractedDetails extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @var StepAddressDigitalIdApiExtractedDetailsAddress|null
+     */
+    protected $address;
+    /**
      * @var string|null
      */
     protected $postcode;
@@ -20,6 +26,28 @@ class StepAddressDigitalIdApiExtractedDetails extends \ArrayObject
      * @var string|null
      */
     protected $firstLineOfAddress;
+    /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @return StepAddressDigitalIdApiExtractedDetailsAddress|null
+     */
+    public function getAddress(): ?StepAddressDigitalIdApiExtractedDetailsAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address, or null for legacy records with only inline fields.
+     *
+     * @param StepAddressDigitalIdApiExtractedDetailsAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?StepAddressDigitalIdApiExtractedDetailsAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
+        return $this;
+    }
     /**
      * @return string|null
      */

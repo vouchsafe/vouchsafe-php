@@ -37,6 +37,13 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
+        if (\array_key_exists('address', $data) && $data['address'] !== null) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\StepAddressDigitalIdApiExtractedDetailsAddress::class, 'json', $context));
+            unset($data['address']);
+        }
+        elseif (\array_key_exists('address', $data) && $data['address'] === null) {
+            $object->setAddress(null);
+        }
         if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
             $object->setPostcode($data['postcode']);
             unset($data['postcode']);
@@ -61,6 +68,7 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
+        $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
         $dataArray['postcode'] = $data->getPostcode();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         foreach ($data as $key => $value) {

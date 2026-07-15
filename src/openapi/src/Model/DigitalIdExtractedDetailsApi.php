@@ -43,6 +43,12 @@ class DigitalIdExtractedDetailsApi
      */
     protected $postcode;
     /**
+     * Structured address, if available.
+     *
+     * @var DigitalIdExtractedDetailsApiAddress|null
+     */
+    protected $address;
+    /**
      * Phone number, if provided by the provider.
      *
      * @var string
@@ -220,6 +226,28 @@ class DigitalIdExtractedDetailsApi
     {
         $this->initialized['postcode'] = true;
         $this->postcode = $postcode;
+        return $this;
+    }
+    /**
+     * Structured address, if available.
+     *
+     * @return DigitalIdExtractedDetailsApiAddress|null
+     */
+    public function getAddress(): ?DigitalIdExtractedDetailsApiAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address, if available.
+     *
+     * @param DigitalIdExtractedDetailsApiAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?DigitalIdExtractedDetailsApiAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
         return $this;
     }
     /**

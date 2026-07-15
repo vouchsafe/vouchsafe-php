@@ -33,13 +33,23 @@ class GetSmartLookupResponse
      */
     protected $lastName;
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @var string|null
      */
     protected $firstLineOfAddress;
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @var string|null
      */
     protected $postcode;
+    /**
+     * Structured address.
+     *
+     * @var GetSmartLookupResponseAddress|null
+     */
+    protected $address;
     /**
      * @var string
      */
@@ -175,6 +185,8 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @return string|null
      */
     public function getFirstLineOfAddress(): ?string
@@ -182,6 +194,8 @@ class GetSmartLookupResponse
         return $this->firstLineOfAddress;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @param string|null $firstLineOfAddress
      *
      * @return self
@@ -193,6 +207,8 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @return string|null
      */
     public function getPostcode(): ?string
@@ -200,6 +216,8 @@ class GetSmartLookupResponse
         return $this->postcode;
     }
     /**
+     * To be deprecated. Use `address` instead.
+     *
      * @param string|null $postcode
      *
      * @return self
@@ -208,6 +226,28 @@ class GetSmartLookupResponse
     {
         $this->initialized['postcode'] = true;
         $this->postcode = $postcode;
+        return $this;
+    }
+    /**
+     * Structured address.
+     *
+     * @return GetSmartLookupResponseAddress|null
+     */
+    public function getAddress(): ?GetSmartLookupResponseAddress
+    {
+        return $this->address;
+    }
+    /**
+     * Structured address.
+     *
+     * @param GetSmartLookupResponseAddress|null $address
+     *
+     * @return self
+     */
+    public function setAddress(?GetSmartLookupResponseAddress $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
         return $this;
     }
     /**

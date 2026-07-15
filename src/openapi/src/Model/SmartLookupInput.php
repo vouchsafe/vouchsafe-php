@@ -31,13 +31,17 @@ class SmartLookupInput
      */
     protected $checks;
     /**
-     * (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * @var AddressInput
+     */
+    protected $address;
+    /**
+     * To be deprecated. Use `address` instead.
      *
      * @var string
      */
     protected $firstLineOfAddress;
     /**
-     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional.
+     * To be deprecated. Use `address` instead.
      *
      * @var string
      */
@@ -141,7 +145,25 @@ class SmartLookupInput
         return $this;
     }
     /**
-     * (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * @return AddressInput
+     */
+    public function getAddress(): AddressInput
+    {
+        return $this->address;
+    }
+    /**
+     * @param AddressInput $address
+     *
+     * @return self
+     */
+    public function setAddress(AddressInput $address): self
+    {
+        $this->initialized['address'] = true;
+        $this->address = $address;
+        return $this;
+    }
+    /**
+     * To be deprecated. Use `address` instead.
      *
      * @return string
      */
@@ -150,7 +172,7 @@ class SmartLookupInput
         return $this->firstLineOfAddress;
     }
     /**
-     * (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * To be deprecated. Use `address` instead.
      *
      * @param string $firstLineOfAddress
      *
@@ -163,7 +185,7 @@ class SmartLookupInput
         return $this;
     }
     /**
-     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional.
+     * To be deprecated. Use `address` instead.
      *
      * @return string
      */
@@ -172,7 +194,7 @@ class SmartLookupInput
         return $this->postcode;
     }
     /**
-     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional.
+     * To be deprecated. Use `address` instead.
      *
      * @param string $postcode
      *

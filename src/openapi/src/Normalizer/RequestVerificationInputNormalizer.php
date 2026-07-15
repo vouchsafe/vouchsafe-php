@@ -46,6 +46,9 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         if (\array_key_exists('last_name', $data)) {
             $object->setLastName($data['last_name']);
         }
+        if (\array_key_exists('address', $data)) {
+            $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\AddressClaimInput::class, 'json', $context));
+        }
         if (\array_key_exists('street_address', $data)) {
             $object->setStreetAddress($data['street_address']);
         }
@@ -81,6 +84,9 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         }
         if ($data->isInitialized('lastName') && null !== $data->getLastName()) {
             $dataArray['last_name'] = $data->getLastName();
+        }
+        if ($data->isInitialized('address') && null !== $data->getAddress()) {
+            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
         }
         if ($data->isInitialized('streetAddress') && null !== $data->getStreetAddress()) {
             $dataArray['street_address'] = $data->getStreetAddress();
