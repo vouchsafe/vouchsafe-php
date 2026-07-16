@@ -25,6 +25,10 @@ class ApiErrorResponse
      */
     protected $errorDetail;
     /**
+     * @var string
+     */
+    protected $failedReason;
+    /**
      * @return float
      */
     public function getStatusCode(): float
@@ -76,6 +80,24 @@ class ApiErrorResponse
     {
         $this->initialized['errorDetail'] = true;
         $this->errorDetail = $errorDetail;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getFailedReason(): string
+    {
+        return $this->failedReason;
+    }
+    /**
+     * @param string $failedReason
+     *
+     * @return self
+     */
+    public function setFailedReason(string $failedReason): self
+    {
+        $this->initialized['failedReason'] = true;
+        $this->failedReason = $failedReason;
         return $this;
     }
 }

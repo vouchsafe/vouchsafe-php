@@ -49,6 +49,9 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
         if (\array_key_exists('error_detail', $data)) {
             $object->setErrorDetail($data['error_detail']);
         }
+        if (\array_key_exists('failedReason', $data)) {
+            $object->setFailedReason($data['failedReason']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -58,6 +61,9 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
         $dataArray['message'] = $data->getMessage();
         if ($data->isInitialized('errorDetail') && null !== $data->getErrorDetail()) {
             $dataArray['error_detail'] = $data->getErrorDetail();
+        }
+        if ($data->isInitialized('failedReason') && null !== $data->getFailedReason()) {
+            $dataArray['failedReason'] = $data->getFailedReason();
         }
         return $dataArray;
     }
