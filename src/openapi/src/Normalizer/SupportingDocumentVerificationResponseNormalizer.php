@@ -54,7 +54,7 @@ class SupportingDocumentVerificationResponseNormalizer implements DenormalizerIn
         }
         if (\array_key_exists('extracted_details', $data)) {
             $value = $data['extracted_details'];
-            if (is_array($data['extracted_details']) and isset($data['extracted_details']['first_name']) and isset($data['extracted_details']['last_name']) and isset($data['extracted_details']['first_line_of_address']) and isset($data['extracted_details']['postcode']) and isset($data['extracted_details']['document_date']) and isset($data['extracted_details']['document_category']) and isset($data['extracted_details']['unique_identifier']) and isset($data['extracted_details']['issuer'])) {
+            if (is_array($data['extracted_details']) and isset($data['extracted_details']['first_name']) and isset($data['extracted_details']['last_name']) and isset($data['extracted_details']['first_line_of_address']) and isset($data['extracted_details']['postcode']) and isset($data['extracted_details']['addresses_formatted']) and isset($data['extracted_details']['document_date']) and isset($data['extracted_details']['document_category']) and isset($data['extracted_details']['unique_identifier']) and isset($data['extracted_details']['issuer'])) {
                 $value = $this->denormalizer->denormalize($data['extracted_details'], \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedDetails::class, 'json', $context);
             } elseif (is_array($data['extracted_details'])) {
                 $value = $this->denormalizer->denormalize($data['extracted_details'], \Vouchsafe\OpenAPI\Model\RecordStringNever::class, 'json', $context);

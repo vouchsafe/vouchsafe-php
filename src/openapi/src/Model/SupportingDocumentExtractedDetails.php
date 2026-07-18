@@ -29,6 +29,14 @@ class SupportingDocumentExtractedDetails
      */
     protected $postcode;
     /**
+     * Structured addresses, named and shaped as in GET /smart-lookups/postcode.
+     * Extraction produces at most one address; empty when no address fields
+     * were extracted.
+     *
+     * @var list<SupportingDocumentExtractedAddress>
+     */
+    protected $addressesFormatted;
+    /**
      * @var string|null
      */
     protected $documentDate;
@@ -114,6 +122,32 @@ class SupportingDocumentExtractedDetails
     {
         $this->initialized['postcode'] = true;
         $this->postcode = $postcode;
+        return $this;
+    }
+    /**
+     * Structured addresses, named and shaped as in GET /smart-lookups/postcode.
+     * Extraction produces at most one address; empty when no address fields
+     * were extracted.
+     *
+     * @return list<SupportingDocumentExtractedAddress>
+     */
+    public function getAddressesFormatted(): array
+    {
+        return $this->addressesFormatted;
+    }
+    /**
+    * Structured addresses, named and shaped as in GET /smart-lookups/postcode.
+    Extraction produces at most one address; empty when no address fields
+    were extracted.
+    *
+    * @param list<SupportingDocumentExtractedAddress> $addressesFormatted
+    *
+    * @return self
+    */
+    public function setAddressesFormatted(array $addressesFormatted): self
+    {
+        $this->initialized['addressesFormatted'] = true;
+        $this->addressesFormatted = $addressesFormatted;
         return $this;
     }
     /**

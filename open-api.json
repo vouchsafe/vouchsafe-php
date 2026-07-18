@@ -30,6 +30,32 @@
           "fail"
         ]
       },
+      "SupportingDocumentExtractedAddress": {
+        "description": "Structured address extracted from the supporting document.\nMirrors the `addresses_formatted` shape of GET /smart-lookups/postcode,\nminus country fields — extraction does not determine a country.",
+        "properties": {
+          "residence_number": {
+            "type": "string"
+          },
+          "building_name": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "description": "State, province, or county."
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
       "SupportingDocumentExtractedDetails": {
         "description": "Extracted details from the supporting document",
         "properties": {
@@ -48,6 +74,13 @@
           "postcode": {
             "type": "string",
             "nullable": true
+          },
+          "addresses_formatted": {
+            "items": {
+              "$ref": "#/components/schemas/SupportingDocumentExtractedAddress"
+            },
+            "type": "array",
+            "description": "Structured addresses, named and shaped as in GET /smart-lookups/postcode.\nExtraction produces at most one address; empty when no address fields\nwere extracted."
           },
           "document_date": {
             "type": "string",
@@ -71,6 +104,7 @@
           "last_name",
           "first_line_of_address",
           "postcode",
+          "addresses_formatted",
           "document_date",
           "document_category",
           "unique_identifier",
@@ -7562,6 +7596,14 @@
                         "last_name": "Doe",
                         "first_line_of_address": "123 High Street",
                         "postcode": "SW1A 1AA",
+                        "addresses_formatted": [
+                          {
+                            "residence_number": "123",
+                            "street": "High Street",
+                            "city": "London",
+                            "postcode": "SW1A 1AA"
+                          }
+                        ],
                         "document_date": "2024-06-15",
                         "document_category": "BankStatement",
                         "unique_identifier": "STMT-2024-001",
@@ -7597,6 +7639,14 @@
                         "last_name": "Doe",
                         "first_line_of_address": "123 High Street",
                         "postcode": "SW1A 1AA",
+                        "addresses_formatted": [
+                          {
+                            "residence_number": "123",
+                            "street": "High Street",
+                            "city": "London",
+                            "postcode": "SW1A 1AA"
+                          }
+                        ],
                         "document_date": "2024-07-01",
                         "document_category": "UtilityBill",
                         "unique_identifier": "INV-2024-789",
@@ -7632,6 +7682,14 @@
                         "last_name": "Doe",
                         "first_line_of_address": "789 Different Road",
                         "postcode": "E1 6AN",
+                        "addresses_formatted": [
+                          {
+                            "residence_number": "789",
+                            "street": "Different Road",
+                            "city": "London",
+                            "postcode": "E1 6AN"
+                          }
+                        ],
                         "document_date": "2023-01-15",
                         "document_category": "UtilityBill",
                         "unique_identifier": "INV-2023-456",
@@ -7746,7 +7804,7 @@
             }
           }
         },
-        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nExtract and validate a supporting document.\n\nThis endpoint accepts a document file (PDF, JPG, or PNG) and extracts personal identity information and address details.\n\n**Request format:** This endpoint accepts `multipart/form-data` with:\n- `document` - The document file (PDF, JPG, or PNG, max 10MB)\n- `sub_type` (required) - The type of document (e.g., `BankStatement`, `UtilityBill`). See \"Supported document types\" below.\n- `minimum_document_length` (optional) - Minimum document age in months. Documents older than this will fail the `document_age_valid` check.\n\n**Supported document types (`sub_type`):**\n- `Payslip` - Employment payslips\n- `PensionAnnualStatement` - Pension statements\n- `BenefitsLetter` - Government benefits letters\n- `HMPPSLetter` - Probation service letters\n- `NHSLetter` - NHS correspondence\n- `BankStatement` - Bank account statements\n- `CreditCardStatement` - Credit card statements\n- `MortgageStatement` - Mortgage statements\n- `UtilityBill` - Gas, electricity, water bills\n- `MobilePhoneBill` - Mobile phone bills\n\n**Validations performed:**\n- `required_fields_extracted` - Key identity fields were successfully extracted. These are: `first_name`, `last_name`, `first_line_of_address` and `postcode`\n- `category_match` - Document matches the specified sub_type\n- `document_age_valid` - Document is within acceptable age range (only if `minimum_document_length` provided)\n- `document_complete_and_legible` - Document is complete and readable\n- `tampering_signals_check` - No signs of document tampering detected\n\nSandbox testing:\nIn sandbox mode, the endpoint returns a mock \"pass\" response with sandbox values. No actual document processing occurs.\n\n> **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds\n> depending on document complexity.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "<div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\">\n<strong style=\"color: #c62828;\">Experimental (beta):</strong> This feature is new and currently in beta.\n</div>\n\nExtract and validate a supporting document.\n\nThis endpoint accepts a document file (PDF, JPG, or PNG) and extracts personal identity information and address details.\n\nExtracted addresses are returned both as a flat `first_line_of_address`/`postcode` pair and as structured\n`addresses_formatted` (`residence_number`, `building_name`, `street`, `city`, `postcode`, `region`) — the same\nname and shape as in the postcode search endpoint. Extraction produces at most one address;\n`addresses_formatted` is empty when no address fields were extracted.\n\n**Request format:** This endpoint accepts `multipart/form-data` with:\n- `document` - The document file (PDF, JPG, or PNG, max 10MB)\n- `sub_type` (required) - The type of document (e.g., `BankStatement`, `UtilityBill`). See \"Supported document types\" below.\n- `minimum_document_length` (optional) - Minimum document age in months. Documents older than this will fail the `document_age_valid` check.\n\n**Supported document types (`sub_type`):**\n- `Payslip` - Employment payslips\n- `PensionAnnualStatement` - Pension statements\n- `BenefitsLetter` - Government benefits letters\n- `HMPPSLetter` - Probation service letters\n- `NHSLetter` - NHS correspondence\n- `BankStatement` - Bank account statements\n- `CreditCardStatement` - Credit card statements\n- `MortgageStatement` - Mortgage statements\n- `UtilityBill` - Gas, electricity, water bills\n- `MobilePhoneBill` - Mobile phone bills\n\n**Validations performed:**\n- `required_fields_extracted` - Key identity fields were successfully extracted. These are: `first_name`, `last_name`, `first_line_of_address` and `postcode`\n- `category_match` - Document matches the specified sub_type\n- `document_age_valid` - Document is within acceptable age range (only if `minimum_document_length` provided)\n- `document_complete_and_legible` - Document is complete and readable\n- `tampering_signals_check` - No signs of document tampering detected\n\nSandbox testing:\nIn sandbox mode, the endpoint returns a mock \"pass\" response with sandbox values. No actual document processing occurs.\n\n> **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds\n> depending on document complexity.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Verify"
         ],

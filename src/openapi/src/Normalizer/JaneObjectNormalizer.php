@@ -18,6 +18,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     use ValidatorTrait;
     protected $normalizers = [
         
+        \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedAddress::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentExtractedAddressNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedDetails::class => \Vouchsafe\OpenAPI\Normalizer\SupportingDocumentExtractedDetailsNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\RecordStringNever::class => \Vouchsafe\OpenAPI\Normalizer\RecordStringNeverNormalizer::class,
@@ -438,6 +440,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     {
         return [
             
+            \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedAddress::class => false,
             \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedDetails::class => false,
             \Vouchsafe\OpenAPI\Model\RecordStringNever::class => false,
             \Vouchsafe\OpenAPI\Model\RequiredFieldsExtractedResult::class => false,

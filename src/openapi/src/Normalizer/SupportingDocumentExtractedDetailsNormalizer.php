@@ -61,6 +61,13 @@ class SupportingDocumentExtractedDetailsNormalizer implements DenormalizerInterf
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
         }
+        if (\array_key_exists('addresses_formatted', $data)) {
+            $values = [];
+            foreach ($data['addresses_formatted'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\SupportingDocumentExtractedAddress::class, 'json', $context);
+            }
+            $object->setAddressesFormatted($values);
+        }
         if (\array_key_exists('document_date', $data) && $data['document_date'] !== null) {
             $object->setDocumentDate($data['document_date']);
         }
@@ -94,6 +101,11 @@ class SupportingDocumentExtractedDetailsNormalizer implements DenormalizerInterf
         $dataArray['last_name'] = $data->getLastName();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['postcode'] = $data->getPostcode();
+        $values = [];
+        foreach ($data->getAddressesFormatted() as $value) {
+            $values[] = $this->normalizer->normalize($value, 'json', $context);
+        }
+        $dataArray['addresses_formatted'] = $values;
         $dataArray['document_date'] = $data->getDocumentDate();
         $dataArray['document_category'] = $data->getDocumentCategory();
         $dataArray['unique_identifier'] = $data->getUniqueIdentifier();
