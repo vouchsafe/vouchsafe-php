@@ -6320,24 +6320,6 @@
           }
         ]
       },
-      "RefusalReasonApi": {
-        "properties": {
-          "code": {
-            "type": "string",
-            "description": "Machine-readable reason code."
-          },
-          "message": {
-            "type": "string",
-            "description": "Human-readable explanation to show to the customer."
-          }
-        },
-        "required": [
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "GetVerificationResponse": {
         "properties": {
           "id": {
@@ -6412,15 +6394,6 @@
             },
             "type": "array",
             "description": "The enrichments performed on the verification."
-          },
-          "refusal_reason": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RefusalReasonApi"
-              }
-            ],
-            "nullable": true,
-            "description": "Customer-facing reason the verification was auto-refused, or null when there is none."
           }
         },
         "required": [
