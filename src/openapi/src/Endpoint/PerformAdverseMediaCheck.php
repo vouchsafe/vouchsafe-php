@@ -5,9 +5,7 @@ namespace Vouchsafe\OpenAPI\Endpoint;
 class PerformAdverseMediaCheck extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implements \Vouchsafe\OpenAPI\Runtime\Client\Endpoint
 {
     /**
-     * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-     * <strong style="color: #c62828;">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.
-     * </div>
+     * **Experimental (beta):** This is a new endpoint. The interface or behaviour may change without notice.
      *
      * Screen an individual against recent news coverage for adverse or negative reporting.
      *
