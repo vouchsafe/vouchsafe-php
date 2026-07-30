@@ -54,6 +54,23 @@ $verification = $client->getVerification(['id' => 'abc123']);
 $flows = $client->listFlows();
 ```
 
+### Verify a photo ID
+
+Extract and validate a photo ID (passport, national ID, driving licence, PASS card, or unfamiliar photo ID), optionally face-matching it against a selfie. Image fields are passed as file paths:
+
+```php
+$result = $client->verifyPhotoId([
+  'sub_type'     => 'DrivingLicence', // Passport | NationalId | DrivingLicence | PASSCard | UnfamiliarPhotoId
+  'front'        => '/path/to/licence-front.jpg',
+  'country_code' => 'GB',             // DrivingLicence only
+  // 'back'      => '/path/to/back.jpg',   // NationalId only
+  // 'face_scan' => '/path/to/selfie.jpg', // Optional selfie to face-match
+]);
+
+echo $result['outcome']; // 'pass' or 'fail'
+echo $result['extracted_details']['first_name'];
+```
+
 ### Sandbox mode
 
 Use a sandbox rather than a live client secret to activate [sandbox mode](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work) on methods that support it.

@@ -323,4 +323,62 @@ final class VouchsafeClient
           return json_decode((string) $response->getBody(), true);
       });
   }
+
+  /**
+   * Extract and validate a photo ID (passport, national ID, driving licence, PASS card,
+   * or unfamiliar photo ID), optionally face-matching against a supplied face scan.
+   *
+   * Supported subTypes: Passport, NationalId, DrivingLicence, PASSCard, UnfamiliarPhotoId
+   *
+   * Example:
+   * $client->verifyPhotoId([
+   *   'sub_type'     => 'DrivingLicence',
+   *   'front'        => '/path/to/front.jpg',
+   *   'country_code' => 'GB',           // DrivingLicence only
+   *   'back'         => '/path/to/back.jpg', // NationalId only
+   *   'face_scan'    => '/path/to/selfie.jpg', // optional
+   * ]);
+   */
+  public function verifyPhotoId(array $input)
+  {
+      return $this->withErrorHandling(function () use ($input) {
+          $subType   = $input['sub_type'] ?? $input['subType'] ?? '';
+          $frontPath = $input['front'] ?? null;
+
+          if ($subType === '') {
+              throw new \InvalidArgumentException('sub_type is required');
+          }
+          if (!$frontPath || !file_exists($frontPath)) {
+              throw new \InvalidArgumentException('front is required and must be a valid file path');
+          }
+
+          $multipart = [
+              ['name' => 'sub_type', 'contents' => $subType],
+              ['name' => 'front', 'contents' => fopen($frontPath, 'r'), 'filename' => basename($frontPath)],
+          ];
+
+          $backPath = $input['back'] ?? null;
+          if ($backPath && file_exists($backPath)) {
+              $multipart[] = ['name' => 'back', 'contents' => fopen($backPath, 'r'), 'filename' => basename($backPath)];
+          }
+
+          $countryCode = $input['country_code'] ?? $input['countryCode'] ?? null;
+          if ($countryCode) {
+              $multipart[] = ['name' => 'country_code', 'contents' => (string) $countryCode];
+          }
+
+          $facePath = $input['face_scan'] ?? $input['faceScan'] ?? null;
+          if ($facePath && file_exists($facePath)) {
+              $multipart[] = ['name' => 'face_scan', 'contents' => fopen($facePath, 'r'), 'filename' => basename($facePath)];
+          }
+
+          $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+          $response = $httpClient->post($this->baseUri . '/verify/photo-id', [
+              'headers'   => ['Authorization' => 'Bearer ' . $this->token],
+              'multipart' => $multipart,
+          ]);
+
+          return json_decode((string) $response->getBody(), true);
+      });
+  }
 }
