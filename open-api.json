@@ -9550,9 +9550,19 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Report not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
           }
         },
-        "description": "Get an artefact download link.\n\nFor security reasons, other endpoints (e.g. `GET /verifications/{id}`) may return only an `artefact_key`.\nUse this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used\nto download the file.\n\nVouchsafe will respond with:\n- the requested `artefact_key`\n- a `download_url` (pre-signed and time-limited)\n- an `expires_at` timestamp (ISO 8601, UTC)\n\n**Note:** The `download_url` will stop working after `expires_at`.\nIf it expires, request a new URL using this endpoint.",
+        "description": "Get an artefact download link.\n\nFor security reasons, other endpoints (e.g. `GET /verifications/{id}`) may return only an `artefact_key`.\nUse this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used\nto download the file.\n\nYou may also pass a **verification ID** in place of an artefact key. In that case\nVouchsafe returns a pre-signed URL to that verification's downloadable **PDF report**. \nReports are only available for fully-decided verifications (`Verified`, `ManuallyReviewed`, or `Refused`); any other state returns\n`409 Report not available`.\n\nVouchsafe will respond with:\n- the requested `artefact_key`\n- a `download_url` (pre-signed and time-limited)\n- an `expires_at` timestamp (ISO 8601, UTC)\n\n**Note:** The `download_url` will stop working after `expires_at`.\nIf it expires, request a new URL using this endpoint.",
         "tags": [
           "Artefacts"
         ],

@@ -12,6 +12,11 @@ class GetArtefact extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impleme
      * Use this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used
      * to download the file.
      *
+     * You may also pass a **verification ID** in place of an artefact key. In that case
+     * Vouchsafe returns a pre-signed URL to that verification's downloadable **PDF report**.
+     * Reports are only available for fully-decided verifications (`Verified`, `ManuallyReviewed`, or `Refused`); any other state returns
+     * `409 Report not available`.
+     *
      * Vouchsafe will respond with:
      * - the requested `artefact_key`
      * - a `download_url` (pre-signed and time-limited)
@@ -48,6 +53,7 @@ class GetArtefact extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impleme
      * @throws \Vouchsafe\OpenAPI\Exception\GetArtefactBadRequestException
      * @throws \Vouchsafe\OpenAPI\Exception\GetArtefactUnauthorizedException
      * @throws \Vouchsafe\OpenAPI\Exception\GetArtefactNotFoundException
+     * @throws \Vouchsafe\OpenAPI\Exception\GetArtefactConflictException
      *
      * @return null|\Vouchsafe\OpenAPI\Model\GetArtefactsResponse
      */
@@ -66,6 +72,9 @@ class GetArtefact extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impleme
         }
         if (is_null($contentType) === false && (404 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetArtefactNotFoundException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
+        }
+        if (is_null($contentType) === false && (409 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+            throw new \Vouchsafe\OpenAPI\Exception\GetArtefactConflictException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }
     public function getAuthenticationScopes(): array
