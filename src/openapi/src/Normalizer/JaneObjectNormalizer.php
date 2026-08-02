@@ -366,6 +366,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\Flow::class => \Vouchsafe\OpenAPI\Normalizer\FlowNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\CoverageItem::class => \Vouchsafe\OpenAPI\Normalizer\CoverageItemNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => \Vouchsafe\OpenAPI\Normalizer\AuthenticateResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AuthenticateInput::class => \Vouchsafe\OpenAPI\Normalizer\AuthenticateInputNormalizer::class,
@@ -610,6 +612,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Vouchsafe\OpenAPI\Model\PostcodeFormattedAddress::class => false,
             \Vouchsafe\OpenAPI\Model\PostcodeResponse::class => false,
             \Vouchsafe\OpenAPI\Model\Flow::class => false,
+            \Vouchsafe\OpenAPI\Model\CoverageItem::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateResponse::class => false,
             \Vouchsafe\OpenAPI\Model\AuthenticateInput::class => false,
             \Vouchsafe\OpenAPI\Model\GetArtefactsResponse::class => false,

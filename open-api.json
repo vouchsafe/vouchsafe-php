@@ -7128,6 +7128,58 @@
       "GetFlowResponse": {
         "$ref": "#/components/schemas/Flow"
       },
+      "CoverageType": {
+        "type": "string",
+        "enum": [
+          "DIGITAL_ID",
+          "PHOTO_ID",
+          "SUPPORTING_DOCUMENT",
+          "DATA_SOURCE"
+        ]
+      },
+      "CoverageItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "Machine-readable identifier for this item, which can be passed to other endpoints as a `sub_type` where supported."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name, e.g. \"Passport\", \"ConnectID\""
+          },
+          "type": {
+            "$ref": "#/components/schemas/CoverageType"
+          },
+          "country_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Two-letter country codes this item is supported in, or an empty array if it's supported globally"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "description": "Provider logo/icon URL, or null if none exists"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "country_codes",
+          "image"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ListCoverageResponse": {
+        "items": {
+          "$ref": "#/components/schemas/CoverageItem"
+        },
+        "type": "array"
+      },
       "AuthenticateResponse": {
         "properties": {
           "access_token": {
@@ -9431,6 +9483,119 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/coverage": {
+      "get": {
+        "operationId": "ListCoverage",
+        "responses": {
+          "200": {
+            "description": "A list of supported coverage items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListCoverageResponse"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": [
+                      {
+                        "id": "Passport",
+                        "name": "Passport",
+                        "type": "PHOTO_ID",
+                        "country_codes": [],
+                        "image": "https://example.com/image.png"
+                      },
+                      {
+                        "id": "yoti-deeplink",
+                        "name": "Yoti",
+                        "type": "DIGITAL_ID",
+                        "country_codes": [
+                          "GB"
+                        ],
+                        "image": "https://example.com/image.svg"
+                      },
+                      {
+                        "id": null,
+                        "name": "BankID Norway",
+                        "type": "DIGITAL_ID",
+                        "country_codes": [
+                          "NO"
+                        ],
+                        "image": "https://example.com/image.svg"
+                      },
+                      {
+                        "id": "Payslip",
+                        "name": "Payslip",
+                        "type": "SUPPORTING_DOCUMENT",
+                        "country_codes": [],
+                        "image": null
+                      },
+                      {
+                        "id": "us_ofac_sdn",
+                        "name": "OFAC SDN",
+                        "type": "DATA_SOURCE",
+                        "country_codes": [
+                          "US"
+                        ],
+                        "image": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid country or type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get the digital ID schemes, photo IDs, supporting documents and trusted data sources Vouchsafe covers, optionally filtered by country and/or type.\n\nEach item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.\n\nDIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.",
+        "tags": [
+          "Coverage"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "description": "Two-letter country code (ISO 3166-1 alpha-2) to filter by, e.g. `GB`. Case insensitive. Omit to see worldwide coverage.",
+            "in": "query",
+            "name": "country_code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Evidence type to filter by. Omit to return all types.",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/CoverageType"
             }
           }
         ]

@@ -411,6 +411,26 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetFlow($id), $fetch);
     }
     /**
+     * Get the digital ID schemes, photo IDs, supporting documents and trusted data sources Vouchsafe covers, optionally filtered by country and/or type.
+     *
+     * Each item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.
+     *
+     * DIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
+     * @param array{
+     *    "country_code"?: string, //Two-letter country code (ISO 3166-1 alpha-2) to filter by, e.g. `GB`. Case insensitive. Omit to see worldwide coverage.
+     *    "type"?: string, //Evidence type to filter by. Omit to return all types.
+     * } $queryParameters
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\ListCoverageBadRequestException
+     * @throws \Vouchsafe\OpenAPI\Exception\ListCoverageUnauthorizedException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\CoverageItem[] : \Psr\Http\Message\ResponseInterface)
+     */
+    public function listCoverage(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ListCoverage($queryParameters), $fetch);
+    }
+    /**
      * Get the access token, needed for all other API requests.
      *
      * You will need your client ID and secret from the **API Integration** tab of the Vouchsafe dashboard.
