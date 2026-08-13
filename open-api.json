@@ -8549,6 +8549,16 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Unprocessable entity - the user is blocked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
           }
         },
         "description": "Request a new verification.\n\nProvide the user's email and the ID of one of your verification flows to send them through.\n\nVouchsafe will respond with:\n\n- a URL to redirect to the user to\n- a unique ID for you to track the verification\n\nIf you have enabled \"On request creation\" emails in your flow, this also sends them an email.\n\nYou can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.\n\nIf you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.\n\n#### Expiry\n\nVerifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.\n\nYou can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). \n\n**Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",

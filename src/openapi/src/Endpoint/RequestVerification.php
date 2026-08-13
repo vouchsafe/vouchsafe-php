@@ -61,6 +61,7 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationBadRequestException
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationUnauthorizedException
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationUnprocessableEntityException
      *
      * @return null|\Vouchsafe\OpenAPI\Model\RequestVerificationResponse
      */
@@ -79,6 +80,9 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
         }
         if (is_null($contentType) === false && (403 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\RequestVerificationForbiddenException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
+        }
+        if (is_null($contentType) === false && (422 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+            throw new \Vouchsafe\OpenAPI\Exception\RequestVerificationUnprocessableEntityException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }
     public function getAuthenticationScopes(): array

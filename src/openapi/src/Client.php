@@ -236,6 +236,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationBadRequestException
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationUnauthorizedException
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationUnprocessableEntityException
      *
      * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\RequestVerificationResponse : \Psr\Http\Message\ResponseInterface)
      */
