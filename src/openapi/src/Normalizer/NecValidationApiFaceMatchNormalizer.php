@@ -38,7 +38,7 @@ class NecValidationApiFaceMatchNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('score', $data) && \is_int($data['score'])) {
-            $data['score'] = (double) $data['score'];
+            $data['score'] = (float) $data['score'];
         }
         if (\array_key_exists('score', $data) && $data['score'] !== null) {
             $object->setScore($data['score']);

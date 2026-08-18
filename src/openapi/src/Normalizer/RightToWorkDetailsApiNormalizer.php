@@ -75,9 +75,9 @@ class RightToWorkDetailsApiNormalizer implements DenormalizerInterface, Normaliz
         }
         if (\array_key_exists('evisa_conditions', $data)) {
             $value = $data['evisa_conditions'];
-            if (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '1') and isset($data['evisa_conditions']['max_weekly_hours']) and isset($data['evisa_conditions']['no_self_employment'])) {
+            if (is_array($data['evisa_conditions']) and (\array_key_exists('extraction_success', $data['evisa_conditions']) and $data['evisa_conditions']['extraction_success'] == '1') and \array_key_exists('max_weekly_hours', $data['evisa_conditions']) and \array_key_exists('no_self_employment', $data['evisa_conditions'])) {
                 $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsSuccessApi::class, 'json', $context);
-            } elseif (is_array($data['evisa_conditions']) and (isset($data['evisa_conditions']['extraction_success']) and $data['evisa_conditions']['extraction_success'] == '')) {
+            } elseif (is_array($data['evisa_conditions']) and (\array_key_exists('extraction_success', $data['evisa_conditions']) and $data['evisa_conditions']['extraction_success'] == '')) {
                 $value = $this->denormalizer->denormalize($data['evisa_conditions'], \Vouchsafe\OpenAPI\Model\EvisaConditionsFailedApi::class, 'json', $context);
             }
             $object->setEvisaConditions($value);

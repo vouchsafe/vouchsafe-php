@@ -38,7 +38,7 @@ class BankAccountDetailsApiTransactionDataNormalizer implements DenormalizerInte
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('count', $data) && \is_int($data['count'])) {
-            $data['count'] = (double) $data['count'];
+            $data['count'] = (float) $data['count'];
         }
         if (\array_key_exists('count', $data)) {
             $object->setCount($data['count']);

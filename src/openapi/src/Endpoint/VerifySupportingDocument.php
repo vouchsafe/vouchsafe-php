@@ -69,6 +69,7 @@ class VerifySupportingDocument extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEnd
             $formParameters = $serializer->normalize($this->body, 'json');
             foreach ($formParameters as $key => $value) {
                 $value = is_int($value) ? (string) $value : $value;
+                $value = is_bool($value) ? $value ? 'true' : 'false' : $value;
                 if (is_array($value)) {
                     $value = $serializer->serialize($value, 'json');
                 }

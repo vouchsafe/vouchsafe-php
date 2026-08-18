@@ -38,7 +38,7 @@ class FlowNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('tokens_per_verification', $data) && \is_int($data['tokens_per_verification'])) {
-            $data['tokens_per_verification'] = (double) $data['tokens_per_verification'];
+            $data['tokens_per_verification'] = (float) $data['tokens_per_verification'];
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);

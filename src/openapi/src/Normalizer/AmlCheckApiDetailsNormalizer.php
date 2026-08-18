@@ -38,7 +38,7 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('threshold', $data) && \is_int($data['threshold'])) {
-            $data['threshold'] = (double) $data['threshold'];
+            $data['threshold'] = (float) $data['threshold'];
         }
         if (\array_key_exists('matches', $data)) {
             $values = [];

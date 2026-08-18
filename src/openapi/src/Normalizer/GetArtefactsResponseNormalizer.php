@@ -38,7 +38,7 @@ class GetArtefactsResponseNormalizer implements DenormalizerInterface, Normalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('expires_in_seconds', $data) && \is_int($data['expires_in_seconds'])) {
-            $data['expires_in_seconds'] = (double) $data['expires_in_seconds'];
+            $data['expires_in_seconds'] = (float) $data['expires_in_seconds'];
         }
         if (\array_key_exists('artefact_key', $data)) {
             $object->setArtefactKey($data['artefact_key']);

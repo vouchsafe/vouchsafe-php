@@ -38,7 +38,7 @@ class VideoSelfieCheckApiNormalizer implements DenormalizerInterface, Normalizer
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('total_attempts', $data) && \is_int($data['total_attempts'])) {
-            $data['total_attempts'] = (double) $data['total_attempts'];
+            $data['total_attempts'] = (float) $data['total_attempts'];
         }
         if (\array_key_exists('step', $data)) {
             $object->setStep($data['step']);

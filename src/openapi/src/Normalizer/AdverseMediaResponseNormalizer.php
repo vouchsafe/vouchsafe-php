@@ -38,7 +38,7 @@ class AdverseMediaResponseNormalizer implements DenormalizerInterface, Normalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('threshold', $data) && \is_int($data['threshold'])) {
-            $data['threshold'] = (double) $data['threshold'];
+            $data['threshold'] = (float) $data['threshold'];
         }
         if (\array_key_exists('status', $data)) {
             $object->setStatus($data['status']);

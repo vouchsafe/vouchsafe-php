@@ -38,10 +38,10 @@ class SmartLookupInputThresholdsNormalizer implements DenormalizerInterface, Nor
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('aml', $data) && \is_int($data['aml'])) {
-            $data['aml'] = (double) $data['aml'];
+            $data['aml'] = (float) $data['aml'];
         }
         if (\array_key_exists('onlineFootprint', $data) && \is_int($data['onlineFootprint'])) {
-            $data['onlineFootprint'] = (double) $data['onlineFootprint'];
+            $data['onlineFootprint'] = (float) $data['onlineFootprint'];
         }
         if (\array_key_exists('aml', $data)) {
             $object->setAml($data['aml']);

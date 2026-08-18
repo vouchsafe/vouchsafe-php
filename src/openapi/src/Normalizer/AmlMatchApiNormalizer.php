@@ -38,7 +38,7 @@ class AmlMatchApiNormalizer implements DenormalizerInterface, NormalizerInterfac
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('score', $data) && \is_int($data['score'])) {
-            $data['score'] = (double) $data['score'];
+            $data['score'] = (float) $data['score'];
         }
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);

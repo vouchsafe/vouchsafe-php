@@ -38,7 +38,7 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         if (\array_key_exists('status_code', $data) && \is_int($data['status_code'])) {
-            $data['status_code'] = (double) $data['status_code'];
+            $data['status_code'] = (float) $data['status_code'];
         }
         if (\array_key_exists('status_code', $data)) {
             $object->setStatusCode($data['status_code']);

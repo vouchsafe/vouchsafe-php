@@ -39,18 +39,18 @@ class PASSCardValidationNormalizer implements DenormalizerInterface, NormalizerI
         }
         if (\array_key_exists('matches_issuer_database', $data)) {
             $value = $data['matches_issuer_database'];
-            if (is_array($data['matches_issuer_database']) and (isset($data['matches_issuer_database']['status']) and $data['matches_issuer_database']['status'] == 'pass')) {
+            if (is_array($data['matches_issuer_database']) and (\array_key_exists('status', $data['matches_issuer_database']) and $data['matches_issuer_database']['status'] == 'pass')) {
                 $value = $this->denormalizer->denormalize($data['matches_issuer_database'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['matches_issuer_database']) and (isset($data['matches_issuer_database']['status']) and $data['matches_issuer_database']['status'] == 'fail') and isset($data['matches_issuer_database']['failed_reasons'])) {
+            } elseif (is_array($data['matches_issuer_database']) and (\array_key_exists('status', $data['matches_issuer_database']) and $data['matches_issuer_database']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['matches_issuer_database'])) {
                 $value = $this->denormalizer->denormalize($data['matches_issuer_database'], \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class, 'json', $context);
             }
             $object->setMatchesIssuerDatabase($value);
         }
         if (\array_key_exists('required_fields_extracted', $data)) {
             $value_1 = $data['required_fields_extracted'];
-            if (is_array($data['required_fields_extracted']) and (isset($data['required_fields_extracted']['status']) and $data['required_fields_extracted']['status'] == 'pass')) {
+            if (is_array($data['required_fields_extracted']) and (\array_key_exists('status', $data['required_fields_extracted']) and $data['required_fields_extracted']['status'] == 'pass')) {
                 $value_1 = $this->denormalizer->denormalize($data['required_fields_extracted'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['required_fields_extracted']) and (isset($data['required_fields_extracted']['status']) and $data['required_fields_extracted']['status'] == 'fail') and isset($data['required_fields_extracted']['failed_reasons'])) {
+            } elseif (is_array($data['required_fields_extracted']) and (\array_key_exists('status', $data['required_fields_extracted']) and $data['required_fields_extracted']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['required_fields_extracted'])) {
                 $value_1 = $this->denormalizer->denormalize($data['required_fields_extracted'], \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class, 'json', $context);
             }
             $object->setRequiredFieldsExtracted($value_1);
@@ -60,36 +60,36 @@ class PASSCardValidationNormalizer implements DenormalizerInterface, NormalizerI
         }
         if (\array_key_exists('identifier_format_valid', $data)) {
             $value_2 = $data['identifier_format_valid'];
-            if (is_array($data['identifier_format_valid']) and (isset($data['identifier_format_valid']['status']) and $data['identifier_format_valid']['status'] == 'pass')) {
+            if (is_array($data['identifier_format_valid']) and (\array_key_exists('status', $data['identifier_format_valid']) and $data['identifier_format_valid']['status'] == 'pass')) {
                 $value_2 = $this->denormalizer->denormalize($data['identifier_format_valid'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['identifier_format_valid']) and (isset($data['identifier_format_valid']['status']) and $data['identifier_format_valid']['status'] == 'fail') and isset($data['identifier_format_valid']['failed_reasons'])) {
+            } elseif (is_array($data['identifier_format_valid']) and (\array_key_exists('status', $data['identifier_format_valid']) and $data['identifier_format_valid']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['identifier_format_valid'])) {
                 $value_2 = $this->denormalizer->denormalize($data['identifier_format_valid'], \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class, 'json', $context);
             }
             $object->setIdentifierFormatValid($value_2);
         }
         if (\array_key_exists('has_not_expired', $data)) {
             $value_3 = $data['has_not_expired'];
-            if (is_array($data['has_not_expired']) and (isset($data['has_not_expired']['status']) and $data['has_not_expired']['status'] == 'pass')) {
+            if (is_array($data['has_not_expired']) and (\array_key_exists('status', $data['has_not_expired']) and $data['has_not_expired']['status'] == 'pass')) {
                 $value_3 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['has_not_expired']) and (isset($data['has_not_expired']['status']) and $data['has_not_expired']['status'] == 'fail') and isset($data['has_not_expired']['failed_reasons'])) {
+            } elseif (is_array($data['has_not_expired']) and (\array_key_exists('status', $data['has_not_expired']) and $data['has_not_expired']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['has_not_expired'])) {
                 $value_3 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\FailPASSCardFailedReason::class, 'json', $context);
             }
             $object->setHasNotExpired($value_3);
         }
         if (\array_key_exists('not_specimen', $data)) {
             $value_4 = $data['not_specimen'];
-            if (is_array($data['not_specimen']) and (isset($data['not_specimen']['status']) and $data['not_specimen']['status'] == 'pass')) {
+            if (is_array($data['not_specimen']) and (\array_key_exists('status', $data['not_specimen']) and $data['not_specimen']['status'] == 'pass')) {
                 $value_4 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['not_specimen']) and (isset($data['not_specimen']['status']) and $data['not_specimen']['status'] == 'fail') and isset($data['not_specimen']['failed_reasons'])) {
+            } elseif (is_array($data['not_specimen']) and (\array_key_exists('status', $data['not_specimen']) and $data['not_specimen']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['not_specimen'])) {
                 $value_4 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\FailSpecimenErrorCode::class, 'json', $context);
             }
             $object->setNotSpecimen($value_4);
         }
         if (\array_key_exists('not_screenshot', $data)) {
             $value_5 = $data['not_screenshot'];
-            if (is_array($data['not_screenshot']) and (isset($data['not_screenshot']['status']) and $data['not_screenshot']['status'] == 'pass')) {
+            if (is_array($data['not_screenshot']) and (\array_key_exists('status', $data['not_screenshot']) and $data['not_screenshot']['status'] == 'pass')) {
                 $value_5 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['not_screenshot']) and (isset($data['not_screenshot']['status']) and $data['not_screenshot']['status'] == 'fail') and isset($data['not_screenshot']['failed_reasons'])) {
+            } elseif (is_array($data['not_screenshot']) and (\array_key_exists('status', $data['not_screenshot']) and $data['not_screenshot']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['not_screenshot'])) {
                 $value_5 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\FailTamperingErrorCode::class, 'json', $context);
             }
             $object->setNotScreenshot($value_5);
@@ -99,9 +99,9 @@ class PASSCardValidationNormalizer implements DenormalizerInterface, NormalizerI
         }
         if (\array_key_exists('document_contains_face', $data)) {
             $value_6 = $data['document_contains_face'];
-            if (is_array($data['document_contains_face']) and (isset($data['document_contains_face']['status']) and $data['document_contains_face']['status'] == 'pass')) {
+            if (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'pass')) {
                 $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
-            } elseif (is_array($data['document_contains_face']) and (isset($data['document_contains_face']['status']) and $data['document_contains_face']['status'] == 'fail') and isset($data['document_contains_face']['failed_reasons'])) {
+            } elseif (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['document_contains_face'])) {
                 $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class, 'json', $context);
             }
             $object->setDocumentContainsFace($value_6);
