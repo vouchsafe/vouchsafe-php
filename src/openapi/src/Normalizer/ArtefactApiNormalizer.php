@@ -43,6 +43,9 @@ class ArtefactApiNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (\array_key_exists('key', $data)) {
             $object->setKey($data['key']);
         }
+        if (\array_key_exists('mime_type', $data)) {
+            $object->setMimeType($data['mime_type']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -50,6 +53,9 @@ class ArtefactApiNormalizer implements DenormalizerInterface, NormalizerInterfac
         $dataArray = [];
         $dataArray['role'] = $data->getRole();
         $dataArray['key'] = $data->getKey();
+        if ($data->isInitialized('mimeType') && null !== $data->getMimeType()) {
+            $dataArray['mime_type'] = $data->getMimeType();
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

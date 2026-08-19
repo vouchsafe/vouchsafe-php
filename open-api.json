@@ -3174,6 +3174,10 @@
           },
           "key": {
             "type": "string"
+          },
+          "mime_type": {
+            "type": "string",
+            "description": "The file's media type, for artefacts uploaded as a document."
           }
         },
         "required": [
@@ -8510,10 +8514,11 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "url": "https://app.vouchsafe.id/verify/123abc",
-                      "id": "456def",
-                      "flow_id": "123abc",
-                      "expires_at": "2025-08-08T12:00:00Z"
+                      "url": "https://app.vouchsafe.id/verify-new/111-token",
+                      "id": "111",
+                      "flow_id": "sandbox-flow",
+                      "workflow_id": "sandbox-flow",
+                      "expires_at": "2026-08-23T09:01:00.000Z"
                     }
                   }
                 }
@@ -8596,25 +8601,92 @@
                   "Example 1": {
                     "value": [
                       {
-                        "id": "654def",
+                        "id": "111",
                         "status": "InProgress",
-                        "created_at": "2025-08-01T10:00:00Z",
-                        "expires_at": "2025-08-15T10:00:00Z",
-                        "email": "ava@example.com",
-                        "redirect_url": "https://yourapp.example.com/return",
-                        "flow_id": "123abc",
-                        "external_id": "user_42"
+                        "created_at": "2026-08-16T09:01:00.000Z",
+                        "expires_at": "2026-08-23T09:01:00.000Z",
+                        "email": "jdoe@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow",
+                        "workflow_id": "sandbox-flow",
+                        "external_id": null
                       },
                       {
-                        "id": "789ghi",
-                        "status": "Verified",
-                        "created_at": "2025-07-20T09:10:00Z",
-                        "expires_at": "2025-08-03T09:10:00Z",
-                        "email": "sam@example.com",
+                        "id": "555",
+                        "status": "InProgress",
+                        "created_at": "2026-08-15T09:01:00.000Z",
+                        "expires_at": "2026-08-22T09:01:00.000Z",
+                        "email": "eroberts@email.com",
                         "redirect_url": null,
-                        "flow_id": "456def",
-                        "external_id": null,
-                        "identity_profile": "M1A"
+                        "flow_id": "sandbox-flow-professional-referee",
+                        "workflow_id": "sandbox-flow-professional-referee",
+                        "external_id": null
+                      },
+                      {
+                        "id": "222",
+                        "status": "ReadyForReview",
+                        "created_at": "2026-08-14T09:01:00.000Z",
+                        "expires_at": "2026-08-21T09:01:00.000Z",
+                        "email": "eroberts@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow",
+                        "workflow_id": "sandbox-flow",
+                        "external_id": null
+                      },
+                      {
+                        "id": "333",
+                        "status": "Verified",
+                        "created_at": "2026-08-13T09:01:00.000Z",
+                        "expires_at": "2026-08-20T09:01:00.000Z",
+                        "email": "dwebb@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow",
+                        "workflow_id": "sandbox-flow",
+                        "external_id": null
+                      },
+                      {
+                        "id": "444",
+                        "status": "Refused",
+                        "created_at": "2026-08-12T09:01:00.000Z",
+                        "expires_at": "2026-08-19T09:01:00.000Z",
+                        "email": "e.roberts.9421@mailinator.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow-enhanced",
+                        "workflow_id": "sandbox-flow-enhanced",
+                        "external_id": null
+                      },
+                      {
+                        "id": "777",
+                        "status": "LockedOut",
+                        "created_at": "2026-08-11T09:01:00.000Z",
+                        "expires_at": "2026-08-18T09:01:00.000Z",
+                        "email": "dwebb@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow",
+                        "workflow_id": "sandbox-flow",
+                        "external_id": null
+                      },
+                      {
+                        "id": "888",
+                        "status": "Verified",
+                        "created_at": "2026-08-10T09:01:00.000Z",
+                        "expires_at": "2026-08-17T09:01:00.000Z",
+                        "email": "eroberts@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow-address-only",
+                        "workflow_id": "sandbox-flow-address-only",
+                        "external_id": null
+                      },
+                      {
+                        "id": "666",
+                        "status": "Verified",
+                        "created_at": "2026-08-09T09:01:00.000Z",
+                        "expires_at": "2026-08-16T09:01:00.000Z",
+                        "email": "eroberts@email.com",
+                        "redirect_url": null,
+                        "flow_id": "sandbox-flow-referee",
+                        "workflow_id": "sandbox-flow-referee",
+                        "external_id": null
                       }
                     ]
                   }
@@ -8679,42 +8751,137 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "id": "456def",
+                      "id": "222",
                       "status": "ReadyForReview",
-                      "created_at": "2025-08-01T10:00:00Z",
+                      "created_at": "2026-08-14T09:01:00.000Z",
                       "erased_at": null,
                       "erased_by": null,
-                      "expires_at": "2025-08-15T10:00:00Z",
-                      "email": "ava@example.com",
-                      "redirect_url": "https://yourapp.example.com/return",
-                      "flow_id": "123abc",
-                      "external_id": "user_42",
+                      "expires_at": "2026-08-21T09:01:00.000Z",
+                      "email": "eroberts@email.com",
+                      "redirect_url": null,
+                      "workflow_id": "sandbox-flow",
+                      "external_id": null,
                       "claim_details": {
-                        "email": "ava@example.com",
-                        "phone_number": "+447234567890",
-                        "first_name": "Ava",
-                        "last_name": "Morales",
-                        "date_of_birth": null,
-                        "first_line_of_address": "10, Downing St",
-                        "postcode": "SW1A 2AA",
+                        "email": "eroberts@email.com",
+                        "phone_number": null,
+                        "first_name": "EMILY",
+                        "last_name": "ROBERTS",
+                        "date_of_birth": "1995-01-01",
+                        "first_line_of_address": "123, Address Street",
+                        "postcode": "AB1 23C",
                         "address": {
-                          "residence_number": "10",
-                          "street": "Downing St",
-                          "city": "London",
-                          "postcode": "SW1A 2AA",
+                          "residence_number": "123",
+                          "street": "Address Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB1 23C",
                           "country": "United Kingdom",
-                          "region": "England",
                           "country_code": "GB"
                         }
                       },
                       "checks": [
                         {
-                          "step": "verify_email",
+                          "step": "step_identity",
                           "outcome": "pass",
+                          "method": "photo_id",
+                          "evidence_type": "driving_licence",
+                          "created_at": "2026-08-14T09:12:00.000Z",
+                          "artefacts": [
+                            {
+                              "role": "document",
+                              "key": "seed/EmilyRobertsUKDL.png"
+                            }
+                          ],
+                          "extracted_details": {
+                            "first_name": "EMILY",
+                            "last_name": "ROBERTS",
+                            "date_of_birth": "1995-01-01",
+                            "document_number": null,
+                            "expiration_date": "2031-12-05",
+                            "issue_date": null,
+                            "issuing_country": null
+                          },
                           "validations": {
-                            "email_verified": {
+                            "required_fields_extracted": {
+                              "status": "pass"
+                            },
+                            "document_borders_detected": {
                               "status": "pass",
-                              "verified_at": "2025-08-01T10:03:00Z"
+                              "score": 96
+                            },
+                            "names_consistent": {
+                              "status": "pass"
+                            },
+                            "dates_of_birth_consistent": {
+                              "status": "pass"
+                            },
+                            "tampering_signals_check": {
+                              "status": "pass"
+                            },
+                            "security_features_present": {
+                              "status": "pass"
+                            },
+                            "identifier_format_valid": {
+                              "status": "pass"
+                            },
+                            "not_sample_or_internal_use": {
+                              "status": "pass"
+                            },
+                            "has_not_expired": {
+                              "status": "pass"
+                            }
+                          }
+                        },
+                        {
+                          "step": "step_address",
+                          "outcome": "fail",
+                          "method": "supporting_document",
+                          "evidence_type": "bank_statement",
+                          "created_at": "2026-08-14T09:13:00.000Z",
+                          "artefacts": [
+                            {
+                              "role": "document",
+                              "key": "seed/EmilyRobertsBankStatement.pdf",
+                              "mime_type": "application/pdf"
+                            }
+                          ],
+                          "extracted_details": {
+                            "document_category": "bank_statement",
+                            "first_name": "Emily",
+                            "last_name": "Roberts",
+                            "first_line_of_address": "123, Address Street",
+                            "postcode": "AB1 23C",
+                            "address": {
+                              "residence_number": "123",
+                              "street": "Address Street",
+                              "city": "Aberdeen",
+                              "postcode": "AB1 23C",
+                              "country": "United Kingdom",
+                              "country_code": "GB"
+                            },
+                            "document_date": "2025-12-01",
+                            "issuer": "Example Bank"
+                          },
+                          "validations": {
+                            "required_fields_extracted": {
+                              "status": "pass"
+                            },
+                            "category_match": {
+                              "status": "pass"
+                            },
+                            "document_age_valid": {
+                              "status": "pass"
+                            },
+                            "names_consistent": {
+                              "status": "pass"
+                            },
+                            "addresses_consistent": {
+                              "status": "pass"
+                            },
+                            "document_complete_and_legible": {
+                              "status": "fail"
+                            },
+                            "tampering_signals_check": {
+                              "status": "pass"
                             }
                           }
                         },
@@ -8725,66 +8892,15 @@
                           "artefacts": [
                             {
                               "role": "face_scan",
-                              "key": "456abc"
+                              "key": "seed/EmilyRobertsVideoSelfie.png"
                             }
                           ],
                           "validations": {
                             "liveness_check": {
                               "status": "pass",
-                              "score": 83
-                            }
-                          }
-                        },
-                        {
-                          "step": "photo_id",
-                          "evidence_type": "driving_licence",
-                          "outcome": "pass",
-                          "artefacts": [
-                            {
-                              "role": "document",
-                              "key": "91kq7x"
-                            }
-                          ],
-                          "created_at": "2025-08-01T10:17:55.133Z",
-                          "extracted_details": {
-                            "first_name": "Ava",
-                            "last_name": "Morales",
-                            "date_of_birth": "1998-03-21",
-                            "document_number": "MORAL832145AV9PL 17",
-                            "expiration_date": "2032-04-09",
-                            "issuing_country": "GB"
-                          },
-                          "validations": {
-                            "required_fields_extracted": {
-                              "status": "pass"
-                            },
-                            "document_borders_detected": {
-                              "status": "pass",
                               "score": 91
                             },
-                            "security_features_present": {
-                              "status": "pass"
-                            },
-                            "identifier_format_valid": {
-                              "status": "pass"
-                            },
-                            "has_not_expired": {
-                              "status": "pass"
-                            },
-                            "names_consistent": {
-                              "status": "pass"
-                            },
-                            "dates_of_birth_consistent": {
-                              "status": "pass"
-                            },
                             "face_match": {
-                              "status": "pass",
-                              "score": 74
-                            },
-                            "compound_identifiers_match": {
-                              "status": "pass"
-                            },
-                            "matches_issuer_database": {
                               "status": "pass"
                             }
                           }
@@ -8792,33 +8908,15 @@
                       ],
                       "enrichments": [
                         {
-                          "check": "email_footprint_analysis",
-                          "outcome": "fail",
-                          "details": {
-                            "threshold": null,
-                            "score": 18,
-                            "signals": {
-                              "positive": [],
-                              "negative": [
-                                "DISPOSABLE_EMAIL_PROVIDER",
-                                "RECENTLY_CREATED_EMAIL",
-                                "LOW_REPUTATION_DOMAIN",
-                                "BREACH_ASSOCIATION",
-                                "HIGH_RISK_ACTIVITY_PATTERNS"
-                              ]
-                            }
-                          }
-                        },
-                        {
                           "check": "radar",
-                          "outcome": "fail",
+                          "outcome": "pass",
                           "details": {
                             "validations": {
                               "normal_velocity_detected": {
                                 "status": "pass"
                               },
                               "not_disposable_email": {
-                                "status": "fail"
+                                "status": "pass"
                               },
                               "no_known_fraudster_match": {
                                 "status": "pass",
@@ -9373,11 +9471,35 @@
                   "Example 1": {
                     "value": [
                       {
-                        "id": "123abc",
-                        "name": "KYC/AML",
-                        "tokens_per_verification": 3,
-                        "created_at": "",
-                        "updated_at": "",
+                        "id": "sandbox-flow",
+                        "name": "Example verification flow",
+                        "tokens_per_verification": 2,
+                        "created_at": "2026-01-01T00:00:00.000Z",
+                        "updated_at": "2026-01-01T00:00:00.000Z",
+                        "archived_at": null
+                      },
+                      {
+                        "id": "sandbox-flow-enhanced",
+                        "name": "Enhanced due diligence",
+                        "tokens_per_verification": 5,
+                        "created_at": "2026-01-01T00:00:00.000Z",
+                        "updated_at": "2026-01-01T00:00:00.000Z",
+                        "archived_at": null
+                      },
+                      {
+                        "id": "sandbox-flow-address-only",
+                        "name": "Address only",
+                        "tokens_per_verification": 1,
+                        "created_at": "2026-01-01T00:00:00.000Z",
+                        "updated_at": "2026-01-01T00:00:00.000Z",
+                        "archived_at": null
+                      },
+                      {
+                        "id": "sandbox-flow-referee",
+                        "name": "Identity by referee",
+                        "tokens_per_verification": 2,
+                        "created_at": "2026-01-01T00:00:00.000Z",
+                        "updated_at": "2026-01-01T00:00:00.000Z",
                         "archived_at": null
                       }
                     ]
@@ -9433,11 +9555,11 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "id": "123abc",
-                      "name": "KYC/AML",
-                      "tokens_per_verification": 3,
-                      "created_at": "",
-                      "updated_at": "",
+                      "id": "sandbox-flow-enhanced",
+                      "name": "Enhanced due diligence",
+                      "tokens_per_verification": 5,
+                      "created_at": "2026-01-01T00:00:00.000Z",
+                      "updated_at": "2026-01-01T00:00:00.000Z",
                       "archived_at": null
                     }
                   }
@@ -9686,9 +9808,9 @@
                 "examples": {
                   "Example 1": {
                     "value": {
-                      "artefact_key": "artf_01JFWKB1Q0Q8K2",
-                      "download_url": "https://storage.example.com/presigned/....",
-                      "expires_at": "2025-12-22T17:10:00Z",
+                      "artefact_key": "seed/EmilyRobertsUKDL.png",
+                      "download_url": "https://vouchsafe-documents.s3.eu-west-2.amazonaws.com/seed/EmilyRobertsUKDL.png?X-Amz-Signature=...",
+                      "expires_at": "2026-01-01T00:05:00.000Z",
                       "expires_in_seconds": 300
                     }
                   }

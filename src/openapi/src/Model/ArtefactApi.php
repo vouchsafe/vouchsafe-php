@@ -21,6 +21,12 @@ class ArtefactApi
      */
     protected $key;
     /**
+     * The file's media type, for artefacts uploaded as a document.
+     *
+     * @var string
+     */
+    protected $mimeType;
+    /**
      * @return string
      */
     public function getRole(): string
@@ -54,6 +60,28 @@ class ArtefactApi
     {
         $this->initialized['key'] = true;
         $this->key = $key;
+        return $this;
+    }
+    /**
+     * The file's media type, for artefacts uploaded as a document.
+     *
+     * @return string
+     */
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+    /**
+     * The file's media type, for artefacts uploaded as a document.
+     *
+     * @param string $mimeType
+     *
+     * @return self
+     */
+    public function setMimeType(string $mimeType): self
+    {
+        $this->initialized['mimeType'] = true;
+        $this->mimeType = $mimeType;
         return $this;
     }
 }
