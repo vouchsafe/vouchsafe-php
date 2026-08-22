@@ -46,7 +46,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      * > **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds
      * > depending on document complexity.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentBadRequestException
@@ -192,7 +192,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * This can be a long list, so filtering by status is recommended.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param array{
      *    "status"?: string, //Optional status filter.
      * } $queryParameters
@@ -230,7 +230,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\RequestVerificationInput $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\RequestVerificationBadRequestException
@@ -276,7 +276,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      * empty. Check `erased_at` to distinguish an erased verification from one that simply never
      * collected that data.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The verification ID returned when you requested it.
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\GetVerificationBadRequestException
@@ -364,6 +364,8 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
     * Look up all addresses for a given UK postcode.
     *
     * Useful for guaranteeing that a user's address is recognised before onboarding.
+    *
+    * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
     * @param array{
     *    "postcode": string, //UK postcode to search for.
     Example: `SW1A 2AA`
@@ -398,7 +400,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The ID of the flow to retrieve.
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\GetFlowBadRequestException
@@ -442,7 +444,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Use an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) to simplify handling tokens
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\AuthenticateInput $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\AuthenticateBadRequestException
@@ -496,7 +498,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Use cursor-based pagination to iterate through results.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param array{
      *    "status"?: string, //Filter by alert status
      *    "cursor"?: string, //Cursor for pagination (ID of last item from previous page)
@@ -518,7 +520,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Returns the account's personal details, all alerts, and matched entities.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The account ID (SmartLookup ID)
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Vouchsafe\OpenAPI\Exception\GetAccountDetailUnauthorizedException
@@ -538,7 +540,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Enable or disable AML/sanctions screening for an existing account.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The account ID (SmartLookup ID)
      * @param \Vouchsafe\OpenAPI\Model\ToggleAlertsInput $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)

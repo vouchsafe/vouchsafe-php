@@ -46,7 +46,7 @@ class VerifySupportingDocument extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEnd
      * > **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds
      * > depending on document complexity.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody $requestBody
      */
     public function __construct(\Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody $requestBody)

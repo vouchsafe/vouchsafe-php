@@ -9,7 +9,7 @@ class ListVerifications extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint i
      *
      * This can be a long list, so filtering by status is recommended.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param array{
      *    "status"?: string, //Optional status filter.
      * } $queryParameters

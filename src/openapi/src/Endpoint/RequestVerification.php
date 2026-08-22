@@ -28,7 +28,7 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
      *
      * **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\RequestVerificationInput $requestBody
      */
     public function __construct(\Vouchsafe\OpenAPI\Model\RequestVerificationInput $requestBody)

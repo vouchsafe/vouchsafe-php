@@ -14,7 +14,7 @@ class ListAccounts extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implem
      *
      * Use cursor-based pagination to iterate through results.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param array{
      *    "status"?: string, //Filter by alert status
      *    "cursor"?: string, //Cursor for pagination (ID of last item from previous page)

@@ -7833,7 +7833,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nExtract and validate a supporting document.\n\nThis endpoint accepts a document file (PDF, JPG, or PNG) and extracts personal identity information and address details.\n\nExtracted addresses are returned both as a flat `first_line_of_address`/`postcode` pair and as structured\n`addresses_formatted` (`residence_number`, `building_name`, `street`, `city`, `postcode`, `region`) — the same\nname and shape as in the postcode search endpoint. Extraction produces at most one address;\n`addresses_formatted` is empty when no address fields were extracted.\n\n**Request format:** This endpoint accepts `multipart/form-data` with:\n- `document` - The document file (PDF, JPG, or PNG, max 10MB)\n- `sub_type` (required) - The type of document (e.g., `BankStatement`, `UtilityBill`). See \"Supported document types\" below.\n- `minimum_document_length` (optional) - Minimum document age in months. Documents older than this will fail the `document_age_valid` check.\n\n**Supported document types (`sub_type`):**\n- `Payslip` - Employment payslips\n- `PensionAnnualStatement` - Pension statements\n- `BenefitsLetter` - Government benefits letters\n- `HMPPSLetter` - Probation service letters\n- `NHSLetter` - NHS correspondence\n- `BankStatement` - Bank account statements\n- `CreditCardStatement` - Credit card statements\n- `MortgageStatement` - Mortgage statements\n- `UtilityBill` - Gas, electricity, water bills\n- `MobilePhoneBill` - Mobile phone bills\n\n**Validations performed:**\n- `required_fields_extracted` - Key identity fields were successfully extracted. These are: `first_name`, `last_name`, `first_line_of_address` and `postcode`\n- `category_match` - Document matches the specified sub_type\n- `document_age_valid` - Document is within acceptable age range (only if `minimum_document_length` provided)\n- `document_complete_and_legible` - Document is complete and readable\n- `tampering_signals_check` - No signs of document tampering detected\n\nSandbox testing:\nIn sandbox mode, the endpoint returns a mock \"pass\" response with sandbox values. No actual document processing occurs.\n\n> **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds\n> depending on document complexity.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nExtract and validate a supporting document.\n\nThis endpoint accepts a document file (PDF, JPG, or PNG) and extracts personal identity information and address details.\n\nExtracted addresses are returned both as a flat `first_line_of_address`/`postcode` pair and as structured\n`addresses_formatted` (`residence_number`, `building_name`, `street`, `city`, `postcode`, `region`) — the same\nname and shape as in the postcode search endpoint. Extraction produces at most one address;\n`addresses_formatted` is empty when no address fields were extracted.\n\n**Request format:** This endpoint accepts `multipart/form-data` with:\n- `document` - The document file (PDF, JPG, or PNG, max 10MB)\n- `sub_type` (required) - The type of document (e.g., `BankStatement`, `UtilityBill`). See \"Supported document types\" below.\n- `minimum_document_length` (optional) - Minimum document age in months. Documents older than this will fail the `document_age_valid` check.\n\n**Supported document types (`sub_type`):**\n- `Payslip` - Employment payslips\n- `PensionAnnualStatement` - Pension statements\n- `BenefitsLetter` - Government benefits letters\n- `HMPPSLetter` - Probation service letters\n- `NHSLetter` - NHS correspondence\n- `BankStatement` - Bank account statements\n- `CreditCardStatement` - Credit card statements\n- `MortgageStatement` - Mortgage statements\n- `UtilityBill` - Gas, electricity, water bills\n- `MobilePhoneBill` - Mobile phone bills\n\n**Validations performed:**\n- `required_fields_extracted` - Key identity fields were successfully extracted. These are: `first_name`, `last_name`, `first_line_of_address` and `postcode`\n- `category_match` - Document matches the specified sub_type\n- `document_age_valid` - Document is within acceptable age range (only if `minimum_document_length` provided)\n- `document_complete_and_legible` - Document is complete and readable\n- `tampering_signals_check` - No signs of document tampering detected\n\nSandbox testing:\nIn sandbox mode, the endpoint returns a mock \"pass\" response with sandbox values. No actual document processing occurs.\n\n> **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds\n> depending on document complexity.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Verify"
         ],
@@ -8566,7 +8566,7 @@
             }
           }
         },
-        "description": "Request a new verification.\n\nProvide the user's email and the ID of one of your verification flows to send them through.\n\nVouchsafe will respond with:\n\n- a URL to redirect to the user to\n- a unique ID for you to track the verification\n\nIf you have enabled \"On request creation\" emails in your flow, this also sends them an email.\n\nYou can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.\n\nIf you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.\n\n#### Expiry\n\nVerifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.\n\nYou can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). \n\n**Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Request a new verification.\n\nProvide the user's email and the ID of one of your verification flows to send them through.\n\nVouchsafe will respond with:\n\n- a URL to redirect to the user to\n- a unique ID for you to track the verification\n\nIf you have enabled \"On request creation\" emails in your flow, this also sends them an email.\n\nYou can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.\n\nIf you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.\n\n#### Expiry\n\nVerifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.\n\nYou can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). \n\n**Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Verifications"
         ],
@@ -8715,7 +8715,7 @@
             }
           }
         },
-        "description": "List all verifications for your team.\n\nThis can be a long list, so filtering by status is recommended.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "List all verifications for your team.\n\nThis can be a long list, so filtering by status is recommended.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Verifications"
         ],
@@ -8767,13 +8767,13 @@
                         "first_name": "EMILY",
                         "last_name": "ROBERTS",
                         "date_of_birth": "1995-01-01",
-                        "first_line_of_address": "123, Address Street",
-                        "postcode": "AB1 23C",
+                        "first_line_of_address": "123, Union Street",
+                        "postcode": "AB11 6BH",
                         "address": {
                           "residence_number": "123",
-                          "street": "Address Street",
+                          "street": "Union Street",
                           "city": "Aberdeen",
-                          "postcode": "AB1 23C",
+                          "postcode": "AB11 6BH",
                           "country": "United Kingdom",
                           "country_code": "GB"
                         }
@@ -8848,13 +8848,13 @@
                             "document_category": "bank_statement",
                             "first_name": "Emily",
                             "last_name": "Roberts",
-                            "first_line_of_address": "123, Address Street",
-                            "postcode": "AB1 23C",
+                            "first_line_of_address": "123, Union Street",
+                            "postcode": "AB11 6BH",
                             "address": {
                               "residence_number": "123",
-                              "street": "Address Street",
+                              "street": "Union Street",
                               "city": "Aberdeen",
-                              "postcode": "AB1 23C",
+                              "postcode": "AB11 6BH",
                               "country": "United Kingdom",
                               "country_code": "GB"
                             },
@@ -8965,7 +8965,7 @@
             }
           }
         },
-        "description": "Get a single verification by ID.\n\nReturns the latest status, claim details and results for a verification you previously requested.\n\nVouchsafe will respond with:\n\n- the verification status and timestamps\n- the identity claim details (e.g. name, email, phone number)\n- the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations\n- results of any background checks (e.g. radar, online footprint analysis, aml sanctions)\n\n#### Downloading files (artefacts)\n\nSome checks may include an `artefacts` array (for example: face scan or document images).\nFor security reasons, the verification response only contains an `artefact key` — not the file itself.\n\nTo download an artefact, use:\n\n- `GET /artefacts/{artefact_key}`\n\nThis returns a **time-limited pre-signed URL** which can be used to download the file.\n\n#### Erased verifications\n\nIf the data subject has exercised their right to erasure, the verification's `erased_at`\ntimestamp will be set, and `erased_by` records the operator who ran the erasure. The\nverification's `status` and timestamps are retained so you keep an audit trail, but all\npersonal data (claim details, extracted document details, artefacts and enrichments) will be\nempty. Check `erased_at` to distinguish an erased verification from one that simply never\ncollected that data.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Get a single verification by ID.\n\nReturns the latest status, claim details and results for a verification you previously requested.\n\nVouchsafe will respond with:\n\n- the verification status and timestamps\n- the identity claim details (e.g. name, email, phone number)\n- the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations\n- results of any background checks (e.g. radar, online footprint analysis, aml sanctions)\n\n#### Downloading files (artefacts)\n\nSome checks may include an `artefacts` array (for example: face scan or document images).\nFor security reasons, the verification response only contains an `artefact key` — not the file itself.\n\nTo download an artefact, use:\n\n- `GET /artefacts/{artefact_key}`\n\nThis returns a **time-limited pre-signed URL** which can be used to download the file.\n\n#### Erased verifications\n\nIf the data subject has exercised their right to erasure, the verification's `erased_at`\ntimestamp will be set, and `erased_by` records the operator who ran the erasure. The\nverification's `status` and timestamps are retained so you keep an audit trail, but all\npersonal data (claim details, extracted document details, artefacts and enrichments) will be\nempty. Check `erased_at` to distinguish an erased verification from one that simply never\ncollected that data.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Verifications"
         ],
@@ -9109,7 +9109,7 @@
             }
           }
         },
-        "description": "\nGet the currently authenticated team.\n\nHelpful for testing, especially when managing multiple client IDs and secrets.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "\nGet the currently authenticated team.\n\nHelpful for testing, especially when managing multiple client IDs and secrets.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Team"
         ],
@@ -9382,7 +9382,7 @@
                   "$ref": "#/components/schemas/PostcodeResponse"
                 },
                 "examples": {
-                  "Example 1": {
+                  "SW1A 2AA — a postcode with one address": {
                     "value": {
                       "addresses": [
                         "10, Downing Street, London"
@@ -9393,6 +9393,319 @@
                           "street": "Downing Street",
                           "city": "London",
                           "postcode": "SW1A 2AA",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        }
+                      ]
+                    }
+                  },
+                  "NW1 6XE — letters, ranges and flats in residence_number": {
+                    "value": {
+                      "addresses": [
+                        "215, Baker Street, London",
+                        "219, Baker Street, London",
+                        "235, Baker Street, London",
+                        "237, Baker Street, London",
+                        "221B, Baker Street, London",
+                        "231-233, Baker Street, London",
+                        "241-243, Baker Street, London",
+                        "245-247, Baker Street, London",
+                        "Flat 1-3 & 1A-1B 241-243, Baker Street, London",
+                        "Flat 1-3 231, Baker Street, London",
+                        "Flat 1-5 245-247, Baker Street, London",
+                        "Flat 1-86 219, Baker Street, London"
+                      ],
+                      "addresses_formatted": [
+                        {
+                          "residence_number": "215",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "219",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "235",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "237",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "221B",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "231-233",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "241-243",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "245-247",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 1-3 & 1A-1B 241-243",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 1-3 231",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 1-5 245-247",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 1-86 219",
+                          "street": "Baker Street",
+                          "city": "London",
+                          "postcode": "NW1 6XE",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        }
+                      ]
+                    }
+                  },
+                  "AB11 6BH — a postcode outside England": {
+                    "value": {
+                      "addresses": [
+                        "107, Union Street, Aberdeen",
+                        "117, Union Street, Aberdeen",
+                        "121, Union Street, Aberdeen",
+                        "123, Union Street, Aberdeen",
+                        "125, Union Street, Aberdeen",
+                        "127, Union Street, Aberdeen",
+                        "129, Union Street, Aberdeen",
+                        "131, Union Street, Aberdeen",
+                        "123A, Union Street, Aberdeen",
+                        "133-141, Union Street, Aberdeen",
+                        "139A, Union Street, Aberdeen",
+                        "139B, Union Street, Aberdeen",
+                        "139C, Union Street, Aberdeen",
+                        "139D, Union Street, Aberdeen",
+                        "139E, Union Street, Aberdeen",
+                        "139F, Union Street, Aberdeen",
+                        "143-149, Union Street, Aberdeen",
+                        "Flat 1 129, Union Street, Aberdeen",
+                        "Flat 2 129, Union Street, Aberdeen",
+                        "Flat 3 129, Union Street, Aberdeen",
+                        "Flat 4 129, Union Street, Aberdeen"
+                      ],
+                      "addresses_formatted": [
+                        {
+                          "residence_number": "107",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "117",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "121",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "123",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "125",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "127",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "129",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "131",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "123A",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "133-141",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139A",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139B",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139C",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139D",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139E",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "139F",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "143-149",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 1 129",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 2 129",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 3 129",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
+                          "country": "United Kingdom",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 4 129",
+                          "street": "Union Street",
+                          "city": "Aberdeen",
+                          "postcode": "AB11 6BH",
                           "country": "United Kingdom",
                           "country_code": "GB"
                         }
@@ -9434,7 +9747,7 @@
             }
           }
         },
-        "description": "Look up all addresses for a given UK postcode.\n\nUseful for guaranteeing that a user's address is recognised before onboarding.",
+        "description": "Look up all addresses for a given UK postcode.\n\nUseful for guaranteeing that a user's address is recognised before onboarding.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Smart Lookups"
         ],
@@ -9529,7 +9842,7 @@
             }
           }
         },
-        "description": "\nGet a list of all the currently published verification flows.\n\nUse an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).\n\nReferee-specific verification flows cannot be started independently, so are not returned by this endpoint.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "\nGet a list of all the currently published verification flows.\n\nUse an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).\n\nReferee-specific verification flows cannot be started independently, so are not returned by this endpoint.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Flows"
         ],
@@ -9598,7 +9911,7 @@
             }
           }
         },
-        "description": "\nGet a specific verification flow.\n\nUse an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "\nGet a specific verification flow.\n\nUse an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Flows"
         ],
@@ -9776,7 +10089,7 @@
             }
           }
         },
-        "description": "Get the access token, needed for all other API requests.\n\nYou will need your client ID and secret from the **API Integration** tab of the Vouchsafe dashboard.\n\nEach access token is valid for 24 hours, after which you will need to re-authenticate.\n\nOnce you have an access token, pass it in future requests as a [Bearer token](https://workos.com/blog/understanding-bearer-tokens) in an `Authorization` header.\n\nUse an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) to simplify handling tokens\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Get the access token, needed for all other API requests.\n\nYou will need your client ID and secret from the **API Integration** tab of the Vouchsafe dashboard.\n\nEach access token is valid for 24 hours, after which you will need to re-authenticate.\n\nOnce you have an access token, pass it in future requests as a [Bearer token](https://workos.com/blog/understanding-bearer-tokens) in an `Authorization` header.\n\nUse an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) to simplify handling tokens\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Authentication"
         ],
@@ -9934,7 +10247,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nList monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nList monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],
@@ -10046,7 +10359,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nGet full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nGet full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],
@@ -10121,7 +10434,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nToggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nToggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],

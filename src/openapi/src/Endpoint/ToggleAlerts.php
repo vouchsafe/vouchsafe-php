@@ -12,7 +12,7 @@ class ToggleAlerts extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implem
      *
      * Enable or disable AML/sanctions screening for an existing account.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The account ID (SmartLookup ID)
      * @param \Vouchsafe\OpenAPI\Model\ToggleAlertsInput $requestBody
      */

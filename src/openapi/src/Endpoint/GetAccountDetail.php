@@ -12,7 +12,7 @@ class GetAccountDetail extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint im
      *
      * Returns the account's personal details, all alerts, and matched entities.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The account ID (SmartLookup ID)
      */
     public function __construct(string $id)

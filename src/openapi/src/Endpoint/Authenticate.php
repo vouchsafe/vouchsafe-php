@@ -15,7 +15,7 @@ class Authenticate extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implem
      *
      * Use an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) to simplify handling tokens
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param \Vouchsafe\OpenAPI\Model\AuthenticateInput $requestBody
      */
     public function __construct(\Vouchsafe\OpenAPI\Model\AuthenticateInput $requestBody)

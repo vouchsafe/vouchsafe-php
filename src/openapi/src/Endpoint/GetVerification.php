@@ -37,7 +37,7 @@ class GetVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint imp
      * empty. Check `erased_at` to distinguish an erased verification from one that simply never
      * collected that data.
      *
-     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The verification ID returned when you requested it.
      */
     public function __construct(string $id)

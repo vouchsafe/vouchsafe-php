@@ -8,6 +8,8 @@ class SearchPostcode extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impl
     * Look up all addresses for a given UK postcode.
     *
     * Useful for guaranteeing that a user's address is recognised before onboarding.
+    *
+    * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
     * @param array{
     *    "postcode": string, //UK postcode to search for.
     Example: `SW1A 2AA`
