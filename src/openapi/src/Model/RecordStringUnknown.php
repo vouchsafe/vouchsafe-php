@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class RecordStringUnknown extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class RecordStringUnknown implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */

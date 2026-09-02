@@ -43,6 +43,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('address_source', $data) && $data['address_source'] === null) {
             $object->setAddressSource(null);
+            unset($data['address_source']);
         }
         if (\array_key_exists('address', $data) && $data['address'] !== null) {
             $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\StepAddressCreditReferenceAgencyApiExtractedDetailsAddress::class, 'json', $context));
@@ -50,6 +51,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('address', $data) && $data['address'] === null) {
             $object->setAddress(null);
+            unset($data['address']);
         }
         if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
             $object->setPostcode($data['postcode']);
@@ -57,6 +59,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
+            unset($data['postcode']);
         }
         if (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] !== null) {
             $object->setFirstLineOfAddress($data['first_line_of_address']);
@@ -64,6 +67,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] === null) {
             $object->setFirstLineOfAddress(null);
+            unset($data['first_line_of_address']);
         }
         if (\array_key_exists('last_name', $data) && $data['last_name'] !== null) {
             $object->setLastName($data['last_name']);
@@ -71,6 +75,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('last_name', $data) && $data['last_name'] === null) {
             $object->setLastName(null);
+            unset($data['last_name']);
         }
         if (\array_key_exists('first_name', $data) && $data['first_name'] !== null) {
             $object->setFirstName($data['first_name']);
@@ -78,6 +83,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
         }
         elseif (\array_key_exists('first_name', $data) && $data['first_name'] === null) {
             $object->setFirstName(null);
+            unset($data['first_name']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -89,15 +95,15 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsNormalizer implements D
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('addressSource')) {
+        if ($data->isInitialized('addressSource') && null !== $data->getAddressSource()) {
             $dataArray['address_source'] = $data->getAddressSource();
         }
-        $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         $dataArray['postcode'] = $data->getPostcode();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['last_name'] = $data->getLastName();
         $dataArray['first_name'] = $data->getFirstName();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

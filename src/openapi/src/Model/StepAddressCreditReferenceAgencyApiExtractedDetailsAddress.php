@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class StepAddressCreditReferenceAgencyApiExtractedDetailsAddress extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class StepAddressCreditReferenceAgencyApiExtractedDetailsAddress implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -211,5 +214,9 @@ class StepAddressCreditReferenceAgencyApiExtractedDetailsAddress extends \ArrayO
         $this->initialized['region'] = true;
         $this->region = $region;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['residenceNumber' => ['residence_number', 'getResidenceNumber', 'setResidenceNumber'], 'buildingName' => ['building_name', 'getBuildingName', 'setBuildingName'], 'street' => ['street', 'getStreet', 'setStreet'], 'city' => ['city', 'getCity', 'setCity'], 'postcode' => ['postcode', 'getPostcode', 'setPostcode'], 'country' => ['country', 'getCountry', 'setCountry'], 'countryCode' => ['country_code', 'getCountryCode', 'setCountryCode'], 'region' => ['region', 'getRegion', 'setRegion']];
     }
 }

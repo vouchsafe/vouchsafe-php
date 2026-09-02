@@ -72,7 +72,7 @@ class AmlMatchApiNormalizer implements DenormalizerInterface, NormalizerInterfac
         if ($data->isInitialized('lastSeen') && null !== $data->getLastSeen()) {
             $dataArray['last_seen'] = $data->getLastSeen();
         }
-        $dataArray['properties'] = $this->normalizer->normalize($data->getProperties(), 'json', $context);
+        $dataArray['properties'] = $data->getProperties() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getProperties(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -26,7 +26,7 @@ class GetAccountDetail extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint im
     }
     public function getUri(): string
     {
-        return str_replace(['{id}'], [$this->id], '/alerts/accounts/{id}');
+        return str_replace(['{id}'], [rawurlencode($this->id)], '/alerts/accounts/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
@@ -49,16 +49,16 @@ class GetAccountDetail extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint im
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if (is_null($contentType) === false && (200 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             return $serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\AlertAccountDetailResponse', 'json');
         }
-        if (is_null($contentType) === false && (401 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (401 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetAccountDetailUnauthorizedException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (403 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (403 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetAccountDetailForbiddenException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (404 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (404 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetAccountDetailNotFoundException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }

@@ -37,7 +37,7 @@ class GetArtefact extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impleme
     }
     public function getUri(): string
     {
-        return str_replace(['{artefact_key}'], [$this->artefact_key], '/artefacts/{artefact_key}');
+        return str_replace(['{artefact_key}'], [rawurlencode($this->artefact_key)], '/artefacts/{artefact_key}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
@@ -61,19 +61,19 @@ class GetArtefact extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint impleme
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if (is_null($contentType) === false && (200 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             return $serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\GetArtefactsResponse', 'json');
         }
-        if (is_null($contentType) === false && (400 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (400 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetArtefactBadRequestException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (401 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (401 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetArtefactUnauthorizedException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (404 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (404 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetArtefactNotFoundException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (409 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (409 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetArtefactConflictException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }

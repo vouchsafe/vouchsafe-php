@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class AmlMatchApiProperties extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class AmlMatchApiProperties implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -15,13 +18,13 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Country of birth of the entity.
      *
-     * @var mixed
+     * @var string|list<string>
      */
     protected $birthCountry;
     /**
      * Place of birth of the entity.
      *
-     * @var mixed
+     * @var string|list<string>
      */
     protected $birthPlace;
     /**
@@ -33,25 +36,25 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Known positions or roles held by the entity.
      *
-     * @var mixed
+     * @var string|list<string>
      */
     protected $position;
     /**
      * Countries associated with the entity.
      *
-     * @var mixed
+     * @var string|list<string>
      */
     protected $country;
     /**
      * Freeform notes associated with the entity.
      *
-     * @var mixed
+     * @var string|list<string>
      */
     protected $notes;
     /**
      * Country of birth of the entity.
      *
-     * @return mixed
+     * @return string|list<string>
      */
     public function getBirthCountry()
     {
@@ -60,7 +63,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Country of birth of the entity.
      *
-     * @param mixed $birthCountry
+     * @param string|list<string> $birthCountry
      *
      * @return self
      */
@@ -73,7 +76,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Place of birth of the entity.
      *
-     * @return mixed
+     * @return string|list<string>
      */
     public function getBirthPlace()
     {
@@ -82,7 +85,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Place of birth of the entity.
      *
-     * @param mixed $birthPlace
+     * @param string|list<string> $birthPlace
      *
      * @return self
      */
@@ -117,7 +120,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Known positions or roles held by the entity.
      *
-     * @return mixed
+     * @return string|list<string>
      */
     public function getPosition()
     {
@@ -126,7 +129,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Known positions or roles held by the entity.
      *
-     * @param mixed $position
+     * @param string|list<string> $position
      *
      * @return self
      */
@@ -139,7 +142,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Countries associated with the entity.
      *
-     * @return mixed
+     * @return string|list<string>
      */
     public function getCountry()
     {
@@ -148,7 +151,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Countries associated with the entity.
      *
-     * @param mixed $country
+     * @param string|list<string> $country
      *
      * @return self
      */
@@ -161,7 +164,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Freeform notes associated with the entity.
      *
-     * @return mixed
+     * @return string|list<string>
      */
     public function getNotes()
     {
@@ -170,7 +173,7 @@ class AmlMatchApiProperties extends \ArrayObject
     /**
      * Freeform notes associated with the entity.
      *
-     * @param mixed $notes
+     * @param string|list<string> $notes
      *
      * @return self
      */
@@ -179,5 +182,9 @@ class AmlMatchApiProperties extends \ArrayObject
         $this->initialized['notes'] = true;
         $this->notes = $notes;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['birthCountry' => ['birth_country', 'getBirthCountry', 'setBirthCountry'], 'birthPlace' => ['birth_place', 'getBirthPlace', 'setBirthPlace'], 'birthDate' => ['birth_date', 'getBirthDate', 'setBirthDate'], 'position' => ['position', 'getPosition', 'setPosition'], 'country' => ['country', 'getCountry', 'setCountry'], 'notes' => ['notes', 'getNotes', 'setNotes']];
     }
 }

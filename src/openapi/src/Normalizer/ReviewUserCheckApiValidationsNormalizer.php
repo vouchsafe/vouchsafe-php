@@ -60,15 +60,15 @@ class ReviewUserCheckApiValidationsNormalizer implements DenormalizerInterface, 
     {
         $dataArray = [];
         if ($data->isInitialized('refereeConfirmedPhoto') && null !== $data->getRefereeConfirmedPhoto()) {
-            $dataArray['referee_confirmed_photo'] = $this->normalizer->normalize($data->getRefereeConfirmedPhoto(), 'json', $context);
+            $dataArray['referee_confirmed_photo'] = $data->getRefereeConfirmedPhoto() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeConfirmedPhoto(), 'json', $context));
         }
         if ($data->isInitialized('refereeConfirmedDateOfBirth') && null !== $data->getRefereeConfirmedDateOfBirth()) {
-            $dataArray['referee_confirmed_date_of_birth'] = $this->normalizer->normalize($data->getRefereeConfirmedDateOfBirth(), 'json', $context);
+            $dataArray['referee_confirmed_date_of_birth'] = $data->getRefereeConfirmedDateOfBirth() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeConfirmedDateOfBirth(), 'json', $context));
         }
         if ($data->isInitialized('refereeConfirmedName') && null !== $data->getRefereeConfirmedName()) {
-            $dataArray['referee_confirmed_name'] = $this->normalizer->normalize($data->getRefereeConfirmedName(), 'json', $context);
+            $dataArray['referee_confirmed_name'] = $data->getRefereeConfirmedName() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeConfirmedName(), 'json', $context));
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -25,7 +25,7 @@ class GetFlow extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implements 
     }
     public function getUri(): string
     {
-        return str_replace(['{id}'], [$this->id], '/flows/{id}');
+        return str_replace(['{id}'], [rawurlencode($this->id)], '/flows/{id}');
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
@@ -48,16 +48,21 @@ class GetFlow extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implements 
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if (is_null($contentType) === false && (200 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
-            return json_decode($body);
+        if (is_null($contentType) === false && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
+            try {
+                $decodedBody = json_decode($body, false, 512, JSON_THROW_ON_ERROR);
+                return $decodedBody;
+            } catch (\JsonException $jsonException) {
+                throw new \Jane\Component\JsonSchemaRuntime\Exception\MalformedJsonException('Malformed JSON response body.', 0, $jsonException);
+            }
         }
-        if (is_null($contentType) === false && (400 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (400 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetFlowBadRequestException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (401 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (401 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetFlowUnauthorizedException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (404 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (404 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\GetFlowNotFoundException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }

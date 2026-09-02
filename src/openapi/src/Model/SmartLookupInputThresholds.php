@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class SmartLookupInputThresholds extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class SmartLookupInputThresholds implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -67,5 +70,9 @@ class SmartLookupInputThresholds extends \ArrayObject
         $this->initialized['onlineFootprint'] = true;
         $this->onlineFootprint = $onlineFootprint;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['aml' => ['aml', 'getAml', 'setAml'], 'onlineFootprint' => ['onlineFootprint', 'getOnlineFootprint', 'setOnlineFootprint']];
     }
 }

@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -179,5 +182,9 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails extends \ArrayObject
         $this->initialized['firstName'] = true;
         $this->firstName = $firstName;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['addressSource' => ['address_source', 'getAddressSource', 'setAddressSource'], 'address' => ['address', 'getAddress', 'setAddress'], 'postcode' => ['postcode', 'getPostcode', 'setPostcode'], 'firstLineOfAddress' => ['first_line_of_address', 'getFirstLineOfAddress', 'setFirstLineOfAddress'], 'lastName' => ['last_name', 'getLastName', 'setLastName'], 'firstName' => ['first_name', 'getFirstName', 'setFirstName']];
     }
 }

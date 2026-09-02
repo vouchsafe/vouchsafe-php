@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class VerifyEmailCheckApiValidations extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class VerifyEmailCheckApiValidations implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -42,5 +45,9 @@ class VerifyEmailCheckApiValidations extends \ArrayObject
         $this->initialized['emailVerified'] = true;
         $this->emailVerified = $emailVerified;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['emailVerified' => ['email_verified', 'getEmailVerified', 'setEmailVerified']];
     }
 }

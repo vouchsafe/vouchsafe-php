@@ -60,18 +60,18 @@ class SmartLookupMetadataApiNormalizer implements DenormalizerInterface, Normali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['thresholds'] = $this->normalizer->normalize($data->getThresholds(), 'json', $context);
+        $dataArray['thresholds'] = $data->getThresholds() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getThresholds(), 'json', $context));
         if ($data->isInitialized('billable') && null !== $data->getBillable()) {
             $dataArray['billable'] = $data->getBillable();
         }
         if ($data->isInitialized('creditBureauVerification') && null !== $data->getCreditBureauVerification()) {
-            $dataArray['creditBureauVerification'] = $this->normalizer->normalize($data->getCreditBureauVerification(), 'json', $context);
+            $dataArray['creditBureauVerification'] = $data->getCreditBureauVerification() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCreditBureauVerification(), 'json', $context));
         }
         if ($data->isInitialized('onlineFootprintVerification') && null !== $data->getOnlineFootprintVerification()) {
-            $dataArray['onlineFootprintVerification'] = $this->normalizer->normalize($data->getOnlineFootprintVerification(), 'json', $context);
+            $dataArray['onlineFootprintVerification'] = $data->getOnlineFootprintVerification() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getOnlineFootprintVerification(), 'json', $context));
         }
         if ($data->isInitialized('amlVerification') && null !== $data->getAmlVerification()) {
-            $dataArray['amlVerification'] = $this->normalizer->normalize($data->getAmlVerification(), 'json', $context);
+            $dataArray['amlVerification'] = $data->getAmlVerification() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAmlVerification(), 'json', $context));
         }
         return $dataArray;
     }

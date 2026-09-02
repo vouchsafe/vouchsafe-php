@@ -43,6 +43,7 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatchNormalizer implements 
         }
         elseif (\array_key_exists('risk', $data) && $data['risk'] === null) {
             $object->setRisk(null);
+            unset($data['risk']);
         }
         if (\array_key_exists('messages', $data)) {
             $values = [];
@@ -86,7 +87,7 @@ class RadarCheckApiDetailsValidationsNoKnownFraudsterMatchNormalizer implements 
         }
         $dataArray['flags'] = $values_1;
         $dataArray['status'] = $data->getStatus();
-        foreach ($data as $key => $value_2) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_2;
             }

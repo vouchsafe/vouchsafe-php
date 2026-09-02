@@ -41,7 +41,13 @@ class OnlineFootprintVerificationReportNormalizer implements DenormalizerInterfa
             $object->setState($data['state']);
         }
         if (\array_key_exists('checks', $data)) {
-            $object->setChecks($data['checks']);
+            $value = $data['checks'];
+            if (is_array($data['checks']) and \array_key_exists('EMAIL_SCORE', $data['checks'])) {
+                $value = $this->denormalizer->denormalize($data['checks'], \Vouchsafe\OpenAPI\Model\OnlineFootprintChecksAnyOf::class, 'json', $context);
+            } elseif (is_array($data['checks']) and \array_key_exists('PHONE_SCORE', $data['checks'])) {
+                $value = $this->denormalizer->denormalize($data['checks'], \Vouchsafe\OpenAPI\Model\OnlineFootprintChecksAnyOf::class, 'json', $context);
+            }
+            $object->setChecks($value);
         }
         return $object;
     }
@@ -49,7 +55,13 @@ class OnlineFootprintVerificationReportNormalizer implements DenormalizerInterfa
     {
         $dataArray = [];
         $dataArray['state'] = $data->getState();
-        $dataArray['checks'] = $data->getChecks();
+        $value = $data->getChecks();
+        if (is_object($data->getChecks())) {
+            $value = $data->getChecks() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getChecks(), 'json', $context));
+        } elseif (is_object($data->getChecks())) {
+            $value = $data->getChecks() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getChecks(), 'json', $context));
+        }
+        $dataArray['checks'] = $value;
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

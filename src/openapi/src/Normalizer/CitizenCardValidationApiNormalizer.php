@@ -72,29 +72,29 @@ class CitizenCardValidationApiNormalizer implements DenormalizerInterface, Norma
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
-        $dataArray['document_borders_detected'] = $this->normalizer->normalize($data->getDocumentBordersDetected(), 'json', $context);
+        $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
+        $dataArray['document_borders_detected'] = $data->getDocumentBordersDetected() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentBordersDetected(), 'json', $context));
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $this->normalizer->normalize($data->getFaceMatch(), 'json', $context);
+            $dataArray['face_match'] = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
         }
         if ($data->isInitialized('datesOfBirthConsistent') && null !== $data->getDatesOfBirthConsistent()) {
-            $dataArray['dates_of_birth_consistent'] = $this->normalizer->normalize($data->getDatesOfBirthConsistent(), 'json', $context);
+            $dataArray['dates_of_birth_consistent'] = $data->getDatesOfBirthConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDatesOfBirthConsistent(), 'json', $context));
         }
         if ($data->isInitialized('namesConsistent') && null !== $data->getNamesConsistent()) {
-            $dataArray['names_consistent'] = $this->normalizer->normalize($data->getNamesConsistent(), 'json', $context);
+            $dataArray['names_consistent'] = $data->getNamesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNamesConsistent(), 'json', $context));
         }
         if ($data->isInitialized('refereeOver18') && null !== $data->getRefereeOver18()) {
-            $dataArray['referee_over_18'] = $this->normalizer->normalize($data->getRefereeOver18(), 'json', $context);
+            $dataArray['referee_over_18'] = $data->getRefereeOver18() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeOver18(), 'json', $context));
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
-            $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+            $dataArray['referee_biometrics_dissimilar'] = $data->getRefereeBiometricsDissimilar() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context));
         }
         if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
-            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
+            $dataArray['tampering_signals_check'] = $data->getTamperingSignalsCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context));
         }
-        $dataArray['matches_issuer_database'] = $this->normalizer->normalize($data->getMatchesIssuerDatabase(), 'json', $context);
+        $dataArray['matches_issuer_database'] = $data->getMatchesIssuerDatabase() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getMatchesIssuerDatabase(), 'json', $context));
         if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
-            $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $dataArray['has_not_expired'] = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         }
         return $dataArray;
     }

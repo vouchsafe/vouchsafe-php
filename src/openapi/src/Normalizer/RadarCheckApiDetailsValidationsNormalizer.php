@@ -60,11 +60,11 @@ class RadarCheckApiDetailsValidationsNormalizer implements DenormalizerInterface
     {
         $dataArray = [];
         if ($data->isInitialized('notDisposableEmail') && null !== $data->getNotDisposableEmail()) {
-            $dataArray['not_disposable_email'] = $this->normalizer->normalize($data->getNotDisposableEmail(), 'json', $context);
+            $dataArray['not_disposable_email'] = $data->getNotDisposableEmail() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotDisposableEmail(), 'json', $context));
         }
-        $dataArray['no_known_fraudster_match'] = $this->normalizer->normalize($data->getNoKnownFraudsterMatch(), 'json', $context);
-        $dataArray['normal_velocity_detected'] = $this->normalizer->normalize($data->getNormalVelocityDetected(), 'json', $context);
-        foreach ($data as $key => $value) {
+        $dataArray['no_known_fraudster_match'] = $data->getNoKnownFraudsterMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNoKnownFraudsterMatch(), 'json', $context));
+        $dataArray['normal_velocity_detected'] = $data->getNormalVelocityDetected() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNormalVelocityDetected(), 'json', $context));
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

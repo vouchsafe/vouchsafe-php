@@ -66,7 +66,7 @@ class AlertResponseNormalizer implements DenormalizerInterface, NormalizerInterf
         $dataArray['acknowledged_at'] = $data->getAcknowledgedAt();
         $values = [];
         foreach ($data->getMatches() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['matches'] = $values;
         return $dataArray;

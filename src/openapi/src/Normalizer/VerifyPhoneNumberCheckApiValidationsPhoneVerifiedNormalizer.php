@@ -57,7 +57,7 @@ class VerifyPhoneNumberCheckApiValidationsPhoneVerifiedNormalizer implements Den
         $dataArray = [];
         $dataArray['verified_at'] = $data->getVerifiedAt();
         $dataArray['status'] = $data->getStatus();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

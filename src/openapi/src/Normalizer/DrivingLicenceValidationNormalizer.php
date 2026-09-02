@@ -74,28 +74,40 @@ class DrivingLicenceValidationNormalizer implements DenormalizerInterface, Norma
             $object->setNotScreenshot($value_3);
         }
         if (\array_key_exists('document_dimensions_matched', $data)) {
-            $object->setDocumentDimensionsMatched($data['document_dimensions_matched']);
+            $value_4 = $data['document_dimensions_matched'];
+            if (is_array($data['document_dimensions_matched']) and \array_key_exists('score', $data['document_dimensions_matched']) and (\array_key_exists('status', $data['document_dimensions_matched']) and $data['document_dimensions_matched']['status'] == 'pass')) {
+                $value_4 = $this->denormalizer->denormalize($data['document_dimensions_matched'], \Vouchsafe\OpenAPI\Model\ScoreCheckDocumentDimensionsErrorCodeAnyOf::class, 'json', $context);
+            } elseif (is_array($data['document_dimensions_matched']) and \array_key_exists('failed_reasons', $data['document_dimensions_matched']) and \array_key_exists('score', $data['document_dimensions_matched']) and (\array_key_exists('status', $data['document_dimensions_matched']) and $data['document_dimensions_matched']['status'] == 'fail')) {
+                $value_4 = $this->denormalizer->denormalize($data['document_dimensions_matched'], \Vouchsafe\OpenAPI\Model\ScoreCheckDocumentDimensionsErrorCodeAnyOf::class, 'json', $context);
+            }
+            $object->setDocumentDimensionsMatched($value_4);
         }
         if (\array_key_exists('document_features_present', $data)) {
-            $value_4 = $data['document_features_present'];
+            $value_5 = $data['document_features_present'];
             if (is_array($data['document_features_present']) and (\array_key_exists('status', $data['document_features_present']) and $data['document_features_present']['status'] == 'pass')) {
-                $value_4 = $this->denormalizer->denormalize($data['document_features_present'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_5 = $this->denormalizer->denormalize($data['document_features_present'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['document_features_present']) and (\array_key_exists('status', $data['document_features_present']) and $data['document_features_present']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['document_features_present'])) {
-                $value_4 = $this->denormalizer->denormalize($data['document_features_present'], \Vouchsafe\OpenAPI\Model\FailDrivingLicenceFailedReason::class, 'json', $context);
+                $value_5 = $this->denormalizer->denormalize($data['document_features_present'], \Vouchsafe\OpenAPI\Model\FailDrivingLicenceFailedReason::class, 'json', $context);
             }
-            $object->setDocumentFeaturesPresent($value_4);
+            $object->setDocumentFeaturesPresent($value_5);
         }
         if (\array_key_exists('document_contains_face', $data)) {
-            $value_5 = $data['document_contains_face'];
+            $value_6 = $data['document_contains_face'];
             if (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'pass')) {
-                $value_5 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['document_contains_face'])) {
-                $value_5 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class, 'json', $context);
+                $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class, 'json', $context);
             }
-            $object->setDocumentContainsFace($value_5);
+            $object->setDocumentContainsFace($value_6);
         }
         if (\array_key_exists('face_match', $data)) {
-            $object->setFaceMatch($data['face_match']);
+            $value_7 = $data['face_match'];
+            if (is_array($data['face_match']) and \array_key_exists('score', $data['face_match']) and (\array_key_exists('status', $data['face_match']) and $data['face_match']['status'] == 'pass')) {
+                $value_7 = $this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\ScoreCheckFaceMatchErrorCodeAnyOf::class, 'json', $context);
+            } elseif (is_array($data['face_match']) and \array_key_exists('failed_reasons', $data['face_match']) and \array_key_exists('score', $data['face_match']) and (\array_key_exists('status', $data['face_match']) and $data['face_match']['status'] == 'fail')) {
+                $value_7 = $this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\ScoreCheckFaceMatchErrorCodeAnyOf::class, 'json', $context);
+            }
+            $object->setFaceMatch($value_7);
         }
         return $object;
     }
@@ -104,49 +116,61 @@ class DrivingLicenceValidationNormalizer implements DenormalizerInterface, Norma
         $dataArray = [];
         $value = $data->getRequiredFieldsExtracted();
         if (is_object($data->getRequiredFieldsExtracted())) {
-            $value = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $value = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         } elseif (is_object($data->getRequiredFieldsExtracted())) {
-            $value = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $value = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         }
         $dataArray['required_fields_extracted'] = $value;
         $value_1 = $data->getHasNotExpired();
         if (is_object($data->getHasNotExpired())) {
-            $value_1 = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $value_1 = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         } elseif (is_object($data->getHasNotExpired())) {
-            $value_1 = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $value_1 = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         }
         $dataArray['has_not_expired'] = $value_1;
         $value_2 = $data->getNotSpecimen();
         if (is_object($data->getNotSpecimen())) {
-            $value_2 = $this->normalizer->normalize($data->getNotSpecimen(), 'json', $context);
+            $value_2 = $data->getNotSpecimen() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSpecimen(), 'json', $context));
         } elseif (is_object($data->getNotSpecimen())) {
-            $value_2 = $this->normalizer->normalize($data->getNotSpecimen(), 'json', $context);
+            $value_2 = $data->getNotSpecimen() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSpecimen(), 'json', $context));
         }
         $dataArray['not_specimen'] = $value_2;
         $value_3 = $data->getNotScreenshot();
         if (is_object($data->getNotScreenshot())) {
-            $value_3 = $this->normalizer->normalize($data->getNotScreenshot(), 'json', $context);
+            $value_3 = $data->getNotScreenshot() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotScreenshot(), 'json', $context));
         } elseif (is_object($data->getNotScreenshot())) {
-            $value_3 = $this->normalizer->normalize($data->getNotScreenshot(), 'json', $context);
+            $value_3 = $data->getNotScreenshot() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotScreenshot(), 'json', $context));
         }
         $dataArray['not_screenshot'] = $value_3;
-        $dataArray['document_dimensions_matched'] = $data->getDocumentDimensionsMatched();
-        $value_4 = $data->getDocumentFeaturesPresent();
+        $value_4 = $data->getDocumentDimensionsMatched();
+        if (is_object($data->getDocumentDimensionsMatched())) {
+            $value_4 = $data->getDocumentDimensionsMatched() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentDimensionsMatched(), 'json', $context));
+        } elseif (is_object($data->getDocumentDimensionsMatched())) {
+            $value_4 = $data->getDocumentDimensionsMatched() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentDimensionsMatched(), 'json', $context));
+        }
+        $dataArray['document_dimensions_matched'] = $value_4;
+        $value_5 = $data->getDocumentFeaturesPresent();
         if (is_object($data->getDocumentFeaturesPresent())) {
-            $value_4 = $this->normalizer->normalize($data->getDocumentFeaturesPresent(), 'json', $context);
+            $value_5 = $data->getDocumentFeaturesPresent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentFeaturesPresent(), 'json', $context));
         } elseif (is_object($data->getDocumentFeaturesPresent())) {
-            $value_4 = $this->normalizer->normalize($data->getDocumentFeaturesPresent(), 'json', $context);
+            $value_5 = $data->getDocumentFeaturesPresent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentFeaturesPresent(), 'json', $context));
         }
-        $dataArray['document_features_present'] = $value_4;
-        $value_5 = $data->getDocumentContainsFace();
+        $dataArray['document_features_present'] = $value_5;
+        $value_6 = $data->getDocumentContainsFace();
         if (is_object($data->getDocumentContainsFace())) {
-            $value_5 = $this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context);
+            $value_6 = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
         } elseif (is_object($data->getDocumentContainsFace())) {
-            $value_5 = $this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context);
+            $value_6 = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
         }
-        $dataArray['document_contains_face'] = $value_5;
+        $dataArray['document_contains_face'] = $value_6;
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $data->getFaceMatch();
+            $value_7 = $data->getFaceMatch();
+            if (is_object($data->getFaceMatch())) {
+                $value_7 = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
+            } elseif (is_object($data->getFaceMatch())) {
+                $value_7 = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
+            }
+            $dataArray['face_match'] = $value_7;
         }
         return $dataArray;
     }

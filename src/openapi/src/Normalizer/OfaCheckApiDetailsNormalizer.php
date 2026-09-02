@@ -53,6 +53,7 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         }
         elseif (\array_key_exists('score', $data) && $data['score'] === null) {
             $object->setScore(null);
+            unset($data['score']);
         }
         if (\array_key_exists('threshold', $data) && $data['threshold'] !== null) {
             $object->setThreshold($data['threshold']);
@@ -60,6 +61,7 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         }
         elseif (\array_key_exists('threshold', $data) && $data['threshold'] === null) {
             $object->setThreshold(null);
+            unset($data['threshold']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -71,10 +73,10 @@ class OfaCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['signals'] = $this->normalizer->normalize($data->getSignals(), 'json', $context);
+        $dataArray['signals'] = $data->getSignals() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getSignals(), 'json', $context));
         $dataArray['score'] = $data->getScore();
         $dataArray['threshold'] = $data->getThreshold();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -49,7 +49,7 @@ class CreditBureauVerificationReportNormalizer implements DenormalizerInterface,
     {
         $dataArray = [];
         $dataArray['state'] = $data->getState();
-        $dataArray['checks'] = $this->normalizer->normalize($data->getChecks(), 'json', $context);
+        $dataArray['checks'] = $data->getChecks() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getChecks(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -17,7 +17,7 @@ class PassportValidation
      */
     protected $requiredFieldsExtracted;
     /**
-     * @var mixed
+     * @var CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOf
      */
     protected $compoundIdentifiersMatch;
     /**
@@ -33,7 +33,7 @@ class PassportValidation
      */
     protected $notScreenshot;
     /**
-     * @var mixed
+     * @var ScoreCheckDocumentDimensionsErrorCodeAnyOf
      */
     protected $documentDimensionsMatched;
     /**
@@ -41,7 +41,7 @@ class PassportValidation
      */
     protected $documentContainsFace;
     /**
-     * @var mixed
+     * @var ScoreCheckFaceMatchErrorCodeAnyOf
      */
     protected $faceMatch;
     /**
@@ -67,14 +67,14 @@ class PassportValidation
         return $this;
     }
     /**
-     * @return mixed
+     * @return CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOf
      */
     public function getCompoundIdentifiersMatch()
     {
         return $this->compoundIdentifiersMatch;
     }
     /**
-     * @param mixed $compoundIdentifiersMatch
+     * @param CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOf $compoundIdentifiersMatch
      *
      * @return self
      */
@@ -139,14 +139,14 @@ class PassportValidation
         return $this;
     }
     /**
-     * @return mixed
+     * @return ScoreCheckDocumentDimensionsErrorCodeAnyOf
      */
     public function getDocumentDimensionsMatched()
     {
         return $this->documentDimensionsMatched;
     }
     /**
-     * @param mixed $documentDimensionsMatched
+     * @param ScoreCheckDocumentDimensionsErrorCodeAnyOf $documentDimensionsMatched
      *
      * @return self
      */
@@ -175,14 +175,14 @@ class PassportValidation
         return $this;
     }
     /**
-     * @return mixed
+     * @return ScoreCheckFaceMatchErrorCodeAnyOf
      */
     public function getFaceMatch()
     {
         return $this->faceMatch;
     }
     /**
-     * @param mixed $faceMatch
+     * @param ScoreCheckFaceMatchErrorCodeAnyOf $faceMatch
      *
      * @return self
      */

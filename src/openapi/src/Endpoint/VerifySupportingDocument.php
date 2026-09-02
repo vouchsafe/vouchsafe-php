@@ -67,13 +67,26 @@ class VerifySupportingDocument extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEnd
         if ($this->body instanceof \Vouchsafe\OpenAPI\Model\VerifySupportingDocumentsPostBody) {
             $bodyBuilder = new \Http\Message\MultipartStream\MultipartStreamBuilder($streamFactory);
             $formParameters = $serializer->normalize($this->body, 'json');
+            $partOptions = ['document' => ['filename' => 'document']];
             foreach ($formParameters as $key => $value) {
                 $value = is_int($value) ? (string) $value : $value;
                 $value = is_bool($value) ? $value ? 'true' : 'false' : $value;
-                if (is_array($value)) {
-                    $value = $serializer->serialize($value, 'json');
+                if (is_array($value) || $value instanceof \stdClass) {
+                    $value = $serializer->serialize((array) $value, 'json');
                 }
-                $bodyBuilder->addResource($key, $value);
+                $resourceOptions = $partOptions[$key] ?? [];
+                if (isset($resourceOptions['filename'])) {
+                    $uri = null;
+                    if ($value instanceof \Psr\Http\Message\StreamInterface) {
+                        $uri = $value->getMetadata('uri');
+                    } elseif (is_resource($value)) {
+                        $uri = stream_get_meta_data($value)['uri'] ?? null;
+                    }
+                    if (is_string($uri) && is_file($uri)) {
+                        unset($resourceOptions['filename']);
+                    }
+                }
+                $bodyBuilder->addResource($key, $value, $resourceOptions);
             }
             return [['Content-Type' => ['multipart/form-data; boundary="' . ($bodyBuilder->getBoundary() . '"')]], $bodyBuilder->build()];
         }
@@ -98,22 +111,22 @@ class VerifySupportingDocument extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEnd
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if (is_null($contentType) === false && (200 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             return $serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\SupportingDocumentVerificationResponse', 'json');
         }
-        if (is_null($contentType) === false && (400 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (400 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentBadRequestException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (401 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (401 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentUnauthorizedException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (403 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (403 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentForbiddenException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (422 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (422 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentUnprocessableEntityException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (503 === $status && mb_strpos(strtolower($contentType), 'application/json') !== false)) {
+        if (is_null($contentType) === false && (503 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Vouchsafe\OpenAPI\Exception\VerifySupportingDocumentServiceUnavailableException($serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\ApiErrorResponse', 'json'), $response);
         }
     }

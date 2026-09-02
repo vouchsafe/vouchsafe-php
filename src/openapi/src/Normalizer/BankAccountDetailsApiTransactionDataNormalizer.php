@@ -69,7 +69,7 @@ class BankAccountDetailsApiTransactionDataNormalizer implements DenormalizerInte
         if ($data->isInitialized('earliestDate') && null !== $data->getEarliestDate()) {
             $dataArray['earliest_date'] = $data->getEarliestDate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

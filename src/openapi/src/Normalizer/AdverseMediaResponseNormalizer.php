@@ -69,12 +69,12 @@ class AdverseMediaResponseNormalizer implements DenormalizerInterface, Normalize
         $dataArray['threshold'] = $data->getThreshold();
         $values = [];
         foreach ($data->getStrongMatches() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['strong_matches'] = $values;
         $values_1 = [];
         foreach ($data->getAllResults() as $value_1) {
-            $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+            $values_1[] = $value_1 === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value_1, 'json', $context));
         }
         $dataArray['all_results'] = $values_1;
         return $dataArray;

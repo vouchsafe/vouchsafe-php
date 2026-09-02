@@ -77,11 +77,11 @@ class StepAddressSupportingDocumentApiNormalizer implements DenormalizerInterfac
         $dataArray['evidence_type'] = $data->getEvidenceType();
         $values = [];
         foreach ($data->getArtefacts() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['artefacts'] = $values;
-        $dataArray['extracted_details'] = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+        $dataArray['extracted_details'] = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
+        $dataArray['validations'] = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

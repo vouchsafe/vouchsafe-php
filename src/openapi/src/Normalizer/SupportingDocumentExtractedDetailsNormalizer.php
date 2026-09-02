@@ -103,7 +103,7 @@ class SupportingDocumentExtractedDetailsNormalizer implements DenormalizerInterf
         $dataArray['postcode'] = $data->getPostcode();
         $values = [];
         foreach ($data->getAddressesFormatted() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['addresses_formatted'] = $values;
         $dataArray['document_date'] = $data->getDocumentDate();

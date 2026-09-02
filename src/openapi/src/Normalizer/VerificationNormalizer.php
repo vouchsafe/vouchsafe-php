@@ -102,19 +102,19 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['id'] = $data->getId();
         $dataArray['status'] = $data->getStatus();
         $dataArray['created_at'] = $data->getCreatedAt();
-        if ($data->isInitialized('erasedAt')) {
+        if ($data->isInitialized('erasedAt') && null !== $data->getErasedAt()) {
             $dataArray['erased_at'] = $data->getErasedAt();
         }
-        if ($data->isInitialized('erasedBy')) {
+        if ($data->isInitialized('erasedBy') && null !== $data->getErasedBy()) {
             $dataArray['erased_by'] = $data->getErasedBy();
         }
         $dataArray['expires_at'] = $data->getExpiresAt();
         $dataArray['email'] = $data->getEmail();
         $dataArray['redirect_url'] = $data->getRedirectUrl();
-        if ($data->isInitialized('flowId')) {
+        if ($data->isInitialized('flowId') && null !== $data->getFlowId()) {
             $dataArray['flow_id'] = $data->getFlowId();
         }
-        if ($data->isInitialized('workflowId')) {
+        if ($data->isInitialized('workflowId') && null !== $data->getWorkflowId()) {
             $dataArray['workflow_id'] = $data->getWorkflowId();
         }
         $dataArray['external_id'] = $data->getExternalId();

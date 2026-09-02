@@ -101,7 +101,7 @@ class AlertAccountDetailResponseNormalizer implements DenormalizerInterface, Nor
         $dataArray['created_at'] = $data->getCreatedAt();
         $values = [];
         foreach ($data->getAlerts() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['alerts'] = $values;
         return $dataArray;

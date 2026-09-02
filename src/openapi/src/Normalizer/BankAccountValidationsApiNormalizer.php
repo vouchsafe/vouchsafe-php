@@ -57,14 +57,14 @@ class BankAccountValidationsApiNormalizer implements DenormalizerInterface, Norm
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
-        $dataArray['has_recent_transactions'] = $this->normalizer->normalize($data->getHasRecentTransactions(), 'json', $context);
-        $dataArray['non_zero_balance'] = $this->normalizer->normalize($data->getNonZeroBalance(), 'json', $context);
+        $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
+        $dataArray['has_recent_transactions'] = $data->getHasRecentTransactions() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasRecentTransactions(), 'json', $context));
+        $dataArray['non_zero_balance'] = $data->getNonZeroBalance() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNonZeroBalance(), 'json', $context));
         if ($data->isInitialized('namesConsistent') && null !== $data->getNamesConsistent()) {
-            $dataArray['names_consistent'] = $this->normalizer->normalize($data->getNamesConsistent(), 'json', $context);
+            $dataArray['names_consistent'] = $data->getNamesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNamesConsistent(), 'json', $context));
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
-            $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+            $dataArray['referee_biometrics_dissimilar'] = $data->getRefereeBiometricsDissimilar() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context));
         }
         return $dataArray;
     }

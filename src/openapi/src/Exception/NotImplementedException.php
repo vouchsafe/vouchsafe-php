@@ -2,7 +2,7 @@
 
 namespace Vouchsafe\OpenAPI\Exception;
 
-class NotImplementedException extends \RuntimeException implements ServerException
+abstract class NotImplementedException extends \RuntimeException implements ServerException, WithResponseInterface
 {
     public function __construct(string $message)
     {

@@ -43,6 +43,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('email', $data) && $data['email'] === null) {
             $object->setEmail(null);
+            unset($data['email']);
         }
         if (\array_key_exists('phone_number', $data) && $data['phone_number'] !== null) {
             $object->setPhoneNumber($data['phone_number']);
@@ -50,6 +51,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('phone_number', $data) && $data['phone_number'] === null) {
             $object->setPhoneNumber(null);
+            unset($data['phone_number']);
         }
         if (\array_key_exists('first_name', $data) && $data['first_name'] !== null) {
             $object->setFirstName($data['first_name']);
@@ -57,6 +59,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('first_name', $data) && $data['first_name'] === null) {
             $object->setFirstName(null);
+            unset($data['first_name']);
         }
         if (\array_key_exists('last_name', $data) && $data['last_name'] !== null) {
             $object->setLastName($data['last_name']);
@@ -64,6 +67,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('last_name', $data) && $data['last_name'] === null) {
             $object->setLastName(null);
+            unset($data['last_name']);
         }
         if (\array_key_exists('date_of_birth', $data) && $data['date_of_birth'] !== null) {
             $object->setDateOfBirth($data['date_of_birth']);
@@ -71,6 +75,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('date_of_birth', $data) && $data['date_of_birth'] === null) {
             $object->setDateOfBirth(null);
+            unset($data['date_of_birth']);
         }
         if (\array_key_exists('address', $data) && $data['address'] !== null) {
             $object->setAddress($this->denormalizer->denormalize($data['address'], \Vouchsafe\OpenAPI\Model\ClaimDetailsAddress::class, 'json', $context));
@@ -78,6 +83,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('address', $data) && $data['address'] === null) {
             $object->setAddress(null);
+            unset($data['address']);
         }
         if (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] !== null) {
             $object->setFirstLineOfAddress($data['first_line_of_address']);
@@ -85,6 +91,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] === null) {
             $object->setFirstLineOfAddress(null);
+            unset($data['first_line_of_address']);
         }
         if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
             $object->setPostcode($data['postcode']);
@@ -92,6 +99,7 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
+            unset($data['postcode']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -108,12 +116,12 @@ class ClaimDetailsNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['first_name'] = $data->getFirstName();
         $dataArray['last_name'] = $data->getLastName();
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
-        if ($data->isInitialized('address')) {
-            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        if ($data->isInitialized('address') && null !== $data->getAddress()) {
+            $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         }
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['postcode'] = $data->getPostcode();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -86,7 +86,7 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
             $dataArray['last_name'] = $data->getLastName();
         }
         if ($data->isInitialized('address') && null !== $data->getAddress()) {
-            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+            $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         }
         if ($data->isInitialized('streetAddress') && null !== $data->getStreetAddress()) {
             $dataArray['street_address'] = $data->getStreetAddress();

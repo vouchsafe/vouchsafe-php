@@ -29,7 +29,7 @@ class DrivingLicenceValidation
      */
     protected $notScreenshot;
     /**
-     * @var mixed
+     * @var ScoreCheckDocumentDimensionsErrorCodeAnyOf
      */
     protected $documentDimensionsMatched;
     /**
@@ -41,7 +41,7 @@ class DrivingLicenceValidation
      */
     protected $documentContainsFace;
     /**
-     * @var mixed
+     * @var ScoreCheckFaceMatchErrorCodeAnyOf
      */
     protected $faceMatch;
     /**
@@ -117,14 +117,14 @@ class DrivingLicenceValidation
         return $this;
     }
     /**
-     * @return mixed
+     * @return ScoreCheckDocumentDimensionsErrorCodeAnyOf
      */
     public function getDocumentDimensionsMatched()
     {
         return $this->documentDimensionsMatched;
     }
     /**
-     * @param mixed $documentDimensionsMatched
+     * @param ScoreCheckDocumentDimensionsErrorCodeAnyOf $documentDimensionsMatched
      *
      * @return self
      */
@@ -171,14 +171,14 @@ class DrivingLicenceValidation
         return $this;
     }
     /**
-     * @return mixed
+     * @return ScoreCheckFaceMatchErrorCodeAnyOf
      */
     public function getFaceMatch()
     {
         return $this->faceMatch;
     }
     /**
-     * @param mixed $faceMatch
+     * @param ScoreCheckFaceMatchErrorCodeAnyOf $faceMatch
      *
      * @return self
      */

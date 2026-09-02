@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class RadarCheckApiDetailsValidations extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class RadarCheckApiDetailsValidations implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -83,5 +86,9 @@ class RadarCheckApiDetailsValidations extends \ArrayObject
         $this->initialized['normalVelocityDetected'] = true;
         $this->normalVelocityDetected = $normalVelocityDetected;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['notDisposableEmail' => ['not_disposable_email', 'getNotDisposableEmail', 'setNotDisposableEmail'], 'noKnownFraudsterMatch' => ['no_known_fraudster_match', 'getNoKnownFraudsterMatch', 'setNoKnownFraudsterMatch'], 'normalVelocityDetected' => ['normal_velocity_detected', 'getNormalVelocityDetected', 'setNormalVelocityDetected']];
     }
 }

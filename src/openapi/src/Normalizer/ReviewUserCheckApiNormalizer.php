@@ -59,7 +59,7 @@ class ReviewUserCheckApiNormalizer implements DenormalizerInterface, NormalizerI
         if ($data->isInitialized('reason') && null !== $data->getReason()) {
             $dataArray['reason'] = $data->getReason();
         }
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+        $dataArray['validations'] = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

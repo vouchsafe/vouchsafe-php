@@ -103,7 +103,7 @@ class ClaimDetailsAddressNormalizer implements DenormalizerInterface, Normalizer
         if ($data->isInitialized('countryCode') && null !== $data->getCountryCode()) {
             $dataArray['country_code'] = $data->getCountryCode();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

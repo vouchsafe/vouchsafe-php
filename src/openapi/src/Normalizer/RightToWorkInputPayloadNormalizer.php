@@ -62,7 +62,7 @@ class RightToWorkInputPayloadNormalizer implements DenormalizerInterface, Normal
         $dataArray['company_name'] = $data->getCompanyName();
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['share_code'] = $data->getShareCode();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -132,7 +132,7 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
         $dataArray['last_name'] = $data->getLastName();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['postcode'] = $data->getPostcode();
-        $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         if ($data->isInitialized('dateOfBirth') && null !== $data->getDateOfBirth()) {
             $dataArray['date_of_birth'] = $data->getDateOfBirth();
         }
@@ -143,16 +143,16 @@ class GetSmartLookupResponseNormalizer implements DenormalizerInterface, Normali
             $dataArray['phone'] = $data->getPhone();
         }
         if ($data->isInitialized('creditBureauVerificationReport') && null !== $data->getCreditBureauVerificationReport()) {
-            $dataArray['credit_bureau_verification_report'] = $this->normalizer->normalize($data->getCreditBureauVerificationReport(), 'json', $context);
+            $dataArray['credit_bureau_verification_report'] = $data->getCreditBureauVerificationReport() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCreditBureauVerificationReport(), 'json', $context));
         }
         if ($data->isInitialized('onlineFootprintVerificationReport') && null !== $data->getOnlineFootprintVerificationReport()) {
-            $dataArray['online_footprint_verification_report'] = $this->normalizer->normalize($data->getOnlineFootprintVerificationReport(), 'json', $context);
+            $dataArray['online_footprint_verification_report'] = $data->getOnlineFootprintVerificationReport() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getOnlineFootprintVerificationReport(), 'json', $context));
         }
         if ($data->isInitialized('amlVerificationReport') && null !== $data->getAmlVerificationReport()) {
-            $dataArray['aml_verification_report'] = $this->normalizer->normalize($data->getAmlVerificationReport(), 'json', $context);
+            $dataArray['aml_verification_report'] = $data->getAmlVerificationReport() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAmlVerificationReport(), 'json', $context));
         }
         $dataArray['billable'] = $data->getBillable();
-        $dataArray['metadata'] = $this->normalizer->normalize($data->getMetadata(), 'json', $context);
+        $dataArray['metadata'] = $data->getMetadata() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getMetadata(), 'json', $context));
         $dataArray['alerts_enabled_at'] = $data->getAlertsEnabledAt();
         $dataArray['created_at'] = $data->getCreatedAt();
         return $dataArray;

@@ -60,15 +60,15 @@ class VideoSelfieCheckApiValidationsNormalizer implements DenormalizerInterface,
     {
         $dataArray = [];
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $this->normalizer->normalize($data->getFaceMatch(), 'json', $context);
+            $dataArray['face_match'] = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
         }
         if ($data->isInitialized('refereeDissimilarityCheck') && null !== $data->getRefereeDissimilarityCheck()) {
-            $dataArray['referee_dissimilarity_check'] = $this->normalizer->normalize($data->getRefereeDissimilarityCheck(), 'json', $context);
+            $dataArray['referee_dissimilarity_check'] = $data->getRefereeDissimilarityCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeDissimilarityCheck(), 'json', $context));
         }
         if ($data->isInitialized('livenessCheck') && null !== $data->getLivenessCheck()) {
-            $dataArray['liveness_check'] = $this->normalizer->normalize($data->getLivenessCheck(), 'json', $context);
+            $dataArray['liveness_check'] = $data->getLivenessCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getLivenessCheck(), 'json', $context));
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

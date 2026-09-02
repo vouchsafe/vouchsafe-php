@@ -54,6 +54,7 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         }
         elseif (\array_key_exists('threshold', $data) && $data['threshold'] === null) {
             $object->setThreshold(null);
+            unset($data['threshold']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -67,11 +68,11 @@ class AmlCheckApiDetailsNormalizer implements DenormalizerInterface, NormalizerI
         $dataArray = [];
         $values = [];
         foreach ($data->getMatches() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['matches'] = $values;
         $dataArray['threshold'] = $data->getThreshold();
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

@@ -69,10 +69,10 @@ class VideoSelfieCheckApiNormalizer implements DenormalizerInterface, Normalizer
         $dataArray['total_attempts'] = $data->getTotalAttempts();
         $values = [];
         foreach ($data->getArtefacts() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['artefacts'] = $values;
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+        $dataArray['validations'] = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

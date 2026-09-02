@@ -58,19 +58,19 @@ class SupportingDocumentValidationsNormalizer implements DenormalizerInterface, 
     {
         $dataArray = [];
         if ($data->isInitialized('requiredFieldsExtracted') && null !== $data->getRequiredFieldsExtracted()) {
-            $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         }
         if ($data->isInitialized('categoryMatch') && null !== $data->getCategoryMatch()) {
-            $dataArray['category_match'] = $this->normalizer->normalize($data->getCategoryMatch(), 'json', $context);
+            $dataArray['category_match'] = $data->getCategoryMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCategoryMatch(), 'json', $context));
         }
         if ($data->isInitialized('documentAgeValid') && null !== $data->getDocumentAgeValid()) {
-            $dataArray['document_age_valid'] = $this->normalizer->normalize($data->getDocumentAgeValid(), 'json', $context);
+            $dataArray['document_age_valid'] = $data->getDocumentAgeValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentAgeValid(), 'json', $context));
         }
         if ($data->isInitialized('documentCompleteAndLegible') && null !== $data->getDocumentCompleteAndLegible()) {
-            $dataArray['document_complete_and_legible'] = $this->normalizer->normalize($data->getDocumentCompleteAndLegible(), 'json', $context);
+            $dataArray['document_complete_and_legible'] = $data->getDocumentCompleteAndLegible() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentCompleteAndLegible(), 'json', $context));
         }
         if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
-            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
+            $dataArray['tampering_signals_check'] = $data->getTamperingSignalsCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context));
         }
         return $dataArray;
     }

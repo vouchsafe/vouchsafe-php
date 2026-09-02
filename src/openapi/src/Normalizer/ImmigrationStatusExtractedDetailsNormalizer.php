@@ -90,7 +90,7 @@ class ImmigrationStatusExtractedDetailsNormalizer implements DenormalizerInterfa
         if ($data->isInitialized('referenceNumber') && null !== $data->getReferenceNumber()) {
             $dataArray['reference_number'] = $data->getReferenceNumber();
         }
-        if ($data->isInitialized('expirationDate')) {
+        if ($data->isInitialized('expirationDate') && null !== $data->getExpirationDate()) {
             $dataArray['expiration_date'] = $data->getExpirationDate();
         }
         if ($data->isInitialized('nationality') && null !== $data->getNationality()) {
@@ -99,7 +99,7 @@ class ImmigrationStatusExtractedDetailsNormalizer implements DenormalizerInterfa
         if ($data->isInitialized('immigrationStatus') && null !== $data->getImmigrationStatus()) {
             $dataArray['immigration_status'] = $data->getImmigrationStatus();
         }
-        if ($data->isInitialized('validFrom')) {
+        if ($data->isInitialized('validFrom') && null !== $data->getValidFrom()) {
             $dataArray['valid_from'] = $data->getValidFrom();
         }
         return $dataArray;

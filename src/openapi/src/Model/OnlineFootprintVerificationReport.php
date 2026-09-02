@@ -17,7 +17,7 @@ class OnlineFootprintVerificationReport
      */
     protected $state;
     /**
-     * @var mixed
+     * @var OnlineFootprintChecksAnyOf
      */
     protected $checks;
     /**
@@ -39,14 +39,14 @@ class OnlineFootprintVerificationReport
         return $this;
     }
     /**
-     * @return mixed
+     * @return OnlineFootprintChecksAnyOf
      */
     public function getChecks()
     {
         return $this->checks;
     }
     /**
-     * @param mixed $checks
+     * @param OnlineFootprintChecksAnyOf $checks
      *
      * @return self
      */

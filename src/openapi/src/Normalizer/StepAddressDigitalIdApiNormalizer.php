@@ -65,7 +65,7 @@ class StepAddressDigitalIdApiNormalizer implements DenormalizerInterface, Normal
         $dataArray['created_at'] = $data->getCreatedAt();
         $dataArray['method'] = $data->getMethod();
         $dataArray['evidence_type'] = $data->getEvidenceType();
-        $dataArray['extracted_details'] = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+        $dataArray['extracted_details'] = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

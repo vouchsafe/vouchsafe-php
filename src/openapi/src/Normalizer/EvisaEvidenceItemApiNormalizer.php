@@ -81,19 +81,19 @@ class EvisaEvidenceItemApiNormalizer implements DenormalizerInterface, Normalize
         $dataArray['created_at'] = $data->getCreatedAt();
         $values = [];
         foreach ($data->getArtefacts() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['artefacts'] = $values;
         $value_1 = $data->getExtractedDetails();
         if (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         }
         $dataArray['extracted_details'] = $value_1;
-        $dataArray['validations'] = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+        $dataArray['validations'] = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class VideoSelfieCheckApiValidationsLivenessCheck extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class VideoSelfieCheckApiValidationsLivenessCheck implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -67,5 +70,9 @@ class VideoSelfieCheckApiValidationsLivenessCheck extends \ArrayObject
         $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['score' => ['score', 'getScore', 'setScore'], 'status' => ['status', 'getStatus', 'setStatus']];
     }
 }

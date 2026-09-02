@@ -98,17 +98,17 @@ class SupportingDocumentDetailsApiNormalizer implements DenormalizerInterface, N
         $dataArray = [];
         $dataArray['first_name'] = $data->getFirstName();
         $dataArray['last_name'] = $data->getLastName();
-        if ($data->isInitialized('dateOfBirth')) {
+        if ($data->isInitialized('dateOfBirth') && null !== $data->getDateOfBirth()) {
             $dataArray['date_of_birth'] = $data->getDateOfBirth();
         }
-        if ($data->isInitialized('firstLineOfAddress')) {
+        if ($data->isInitialized('firstLineOfAddress') && null !== $data->getFirstLineOfAddress()) {
             $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         }
-        if ($data->isInitialized('postcode')) {
+        if ($data->isInitialized('postcode') && null !== $data->getPostcode()) {
             $dataArray['postcode'] = $data->getPostcode();
         }
-        if ($data->isInitialized('address')) {
-            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        if ($data->isInitialized('address') && null !== $data->getAddress()) {
+            $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         }
         $dataArray['document_category'] = $data->getDocumentCategory();
         $dataArray['document_date'] = $data->getDocumentDate();

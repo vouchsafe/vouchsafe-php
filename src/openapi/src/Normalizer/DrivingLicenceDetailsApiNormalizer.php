@@ -89,7 +89,7 @@ class DrivingLicenceDetailsApiNormalizer implements DenormalizerInterface, Norma
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['document_number'] = $data->getDocumentNumber();
         $dataArray['expiration_date'] = $data->getExpirationDate();
-        if ($data->isInitialized('issueDate')) {
+        if ($data->isInitialized('issueDate') && null !== $data->getIssueDate()) {
             $dataArray['issue_date'] = $data->getIssueDate();
         }
         $dataArray['issuing_country'] = $data->getIssuingCountry();

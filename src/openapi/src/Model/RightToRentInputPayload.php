@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class RightToRentInputPayload extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class RightToRentInputPayload implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -123,5 +126,9 @@ class RightToRentInputPayload extends \ArrayObject
         $this->initialized['shareCode'] = true;
         $this->shareCode = $shareCode;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['role' => ['role', 'getRole', 'setRole'], 'companyName' => ['company_name', 'getCompanyName', 'setCompanyName'], 'dateOfBirth' => ['date_of_birth', 'getDateOfBirth', 'setDateOfBirth'], 'shareCode' => ['share_code', 'getShareCode', 'setShareCode']];
     }
 }

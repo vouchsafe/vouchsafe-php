@@ -58,10 +58,10 @@ class VouchDetailsApiNormalizer implements DenormalizerInterface, NormalizerInte
     {
         $dataArray = [];
         $dataArray['referee_verification_id'] = $data->getRefereeVerificationId();
-        if ($data->isInitialized('relationship')) {
+        if ($data->isInitialized('relationship') && null !== $data->getRelationship()) {
             $dataArray['relationship'] = $data->getRelationship();
         }
-        if ($data->isInitialized('organisation')) {
+        if ($data->isInitialized('organisation') && null !== $data->getOrganisation()) {
             $dataArray['organisation'] = $data->getOrganisation();
         }
         return $dataArray;

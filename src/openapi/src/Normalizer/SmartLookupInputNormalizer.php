@@ -90,7 +90,7 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
         }
         $dataArray['checks'] = $values;
         if ($data->isInitialized('address') && null !== $data->getAddress()) {
-            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+            $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         }
         if ($data->isInitialized('firstLineOfAddress') && null !== $data->getFirstLineOfAddress()) {
             $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
@@ -108,7 +108,7 @@ class SmartLookupInputNormalizer implements DenormalizerInterface, NormalizerInt
             $dataArray['date_of_birth'] = $data->getDateOfBirth();
         }
         if ($data->isInitialized('thresholds') && null !== $data->getThresholds()) {
-            $dataArray['thresholds'] = $this->normalizer->normalize($data->getThresholds(), 'json', $context);
+            $dataArray['thresholds'] = $data->getThresholds() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getThresholds(), 'json', $context));
         }
         if ($data->isInitialized('alertsEnabled') && null !== $data->getAlertsEnabled()) {
             $dataArray['alerts_enabled'] = $data->getAlertsEnabled();

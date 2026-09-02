@@ -52,9 +52,9 @@ class VerifyEmailCheckApiValidationsNormalizer implements DenormalizerInterface,
     {
         $dataArray = [];
         if ($data->isInitialized('emailVerified') && null !== $data->getEmailVerified()) {
-            $dataArray['email_verified'] = $this->normalizer->normalize($data->getEmailVerified(), 'json', $context);
+            $dataArray['email_verified'] = $data->getEmailVerified() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEmailVerified(), 'json', $context));
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

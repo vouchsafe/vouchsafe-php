@@ -61,7 +61,7 @@ class StepAddressCreditReferenceAgencyApiNormalizer implements DenormalizerInter
         $dataArray['outcome'] = $data->getOutcome();
         $dataArray['created_at'] = $data->getCreatedAt();
         $dataArray['method'] = $data->getMethod();
-        $dataArray['extracted_details'] = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+        $dataArray['extracted_details'] = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

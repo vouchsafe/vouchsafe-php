@@ -75,36 +75,36 @@ class SupportingDocumentValidationsApiNormalizer implements DenormalizerInterfac
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+        $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         if ($data->isInitialized('categoryMatch') && null !== $data->getCategoryMatch()) {
-            $dataArray['category_match'] = $this->normalizer->normalize($data->getCategoryMatch(), 'json', $context);
+            $dataArray['category_match'] = $data->getCategoryMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCategoryMatch(), 'json', $context));
         }
         if ($data->isInitialized('documentAgeValid') && null !== $data->getDocumentAgeValid()) {
-            $dataArray['document_age_valid'] = $this->normalizer->normalize($data->getDocumentAgeValid(), 'json', $context);
+            $dataArray['document_age_valid'] = $data->getDocumentAgeValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentAgeValid(), 'json', $context));
         }
         if ($data->isInitialized('documentUnique') && null !== $data->getDocumentUnique()) {
-            $dataArray['document_unique'] = $this->normalizer->normalize($data->getDocumentUnique(), 'json', $context);
+            $dataArray['document_unique'] = $data->getDocumentUnique() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentUnique(), 'json', $context));
         }
         if ($data->isInitialized('dateFieldsValid') && null !== $data->getDateFieldsValid()) {
-            $dataArray['date_fields_valid'] = $this->normalizer->normalize($data->getDateFieldsValid(), 'json', $context);
+            $dataArray['date_fields_valid'] = $data->getDateFieldsValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDateFieldsValid(), 'json', $context));
         }
         if ($data->isInitialized('namesConsistent') && null !== $data->getNamesConsistent()) {
-            $dataArray['names_consistent'] = $this->normalizer->normalize($data->getNamesConsistent(), 'json', $context);
+            $dataArray['names_consistent'] = $data->getNamesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNamesConsistent(), 'json', $context));
         }
         if ($data->isInitialized('addressesConsistent') && null !== $data->getAddressesConsistent()) {
-            $dataArray['addresses_consistent'] = $this->normalizer->normalize($data->getAddressesConsistent(), 'json', $context);
+            $dataArray['addresses_consistent'] = $data->getAddressesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddressesConsistent(), 'json', $context));
         }
         if ($data->isInitialized('datesOfBirthConsistent') && null !== $data->getDatesOfBirthConsistent()) {
-            $dataArray['dates_of_birth_consistent'] = $this->normalizer->normalize($data->getDatesOfBirthConsistent(), 'json', $context);
+            $dataArray['dates_of_birth_consistent'] = $data->getDatesOfBirthConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDatesOfBirthConsistent(), 'json', $context));
         }
         if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
-            $dataArray['referee_biometrics_dissimilar'] = $this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context);
+            $dataArray['referee_biometrics_dissimilar'] = $data->getRefereeBiometricsDissimilar() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context));
         }
         if ($data->isInitialized('documentCompleteAndLegible') && null !== $data->getDocumentCompleteAndLegible()) {
-            $dataArray['document_complete_and_legible'] = $this->normalizer->normalize($data->getDocumentCompleteAndLegible(), 'json', $context);
+            $dataArray['document_complete_and_legible'] = $data->getDocumentCompleteAndLegible() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentCompleteAndLegible(), 'json', $context));
         }
         if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
-            $dataArray['tampering_signals_check'] = $this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context);
+            $dataArray['tampering_signals_check'] = $data->getTamperingSignalsCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context));
         }
         return $dataArray;
     }

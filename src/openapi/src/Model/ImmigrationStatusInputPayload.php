@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class ImmigrationStatusInputPayload extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class ImmigrationStatusInputPayload implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -151,5 +154,9 @@ class ImmigrationStatusInputPayload extends \ArrayObject
         $this->initialized['shareCode'] = true;
         $this->shareCode = $shareCode;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['reason' => ['reason', 'getReason', 'setReason'], 'jobTitle' => ['job_title', 'getJobTitle', 'setJobTitle'], 'companyName' => ['company_name', 'getCompanyName', 'setCompanyName'], 'dateOfBirth' => ['date_of_birth', 'getDateOfBirth', 'setDateOfBirth'], 'shareCode' => ['share_code', 'getShareCode', 'setShareCode']];
     }
 }

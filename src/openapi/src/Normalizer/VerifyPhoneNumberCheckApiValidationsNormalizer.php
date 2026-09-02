@@ -52,9 +52,9 @@ class VerifyPhoneNumberCheckApiValidationsNormalizer implements DenormalizerInte
     {
         $dataArray = [];
         if ($data->isInitialized('phoneVerified') && null !== $data->getPhoneVerified()) {
-            $dataArray['phone_verified'] = $this->normalizer->normalize($data->getPhoneVerified(), 'json', $context);
+            $dataArray['phone_verified'] = $data->getPhoneVerified() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getPhoneVerified(), 'json', $context));
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

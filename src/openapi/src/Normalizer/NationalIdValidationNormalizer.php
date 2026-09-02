@@ -47,58 +47,76 @@ class NationalIdValidationNormalizer implements DenormalizerInterface, Normalize
             $object->setRequiredFieldsExtracted($value);
         }
         if (\array_key_exists('compound_identifiers_match', $data)) {
-            $object->setCompoundIdentifiersMatch($data['compound_identifiers_match']);
+            $value_1 = $data['compound_identifiers_match'];
+            if (is_array($data['compound_identifiers_match']) and (\array_key_exists('status', $data['compound_identifiers_match']) and $data['compound_identifiers_match']['status'] == 'pass')) {
+                $value_1 = $this->denormalizer->denormalize($data['compound_identifiers_match'], \Vouchsafe\OpenAPI\Model\CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOf::class, 'json', $context);
+            } elseif (is_array($data['compound_identifiers_match']) and \array_key_exists('failed_reasons', $data['compound_identifiers_match']) and (\array_key_exists('status', $data['compound_identifiers_match']) and $data['compound_identifiers_match']['status'] == 'fail')) {
+                $value_1 = $this->denormalizer->denormalize($data['compound_identifiers_match'], \Vouchsafe\OpenAPI\Model\CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOf::class, 'json', $context);
+            }
+            $object->setCompoundIdentifiersMatch($value_1);
         }
         if (\array_key_exists('has_not_expired', $data)) {
-            $value_1 = $data['has_not_expired'];
+            $value_2 = $data['has_not_expired'];
             if (is_array($data['has_not_expired']) and (\array_key_exists('status', $data['has_not_expired']) and $data['has_not_expired']['status'] == 'pass')) {
-                $value_1 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_2 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['has_not_expired']) and (\array_key_exists('status', $data['has_not_expired']) and $data['has_not_expired']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['has_not_expired'])) {
-                $value_1 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\FailMrzPhotoIdFailedReason::class, 'json', $context);
+                $value_2 = $this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\FailMrzPhotoIdFailedReason::class, 'json', $context);
             }
-            $object->setHasNotExpired($value_1);
+            $object->setHasNotExpired($value_2);
         }
         if (\array_key_exists('not_specimen', $data)) {
-            $value_2 = $data['not_specimen'];
+            $value_3 = $data['not_specimen'];
             if (is_array($data['not_specimen']) and (\array_key_exists('status', $data['not_specimen']) and $data['not_specimen']['status'] == 'pass')) {
-                $value_2 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_3 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['not_specimen']) and (\array_key_exists('status', $data['not_specimen']) and $data['not_specimen']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['not_specimen'])) {
-                $value_2 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\FailSpecimenErrorCode::class, 'json', $context);
+                $value_3 = $this->denormalizer->denormalize($data['not_specimen'], \Vouchsafe\OpenAPI\Model\FailSpecimenErrorCode::class, 'json', $context);
             }
-            $object->setNotSpecimen($value_2);
+            $object->setNotSpecimen($value_3);
         }
         if (\array_key_exists('not_screenshot', $data)) {
-            $value_3 = $data['not_screenshot'];
+            $value_4 = $data['not_screenshot'];
             if (is_array($data['not_screenshot']) and (\array_key_exists('status', $data['not_screenshot']) and $data['not_screenshot']['status'] == 'pass')) {
-                $value_3 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_4 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['not_screenshot']) and (\array_key_exists('status', $data['not_screenshot']) and $data['not_screenshot']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['not_screenshot'])) {
-                $value_3 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\FailTamperingErrorCode::class, 'json', $context);
+                $value_4 = $this->denormalizer->denormalize($data['not_screenshot'], \Vouchsafe\OpenAPI\Model\FailTamperingErrorCode::class, 'json', $context);
             }
-            $object->setNotScreenshot($value_3);
+            $object->setNotScreenshot($value_4);
         }
         if (\array_key_exists('document_dimensions_matched', $data)) {
-            $object->setDocumentDimensionsMatched($data['document_dimensions_matched']);
+            $value_5 = $data['document_dimensions_matched'];
+            if (is_array($data['document_dimensions_matched']) and \array_key_exists('score', $data['document_dimensions_matched']) and (\array_key_exists('status', $data['document_dimensions_matched']) and $data['document_dimensions_matched']['status'] == 'pass')) {
+                $value_5 = $this->denormalizer->denormalize($data['document_dimensions_matched'], \Vouchsafe\OpenAPI\Model\ScoreCheckDocumentDimensionsErrorCodeAnyOf::class, 'json', $context);
+            } elseif (is_array($data['document_dimensions_matched']) and \array_key_exists('failed_reasons', $data['document_dimensions_matched']) and \array_key_exists('score', $data['document_dimensions_matched']) and (\array_key_exists('status', $data['document_dimensions_matched']) and $data['document_dimensions_matched']['status'] == 'fail')) {
+                $value_5 = $this->denormalizer->denormalize($data['document_dimensions_matched'], \Vouchsafe\OpenAPI\Model\ScoreCheckDocumentDimensionsErrorCodeAnyOf::class, 'json', $context);
+            }
+            $object->setDocumentDimensionsMatched($value_5);
         }
         if (\array_key_exists('document_contains_face', $data)) {
-            $value_4 = $data['document_contains_face'];
+            $value_6 = $data['document_contains_face'];
             if (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'pass')) {
-                $value_4 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['document_contains_face']) and (\array_key_exists('status', $data['document_contains_face']) and $data['document_contains_face']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['document_contains_face'])) {
-                $value_4 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class, 'json', $context);
+                $value_6 = $this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\FailDocumentFaceErrorCode::class, 'json', $context);
             }
-            $object->setDocumentContainsFace($value_4);
+            $object->setDocumentContainsFace($value_6);
         }
         if (\array_key_exists('face_match', $data)) {
-            $object->setFaceMatch($data['face_match']);
+            $value_7 = $data['face_match'];
+            if (is_array($data['face_match']) and \array_key_exists('score', $data['face_match']) and (\array_key_exists('status', $data['face_match']) and $data['face_match']['status'] == 'pass')) {
+                $value_7 = $this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\ScoreCheckFaceMatchErrorCodeAnyOf::class, 'json', $context);
+            } elseif (is_array($data['face_match']) and \array_key_exists('failed_reasons', $data['face_match']) and \array_key_exists('score', $data['face_match']) and (\array_key_exists('status', $data['face_match']) and $data['face_match']['status'] == 'fail')) {
+                $value_7 = $this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\ScoreCheckFaceMatchErrorCodeAnyOf::class, 'json', $context);
+            }
+            $object->setFaceMatch($value_7);
         }
         if (\array_key_exists('icao_format_valid', $data)) {
-            $value_5 = $data['icao_format_valid'];
+            $value_8 = $data['icao_format_valid'];
             if (is_array($data['icao_format_valid']) and (\array_key_exists('status', $data['icao_format_valid']) and $data['icao_format_valid']['status'] == 'pass')) {
-                $value_5 = $this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
+                $value_8 = $this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\Pass::class, 'json', $context);
             } elseif (is_array($data['icao_format_valid']) and (\array_key_exists('status', $data['icao_format_valid']) and $data['icao_format_valid']['status'] == 'fail') and \array_key_exists('failed_reasons', $data['icao_format_valid'])) {
-                $value_5 = $this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD1OrFailedReasonINCOMPLETEMRZDATA::class, 'json', $context);
+                $value_8 = $this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\FailFailedReasonMRZNOTTD1OrFailedReasonINCOMPLETEMRZDATA::class, 'json', $context);
             }
-            $object->setIcaoFormatValid($value_5);
+            $object->setIcaoFormatValid($value_8);
         }
         return $object;
     }
@@ -107,51 +125,69 @@ class NationalIdValidationNormalizer implements DenormalizerInterface, Normalize
         $dataArray = [];
         $value = $data->getRequiredFieldsExtracted();
         if (is_object($data->getRequiredFieldsExtracted())) {
-            $value = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $value = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         } elseif (is_object($data->getRequiredFieldsExtracted())) {
-            $value = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $value = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         }
         $dataArray['required_fields_extracted'] = $value;
-        $dataArray['compound_identifiers_match'] = $data->getCompoundIdentifiersMatch();
-        $value_1 = $data->getHasNotExpired();
+        $value_1 = $data->getCompoundIdentifiersMatch();
+        if (is_object($data->getCompoundIdentifiersMatch())) {
+            $value_1 = $data->getCompoundIdentifiersMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCompoundIdentifiersMatch(), 'json', $context));
+        } elseif (is_object($data->getCompoundIdentifiersMatch())) {
+            $value_1 = $data->getCompoundIdentifiersMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCompoundIdentifiersMatch(), 'json', $context));
+        }
+        $dataArray['compound_identifiers_match'] = $value_1;
+        $value_2 = $data->getHasNotExpired();
         if (is_object($data->getHasNotExpired())) {
-            $value_1 = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $value_2 = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         } elseif (is_object($data->getHasNotExpired())) {
-            $value_1 = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $value_2 = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         }
-        $dataArray['has_not_expired'] = $value_1;
-        $value_2 = $data->getNotSpecimen();
+        $dataArray['has_not_expired'] = $value_2;
+        $value_3 = $data->getNotSpecimen();
         if (is_object($data->getNotSpecimen())) {
-            $value_2 = $this->normalizer->normalize($data->getNotSpecimen(), 'json', $context);
+            $value_3 = $data->getNotSpecimen() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSpecimen(), 'json', $context));
         } elseif (is_object($data->getNotSpecimen())) {
-            $value_2 = $this->normalizer->normalize($data->getNotSpecimen(), 'json', $context);
+            $value_3 = $data->getNotSpecimen() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSpecimen(), 'json', $context));
         }
-        $dataArray['not_specimen'] = $value_2;
-        $value_3 = $data->getNotScreenshot();
+        $dataArray['not_specimen'] = $value_3;
+        $value_4 = $data->getNotScreenshot();
         if (is_object($data->getNotScreenshot())) {
-            $value_3 = $this->normalizer->normalize($data->getNotScreenshot(), 'json', $context);
+            $value_4 = $data->getNotScreenshot() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotScreenshot(), 'json', $context));
         } elseif (is_object($data->getNotScreenshot())) {
-            $value_3 = $this->normalizer->normalize($data->getNotScreenshot(), 'json', $context);
+            $value_4 = $data->getNotScreenshot() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotScreenshot(), 'json', $context));
         }
-        $dataArray['not_screenshot'] = $value_3;
-        $dataArray['document_dimensions_matched'] = $data->getDocumentDimensionsMatched();
-        $value_4 = $data->getDocumentContainsFace();
+        $dataArray['not_screenshot'] = $value_4;
+        $value_5 = $data->getDocumentDimensionsMatched();
+        if (is_object($data->getDocumentDimensionsMatched())) {
+            $value_5 = $data->getDocumentDimensionsMatched() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentDimensionsMatched(), 'json', $context));
+        } elseif (is_object($data->getDocumentDimensionsMatched())) {
+            $value_5 = $data->getDocumentDimensionsMatched() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentDimensionsMatched(), 'json', $context));
+        }
+        $dataArray['document_dimensions_matched'] = $value_5;
+        $value_6 = $data->getDocumentContainsFace();
         if (is_object($data->getDocumentContainsFace())) {
-            $value_4 = $this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context);
+            $value_6 = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
         } elseif (is_object($data->getDocumentContainsFace())) {
-            $value_4 = $this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context);
+            $value_6 = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
         }
-        $dataArray['document_contains_face'] = $value_4;
+        $dataArray['document_contains_face'] = $value_6;
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $data->getFaceMatch();
+            $value_7 = $data->getFaceMatch();
+            if (is_object($data->getFaceMatch())) {
+                $value_7 = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
+            } elseif (is_object($data->getFaceMatch())) {
+                $value_7 = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
+            }
+            $dataArray['face_match'] = $value_7;
         }
-        $value_5 = $data->getIcaoFormatValid();
+        $value_8 = $data->getIcaoFormatValid();
         if (is_object($data->getIcaoFormatValid())) {
-            $value_5 = $this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context);
+            $value_8 = $data->getIcaoFormatValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context));
         } elseif (is_object($data->getIcaoFormatValid())) {
-            $value_5 = $this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context);
+            $value_8 = $data->getIcaoFormatValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context));
         }
-        $dataArray['icao_format_valid'] = $value_5;
+        $dataArray['icao_format_valid'] = $value_8;
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

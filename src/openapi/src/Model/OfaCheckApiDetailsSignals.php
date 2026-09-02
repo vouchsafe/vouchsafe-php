@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class OfaCheckApiDetailsSignals extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class OfaCheckApiDetailsSignals implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -67,5 +70,9 @@ class OfaCheckApiDetailsSignals extends \ArrayObject
         $this->initialized['positive'] = true;
         $this->positive = $positive;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['negative' => ['negative', 'getNegative', 'setNegative'], 'positive' => ['positive', 'getPositive', 'setPositive']];
     }
 }

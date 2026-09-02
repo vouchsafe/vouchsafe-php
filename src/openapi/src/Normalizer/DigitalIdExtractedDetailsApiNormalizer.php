@@ -125,8 +125,8 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         $dataArray['date_of_birth'] = $data->getDateOfBirth();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
         $dataArray['postcode'] = $data->getPostcode();
-        if ($data->isInitialized('address')) {
-            $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        if ($data->isInitialized('address') && null !== $data->getAddress()) {
+            $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         }
         if ($data->isInitialized('phoneNumber') && null !== $data->getPhoneNumber()) {
             $dataArray['phone_number'] = $data->getPhoneNumber();
@@ -164,9 +164,9 @@ class DigitalIdExtractedDetailsApiNormalizer implements DenormalizerInterface, N
         if ($data->isInitialized('evisaConditions') && null !== $data->getEvisaConditions()) {
             $value = $data->getEvisaConditions();
             if (is_object($data->getEvisaConditions())) {
-                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+                $value = $data->getEvisaConditions() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaConditions(), 'json', $context));
             } elseif (is_object($data->getEvisaConditions())) {
-                $value = $this->normalizer->normalize($data->getEvisaConditions(), 'json', $context);
+                $value = $data->getEvisaConditions() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaConditions(), 'json', $context));
             }
             $dataArray['evisa_conditions'] = $value;
         }

@@ -64,7 +64,7 @@ class VerifySupportingDocumentsPostBodyNormalizer implements DenormalizerInterfa
         if ($data->isInitialized('minimumDocumentLength') && null !== $data->getMinimumDocumentLength()) {
             $dataArray['minimum_document_length'] = $data->getMinimumDocumentLength();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

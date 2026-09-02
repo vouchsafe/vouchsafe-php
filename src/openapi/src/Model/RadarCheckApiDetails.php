@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class RadarCheckApiDetails extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class RadarCheckApiDetails implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -33,5 +36,9 @@ class RadarCheckApiDetails extends \ArrayObject
         $this->initialized['validations'] = true;
         $this->validations = $validations;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['validations' => ['validations', 'getValidations', 'setValidations']];
     }
 }

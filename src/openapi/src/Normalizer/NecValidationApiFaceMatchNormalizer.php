@@ -46,6 +46,7 @@ class NecValidationApiFaceMatchNormalizer implements DenormalizerInterface, Norm
         }
         elseif (\array_key_exists('score', $data) && $data['score'] === null) {
             $object->setScore(null);
+            unset($data['score']);
         }
         if (\array_key_exists('status', $data)) {
             $object->setStatus($data['status']);
@@ -63,7 +64,7 @@ class NecValidationApiFaceMatchNormalizer implements DenormalizerInterface, Norm
         $dataArray = [];
         $dataArray['score'] = $data->getScore();
         $dataArray['status'] = $data->getStatus();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -43,6 +43,7 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
         }
         elseif (\array_key_exists('address', $data) && $data['address'] === null) {
             $object->setAddress(null);
+            unset($data['address']);
         }
         if (\array_key_exists('postcode', $data) && $data['postcode'] !== null) {
             $object->setPostcode($data['postcode']);
@@ -50,6 +51,7 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
         }
         elseif (\array_key_exists('postcode', $data) && $data['postcode'] === null) {
             $object->setPostcode(null);
+            unset($data['postcode']);
         }
         if (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] !== null) {
             $object->setFirstLineOfAddress($data['first_line_of_address']);
@@ -57,6 +59,7 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
         }
         elseif (\array_key_exists('first_line_of_address', $data) && $data['first_line_of_address'] === null) {
             $object->setFirstLineOfAddress(null);
+            unset($data['first_line_of_address']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -68,10 +71,10 @@ class StepAddressDigitalIdApiExtractedDetailsNormalizer implements DenormalizerI
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['address'] = $this->normalizer->normalize($data->getAddress(), 'json', $context);
+        $dataArray['address'] = $data->getAddress() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getAddress(), 'json', $context));
         $dataArray['postcode'] = $data->getPostcode();
         $dataArray['first_line_of_address'] = $data->getFirstLineOfAddress();
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

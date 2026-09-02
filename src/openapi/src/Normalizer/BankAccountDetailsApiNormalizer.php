@@ -76,7 +76,7 @@ class BankAccountDetailsApiNormalizer implements DenormalizerInterface, Normaliz
         $dataArray['last_name'] = $data->getLastName();
         $dataArray['bank_name'] = $data->getBankName();
         $dataArray['account_type'] = $data->getAccountType();
-        $dataArray['transaction_data'] = $this->normalizer->normalize($data->getTransactionData(), 'json', $context);
+        $dataArray['transaction_data'] = $data->getTransactionData() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getTransactionData(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

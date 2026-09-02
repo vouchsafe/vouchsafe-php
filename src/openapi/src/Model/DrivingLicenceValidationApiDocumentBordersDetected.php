@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class DrivingLicenceValidationApiDocumentBordersDetected extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class DrivingLicenceValidationApiDocumentBordersDetected implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -55,5 +58,9 @@ class DrivingLicenceValidationApiDocumentBordersDetected extends \ArrayObject
         $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['score' => ['score', 'getScore', 'setScore'], 'status' => ['status', 'getStatus', 'setStatus']];
     }
 }

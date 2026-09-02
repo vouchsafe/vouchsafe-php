@@ -73,7 +73,7 @@ class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerI
         $dataArray['entity_type'] = $data->getEntityType();
         $values = [];
         foreach ($data->getDatasets() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['datasets'] = $values;
         $dataArray['score'] = $data->getScore();

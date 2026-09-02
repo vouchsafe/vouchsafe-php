@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class StepAddressDigitalIdApiExtractedDetails extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class StepAddressDigitalIdApiExtractedDetails implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -83,5 +86,9 @@ class StepAddressDigitalIdApiExtractedDetails extends \ArrayObject
         $this->initialized['firstLineOfAddress'] = true;
         $this->firstLineOfAddress = $firstLineOfAddress;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['address' => ['address', 'getAddress', 'setAddress'], 'postcode' => ['postcode', 'getPostcode', 'setPostcode'], 'firstLineOfAddress' => ['first_line_of_address', 'getFirstLineOfAddress', 'setFirstLineOfAddress']];
     }
 }

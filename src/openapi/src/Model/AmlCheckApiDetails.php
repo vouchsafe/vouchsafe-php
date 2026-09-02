@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class AmlCheckApiDetails extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class AmlCheckApiDetails implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -67,5 +70,9 @@ class AmlCheckApiDetails extends \ArrayObject
         $this->initialized['threshold'] = true;
         $this->threshold = $threshold;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['matches' => ['matches', 'getMatches', 'setMatches'], 'threshold' => ['threshold', 'getThreshold', 'setThreshold']];
     }
 }

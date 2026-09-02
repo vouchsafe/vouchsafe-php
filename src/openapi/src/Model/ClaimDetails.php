@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class ClaimDetails extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class ClaimDetails implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -205,5 +208,9 @@ class ClaimDetails extends \ArrayObject
         $this->initialized['postcode'] = true;
         $this->postcode = $postcode;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['email' => ['email', 'getEmail', 'setEmail'], 'phoneNumber' => ['phone_number', 'getPhoneNumber', 'setPhoneNumber'], 'firstName' => ['first_name', 'getFirstName', 'setFirstName'], 'lastName' => ['last_name', 'getLastName', 'setLastName'], 'dateOfBirth' => ['date_of_birth', 'getDateOfBirth', 'setDateOfBirth'], 'address' => ['address', 'getAddress', 'setAddress'], 'firstLineOfAddress' => ['first_line_of_address', 'getFirstLineOfAddress', 'setFirstLineOfAddress'], 'postcode' => ['postcode', 'getPostcode', 'setPostcode']];
     }
 }

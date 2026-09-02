@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class VerifyPhotoIdPostBody extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class VerifyPhotoIdPostBody implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -17,11 +20,11 @@ class VerifyPhotoIdPostBody extends \ArrayObject
      */
     protected $subType;
     /**
-     * @var string
+     * @var string|resource|\Psr\Http\Message\StreamInterface
      */
     protected $front;
     /**
-     * @var string
+     * @var string|resource|\Psr\Http\Message\StreamInterface
      */
     protected $back;
     /**
@@ -29,7 +32,7 @@ class VerifyPhotoIdPostBody extends \ArrayObject
      */
     protected $countryCode;
     /**
-     * @var string
+     * @var string|resource|\Psr\Http\Message\StreamInterface
      */
     protected $faceScan;
     /**
@@ -51,36 +54,36 @@ class VerifyPhotoIdPostBody extends \ArrayObject
         return $this;
     }
     /**
-     * @return string
+     * @return string|resource|\Psr\Http\Message\StreamInterface
      */
-    public function getFront(): string
+    public function getFront()
     {
         return $this->front;
     }
     /**
-     * @param string $front
+     * @param string|resource|\Psr\Http\Message\StreamInterface $front
      *
      * @return self
      */
-    public function setFront(string $front): self
+    public function setFront($front): self
     {
         $this->initialized['front'] = true;
         $this->front = $front;
         return $this;
     }
     /**
-     * @return string
+     * @return string|resource|\Psr\Http\Message\StreamInterface
      */
-    public function getBack(): string
+    public function getBack()
     {
         return $this->back;
     }
     /**
-     * @param string $back
+     * @param string|resource|\Psr\Http\Message\StreamInterface $back
      *
      * @return self
      */
-    public function setBack(string $back): self
+    public function setBack($back): self
     {
         $this->initialized['back'] = true;
         $this->back = $back;
@@ -105,21 +108,25 @@ class VerifyPhotoIdPostBody extends \ArrayObject
         return $this;
     }
     /**
-     * @return string
+     * @return string|resource|\Psr\Http\Message\StreamInterface
      */
-    public function getFaceScan(): string
+    public function getFaceScan()
     {
         return $this->faceScan;
     }
     /**
-     * @param string $faceScan
+     * @param string|resource|\Psr\Http\Message\StreamInterface $faceScan
      *
      * @return self
      */
-    public function setFaceScan(string $faceScan): self
+    public function setFaceScan($faceScan): self
     {
         $this->initialized['faceScan'] = true;
         $this->faceScan = $faceScan;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['subType' => ['sub_type', 'getSubType', 'setSubType'], 'front' => ['front', 'getFront', 'setFront'], 'back' => ['back', 'getBack', 'setBack'], 'countryCode' => ['country_code', 'getCountryCode', 'setCountryCode'], 'faceScan' => ['face_scan', 'getFaceScan', 'setFaceScan']];
     }
 }

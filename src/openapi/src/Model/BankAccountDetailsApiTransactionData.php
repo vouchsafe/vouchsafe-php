@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class BankAccountDetailsApiTransactionData extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class BankAccountDetailsApiTransactionData implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -77,5 +80,9 @@ class BankAccountDetailsApiTransactionData extends \ArrayObject
         $this->initialized['earliestDate'] = true;
         $this->earliestDate = $earliestDate;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['count' => ['count', 'getCount', 'setCount'], 'lastDate' => ['last_date', 'getLastDate', 'setLastDate'], 'earliestDate' => ['earliest_date', 'getEarliestDate', 'setEarliestDate']];
     }
 }

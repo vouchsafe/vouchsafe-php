@@ -57,14 +57,14 @@ class EvisaValidationsApiNormalizer implements DenormalizerInterface, Normalizer
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['evisa_exists'] = $this->normalizer->normalize($data->getEvisaExists(), 'json', $context);
-        $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+        $dataArray['evisa_exists'] = $data->getEvisaExists() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaExists(), 'json', $context));
+        $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         if ($data->isInitialized('evisaStarted') && null !== $data->getEvisaStarted()) {
-            $dataArray['evisa_started'] = $this->normalizer->normalize($data->getEvisaStarted(), 'json', $context);
+            $dataArray['evisa_started'] = $data->getEvisaStarted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaStarted(), 'json', $context));
         }
-        $dataArray['evisa_not_expired'] = $this->normalizer->normalize($data->getEvisaNotExpired(), 'json', $context);
+        $dataArray['evisa_not_expired'] = $data->getEvisaNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaNotExpired(), 'json', $context));
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
-            $dataArray['face_match'] = $this->normalizer->normalize($data->getFaceMatch(), 'json', $context);
+            $dataArray['face_match'] = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
         }
         return $dataArray;
     }

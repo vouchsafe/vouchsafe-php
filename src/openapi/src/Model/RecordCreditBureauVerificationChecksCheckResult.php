@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class RecordCreditBureauVerificationChecksCheckResult extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class RecordCreditBureauVerificationChecksCheckResult implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -55,5 +58,9 @@ class RecordCreditBureauVerificationChecksCheckResult extends \ArrayObject
         $this->initialized['rESIDENCYMATCH'] = true;
         $this->rESIDENCYMATCH = $rESIDENCYMATCH;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['iDENTITYMATCH' => ['IDENTITY_MATCH', 'getIDENTITYMATCH', 'setIDENTITYMATCH'], 'rESIDENCYMATCH' => ['RESIDENCY_MATCH', 'getRESIDENCYMATCH', 'setRESIDENCYMATCH']];
     }
 }

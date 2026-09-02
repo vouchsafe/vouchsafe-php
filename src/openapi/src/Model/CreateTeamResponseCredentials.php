@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class CreateTeamResponseCredentials extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class CreateTeamResponseCredentials implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -117,5 +120,9 @@ class CreateTeamResponseCredentials extends \ArrayObject
         $this->initialized['name'] = true;
         $this->name = $name;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['clientSecret' => ['client_secret', 'getClientSecret', 'setClientSecret'], 'clientId' => ['client_id', 'getClientId', 'setClientId'], 'environment' => ['environment', 'getEnvironment', 'setEnvironment'], 'name' => ['name', 'getName', 'setName']];
     }
 }

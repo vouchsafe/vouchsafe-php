@@ -61,22 +61,22 @@ class DigitalIdValidationsApiNormalizer implements DenormalizerInterface, Normal
     {
         $dataArray = [];
         if ($data->isInitialized('namesConsistent') && null !== $data->getNamesConsistent()) {
-            $dataArray['names_consistent'] = $this->normalizer->normalize($data->getNamesConsistent(), 'json', $context);
+            $dataArray['names_consistent'] = $data->getNamesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNamesConsistent(), 'json', $context));
         }
         if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
-            $dataArray['has_not_expired'] = $this->normalizer->normalize($data->getHasNotExpired(), 'json', $context);
+            $dataArray['has_not_expired'] = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         }
         if ($data->isInitialized('evisaExists') && null !== $data->getEvisaExists()) {
-            $dataArray['evisa_exists'] = $this->normalizer->normalize($data->getEvisaExists(), 'json', $context);
+            $dataArray['evisa_exists'] = $data->getEvisaExists() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaExists(), 'json', $context));
         }
         if ($data->isInitialized('requiredFieldsExtracted') && null !== $data->getRequiredFieldsExtracted()) {
-            $dataArray['required_fields_extracted'] = $this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context);
+            $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
         }
         if ($data->isInitialized('evisaStarted') && null !== $data->getEvisaStarted()) {
-            $dataArray['evisa_started'] = $this->normalizer->normalize($data->getEvisaStarted(), 'json', $context);
+            $dataArray['evisa_started'] = $data->getEvisaStarted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaStarted(), 'json', $context));
         }
         if ($data->isInitialized('evisaNotExpired') && null !== $data->getEvisaNotExpired()) {
-            $dataArray['evisa_not_expired'] = $this->normalizer->normalize($data->getEvisaNotExpired(), 'json', $context);
+            $dataArray['evisa_not_expired'] = $data->getEvisaNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getEvisaNotExpired(), 'json', $context));
         }
         return $dataArray;
     }

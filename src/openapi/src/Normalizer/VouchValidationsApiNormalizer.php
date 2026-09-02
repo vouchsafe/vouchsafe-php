@@ -48,9 +48,9 @@ class VouchValidationsApiNormalizer implements DenormalizerInterface, Normalizer
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['relationship_minimum_duration_met'] = $this->normalizer->normalize($data->getRelationshipMinimumDurationMet(), 'json', $context);
+        $dataArray['relationship_minimum_duration_met'] = $data->getRelationshipMinimumDurationMet() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRelationshipMinimumDurationMet(), 'json', $context));
         if ($data->isInitialized('approvedProfessionalDomain') && null !== $data->getApprovedProfessionalDomain()) {
-            $dataArray['approved_professional_domain'] = $this->normalizer->normalize($data->getApprovedProfessionalDomain(), 'json', $context);
+            $dataArray['approved_professional_domain'] = $data->getApprovedProfessionalDomain() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getApprovedProfessionalDomain(), 'json', $context));
         }
         return $dataArray;
     }

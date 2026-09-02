@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class ReviewUserCheckApiValidations extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class ReviewUserCheckApiValidations implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -77,5 +80,9 @@ class ReviewUserCheckApiValidations extends \ArrayObject
         $this->initialized['refereeConfirmedName'] = true;
         $this->refereeConfirmedName = $refereeConfirmedName;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['refereeConfirmedPhoto' => ['referee_confirmed_photo', 'getRefereeConfirmedPhoto', 'setRefereeConfirmedPhoto'], 'refereeConfirmedDateOfBirth' => ['referee_confirmed_date_of_birth', 'getRefereeConfirmedDateOfBirth', 'setRefereeConfirmedDateOfBirth'], 'refereeConfirmedName' => ['referee_confirmed_name', 'getRefereeConfirmedName', 'setRefereeConfirmedName']];
     }
 }

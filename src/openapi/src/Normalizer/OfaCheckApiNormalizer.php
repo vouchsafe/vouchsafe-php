@@ -53,7 +53,7 @@ class OfaCheckApiNormalizer implements DenormalizerInterface, NormalizerInterfac
         $dataArray = [];
         $dataArray['check'] = $data->getCheck();
         $dataArray['outcome'] = $data->getOutcome();
-        $dataArray['details'] = $this->normalizer->normalize($data->getDetails(), 'json', $context);
+        $dataArray['details'] = $data->getDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDetails(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

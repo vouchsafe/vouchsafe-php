@@ -49,7 +49,7 @@ class RightToWorkInputNormalizer implements DenormalizerInterface, NormalizerInt
     {
         $dataArray = [];
         $dataArray['sub_type'] = $data->getSubType();
-        $dataArray['payload'] = $this->normalizer->normalize($data->getPayload(), 'json', $context);
+        $dataArray['payload'] = $data->getPayload() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getPayload(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

@@ -55,9 +55,9 @@ class RecordCreditBureauVerificationChecksCheckResultNormalizer implements Denor
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['IDENTITY_MATCH'] = $this->normalizer->normalize($data->getIDENTITYMATCH(), 'json', $context);
-        $dataArray['RESIDENCY_MATCH'] = $this->normalizer->normalize($data->getRESIDENCYMATCH(), 'json', $context);
-        foreach ($data as $key => $value) {
+        $dataArray['IDENTITY_MATCH'] = $data->getIDENTITYMATCH() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIDENTITYMATCH(), 'json', $context));
+        $dataArray['RESIDENCY_MATCH'] = $data->getRESIDENCYMATCH() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRESIDENCYMATCH(), 'json', $context));
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -109,41 +109,41 @@ class StepIdentityPhotoIdApiNormalizer implements DenormalizerInterface, Normali
         $dataArray['evidence_type'] = $data->getEvidenceType();
         $values = [];
         foreach ($data->getArtefacts() as $value) {
-            $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
         }
         $dataArray['artefacts'] = $values;
         $value_1 = $data->getExtractedDetails();
         if (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         } elseif (is_object($data->getExtractedDetails())) {
-            $value_1 = $this->normalizer->normalize($data->getExtractedDetails(), 'json', $context);
+            $value_1 = $data->getExtractedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getExtractedDetails(), 'json', $context));
         }
         $dataArray['extracted_details'] = $value_1;
         $value_2 = $data->getValidations();
         if (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
-            $value_2 = $this->normalizer->normalize($data->getValidations(), 'json', $context);
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         }
         $dataArray['validations'] = $value_2;
         return $dataArray;

@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class VerifyPhoneNumberCheckApiValidations extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class VerifyPhoneNumberCheckApiValidations implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -42,5 +45,9 @@ class VerifyPhoneNumberCheckApiValidations extends \ArrayObject
         $this->initialized['phoneVerified'] = true;
         $this->phoneVerified = $phoneVerified;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['phoneVerified' => ['phone_verified', 'getPhoneVerified', 'setPhoneVerified']];
     }
 }

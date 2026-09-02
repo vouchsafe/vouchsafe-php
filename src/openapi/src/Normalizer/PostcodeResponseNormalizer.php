@@ -63,7 +63,7 @@ class PostcodeResponseNormalizer implements DenormalizerInterface, NormalizerInt
         $dataArray['addresses'] = $values;
         $values_1 = [];
         foreach ($data->getAddressesFormatted() as $value_1) {
-            $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+            $values_1[] = $value_1 === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value_1, 'json', $context));
         }
         $dataArray['addresses_formatted'] = $values_1;
         return $dataArray;

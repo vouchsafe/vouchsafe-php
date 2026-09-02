@@ -2,8 +2,11 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class VerifySupportingDocumentsPostBody extends \ArrayObject
+use Vouchsafe\OpenAPI\Runtime\AdditionalAndPatternProperties;
+use Vouchsafe\OpenAPI\Runtime\AdditionalPropertiesInterface;
+class VerifySupportingDocumentsPostBody implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -15,7 +18,7 @@ class VerifySupportingDocumentsPostBody extends \ArrayObject
     /**
      * The document file (PDF, JPG, or PNG, max 10MB)
      *
-     * @var string
+     * @var string|resource|\Psr\Http\Message\StreamInterface
      */
     protected $document;
     /**
@@ -33,20 +36,20 @@ class VerifySupportingDocumentsPostBody extends \ArrayObject
     /**
      * The document file (PDF, JPG, or PNG, max 10MB)
      *
-     * @return string
+     * @return string|resource|\Psr\Http\Message\StreamInterface
      */
-    public function getDocument(): string
+    public function getDocument()
     {
         return $this->document;
     }
     /**
      * The document file (PDF, JPG, or PNG, max 10MB)
      *
-     * @param string $document
+     * @param string|resource|\Psr\Http\Message\StreamInterface $document
      *
      * @return self
      */
-    public function setDocument(string $document): self
+    public function setDocument($document): self
     {
         $this->initialized['document'] = true;
         $this->document = $document;
@@ -95,5 +98,9 @@ class VerifySupportingDocumentsPostBody extends \ArrayObject
         $this->initialized['minimumDocumentLength'] = true;
         $this->minimumDocumentLength = $minimumDocumentLength;
         return $this;
+    }
+    public function definedProperties(): array
+    {
+        return ['document' => ['document', 'getDocument', 'setDocument'], 'subType' => ['sub_type', 'getSubType', 'setSubType'], 'minimumDocumentLength' => ['minimum_document_length', 'getMinimumDocumentLength', 'setMinimumDocumentLength']];
     }
 }

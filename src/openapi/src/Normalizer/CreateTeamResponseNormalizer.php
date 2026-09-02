@@ -63,7 +63,7 @@ class CreateTeamResponseNormalizer implements DenormalizerInterface, NormalizerI
             $dataArray['public_name'] = $data->getPublicName();
         }
         $dataArray['created_at'] = $data->getCreatedAt();
-        $dataArray['credentials'] = $this->normalizer->normalize($data->getCredentials(), 'json', $context);
+        $dataArray['credentials'] = $data->getCredentials() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCredentials(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
