@@ -323,6 +323,7 @@
           "ISSUER_NOT_ALLOWED",
           "LOW_ID_FACE_MATCH",
           "MEDIUM_ID_FACE_MATCH",
+          "LOW_LIVENESS_CONFIDENCE",
           "LOW_DOC_TYPE_MATCH",
           "MEDIUM_DOC_TYPE_MATCH",
           "PARTIAL_EXTRACTION",
@@ -7480,6 +7481,26 @@
         "type": "object",
         "additionalProperties": false
       },
+      "AcknowledgeAlertResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "enum": [
+              true
+            ],
+            "nullable": false
+          },
+          "acknowledged_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "acknowledged_at"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "AdverseMediaArticle": {
         "properties": {
           "title": {
@@ -10464,6 +10485,73 @@
             }
           }
         }
+      }
+    },
+    "/alerts/{alertId}": {
+      "patch": {
+        "operationId": "AcknowledgeAlert",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcknowledgeAlertResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Feature not available on your plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Marks an alert as acknowledged.\n\nThe acknowledgement will be attributed to the name of the API key used to make the request.\n\nThis action is idempotent. Calling it on an already-acknowledged alert\nreturns the original acknowledgement timestamp.\n\nThe alert ID can be found in the webhook notification payload (`alertId`),\nor by calling `GET /v1/alerts/accounts/{id}` and reading the `id` field\non an alert in the response.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
+        "tags": [
+          "Alerts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The alert ID",
+            "in": "path",
+            "name": "alertId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/adverse-media": {

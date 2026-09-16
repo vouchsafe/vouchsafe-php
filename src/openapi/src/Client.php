@@ -556,6 +556,31 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ToggleAlerts($id, $requestBody), $fetch);
     }
     /**
+     * Marks an alert as acknowledged.
+     *
+     * The acknowledgement will be attributed to the name of the API key used to make the request.
+     *
+     * This action is idempotent. Calling it on an already-acknowledged alert
+     * returns the original acknowledgement timestamp.
+     *
+     * The alert ID can be found in the webhook notification payload (`alertId`),
+     * or by calling `GET /v1/alerts/accounts/{id}` and reading the `id` field
+     * on an alert in the response.
+     *
+     * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
+     * @param string $alertId The alert ID
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Vouchsafe\OpenAPI\Exception\AcknowledgeAlertUnauthorizedException
+     * @throws \Vouchsafe\OpenAPI\Exception\AcknowledgeAlertForbiddenException
+     * @throws \Vouchsafe\OpenAPI\Exception\AcknowledgeAlertNotFoundException
+     *
+     * @return ($fetch is 'object' ? null|\Vouchsafe\OpenAPI\Model\AcknowledgeAlertResponse : \Psr\Http\Message\ResponseInterface)
+     */
+    public function acknowledgeAlert(string $alertId, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\AcknowledgeAlert($alertId), $fetch);
+    }
+    /**
      * **Experimental (beta):** This is a new endpoint. The interface or behaviour may change without notice.
      *
      * Screen an individual against recent news coverage for adverse or negative reporting.

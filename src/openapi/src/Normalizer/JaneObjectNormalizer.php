@@ -404,6 +404,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\ToggleAlertsInput::class => \Vouchsafe\OpenAPI\Normalizer\ToggleAlertsInputNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\AcknowledgeAlertResponse::class => \Vouchsafe\OpenAPI\Normalizer\AcknowledgeAlertResponseNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\AdverseMediaArticle::class => \Vouchsafe\OpenAPI\Normalizer\AdverseMediaArticleNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\AdverseMediaResponse::class => \Vouchsafe\OpenAPI\Normalizer\AdverseMediaResponseNormalizer::class,
