@@ -50,6 +50,8 @@ class FailUnfamiliarPhotoIdFailedReasonNormalizer implements DenormalizerInterfa
                     $value_1 = $value;
                 } elseif (is_string($value)) {
                     $value_1 = $value;
+                } elseif (is_string($value)) {
+                    $value_1 = $value;
                 }
                 $values[] = $value_1;
             }
@@ -65,6 +67,8 @@ class FailUnfamiliarPhotoIdFailedReasonNormalizer implements DenormalizerInterfa
         foreach ($data->getFailedReasons() as $value) {
             $value_1 = $value;
             if (is_string($value)) {
+                $value_1 = $value;
+            } elseif (is_string($value)) {
                 $value_1 = $value;
             } elseif (is_string($value)) {
                 $value_1 = $value;

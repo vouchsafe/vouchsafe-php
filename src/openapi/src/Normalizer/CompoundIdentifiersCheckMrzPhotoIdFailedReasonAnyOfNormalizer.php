@@ -55,6 +55,8 @@ class CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOfNormalizer implements D
                     $value_1 = $value;
                 } elseif (is_string($value)) {
                     $value_1 = $value;
+                } elseif (is_string($value)) {
+                    $value_1 = $value;
                 }
                 $values[] = $value_1;
             }
@@ -82,6 +84,8 @@ class CompoundIdentifiersCheckMrzPhotoIdFailedReasonAnyOfNormalizer implements D
         foreach ($data->getFailedReasons() as $value) {
             $value_1 = $value;
             if (is_string($value)) {
+                $value_1 = $value;
+            } elseif (is_string($value)) {
                 $value_1 = $value;
             } elseif (is_string($value)) {
                 $value_1 = $value;

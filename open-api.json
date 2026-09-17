@@ -320,6 +320,7 @@
           "REFEREE_UNDER_18",
           "UNDER_18",
           "EXPIRY_DATE_PASSED",
+          "DOCUMENT_PAST_EXPIRY_WINDOW",
           "ISSUER_NOT_ALLOWED",
           "LOW_ID_FACE_MATCH",
           "MEDIUM_ID_FACE_MATCH",
@@ -1019,6 +1020,12 @@
         ],
         "type": "string"
       },
+      "FailedReason.DOCUMENT_PAST_EXPIRY_WINDOW": {
+        "enum": [
+          "DOCUMENT_PAST_EXPIRY_WINDOW"
+        ],
+        "type": "string"
+      },
       "MrzPhotoIdFailedReason": {
         "anyOf": [
           {
@@ -1035,6 +1042,9 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_PAST_EXPIRY_WINDOW"
           }
         ]
       },
@@ -1487,7 +1497,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
-            "description": "Whether the card has not passed its expiry date."
+            "description": "Whether the card has not passed its expiry date (or the accepted grace window)."
           },
           "not_specimen": {
             "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
@@ -1585,7 +1595,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/Check_MrzPhotoIdFailedReason_",
-            "description": "Whether the card has not passed its expiry date."
+            "description": "Whether the card has not passed its expiry date (or the accepted grace window)."
           },
           "not_specimen": {
             "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
@@ -1664,6 +1674,9 @@
             "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
           },
           {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_PAST_EXPIRY_WINDOW"
+          },
+          {
             "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
           },
           {
@@ -1721,7 +1734,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/Check_DrivingLicenceFailedReason_",
-            "description": "Whether the licence has not passed its expiry date."
+            "description": "Whether the licence has not passed its expiry date (or the accepted grace window)."
           },
           "not_specimen": {
             "$ref": "#/components/schemas/Check_SpecimenErrorCode_",
@@ -1794,6 +1807,9 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_PAST_EXPIRY_WINDOW"
           },
           {
             "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
@@ -1945,6 +1961,9 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.EXPIRY_DATE_PASSED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_PAST_EXPIRY_WINDOW"
           },
           {
             "$ref": "#/components/schemas/FailedReason.INVALID_DOCUMENT_DATE_FORMAT"
@@ -3882,7 +3901,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           },
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
@@ -3987,7 +4006,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           }
         },
         "required": [
@@ -4076,7 +4095,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           },
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
@@ -4173,7 +4192,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           }
         },
         "required": [
@@ -4264,7 +4283,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           }
         },
         "required": [
@@ -4440,7 +4459,7 @@
           },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is in date. Omitted when the flow permits expired documents."
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           }
         },
         "required": [
