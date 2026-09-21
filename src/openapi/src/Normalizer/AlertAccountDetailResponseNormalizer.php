@@ -82,7 +82,13 @@ class AlertAccountDetailResponseNormalizer implements DenormalizerInterface, Nor
         if (\array_key_exists('alerts', $data)) {
             $values = [];
             foreach ($data['alerts'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\AlertResponse::class, 'json', $context);
+                $value_1 = $value;
+                if (is_array($value) and \array_key_exists('id', $value) and \array_key_exists('created_at', $value) and \array_key_exists('acknowledged_at', $value) and (\array_key_exists('source', $value) and $value['source'] == 'AML') and \array_key_exists('matches', $value)) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\AMLAlertResponse::class, 'json', $context);
+                } elseif (is_array($value) and \array_key_exists('id', $value) and \array_key_exists('created_at', $value) and \array_key_exists('acknowledged_at', $value) and (\array_key_exists('source', $value) and $value['source'] == 'FraudBlocklist') and \array_key_exists('matched_on', $value)) {
+                    $value_1 = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\FraudBlocklistAlertResponse::class, 'json', $context);
+                }
+                $values[] = $value_1;
             }
             $object->setAlerts($values);
         }
@@ -101,7 +107,13 @@ class AlertAccountDetailResponseNormalizer implements DenormalizerInterface, Nor
         $dataArray['created_at'] = $data->getCreatedAt();
         $values = [];
         foreach ($data->getAlerts() as $value) {
-            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
+            $value_1 = $value;
+            if (is_object($value)) {
+                $value_1 = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
+            } elseif (is_object($value)) {
+                $value_1 = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
+            }
+            $values[] = $value_1;
         }
         $dataArray['alerts'] = $values;
         return $dataArray;

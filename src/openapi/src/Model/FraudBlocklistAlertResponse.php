@@ -2,7 +2,7 @@
 
 namespace Vouchsafe\OpenAPI\Model;
 
-class AlertResponse
+class FraudBlocklistAlertResponse
 {
     /**
      * @var array
@@ -25,9 +25,13 @@ class AlertResponse
      */
     protected $acknowledgedAt;
     /**
-     * @var list<AlertMatchResponse>
+     * @var string
      */
-    protected $matches;
+    protected $source;
+    /**
+     * @var list<string>
+     */
+    protected $matchedOn;
     /**
      * @return string
      */
@@ -83,21 +87,39 @@ class AlertResponse
         return $this;
     }
     /**
-     * @return list<AlertMatchResponse>
+     * @return string
      */
-    public function getMatches(): array
+    public function getSource(): string
     {
-        return $this->matches;
+        return $this->source;
     }
     /**
-     * @param list<AlertMatchResponse> $matches
+     * @param string $source
      *
      * @return self
      */
-    public function setMatches(array $matches): self
+    public function setSource(string $source): self
     {
-        $this->initialized['matches'] = true;
-        $this->matches = $matches;
+        $this->initialized['source'] = true;
+        $this->source = $source;
+        return $this;
+    }
+    /**
+     * @return list<string>
+     */
+    public function getMatchedOn(): array
+    {
+        return $this->matchedOn;
+    }
+    /**
+     * @param list<string> $matchedOn
+     *
+     * @return self
+     */
+    public function setMatchedOn(array $matchedOn): self
+    {
+        $this->initialized['matchedOn'] = true;
+        $this->matchedOn = $matchedOn;
         return $this;
     }
 }

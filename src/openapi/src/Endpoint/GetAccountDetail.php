@@ -10,7 +10,11 @@ class GetAccountDetail extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint im
      *
      * Get full account detail.
      *
-     * Returns the account's personal details, all alerts, and matched entities.
+     * Returns the account's personal details and all alerts.
+     *
+     * Each alert has a `source` field that determines its shape:
+     * - `"AML"` - triggered by a sanctions/PEP screening hit. Populates `matches[]` with the matched entities.
+     * - `"FraudBlocklist"` - triggered by a match in our internal network. Populates `matched_on` with the datapoint that matched it (`"email"` and/or `"face"`).
      *
      * > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
      * @param string $id The account ID (SmartLookup ID)

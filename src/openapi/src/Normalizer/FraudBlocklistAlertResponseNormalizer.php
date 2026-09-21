@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class AlertResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class FraudBlocklistAlertResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -19,15 +19,15 @@ class AlertResponseNormalizer implements DenormalizerInterface, NormalizerInterf
     use ValidatorTrait;
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === \Vouchsafe\OpenAPI\Model\AlertResponse::class;
+        return $type === \Vouchsafe\OpenAPI\Model\FraudBlocklistAlertResponse::class;
     }
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\AlertResponse::class;
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\FraudBlocklistAlertResponse::class;
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $object = new \Vouchsafe\OpenAPI\Model\AlertResponse();
+        $object = new \Vouchsafe\OpenAPI\Model\FraudBlocklistAlertResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -49,12 +49,15 @@ class AlertResponseNormalizer implements DenormalizerInterface, NormalizerInterf
         elseif (\array_key_exists('acknowledged_at', $data) && $data['acknowledged_at'] === null) {
             $object->setAcknowledgedAt(null);
         }
-        if (\array_key_exists('matches', $data)) {
+        if (\array_key_exists('source', $data)) {
+            $object->setSource($data['source']);
+        }
+        if (\array_key_exists('matched_on', $data)) {
             $values = [];
-            foreach ($data['matches'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, \Vouchsafe\OpenAPI\Model\AlertMatchResponse::class, 'json', $context);
+            foreach ($data['matched_on'] as $value) {
+                $values[] = $value;
             }
-            $object->setMatches($values);
+            $object->setMatchedOn($values);
         }
         return $object;
     }
@@ -64,15 +67,16 @@ class AlertResponseNormalizer implements DenormalizerInterface, NormalizerInterf
         $dataArray['id'] = $data->getId();
         $dataArray['created_at'] = $data->getCreatedAt();
         $dataArray['acknowledged_at'] = $data->getAcknowledgedAt();
+        $dataArray['source'] = $data->getSource();
         $values = [];
-        foreach ($data->getMatches() as $value) {
-            $values[] = $value === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($value, 'json', $context));
+        foreach ($data->getMatchedOn() as $value) {
+            $values[] = $value;
         }
-        $dataArray['matches'] = $values;
+        $dataArray['matched_on'] = $values;
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
     {
-        return [\Vouchsafe\OpenAPI\Model\AlertResponse::class => false];
+        return [\Vouchsafe\OpenAPI\Model\FraudBlocklistAlertResponse::class => false];
     }
 }

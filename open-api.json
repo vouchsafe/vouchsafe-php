@@ -7391,7 +7391,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "AlertResponse": {
+      "AMLAlertResponse": {
         "properties": {
           "id": {
             "type": "string"
@@ -7402,6 +7402,13 @@
           "acknowledged_at": {
             "type": "string",
             "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "AML"
+            ],
+            "nullable": false
           },
           "matches": {
             "items": {
@@ -7414,10 +7421,61 @@
           "id",
           "created_at",
           "acknowledged_at",
+          "source",
           "matches"
         ],
         "type": "object",
         "additionalProperties": false
+      },
+      "FraudBlocklistAlertResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "acknowledged_at": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "FraudBlocklist"
+            ],
+            "nullable": false
+          },
+          "matched_on": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "email",
+                "face"
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "acknowledged_at",
+          "source",
+          "matched_on"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AlertResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AMLAlertResponse"
+          },
+          {
+            "$ref": "#/components/schemas/FraudBlocklistAlertResponse"
+          }
+        ]
       },
       "AlertAccountDetailResponse": {
         "properties": {
@@ -10341,26 +10399,8 @@
                       "last_screened_at": "2025-09-01T10:00:00Z",
                       "created_at": "2025-08-01T10:00:00Z",
                       "alerts": [
-                        {
-                          "id": "alert_123",
-                          "created_at": "2025-09-01T10:00:00Z",
-                          "acknowledged_at": null,
-                          "matches": [
-                            {
-                              "id": "match_456",
-                              "opensanctions_id": "NK-abc123",
-                              "caption": "Emily Roberts",
-                              "entity_type": "Person",
-                              "datasets": [
-                                {
-                                  "id": "us_ofac_sdn",
-                                  "title": "US OFAC Specially Designated Nationals (SDN) List"
-                                }
-                              ],
-                              "score": 0.92
-                            }
-                          ]
-                        }
+                        null,
+                        null
                       ]
                     }
                   }
@@ -10399,7 +10439,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nGet full account detail.\n\nReturns the account's personal details, all alerts, and matched entities.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
+        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nGet full account detail.\n\nReturns the account's personal details and all alerts.\n\nEach alert has a `source` field that determines its shape:\n- `\"AML\"` - triggered by a sanctions/PEP screening hit. Populates `matches[]` with the matched entities.\n- `\"FraudBlocklist\"` - triggered by a match in our internal network. Populates `matched_on` with the datapoint that matched it (`\"email\"` and/or `\"face\"`).\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],

@@ -45,7 +45,7 @@ class AlertAccountDetailResponse
      */
     protected $createdAt;
     /**
-     * @var list<AlertResponse>
+     * @var list<AMLAlertResponse>|list<FraudBlocklistAlertResponse>
      */
     protected $alerts;
     /**
@@ -193,14 +193,14 @@ class AlertAccountDetailResponse
         return $this;
     }
     /**
-     * @return list<AlertResponse>
+     * @return list<AMLAlertResponse>|list<FraudBlocklistAlertResponse>
      */
     public function getAlerts(): array
     {
         return $this->alerts;
     }
     /**
-     * @param list<AlertResponse> $alerts
+     * @param list<AMLAlertResponse>|list<FraudBlocklistAlertResponse> $alerts
      *
      * @return self
      */
