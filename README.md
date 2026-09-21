@@ -87,14 +87,7 @@ For best performance, you should create one client per request/process.
 
 The client caches the access token in memory for the life of that process.
 
-Each time a new access token is requested using the same client credentials, it invalidates the old one.
-
-Having multiple clients sharing the same credentials can lead to:
-
-- over-writing each other's tokens
-- unnecessary retries and re-authentications.
-
-For high-concurrency use cases, you should store the access token in a shared key-value store instead.
+If you run multiple instances of your app, each instance can authenticate on its own and cache its own access token.
 
 ### Handling errors
 
