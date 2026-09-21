@@ -36,7 +36,9 @@ final class VouchsafeClient
 {
   private $clientId;
   private $clientSecret;
-  private $baseUri = 'https://app.vouchsafe.id/api/v1';
+
+  private $baseUri   = 'https://app.vouchsafe.id/api/v1';
+  private $baseUriV2 = 'https://app.vouchsafe.id/api/v2';
 
   /** @var string|null */
   private $token = null;
@@ -374,6 +376,72 @@ final class VouchsafeClient
 
           $httpClient = new \GuzzleHttp\Client(['verify' => false]);
           $response = $httpClient->post($this->baseUri . '/verify/photo-id', [
+              'headers'   => ['Authorization' => 'Bearer ' . $this->token],
+              'multipart' => $multipart,
+          ]);
+
+          return json_decode((string) $response->getBody(), true);
+      });
+  }
+
+  /**
+   * Vouchsafe's headline Risk API (v2) — an instant identity-fraud risk
+   * assessment returning a risk_score (0–100) and a CLEAR/REVIEW/REJECT
+   * recommendation.
+   *
+   * Sandbox last_name selects the example: Webb → CLEAR, Doe → REVIEW, Roberts → REJECT.
+   *
+   * enrichments, address and thresholds may be passed as arrays (encoded here)
+   * or as pre-encoded JSON strings.
+   *
+   * Example:
+   * $client->checkRisk([
+   *   'first_name'    => 'David',
+   *   'last_name'     => 'Webb',
+   *   'email'         => 'dwebb@example.com',
+   *   'date_of_birth' => '1996-12-12',
+   *   'enrichments'   => ['CREDIT_BUREAU', 'AML'],
+   *   'address'       => ['residence_number' => '221B', 'street' => 'Baker Street', 'city' => 'London', 'postcode' => 'NW1 6XE', 'country_code' => 'GB'],
+   *   'face_scan'     => '/path/to/selfie.jpg', // optional
+   * ]);
+   */
+  public function checkRisk(array $input)
+  {
+      return $this->withErrorHandling(function () use ($input) {
+          foreach (['first_name', 'last_name', 'email', 'date_of_birth'] as $field) {
+              if (empty($input[$field])) {
+                  throw new \InvalidArgumentException("$field is required");
+              }
+          }
+
+          $multipart = [
+              ['name' => 'first_name',    'contents' => (string) $input['first_name']],
+              ['name' => 'last_name',     'contents' => (string) $input['last_name']],
+              ['name' => 'email',         'contents' => (string) $input['email']],
+              ['name' => 'date_of_birth', 'contents' => (string) $input['date_of_birth']],
+          ];
+
+          // JSON-encoded fields: accept arrays (encoded here) or JSON strings.
+          foreach (['enrichments', 'address', 'thresholds'] as $jsonField) {
+              if (isset($input[$jsonField])) {
+                  $value = is_array($input[$jsonField])
+                      ? json_encode($input[$jsonField])
+                      : (string) $input[$jsonField];
+                  $multipart[] = ['name' => $jsonField, 'contents' => $value];
+              }
+          }
+
+          if (isset($input['phone'])) {
+              $multipart[] = ['name' => 'phone', 'contents' => (string) $input['phone']];
+          }
+
+          $facePath = $input['face_scan'] ?? $input['faceScan'] ?? null;
+          if ($facePath && file_exists($facePath)) {
+              $multipart[] = ['name' => 'face_scan', 'contents' => fopen($facePath, 'r'), 'filename' => basename($facePath)];
+          }
+
+          $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+          $response = $httpClient->post($this->baseUriV2 . '/risk', [
               'headers'   => ['Authorization' => 'Bearer ' . $this->token],
               'multipart' => $multipart,
           ]);
