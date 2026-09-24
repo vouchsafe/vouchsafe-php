@@ -321,6 +321,7 @@
           "UNDER_18",
           "EXPIRY_DATE_PASSED",
           "DOCUMENT_PAST_EXPIRY_WINDOW",
+          "PHOTO_ID_MISSING_EXPIRY",
           "ISSUER_NOT_ALLOWED",
           "LOW_ID_FACE_MATCH",
           "MEDIUM_ID_FACE_MATCH",
@@ -337,6 +338,7 @@
           "REFEREE_SELFIE_MATCHES_USER",
           "DATE_OF_BIRTH_MISMATCH",
           "PHOTO_ID_FEATURE_MISSING",
+          "PHOTO_ID_SCAN_DETAILS_MISSING",
           "WATERMARK_TEXT_DETECTED",
           "SAMPLE_DOCUMENT_NUMBER_DETECTED",
           "SAMPLE_NAME_DETECTED",
@@ -6940,7 +6942,7 @@
           },
           "street": {
             "type": "string",
-            "description": "Street / road name. Required for CreditBureau."
+            "description": "Street or road name. Optional, but omitting it may reduce match rates."
           },
           "city": {
             "type": "string",
@@ -7028,7 +7030,7 @@
           },
           "alerts_enabled": {
             "type": "boolean",
-            "description": "(optional) When true, enables ongoing AML monitoring for this lookup.\nRequires AML to be included in checks. Requires the Alerts feature entitlement."
+            "description": "(optional) When true, enables ongoing AML monitoring for this lookup.\nRequires the Alerts feature entitlement."
           }
         },
         "required": [

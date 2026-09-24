@@ -73,7 +73,7 @@ class SmartLookupInput
     protected $thresholds;
     /**
      * (optional) When true, enables ongoing AML monitoring for this lookup.
-     * Requires AML to be included in checks. Requires the Alerts feature entitlement.
+     * Requires the Alerts feature entitlement.
      *
      * @var bool
      */
@@ -298,7 +298,7 @@ class SmartLookupInput
     }
     /**
      * (optional) When true, enables ongoing AML monitoring for this lookup.
-     * Requires AML to be included in checks. Requires the Alerts feature entitlement.
+     * Requires the Alerts feature entitlement.
      *
      * @return bool
      */
@@ -308,7 +308,7 @@ class SmartLookupInput
     }
     /**
     * (optional) When true, enables ongoing AML monitoring for this lookup.
-    Requires AML to be included in checks. Requires the Alerts feature entitlement.
+    Requires the Alerts feature entitlement.
     *
     * @param bool $alertsEnabled
     *

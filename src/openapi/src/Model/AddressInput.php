@@ -25,7 +25,7 @@ class AddressInput
      */
     protected $buildingName;
     /**
-     * Street / road name. Required for CreditBureau.
+     * Street or road name. Optional, but omitting it may reduce match rates.
      *
      * @var string
      */
@@ -99,7 +99,7 @@ class AddressInput
         return $this;
     }
     /**
-     * Street / road name. Required for CreditBureau.
+     * Street or road name. Optional, but omitting it may reduce match rates.
      *
      * @return string
      */
@@ -108,7 +108,7 @@ class AddressInput
         return $this->street;
     }
     /**
-     * Street / road name. Required for CreditBureau.
+     * Street or road name. Optional, but omitting it may reduce match rates.
      *
      * @param string $street
      *
