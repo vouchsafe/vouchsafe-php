@@ -375,6 +375,7 @@
           "DOCUMENT_TEXT_TAMPERED",
           "DOCUMENT_LOOKS_LIKE_PRINT_COPY",
           "DOCUMENT_COLOR_PROFILE_CHANGED",
+          "DOCUMENT_IS_GRAYSCALE",
           "OWNER_NAME_NOT_FOUND",
           "NO_RECENT_TRANSACTIONS",
           "ZERO_BALANCE_ALERT",
@@ -1236,6 +1237,12 @@
         ],
         "type": "string"
       },
+      "FailedReason.DOCUMENT_IS_GRAYSCALE": {
+        "enum": [
+          "DOCUMENT_IS_GRAYSCALE"
+        ],
+        "type": "string"
+      },
       "FailedReason.POSSIBLY_TAMPERED": {
         "enum": [
           "POSSIBLY_TAMPERED"
@@ -1258,6 +1265,9 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.DOCUMENT_LOOKS_LIKE_PRINT_COPY"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_IS_GRAYSCALE"
           },
           {
             "$ref": "#/components/schemas/FailedReason.POSSIBLY_TAMPERED"

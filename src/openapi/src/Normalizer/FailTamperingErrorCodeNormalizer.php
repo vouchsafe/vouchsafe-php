@@ -56,6 +56,8 @@ class FailTamperingErrorCodeNormalizer implements DenormalizerInterface, Normali
                     $value_1 = $value;
                 } elseif (is_string($value)) {
                     $value_1 = $value;
+                } elseif (is_string($value)) {
+                    $value_1 = $value;
                 }
                 $values[] = $value_1;
             }
@@ -71,6 +73,8 @@ class FailTamperingErrorCodeNormalizer implements DenormalizerInterface, Normali
         foreach ($data->getFailedReasons() as $value) {
             $value_1 = $value;
             if (is_string($value)) {
+                $value_1 = $value;
+            } elseif (is_string($value)) {
                 $value_1 = $value;
             } elseif (is_string($value)) {
                 $value_1 = $value;
