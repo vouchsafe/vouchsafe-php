@@ -29,6 +29,14 @@ class ApiErrorResponse
      */
     protected $failedReason;
     /**
+     * @var string
+     */
+    protected $errorCode;
+    /**
+     * @var float
+     */
+    protected $retryAfterSeconds;
+    /**
      * @return float
      */
     public function getStatusCode(): float
@@ -98,6 +106,42 @@ class ApiErrorResponse
     {
         $this->initialized['failedReason'] = true;
         $this->failedReason = $failedReason;
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getErrorCode(): string
+    {
+        return $this->errorCode;
+    }
+    /**
+     * @param string $errorCode
+     *
+     * @return self
+     */
+    public function setErrorCode(string $errorCode): self
+    {
+        $this->initialized['errorCode'] = true;
+        $this->errorCode = $errorCode;
+        return $this;
+    }
+    /**
+     * @return float
+     */
+    public function getRetryAfterSeconds(): float
+    {
+        return $this->retryAfterSeconds;
+    }
+    /**
+     * @param float $retryAfterSeconds
+     *
+     * @return self
+     */
+    public function setRetryAfterSeconds(float $retryAfterSeconds): self
+    {
+        $this->initialized['retryAfterSeconds'] = true;
+        $this->retryAfterSeconds = $retryAfterSeconds;
         return $this;
     }
 }

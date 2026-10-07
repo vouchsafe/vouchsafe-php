@@ -40,6 +40,9 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
         if (\array_key_exists('status_code', $data) && \is_int($data['status_code'])) {
             $data['status_code'] = (float) $data['status_code'];
         }
+        if (\array_key_exists('retry_after_seconds', $data) && \is_int($data['retry_after_seconds'])) {
+            $data['retry_after_seconds'] = (float) $data['retry_after_seconds'];
+        }
         if (\array_key_exists('status_code', $data)) {
             $object->setStatusCode($data['status_code']);
         }
@@ -51,6 +54,12 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
         }
         if (\array_key_exists('failedReason', $data)) {
             $object->setFailedReason($data['failedReason']);
+        }
+        if (\array_key_exists('error_code', $data)) {
+            $object->setErrorCode($data['error_code']);
+        }
+        if (\array_key_exists('retry_after_seconds', $data)) {
+            $object->setRetryAfterSeconds($data['retry_after_seconds']);
         }
         return $object;
     }
@@ -64,6 +73,12 @@ class ApiErrorResponseNormalizer implements DenormalizerInterface, NormalizerInt
         }
         if ($data->isInitialized('failedReason') && null !== $data->getFailedReason()) {
             $dataArray['failedReason'] = $data->getFailedReason();
+        }
+        if ($data->isInitialized('errorCode') && null !== $data->getErrorCode()) {
+            $dataArray['error_code'] = $data->getErrorCode();
+        }
+        if ($data->isInitialized('retryAfterSeconds') && null !== $data->getRetryAfterSeconds()) {
+            $dataArray['retry_after_seconds'] = $data->getRetryAfterSeconds();
         }
         return $dataArray;
     }

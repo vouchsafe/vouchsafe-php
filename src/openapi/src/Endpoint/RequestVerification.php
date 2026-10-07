@@ -20,10 +20,14 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
      *
      * If you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.
      *
+     * #### Existing verifications
+     *
+     * If a user already has an in progress verification for the same email address and flow, a new verification is not created. To start a new verification for that user in the same flow, first cancel their existing verification using the [CancelVerification](https://docs.vouchsafe.id/api/v1/cancel-verification) endpoint.
+     *
      * #### Expiry
      *
      * Verifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.
-     *
+     * v
      * You can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`).
      *
      * **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
@@ -69,6 +73,9 @@ class RequestVerification extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
+        if (is_null($contentType) === false && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
+            return $serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\RequestVerificationResponse', 'json');
+        }
         if (is_null($contentType) === false && (201 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             return $serializer->deserialize($body, 'Vouchsafe\OpenAPI\Model\RequestVerificationResponse', 'json');
         }
