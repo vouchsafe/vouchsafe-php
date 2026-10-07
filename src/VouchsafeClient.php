@@ -12,6 +12,7 @@ use Vouchsafe\OpenAPI\Exception\AuthenticateUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\GetVerificationUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\ListVerificationsUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\RequestVerificationUnauthorizedException;
+use Vouchsafe\OpenAPI\Exception\CancelVerificationUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\PerformSmartLookupUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\SearchPostcodeUnauthorizedException;
 use Vouchsafe\OpenAPI\Exception\GetFlowUnauthorizedException;
@@ -122,6 +123,7 @@ final class VouchsafeClient
       || $e instanceof GetVerificationUnauthorizedException
       || $e instanceof ListVerificationsUnauthorizedException
       || $e instanceof RequestVerificationUnauthorizedException
+      || $e instanceof CancelVerificationUnauthorizedException
       || $e instanceof PerformSmartLookupUnauthorizedException
       || $e instanceof SearchPostcodeUnauthorizedException
       || $e instanceof GetFlowUnauthorizedException
@@ -187,6 +189,18 @@ final class VouchsafeClient
     return $this->withErrorHandling(function () use ($input) {
       $body = $this->hydrateModel(new \Vouchsafe\OpenAPI\Model\RequestVerificationInput(), $input);
       $response = $this->authedClient()->requestVerification($body, \Vouchsafe\OpenAPI\Client::FETCH_RESPONSE);
+      return $this->decodeResponse($response);
+    });
+  }
+
+  /**
+   * Cancel an in progress verification. Any other status returns a 409.
+   */
+  public function cancelVerification(array $args)
+  {
+    $id = isset($args['id']) ? (string) $args['id'] : '';
+    return $this->withErrorHandling(function () use ($id) {
+      $response = $this->authedClient()->cancelVerification($id, \Vouchsafe\OpenAPI\Client::FETCH_RESPONSE);
       return $this->decodeResponse($response);
     });
   }
