@@ -6,8 +6,6 @@ class GetAccountDetail extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint im
 {
     protected $id;
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * Get full account detail.
      *
      * Returns the account's personal details and all alerts.

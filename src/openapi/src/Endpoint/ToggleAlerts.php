@@ -6,8 +6,6 @@ class ToggleAlerts extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implem
 {
     protected $id;
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * Toggle ongoing monitoring for an account.
      *
      * Enable or disable AML/sanctions screening for an existing account.

@@ -5,8 +5,6 @@ namespace Vouchsafe\OpenAPI\Endpoint;
 class ListAccounts extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implements \Vouchsafe\OpenAPI\Runtime\Client\Endpoint
 {
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * List monitored accounts.
      *
      * Returns accounts that have ongoing AML/sanctions monitoring enabled,

@@ -515,8 +515,6 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetArtefact($artefactKey), $fetch);
     }
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * List monitored accounts.
      *
      * Returns accounts that have ongoing AML/sanctions monitoring enabled,
@@ -540,8 +538,6 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\ListAccounts($queryParameters), $fetch);
     }
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * Get full account detail.
      *
      * Returns the account's personal details and all alerts.
@@ -564,8 +560,6 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
         return $this->executeEndpoint(new \Vouchsafe\OpenAPI\Endpoint\GetAccountDetail($id), $fetch);
     }
     /**
-     * **Experimental (beta):** This feature is new and currently in beta.
-     *
      * Toggle ongoing monitoring for an account.
      *
      * Enable or disable AML/sanctions screening for an existing account.

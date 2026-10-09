@@ -363,6 +363,8 @@
           "DOCUMENT_DATE_EXCEEDS_VALIDITY_PERIOD",
           "MULTIPLE_RECIPIENTS",
           "EXTRACTION_FAILED",
+          "ENCRYPTED_FILE",
+          "CORRUPT_FILE",
           "ORIGINAL_DOC_NOT_DETECTED",
           "ORIGINAL_DOC_INCONCLUSIVE",
           "DUPLICATE_DOC_DETECTED",
@@ -10441,7 +10443,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nList monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
+        "description": "List monitored accounts.\n\nReturns accounts that have ongoing AML/sanctions monitoring enabled,\nwith summary info including current alert status.\n\nUse cursor-based pagination to iterate through results.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],
@@ -10535,7 +10537,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nGet full account detail.\n\nReturns the account's personal details and all alerts.\n\nEach alert has a `source` field that determines its shape:\n- `\"AML\"` - triggered by a sanctions/PEP screening hit. Populates `matches[]` with the matched entities.\n- `\"FraudBlocklist\"` - triggered by a match in our internal network. Populates `matched_on` with the datapoint that matched it (`\"email\"` and/or `\"face\"`).\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
+        "description": "Get full account detail.\n\nReturns the account's personal details and all alerts.\n\nEach alert has a `source` field that determines its shape:\n- `\"AML\"` - triggered by a sanctions/PEP screening hit. Populates `matches[]` with the matched entities.\n- `\"FraudBlocklist\"` - triggered by a match in our internal network. Populates `matched_on` with the datapoint that matched it (`\"email\"` and/or `\"face\"`).\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],
@@ -10610,7 +10612,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This feature is new and currently in beta.\n\nToggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
+        "description": "Toggle ongoing monitoring for an account.\n\nEnable or disable AML/sanctions screening for an existing account.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).",
         "tags": [
           "Alerts"
         ],
