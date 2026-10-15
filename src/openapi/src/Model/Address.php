@@ -13,13 +13,13 @@ class Address
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @var string
      */
     protected $residenceNumber;
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @var string
      */
@@ -53,7 +53,7 @@ class Address
      */
     protected $countryCode;
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @return string
      */
@@ -62,7 +62,7 @@ class Address
         return $this->residenceNumber;
     }
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @param string $residenceNumber
      *
@@ -75,7 +75,7 @@ class Address
         return $this;
     }
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @return string
      */
@@ -84,7 +84,7 @@ class Address
         return $this->buildingName;
     }
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @param string $buildingName
      *

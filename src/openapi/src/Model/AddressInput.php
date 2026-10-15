@@ -13,49 +13,55 @@ class AddressInput
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required (or `building_name`) for CreditBureau.
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+     * 
+     * Required for the credit bureau check, unless `building_name` is provided.
      *
      * @var string
      */
     protected $residenceNumber;
     /**
-     * Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau.
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+     * 
+     * Required for the credit bureau check, unless `residence_number` is provided.
      *
      * @var string
      */
     protected $buildingName;
     /**
-     * Street or road name. Optional, but omitting it may reduce match rates.
+     * The street or road name. Optional, but leaving it out may lower match rates.
      *
      * @var string
      */
     protected $street;
     /**
-     * City / town. Required for CreditBureau.
+     * The city or town. Required for CreditBureau.
      *
      * @var string
      */
     protected $city;
     /**
-     * Postcode. Required for CreditBureau.
+     * The postcode. Required for CreditBureau.
      *
      * @var string
      */
     protected $postcode;
     /**
-     * State, province, or county. Optional.
+     * The state, province or county. Optional.
      *
      * @var string
      */
     protected $region;
     /**
-     * ISO 3166-1 alpha-2 country code, e.g. "GB". Required for CreditBureau.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`. Required for CreditBureau.
      *
      * @var string
      */
     protected $countryCode;
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required (or `building_name`) for CreditBureau.
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+     * 
+     * Required for the credit bureau check, unless `building_name` is provided.
      *
      * @return string
      */
@@ -64,12 +70,14 @@ class AddressInput
         return $this->residenceNumber;
     }
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required (or `building_name`) for CreditBureau.
-     *
-     * @param string $residenceNumber
-     *
-     * @return self
-     */
+    * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+    
+    Required for the credit bureau check, unless `building_name` is provided.
+    *
+    * @param string $residenceNumber
+    *
+    * @return self
+    */
     public function setResidenceNumber(string $residenceNumber): self
     {
         $this->initialized['residenceNumber'] = true;
@@ -77,7 +85,9 @@ class AddressInput
         return $this;
     }
     /**
-     * Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau.
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+     * 
+     * Required for the credit bureau check, unless `residence_number` is provided.
      *
      * @return string
      */
@@ -86,12 +96,14 @@ class AddressInput
         return $this->buildingName;
     }
     /**
-     * Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau.
-     *
-     * @param string $buildingName
-     *
-     * @return self
-     */
+    * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+    
+    Required for the credit bureau check, unless `residence_number` is provided.
+    *
+    * @param string $buildingName
+    *
+    * @return self
+    */
     public function setBuildingName(string $buildingName): self
     {
         $this->initialized['buildingName'] = true;
@@ -99,7 +111,7 @@ class AddressInput
         return $this;
     }
     /**
-     * Street or road name. Optional, but omitting it may reduce match rates.
+     * The street or road name. Optional, but leaving it out may lower match rates.
      *
      * @return string
      */
@@ -108,7 +120,7 @@ class AddressInput
         return $this->street;
     }
     /**
-     * Street or road name. Optional, but omitting it may reduce match rates.
+     * The street or road name. Optional, but leaving it out may lower match rates.
      *
      * @param string $street
      *
@@ -121,7 +133,7 @@ class AddressInput
         return $this;
     }
     /**
-     * City / town. Required for CreditBureau.
+     * The city or town. Required for CreditBureau.
      *
      * @return string
      */
@@ -130,7 +142,7 @@ class AddressInput
         return $this->city;
     }
     /**
-     * City / town. Required for CreditBureau.
+     * The city or town. Required for CreditBureau.
      *
      * @param string $city
      *
@@ -143,7 +155,7 @@ class AddressInput
         return $this;
     }
     /**
-     * Postcode. Required for CreditBureau.
+     * The postcode. Required for CreditBureau.
      *
      * @return string
      */
@@ -152,7 +164,7 @@ class AddressInput
         return $this->postcode;
     }
     /**
-     * Postcode. Required for CreditBureau.
+     * The postcode. Required for CreditBureau.
      *
      * @param string $postcode
      *
@@ -165,7 +177,7 @@ class AddressInput
         return $this;
     }
     /**
-     * State, province, or county. Optional.
+     * The state, province or county. Optional.
      *
      * @return string
      */
@@ -174,7 +186,7 @@ class AddressInput
         return $this->region;
     }
     /**
-     * State, province, or county. Optional.
+     * The state, province or county. Optional.
      *
      * @param string $region
      *
@@ -187,7 +199,7 @@ class AddressInput
         return $this;
     }
     /**
-     * ISO 3166-1 alpha-2 country code, e.g. "GB". Required for CreditBureau.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`. Required for CreditBureau.
      *
      * @return string
      */
@@ -196,7 +208,7 @@ class AddressInput
         return $this->countryCode;
     }
     /**
-     * ISO 3166-1 alpha-2 country code, e.g. "GB". Required for CreditBureau.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`. Required for CreditBureau.
      *
      * @param string $countryCode
      *

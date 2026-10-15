@@ -13,47 +13,55 @@ class PublicAddress
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @var string
      */
     protected $residenceNumber;
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @var string
      */
     protected $buildingName;
     /**
+     * The street or road name.
+     *
      * @var string
      */
     protected $street;
     /**
+     * The city or town.
+     *
      * @var string
      */
     protected $city;
     /**
+     * The postcode.
+     *
      * @var string
      */
     protected $postcode;
     /**
+     * The country name, e.g. `"United Kingdom"`.
+     *
      * @var string
      */
     protected $country;
     /**
-     * State, province, or county.
+     * The state, province or county.
      *
      * @var string
      */
     protected $region;
     /**
-     * ISO 3166-1 alpha-2 country code.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`.
      *
      * @var string
      */
     protected $countryCode;
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @return string
      */
@@ -62,7 +70,7 @@ class PublicAddress
         return $this->residenceNumber;
     }
     /**
-     * House or flat number, e.g. "10" or "Flat 1".
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
      *
      * @param string $residenceNumber
      *
@@ -75,7 +83,7 @@ class PublicAddress
         return $this;
     }
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @return string
      */
@@ -84,7 +92,7 @@ class PublicAddress
         return $this->buildingName;
     }
     /**
-     * House or building name, e.g. "Rose Cottage".
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
      *
      * @param string $buildingName
      *
@@ -97,6 +105,8 @@ class PublicAddress
         return $this;
     }
     /**
+     * The street or road name.
+     *
      * @return string
      */
     public function getStreet(): string
@@ -104,6 +114,8 @@ class PublicAddress
         return $this->street;
     }
     /**
+     * The street or road name.
+     *
      * @param string $street
      *
      * @return self
@@ -115,6 +127,8 @@ class PublicAddress
         return $this;
     }
     /**
+     * The city or town.
+     *
      * @return string
      */
     public function getCity(): string
@@ -122,6 +136,8 @@ class PublicAddress
         return $this->city;
     }
     /**
+     * The city or town.
+     *
      * @param string $city
      *
      * @return self
@@ -133,6 +149,8 @@ class PublicAddress
         return $this;
     }
     /**
+     * The postcode.
+     *
      * @return string
      */
     public function getPostcode(): string
@@ -140,6 +158,8 @@ class PublicAddress
         return $this->postcode;
     }
     /**
+     * The postcode.
+     *
      * @param string $postcode
      *
      * @return self
@@ -151,6 +171,8 @@ class PublicAddress
         return $this;
     }
     /**
+     * The country name, e.g. `"United Kingdom"`.
+     *
      * @return string
      */
     public function getCountry(): string
@@ -158,6 +180,8 @@ class PublicAddress
         return $this->country;
     }
     /**
+     * The country name, e.g. `"United Kingdom"`.
+     *
      * @param string $country
      *
      * @return self
@@ -169,7 +193,7 @@ class PublicAddress
         return $this;
     }
     /**
-     * State, province, or county.
+     * The state, province or county.
      *
      * @return string
      */
@@ -178,7 +202,7 @@ class PublicAddress
         return $this->region;
     }
     /**
-     * State, province, or county.
+     * The state, province or county.
      *
      * @param string $region
      *
@@ -191,7 +215,7 @@ class PublicAddress
         return $this;
     }
     /**
-     * ISO 3166-1 alpha-2 country code.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`.
      *
      * @return string
      */
@@ -200,7 +224,7 @@ class PublicAddress
         return $this->countryCode;
     }
     /**
-     * ISO 3166-1 alpha-2 country code.
+     * The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`.
      *
      * @param string $countryCode
      *

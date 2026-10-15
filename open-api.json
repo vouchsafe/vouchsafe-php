@@ -373,6 +373,7 @@
           "INVALID_DOCUMENT_DATE_FORMAT",
           "POSSIBLY_TAMPERED",
           "DOCUMENT_TAMPERED_INCONCLUSIVE",
+          "DOCUMENT_CORNERS_NOT_DETECTED",
           "DOCUMENT_LOOKS_LIKE_SCREENSHOT",
           "DOCUMENT_TEXT_TAMPERED",
           "DOCUMENT_LOOKS_LIKE_PRINT_COPY",
@@ -1240,6 +1241,18 @@
         ],
         "type": "string"
       },
+      "FailedReason.DOCUMENT_CORNERS_NOT_DETECTED": {
+        "enum": [
+          "DOCUMENT_CORNERS_NOT_DETECTED"
+        ],
+        "type": "string"
+      },
+      "FailedReason.PARTIAL_EXTRACTION": {
+        "enum": [
+          "PARTIAL_EXTRACTION"
+        ],
+        "type": "string"
+      },
       "FailedReason.DOCUMENT_LOOKS_LIKE_PRINT_COPY": {
         "enum": [
           "DOCUMENT_LOOKS_LIKE_PRINT_COPY"
@@ -1271,6 +1284,12 @@
           },
           {
             "$ref": "#/components/schemas/FailedReason.DOCUMENT_TAMPERED_INCONCLUSIVE"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.DOCUMENT_CORNERS_NOT_DETECTED"
+          },
+          {
+            "$ref": "#/components/schemas/FailedReason.PARTIAL_EXTRACTION"
           },
           {
             "$ref": "#/components/schemas/FailedReason.DOCUMENT_LOOKS_LIKE_PRINT_COPY"
@@ -1655,12 +1674,6 @@
         ],
         "type": "object",
         "additionalProperties": false
-      },
-      "FailedReason.PARTIAL_EXTRACTION": {
-        "enum": [
-          "PARTIAL_EXTRACTION"
-        ],
-        "type": "string"
       },
       "FailedReason.DOCUMENT_FEATURE_MISSING": {
         "enum": [
@@ -2925,11 +2938,11 @@
         "properties": {
           "residence_number": {
             "type": "string",
-            "description": "Residence/building number, e.g. \"10\" or \"Flat 1\". Required unless `building_name` is provided."
+            "description": "The street number, with any flat or unit number in front, e.g. `\"10\"` or `\"Flat 2, 10\"`.\n\nRequired unless `building_name` is provided."
           },
           "building_name": {
             "type": "string",
-            "description": "Building name, e.g. \"Rose Cottage\". Required unless `residence_number` is provided."
+            "description": "The name of the building, e.g. `\"Rose Cottage\"` or `\"Rose Court\"`.\n\nRequired unless `residence_number` is provided."
           },
           "street": {
             "type": "string",
@@ -3112,11 +3125,11 @@
         "properties": {
           "residence_number": {
             "type": "string",
-            "description": "House or flat number, e.g. \"10\" or \"Flat 1\"."
+            "description": "The street number, with any flat or unit number in front, e.g. `\"10\"` or `\"Flat 2, 10\"`."
           },
           "building_name": {
             "type": "string",
-            "description": "House or building name, e.g. \"Rose Cottage\"."
+            "description": "The name of the building, e.g. `\"Rose Cottage\"` or `\"Rose Court\"`."
           },
           "street": {
             "type": "string"
@@ -6623,31 +6636,35 @@
         "properties": {
           "residence_number": {
             "type": "string",
-            "description": "House or flat number, e.g. \"10\" or \"Flat 1\"."
+            "description": "The street number, with any flat or unit number in front, e.g. `\"10\"` or `\"Flat 2, 10\"`."
           },
           "building_name": {
             "type": "string",
-            "description": "House or building name, e.g. \"Rose Cottage\"."
+            "description": "The name of the building, e.g. `\"Rose Cottage\"` or `\"Rose Court\"`."
           },
           "street": {
-            "type": "string"
+            "type": "string",
+            "description": "The street or road name."
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "description": "The city or town."
           },
           "postcode": {
-            "type": "string"
+            "type": "string",
+            "description": "The postcode."
           },
           "country": {
-            "type": "string"
+            "type": "string",
+            "description": "The country name, e.g. `\"United Kingdom\"`."
           },
           "region": {
             "type": "string",
-            "description": "State, province, or county."
+            "description": "The state, province or county."
           },
           "country_code": {
             "type": "string",
-            "description": "ISO 3166-1 alpha-2 country code."
+            "description": "The two-letter ISO 3166-1 alpha-2 country code, e.g. `\"GB\"`."
           }
         },
         "type": "object",
@@ -6675,7 +6692,8 @@
           "DOB_FUZZY_MATCH",
           "NO_DOB_DATA",
           "NO_IDENTITY_MATCH",
-          "NO_RESIDENCY_MATCH"
+          "NO_RESIDENCY_MATCH",
+          "INVALID_PHONE_FORMAT"
         ],
         "type": "string"
       },
@@ -6908,28 +6926,32 @@
           },
           "credit_bureau_verification_report": {
             "$ref": "#/components/schemas/CreditBureauVerificationReport",
-            "description": "Whether the overall check and its sub-checks passed, failed or somethng else."
+            "description": "The result of the `CreditBureau` check, and of each of its sub-checks. Only present if the check was run."
           },
           "online_footprint_verification_report": {
-            "$ref": "#/components/schemas/OnlineFootprintVerificationReport"
+            "$ref": "#/components/schemas/OnlineFootprintVerificationReport",
+            "description": "The result of the `OnlineFootprint` check, and of each of its sub-checks. Only present if the check was run."
           },
           "aml_verification_report": {
-            "$ref": "#/components/schemas/AmlVerificationReport"
+            "$ref": "#/components/schemas/AmlVerificationReport",
+            "description": "The result of the `AML` check, and of each of its sub-checks. Only present if the check was run."
           },
           "billable": {
             "type": "boolean",
-            "description": "Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache."
+            "description": "Whether tokens were charged for this lookup. `false` when the result was served from the four-hour cache."
           },
           "metadata": {
-            "$ref": "#/components/schemas/SmartLookupMetadataApi"
+            "$ref": "#/components/schemas/SmartLookupMetadataApi",
+            "description": "The detailed data behind each check's result."
           },
           "alerts_enabled_at": {
             "type": "string",
             "nullable": true,
-            "description": "When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts)."
+            "description": "When ongoing AML monitoring was turned on for this person (ISO 8601), or `null` if monitoring isn't active. See the [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts)."
           },
           "created_at": {
-            "type": "string"
+            "type": "string",
+            "description": "When the lookup was run (ISO 8601)."
           }
         },
         "required": [
@@ -6953,31 +6975,31 @@
         "properties": {
           "residence_number": {
             "type": "string",
-            "description": "Residence/building number, e.g. \"10\" or \"Flat 1\". Required (or `building_name`) for CreditBureau."
+            "description": "The street number, with any flat or unit number in front, e.g. `\"10\"` or `\"Flat 2, 10\"`.\n\nRequired for the credit bureau check, unless `building_name` is provided."
           },
           "building_name": {
             "type": "string",
-            "description": "Building name, e.g. \"Rose Cottage\". Required (or `residence_number`) for CreditBureau."
+            "description": "The name of the building, e.g. `\"Rose Cottage\"` or `\"Rose Court\"`.\n\nRequired for the credit bureau check, unless `residence_number` is provided."
           },
           "street": {
             "type": "string",
-            "description": "Street or road name. Optional, but omitting it may reduce match rates."
+            "description": "The street or road name. Optional, but leaving it out may lower match rates."
           },
           "city": {
             "type": "string",
-            "description": "City / town. Required for CreditBureau."
+            "description": "The city or town. Required for CreditBureau."
           },
           "postcode": {
             "type": "string",
-            "description": "Postcode. Required for CreditBureau."
+            "description": "The postcode. Required for CreditBureau."
           },
           "region": {
             "type": "string",
-            "description": "State, province, or county. Optional."
+            "description": "The state, province or county. Optional."
           },
           "country_code": {
             "type": "string",
-            "description": "ISO 3166-1 alpha-2 country code, e.g. \"GB\". Required for CreditBureau."
+            "description": "The two-letter ISO 3166-1 alpha-2 country code, e.g. `\"GB\"`. Required for CreditBureau."
           }
         },
         "type": "object",
@@ -7064,31 +7086,35 @@
         "properties": {
           "residence_number": {
             "type": "string",
-            "description": "At least one of `residence_number` or `building_name` is present when available."
+            "description": "The street number, with any flat or unit number in front, e.g. `\"10\"` or `\"Flat 2, 10\"`. At least one of `residence_number` or `building_name` is present when available."
           },
           "building_name": {
             "type": "string",
-            "description": "At least one of `residence_number` or `building_name` is present when available."
+            "description": "The name of the building, e.g. `\"Rose Cottage\"` or `\"Rose Court\"`. At least one of `residence_number` or `building_name` is present when available."
           },
           "street": {
-            "type": "string"
+            "type": "string",
+            "description": "The street or road name."
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "description": "The city or town."
           },
           "postcode": {
-            "type": "string"
+            "type": "string",
+            "description": "The postcode."
           },
           "country": {
-            "type": "string"
+            "type": "string",
+            "description": "The country name, e.g. `\"United Kingdom\"`."
           },
           "region": {
             "type": "string",
-            "description": "State, province, or county."
+            "description": "The state, province or county."
           },
           "country_code": {
             "type": "string",
-            "description": "ISO 3166-1 alpha-2 country code."
+            "description": "The two-letter ISO 3166-1 alpha-2 country code, e.g. `\"GB\"`."
           }
         },
         "required": [
@@ -9544,7 +9570,7 @@
             }
           }
         },
-        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n### Caching and billing\n\nTo make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.\n\nThe `billable` field in the response body indicates whether tokens were charged for this call.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
+        "description": "Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user's details.\n\nProvide the user's details and the check(s) to run and receive the report.\n\nFirst line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://docs.vouchsafe.id/api/v1/search-postcode).\n\nThe supported checks are:\n  - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll\n  - `OnlineFootprint` checking against public traces of the user's online activity\n  - `AML` checking international sanctions database, watchlists and other lists of high-risk people\n\n### Caching and billing\n\nTo make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.\n\nThe `billable` field in the response body indicates whether tokens were charged for this call.\n\n> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).",
         "tags": [
           "Smart Lookups"
         ],
@@ -9677,7 +9703,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 1-3 & 1A-1B 241-243",
+                          "residence_number": "Flat 1-3 & 1A-1B, 241-243",
                           "street": "Baker Street",
                           "city": "London",
                           "postcode": "NW1 6XE",
@@ -9685,7 +9711,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 1-3 231",
+                          "residence_number": "Flat 1-3, 231",
                           "street": "Baker Street",
                           "city": "London",
                           "postcode": "NW1 6XE",
@@ -9693,7 +9719,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 1-5 245-247",
+                          "residence_number": "Flat 1-5, 245-247",
                           "street": "Baker Street",
                           "city": "London",
                           "postcode": "NW1 6XE",
@@ -9701,7 +9727,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 1-86 219",
+                          "residence_number": "Flat 1-86, 219",
                           "street": "Baker Street",
                           "city": "London",
                           "postcode": "NW1 6XE",
@@ -9874,7 +9900,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 1 129",
+                          "residence_number": "Flat 1, 129",
                           "street": "Union Street",
                           "city": "Aberdeen",
                           "postcode": "AB11 6BH",
@@ -9882,7 +9908,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 2 129",
+                          "residence_number": "Flat 2, 129",
                           "street": "Union Street",
                           "city": "Aberdeen",
                           "postcode": "AB11 6BH",
@@ -9890,7 +9916,7 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 3 129",
+                          "residence_number": "Flat 3, 129",
                           "street": "Union Street",
                           "city": "Aberdeen",
                           "postcode": "AB11 6BH",
@@ -9898,11 +9924,41 @@
                           "country_code": "GB"
                         },
                         {
-                          "residence_number": "Flat 4 129",
+                          "residence_number": "Flat 4, 129",
                           "street": "Union Street",
                           "city": "Aberdeen",
                           "postcode": "AB11 6BH",
                           "country": "United Kingdom",
+                          "country_code": "GB"
+                        }
+                      ]
+                    }
+                  },
+                  "Flats in a named building": {
+                    "value": {
+                      "addresses": [
+                        "Flat 1 Willow Court 24, Orchard Lane, Nottingham",
+                        "Flat 2 Willow Court 24, Orchard Lane, Nottingham"
+                      ],
+                      "addresses_formatted": [
+                        {
+                          "residence_number": "Flat 1, 24",
+                          "building_name": "Willow Court",
+                          "street": "Orchard Lane",
+                          "city": "Nottingham",
+                          "postcode": "NG1 1AA",
+                          "country": "United Kingdom",
+                          "region": "Nottinghamshire",
+                          "country_code": "GB"
+                        },
+                        {
+                          "residence_number": "Flat 2, 24",
+                          "building_name": "Willow Court",
+                          "street": "Orchard Lane",
+                          "city": "Nottingham",
+                          "postcode": "NG1 1AA",
+                          "country": "United Kingdom",
+                          "region": "Nottinghamshire",
                           "country_code": "GB"
                         }
                       ]

@@ -75,7 +75,7 @@ class GetSmartLookupResponse
      */
     protected $amlVerificationReport;
     /**
-     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     * Whether tokens were charged for this lookup. `false` when the result was served from the four-hour cache.
      *
      * @var bool
      */
@@ -85,12 +85,14 @@ class GetSmartLookupResponse
      */
     protected $metadata;
     /**
-     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     * When ongoing AML monitoring was turned on for this person (ISO 8601), or `null` if monitoring isn't active. See the [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts).
      *
      * @var string|null
      */
     protected $alertsEnabledAt;
     /**
+     * When the lookup was run (ISO 8601).
+     *
      * @var string
      */
     protected $createdAt;
@@ -359,7 +361,7 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
-     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     * Whether tokens were charged for this lookup. `false` when the result was served from the four-hour cache.
      *
      * @return bool
      */
@@ -368,7 +370,7 @@ class GetSmartLookupResponse
         return $this->billable;
     }
     /**
-     * Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache.
+     * Whether tokens were charged for this lookup. `false` when the result was served from the four-hour cache.
      *
      * @param bool $billable
      *
@@ -399,7 +401,7 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
-     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     * When ongoing AML monitoring was turned on for this person (ISO 8601), or `null` if monitoring isn't active. See the [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts).
      *
      * @return string|null
      */
@@ -408,7 +410,7 @@ class GetSmartLookupResponse
         return $this->alertsEnabledAt;
     }
     /**
-     * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+     * When ongoing AML monitoring was turned on for this person (ISO 8601), or `null` if monitoring isn't active. See the [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts).
      *
      * @param string|null $alertsEnabledAt
      *
@@ -421,6 +423,8 @@ class GetSmartLookupResponse
         return $this;
     }
     /**
+     * When the lookup was run (ISO 8601).
+     *
      * @return string
      */
     public function getCreatedAt(): string
@@ -428,6 +432,8 @@ class GetSmartLookupResponse
         return $this->createdAt;
     }
     /**
+     * When the lookup was run (ISO 8601).
+     *
      * @param string $createdAt
      *
      * @return self

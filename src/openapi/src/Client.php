@@ -360,7 +360,7 @@ class Client extends \Vouchsafe\OpenAPI\Runtime\Client\Client
      *
      * Provide the user's details and the check(s) to run and receive the report.
      *
-     * First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).
+     * First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://docs.vouchsafe.id/api/v1/search-postcode).
      *
      * The supported checks are:
      *   - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll

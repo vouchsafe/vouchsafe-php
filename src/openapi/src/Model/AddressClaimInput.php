@@ -13,13 +13,17 @@ class AddressClaimInput
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required unless `building_name` is provided.
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+     * 
+     * Required unless `building_name` is provided.
      *
      * @var string
      */
     protected $residenceNumber;
     /**
-     * Building name, e.g. "Rose Cottage". Required unless `residence_number` is provided.
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+     * 
+     * Required unless `residence_number` is provided.
      *
      * @var string
      */
@@ -55,7 +59,9 @@ class AddressClaimInput
      */
     protected $countryCode;
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required unless `building_name` is provided.
+     * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+     * 
+     * Required unless `building_name` is provided.
      *
      * @return string
      */
@@ -64,12 +70,14 @@ class AddressClaimInput
         return $this->residenceNumber;
     }
     /**
-     * Residence/building number, e.g. "10" or "Flat 1". Required unless `building_name` is provided.
-     *
-     * @param string $residenceNumber
-     *
-     * @return self
-     */
+    * The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+    
+    Required unless `building_name` is provided.
+    *
+    * @param string $residenceNumber
+    *
+    * @return self
+    */
     public function setResidenceNumber(string $residenceNumber): self
     {
         $this->initialized['residenceNumber'] = true;
@@ -77,7 +85,9 @@ class AddressClaimInput
         return $this;
     }
     /**
-     * Building name, e.g. "Rose Cottage". Required unless `residence_number` is provided.
+     * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+     * 
+     * Required unless `residence_number` is provided.
      *
      * @return string
      */
@@ -86,12 +96,14 @@ class AddressClaimInput
         return $this->buildingName;
     }
     /**
-     * Building name, e.g. "Rose Cottage". Required unless `residence_number` is provided.
-     *
-     * @param string $buildingName
-     *
-     * @return self
-     */
+    * The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+    
+    Required unless `residence_number` is provided.
+    *
+    * @param string $buildingName
+    *
+    * @return self
+    */
     public function setBuildingName(string $buildingName): self
     {
         $this->initialized['buildingName'] = true;
