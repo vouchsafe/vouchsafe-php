@@ -16,7 +16,7 @@ class AmlCheckApiDetails implements AdditionalPropertiesInterface
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Sanctions list matches found. Empty when the check passed.
+     * Sanctions list matches found. A passing check can list matches below the threshold.
      *
      * @var list<AmlMatchApi>
      */
@@ -28,7 +28,7 @@ class AmlCheckApiDetails implements AdditionalPropertiesInterface
      */
     protected $threshold;
     /**
-     * Sanctions list matches found. Empty when the check passed.
+     * Sanctions list matches found. A passing check can list matches below the threshold.
      *
      * @return list<AmlMatchApi>
      */
@@ -37,7 +37,7 @@ class AmlCheckApiDetails implements AdditionalPropertiesInterface
         return $this->matches;
     }
     /**
-     * Sanctions list matches found. Empty when the check passed.
+     * Sanctions list matches found. A passing check can list matches below the threshold.
      *
      * @param list<AmlMatchApi> $matches
      *
