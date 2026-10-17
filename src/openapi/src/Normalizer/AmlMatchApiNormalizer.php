@@ -58,9 +58,6 @@ class AmlMatchApiNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (\array_key_exists('properties', $data)) {
             $object->setProperties($this->denormalizer->denormalize($data['properties'], \Vouchsafe\OpenAPI\Model\AmlMatchApiProperties::class, 'json', $context));
         }
-        if (\array_key_exists('strength', $data)) {
-            $object->setStrength($data['strength']);
-        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -76,9 +73,6 @@ class AmlMatchApiNormalizer implements DenormalizerInterface, NormalizerInterfac
             $dataArray['last_seen'] = $data->getLastSeen();
         }
         $dataArray['properties'] = $data->getProperties() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getProperties(), 'json', $context));
-        if ($data->isInitialized('strength') && null !== $data->getStrength()) {
-            $dataArray['strength'] = $data->getStrength();
-        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

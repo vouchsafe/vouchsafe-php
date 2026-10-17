@@ -47,12 +47,6 @@ class AmlMatchApi
      */
     protected $properties;
     /**
-     * `strong` when the score meets the threshold, otherwise `weak`.
-     *
-     * @var string
-     */
-    protected $strength;
-    /**
      * Unique identifier for the matched entity.
      *
      * @return string
@@ -178,28 +172,6 @@ class AmlMatchApi
     {
         $this->initialized['properties'] = true;
         $this->properties = $properties;
-        return $this;
-    }
-    /**
-     * `strong` when the score meets the threshold, otherwise `weak`.
-     *
-     * @return string
-     */
-    public function getStrength(): string
-    {
-        return $this->strength;
-    }
-    /**
-     * `strong` when the score meets the threshold, otherwise `weak`.
-     *
-     * @param string $strength
-     *
-     * @return self
-     */
-    public function setStrength(string $strength): self
-    {
-        $this->initialized['strength'] = true;
-        $this->strength = $strength;
         return $this;
     }
 }

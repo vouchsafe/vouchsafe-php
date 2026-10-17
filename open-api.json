@@ -6132,14 +6132,6 @@
               "notes"
             ],
             "type": "object"
-          },
-          "strength": {
-            "type": "string",
-            "enum": [
-              "strong",
-              "weak"
-            ],
-            "description": "`strong` when the score meets the threshold, otherwise `weak`."
           }
         },
         "required": [
@@ -6168,7 +6160,7 @@
                   "$ref": "#/components/schemas/AmlMatchApi"
                 },
                 "type": "array",
-                "description": "Sanctions list matches found. A passing check can list matches below the threshold."
+                "description": "Sanctions list matches found. Empty when the check passed."
               },
               "threshold": {
                 "type": "number",
