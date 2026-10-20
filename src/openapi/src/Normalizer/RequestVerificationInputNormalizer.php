@@ -70,6 +70,12 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         if (\array_key_exists('redirect_url', $data)) {
             $object->setRedirectUrl($data['redirect_url']);
         }
+        if (\array_key_exists('pending_redirect_url', $data)) {
+            $object->setPendingRedirectUrl($data['pending_redirect_url']);
+        }
+        if (\array_key_exists('failure_redirect_url', $data)) {
+            $object->setFailureRedirectUrl($data['failure_redirect_url']);
+        }
         if (\array_key_exists('expires_at', $data)) {
             $object->setExpiresAt($data['expires_at']);
         }
@@ -108,6 +114,12 @@ class RequestVerificationInputNormalizer implements DenormalizerInterface, Norma
         }
         if ($data->isInitialized('redirectUrl') && null !== $data->getRedirectUrl()) {
             $dataArray['redirect_url'] = $data->getRedirectUrl();
+        }
+        if ($data->isInitialized('pendingRedirectUrl') && null !== $data->getPendingRedirectUrl()) {
+            $dataArray['pending_redirect_url'] = $data->getPendingRedirectUrl();
+        }
+        if ($data->isInitialized('failureRedirectUrl') && null !== $data->getFailureRedirectUrl()) {
+            $dataArray['failure_redirect_url'] = $data->getFailureRedirectUrl();
         }
         if ($data->isInitialized('expiresAt') && null !== $data->getExpiresAt()) {
             $dataArray['expires_at'] = $data->getExpiresAt();

@@ -3012,7 +3012,15 @@
           },
           "redirect_url": {
             "type": "string",
-            "description": "A generic or unique URL to send the user back to upon success.\n\nIf not provided, the verification flow default will be used."
+            "description": "A generic or unique URL to send the user back to once they're verified.\n\nIf not provided, the verification flow default will be used."
+          },
+          "pending_redirect_url": {
+            "type": "string",
+            "description": "A generic or unique URL to send the user back to once they've submitted but aren't verified yet, e.g. awaiting review.\n\nIf not provided, the verification flow default will be used."
+          },
+          "failure_redirect_url": {
+            "type": "string",
+            "description": "A generic or unique URL to send the user back to if they're refused.\n\nIf not provided, the verification flow default will be used."
           },
           "expires_at": {
             "type": "string",
@@ -3081,7 +3089,17 @@
           "redirect_url": {
             "type": "string",
             "nullable": true,
-            "description": "Where to send the user upon success. If null, the verification flow default will be used."
+            "description": "Where to send the user once verified. If null, the verification flow default will be used."
+          },
+          "pending_redirect_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used."
+          },
+          "failure_redirect_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "Where to send the user if they're refused or blocked. If null, the verification flow default will be used."
           },
           "flow_id": {
             "type": "string",
@@ -3110,6 +3128,8 @@
           "expires_at",
           "email",
           "redirect_url",
+          "pending_redirect_url",
+          "failure_redirect_url",
           "external_id"
         ],
         "type": "object",
@@ -6414,7 +6434,17 @@
           "redirect_url": {
             "type": "string",
             "nullable": true,
-            "description": "Where to send the user upon success. If null, the verification flow default will be used."
+            "description": "Where to send the user once verified. If null, the verification flow default will be used."
+          },
+          "pending_redirect_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used."
+          },
+          "failure_redirect_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "Where to send the user if they're refused or blocked. If null, the verification flow default will be used."
           },
           "flow_id": {
             "type": "string",
@@ -6461,6 +6491,8 @@
           "expires_at",
           "email",
           "redirect_url",
+          "pending_redirect_url",
+          "failure_redirect_url",
           "external_id",
           "claim_details",
           "checks",
@@ -8762,6 +8794,8 @@
                         "expires_at": "2026-08-23T09:01:00.000Z",
                         "email": "jdoe@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow",
                         "workflow_id": "sandbox-flow",
                         "external_id": null
@@ -8773,6 +8807,8 @@
                         "expires_at": "2026-08-22T09:01:00.000Z",
                         "email": "eroberts@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow-professional-referee",
                         "workflow_id": "sandbox-flow-professional-referee",
                         "external_id": null
@@ -8784,6 +8820,8 @@
                         "expires_at": "2026-08-21T09:01:00.000Z",
                         "email": "eroberts@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow",
                         "workflow_id": "sandbox-flow",
                         "external_id": null
@@ -8795,6 +8833,8 @@
                         "expires_at": "2026-08-20T09:01:00.000Z",
                         "email": "dwebb@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow",
                         "workflow_id": "sandbox-flow",
                         "external_id": null
@@ -8806,6 +8846,8 @@
                         "expires_at": "2026-08-19T09:01:00.000Z",
                         "email": "e.roberts.9421@mailinator.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow-enhanced",
                         "workflow_id": "sandbox-flow-enhanced",
                         "external_id": null
@@ -8817,6 +8859,8 @@
                         "expires_at": "2026-08-18T09:01:00.000Z",
                         "email": "dwebb@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow",
                         "workflow_id": "sandbox-flow",
                         "external_id": null
@@ -8828,6 +8872,8 @@
                         "expires_at": "2026-08-17T09:01:00.000Z",
                         "email": "eroberts@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow-address-only",
                         "workflow_id": "sandbox-flow-address-only",
                         "external_id": null
@@ -8839,6 +8885,8 @@
                         "expires_at": "2026-08-16T09:01:00.000Z",
                         "email": "eroberts@email.com",
                         "redirect_url": null,
+                        "pending_redirect_url": null,
+                        "failure_redirect_url": null,
                         "flow_id": "sandbox-flow-referee",
                         "workflow_id": "sandbox-flow-referee",
                         "external_id": null
@@ -8914,6 +8962,8 @@
                       "expires_at": "2026-08-21T09:01:00.000Z",
                       "email": "eroberts@email.com",
                       "redirect_url": null,
+                      "pending_redirect_url": null,
+                      "failure_redirect_url": null,
                       "workflow_id": "sandbox-flow",
                       "external_id": null,
                       "claim_details": {

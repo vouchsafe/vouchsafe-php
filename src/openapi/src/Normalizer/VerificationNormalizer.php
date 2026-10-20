@@ -73,6 +73,18 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         elseif (\array_key_exists('redirect_url', $data) && $data['redirect_url'] === null) {
             $object->setRedirectUrl(null);
         }
+        if (\array_key_exists('pending_redirect_url', $data) && $data['pending_redirect_url'] !== null) {
+            $object->setPendingRedirectUrl($data['pending_redirect_url']);
+        }
+        elseif (\array_key_exists('pending_redirect_url', $data) && $data['pending_redirect_url'] === null) {
+            $object->setPendingRedirectUrl(null);
+        }
+        if (\array_key_exists('failure_redirect_url', $data) && $data['failure_redirect_url'] !== null) {
+            $object->setFailureRedirectUrl($data['failure_redirect_url']);
+        }
+        elseif (\array_key_exists('failure_redirect_url', $data) && $data['failure_redirect_url'] === null) {
+            $object->setFailureRedirectUrl(null);
+        }
         if (\array_key_exists('flow_id', $data) && $data['flow_id'] !== null) {
             $object->setFlowId($data['flow_id']);
         }
@@ -111,6 +123,8 @@ class VerificationNormalizer implements DenormalizerInterface, NormalizerInterfa
         $dataArray['expires_at'] = $data->getExpiresAt();
         $dataArray['email'] = $data->getEmail();
         $dataArray['redirect_url'] = $data->getRedirectUrl();
+        $dataArray['pending_redirect_url'] = $data->getPendingRedirectUrl();
+        $dataArray['failure_redirect_url'] = $data->getFailureRedirectUrl();
         if ($data->isInitialized('flowId') && null !== $data->getFlowId()) {
             $dataArray['flow_id'] = $data->getFlowId();
         }

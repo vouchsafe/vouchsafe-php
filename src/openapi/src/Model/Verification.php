@@ -55,11 +55,23 @@ class Verification
      */
     protected $email;
     /**
-     * Where to send the user upon success. If null, the verification flow default will be used.
+     * Where to send the user once verified. If null, the verification flow default will be used.
      *
      * @var string|null
      */
     protected $redirectUrl;
+    /**
+     * Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used.
+     *
+     * @var string|null
+     */
+    protected $pendingRedirectUrl;
+    /**
+     * Where to send the user if they're refused or blocked. If null, the verification flow default will be used.
+     *
+     * @var string|null
+     */
+    protected $failureRedirectUrl;
     /**
      * The verification flow it belongs to.
      *
@@ -237,7 +249,7 @@ class Verification
         return $this;
     }
     /**
-     * Where to send the user upon success. If null, the verification flow default will be used.
+     * Where to send the user once verified. If null, the verification flow default will be used.
      *
      * @return string|null
      */
@@ -246,7 +258,7 @@ class Verification
         return $this->redirectUrl;
     }
     /**
-     * Where to send the user upon success. If null, the verification flow default will be used.
+     * Where to send the user once verified. If null, the verification flow default will be used.
      *
      * @param string|null $redirectUrl
      *
@@ -256,6 +268,50 @@ class Verification
     {
         $this->initialized['redirectUrl'] = true;
         $this->redirectUrl = $redirectUrl;
+        return $this;
+    }
+    /**
+     * Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used.
+     *
+     * @return string|null
+     */
+    public function getPendingRedirectUrl(): ?string
+    {
+        return $this->pendingRedirectUrl;
+    }
+    /**
+     * Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used.
+     *
+     * @param string|null $pendingRedirectUrl
+     *
+     * @return self
+     */
+    public function setPendingRedirectUrl(?string $pendingRedirectUrl): self
+    {
+        $this->initialized['pendingRedirectUrl'] = true;
+        $this->pendingRedirectUrl = $pendingRedirectUrl;
+        return $this;
+    }
+    /**
+     * Where to send the user if they're refused or blocked. If null, the verification flow default will be used.
+     *
+     * @return string|null
+     */
+    public function getFailureRedirectUrl(): ?string
+    {
+        return $this->failureRedirectUrl;
+    }
+    /**
+     * Where to send the user if they're refused or blocked. If null, the verification flow default will be used.
+     *
+     * @param string|null $failureRedirectUrl
+     *
+     * @return self
+     */
+    public function setFailureRedirectUrl(?string $failureRedirectUrl): self
+    {
+        $this->initialized['failureRedirectUrl'] = true;
+        $this->failureRedirectUrl = $failureRedirectUrl;
         return $this;
     }
     /**

@@ -77,13 +77,29 @@ class RequestVerificationInput
      */
     protected $externalId;
     /**
-     * A generic or unique URL to send the user back to upon success.
+     * A generic or unique URL to send the user back to once they're verified.
      * 
      * If not provided, the verification flow default will be used.
      *
      * @var string
      */
     protected $redirectUrl;
+    /**
+     * A generic or unique URL to send the user back to once they've submitted but aren't verified yet, e.g. awaiting review.
+     * 
+     * If not provided, the verification flow default will be used.
+     *
+     * @var string
+     */
+    protected $pendingRedirectUrl;
+    /**
+     * A generic or unique URL to send the user back to if they're refused.
+     * 
+     * If not provided, the verification flow default will be used.
+     *
+     * @var string
+     */
+    protected $failureRedirectUrl;
     /**
      * When the verification session expires and the user stops getting reminders.
      * 
@@ -321,7 +337,7 @@ class RequestVerificationInput
         return $this;
     }
     /**
-     * A generic or unique URL to send the user back to upon success.
+     * A generic or unique URL to send the user back to once they're verified.
      * 
      * If not provided, the verification flow default will be used.
      *
@@ -332,7 +348,7 @@ class RequestVerificationInput
         return $this->redirectUrl;
     }
     /**
-    * A generic or unique URL to send the user back to upon success.
+    * A generic or unique URL to send the user back to once they're verified.
     
     If not provided, the verification flow default will be used.
     *
@@ -344,6 +360,58 @@ class RequestVerificationInput
     {
         $this->initialized['redirectUrl'] = true;
         $this->redirectUrl = $redirectUrl;
+        return $this;
+    }
+    /**
+     * A generic or unique URL to send the user back to once they've submitted but aren't verified yet, e.g. awaiting review.
+     * 
+     * If not provided, the verification flow default will be used.
+     *
+     * @return string
+     */
+    public function getPendingRedirectUrl(): string
+    {
+        return $this->pendingRedirectUrl;
+    }
+    /**
+    * A generic or unique URL to send the user back to once they've submitted but aren't verified yet, e.g. awaiting review.
+    
+    If not provided, the verification flow default will be used.
+    *
+    * @param string $pendingRedirectUrl
+    *
+    * @return self
+    */
+    public function setPendingRedirectUrl(string $pendingRedirectUrl): self
+    {
+        $this->initialized['pendingRedirectUrl'] = true;
+        $this->pendingRedirectUrl = $pendingRedirectUrl;
+        return $this;
+    }
+    /**
+     * A generic or unique URL to send the user back to if they're refused.
+     * 
+     * If not provided, the verification flow default will be used.
+     *
+     * @return string
+     */
+    public function getFailureRedirectUrl(): string
+    {
+        return $this->failureRedirectUrl;
+    }
+    /**
+    * A generic or unique URL to send the user back to if they're refused.
+    
+    If not provided, the verification flow default will be used.
+    *
+    * @param string $failureRedirectUrl
+    *
+    * @return self
+    */
+    public function setFailureRedirectUrl(string $failureRedirectUrl): self
+    {
+        $this->initialized['failureRedirectUrl'] = true;
+        $this->failureRedirectUrl = $failureRedirectUrl;
         return $this;
     }
     /**
