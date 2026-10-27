@@ -3118,7 +3118,7 @@
           },
           "identity_profile": {
             "$ref": "#/components/schemas/IdentityProfile",
-            "description": "The identity profile to use for this verification if flow is certified against the UK DIATF."
+            "description": "The identity profile to use for this verification if flow is certified against the UK DVSTF."
           }
         },
         "required": [
@@ -6463,7 +6463,7 @@
           },
           "identity_profile": {
             "$ref": "#/components/schemas/IdentityProfile",
-            "description": "The identity profile to use for this verification if flow is certified against the UK DIATF."
+            "description": "The identity profile to use for this verification if flow is certified against the UK DVSTF."
           },
           "claim_details": {
             "$ref": "#/components/schemas/ClaimDetails",
@@ -7683,7 +7683,7 @@
           "score": {
             "type": "number",
             "format": "double",
-            "description": "Adversity score (0–100) assigned by the screening model, adjusted for recency.\nHigher scores indicate more serious adverse content."
+            "description": "Score (0–100) assigned by the screening model.\nHigher scores indicate more serious adverse content."
           }
         },
         "required": [
@@ -10841,7 +10841,7 @@
                           "source": "Entertainment Weekly",
                           "published_at": "2024-03-15T10:00:00.000Z",
                           "snippet": "Actress Chloe Coleman discusses her latest role in the upcoming Amazon Prime series.",
-                          "score": 5
+                          "score": 0
                         }
                       ]
                     }
@@ -10852,30 +10852,30 @@
                       "threshold": 70,
                       "strong_matches": [
                         {
-                          "title": "Putin signs decree expanding sanctions on foreign assets amid ongoing conflict",
+                          "title": "John Doe jailed for investment fraud",
                           "link": "https://example.com/article/2",
-                          "source": "Reuters",
+                          "source": "Glasgow Herald",
                           "published_at": "2024-06-01T09:00:00.000Z",
-                          "snippet": "Vladimir Putin has signed a decree imposing further retaliatory sanctions as Western pressure over the war in Ukraine intensifies.",
-                          "score": 88
+                          "snippet": "John Doe was sentenced to four years for taking £2m from investors in a fake property scheme.",
+                          "score": 100
                         }
                       ],
                       "all_results": [
                         {
-                          "title": "Putin signs decree expanding sanctions on foreign assets amid ongoing conflict",
+                          "title": "John Doe jailed for investment fraud",
                           "link": "https://example.com/article/2",
-                          "source": "Reuters",
+                          "source": "Glasgow Herald",
                           "published_at": "2024-06-01T09:00:00.000Z",
-                          "snippet": "Vladimir Putin has signed a decree imposing further retaliatory sanctions as Western pressure over the war in Ukraine intensifies.",
-                          "score": 88
+                          "snippet": "John Doe was sentenced to four years for taking £2m from investors in a fake property scheme.",
+                          "score": 100
                         },
                         {
-                          "title": "Putin attends Victory Day parade in Moscow",
+                          "title": "John Doe defrauded by fake parcel text",
                           "link": "https://example.com/article/3",
-                          "source": "BBC News",
+                          "source": "Glasgow Herald",
                           "published_at": "2024-05-09T10:00:00.000Z",
-                          "snippet": "Russian President Vladimir Putin presided over the annual Victory Day military parade in Red Square.",
-                          "score": 12
+                          "snippet": "Pensioner John Doe lost £300 to a scam text claiming to be from a delivery firm.",
+                          "score": 0
                         }
                       ]
                     }
@@ -10905,7 +10905,7 @@
             }
           }
         },
-        "description": "**Experimental (beta):** This is a new endpoint. The interface or behaviour may change without notice.\n\nScreen an individual against recent news coverage for adverse or negative reporting.\n\nEach article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.\n\nAll articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.\n\nProviding a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.",
+        "description": "**Experimental (beta):** This is a new endpoint. The interface or behaviour may change without notice.\n\nScreen an individual against recent news coverage for adverse or negative reporting.\n\nEach article returned by the search is scored from 0–100 by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.\n\nAll articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.\n\nProviding a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.",
         "tags": [
           "Adverse Media"
         ],

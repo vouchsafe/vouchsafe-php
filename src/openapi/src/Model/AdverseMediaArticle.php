@@ -43,7 +43,7 @@ class AdverseMediaArticle
      */
     protected $snippet;
     /**
-     * Adversity score (0–100) assigned by the screening model, adjusted for recency.
+     * Score (0–100) assigned by the screening model.
      * Higher scores indicate more serious adverse content.
      *
      * @var float
@@ -160,7 +160,7 @@ class AdverseMediaArticle
         return $this;
     }
     /**
-     * Adversity score (0–100) assigned by the screening model, adjusted for recency.
+     * Score (0–100) assigned by the screening model.
      * Higher scores indicate more serious adverse content.
      *
      * @return float
@@ -170,7 +170,7 @@ class AdverseMediaArticle
         return $this->score;
     }
     /**
-    * Adversity score (0–100) assigned by the screening model, adjusted for recency.
+    * Score (0–100) assigned by the screening model.
     Higher scores indicate more serious adverse content.
     *
     * @param float $score
