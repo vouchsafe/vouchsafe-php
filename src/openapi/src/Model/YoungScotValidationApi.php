@@ -17,6 +17,26 @@ class YoungScotValidationApi
      */
     protected $requiredFieldsExtracted;
     /**
+     * @var ValidationOutcomeApi
+     */
+    protected $photoIdTypeAccepted;
+    /**
+     * @var ValidationOutcomeApi
+     */
+    protected $issuingCountryAllowed;
+    /**
+     * @var ValidationOutcomeApi
+     */
+    protected $documentContainsFace;
+    /**
+     * @var ValidationOutcomeApi
+     */
+    protected $dateFieldsValid;
+    /**
+     * @var ValidationOutcomeApi
+     */
+    protected $notSampleOrInternalUse;
+    /**
      * Whether the correct document dimensions were detected (with score).
      *
      * @var YoungScotValidationApiDocumentBordersDetected
@@ -76,6 +96,96 @@ class YoungScotValidationApi
     {
         $this->initialized['requiredFieldsExtracted'] = true;
         $this->requiredFieldsExtracted = $requiredFieldsExtracted;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getPhotoIdTypeAccepted(): ValidationOutcomeApi
+    {
+        return $this->photoIdTypeAccepted;
+    }
+    /**
+     * @param ValidationOutcomeApi $photoIdTypeAccepted
+     *
+     * @return self
+     */
+    public function setPhotoIdTypeAccepted(ValidationOutcomeApi $photoIdTypeAccepted): self
+    {
+        $this->initialized['photoIdTypeAccepted'] = true;
+        $this->photoIdTypeAccepted = $photoIdTypeAccepted;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getIssuingCountryAllowed(): ValidationOutcomeApi
+    {
+        return $this->issuingCountryAllowed;
+    }
+    /**
+     * @param ValidationOutcomeApi $issuingCountryAllowed
+     *
+     * @return self
+     */
+    public function setIssuingCountryAllowed(ValidationOutcomeApi $issuingCountryAllowed): self
+    {
+        $this->initialized['issuingCountryAllowed'] = true;
+        $this->issuingCountryAllowed = $issuingCountryAllowed;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getDocumentContainsFace(): ValidationOutcomeApi
+    {
+        return $this->documentContainsFace;
+    }
+    /**
+     * @param ValidationOutcomeApi $documentContainsFace
+     *
+     * @return self
+     */
+    public function setDocumentContainsFace(ValidationOutcomeApi $documentContainsFace): self
+    {
+        $this->initialized['documentContainsFace'] = true;
+        $this->documentContainsFace = $documentContainsFace;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getDateFieldsValid(): ValidationOutcomeApi
+    {
+        return $this->dateFieldsValid;
+    }
+    /**
+     * @param ValidationOutcomeApi $dateFieldsValid
+     *
+     * @return self
+     */
+    public function setDateFieldsValid(ValidationOutcomeApi $dateFieldsValid): self
+    {
+        $this->initialized['dateFieldsValid'] = true;
+        $this->dateFieldsValid = $dateFieldsValid;
+        return $this;
+    }
+    /**
+     * @return ValidationOutcomeApi
+     */
+    public function getNotSampleOrInternalUse(): ValidationOutcomeApi
+    {
+        return $this->notSampleOrInternalUse;
+    }
+    /**
+     * @param ValidationOutcomeApi $notSampleOrInternalUse
+     *
+     * @return self
+     */
+    public function setNotSampleOrInternalUse(ValidationOutcomeApi $notSampleOrInternalUse): self
+    {
+        $this->initialized['notSampleOrInternalUse'] = true;
+        $this->notSampleOrInternalUse = $notSampleOrInternalUse;
         return $this;
     }
     /**

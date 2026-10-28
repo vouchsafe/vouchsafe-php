@@ -51,7 +51,7 @@ class StepIdentityPhotoIdApi
      */
     protected $extractedDetails;
     /**
-     * @var PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|UnfamiliarPhotoIdValidationApi
+     * @var PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi
      */
     protected $validations;
     /**
@@ -201,14 +201,14 @@ class StepIdentityPhotoIdApi
         return $this;
     }
     /**
-     * @return PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|UnfamiliarPhotoIdValidationApi
+     * @return PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi
      */
     public function getValidations()
     {
         return $this->validations;
     }
     /**
-     * @param PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|UnfamiliarPhotoIdValidationApi $validations
+     * @param PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi $validations
      *
      * @return self
      */

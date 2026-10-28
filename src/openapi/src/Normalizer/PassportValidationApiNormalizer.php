@@ -40,6 +40,21 @@ class PassportValidationApiNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('required_fields_extracted', $data)) {
             $object->setRequiredFieldsExtracted($this->denormalizer->denormalize($data['required_fields_extracted'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
+        if (\array_key_exists('photo_id_type_accepted', $data)) {
+            $object->setPhotoIdTypeAccepted($this->denormalizer->denormalize($data['photo_id_type_accepted'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('issuing_country_allowed', $data)) {
+            $object->setIssuingCountryAllowed($this->denormalizer->denormalize($data['issuing_country_allowed'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('document_contains_face', $data)) {
+            $object->setDocumentContainsFace($this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('date_fields_valid', $data)) {
+            $object->setDateFieldsValid($this->denormalizer->denormalize($data['date_fields_valid'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('not_sample_or_internal_use', $data)) {
+            $object->setNotSampleOrInternalUse($this->denormalizer->denormalize($data['not_sample_or_internal_use'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
         if (\array_key_exists('document_borders_detected', $data)) {
             $object->setDocumentBordersDetected($this->denormalizer->denormalize($data['document_borders_detected'], \Vouchsafe\OpenAPI\Model\PassportValidationApiDocumentBordersDetected::class, 'json', $context));
         }
@@ -70,15 +85,27 @@ class PassportValidationApiNormalizer implements DenormalizerInterface, Normaliz
         if (\array_key_exists('icao_format_valid', $data)) {
             $object->setIcaoFormatValid($this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
         }
-        if (\array_key_exists('issuing_country_allowed', $data)) {
-            $object->setIssuingCountryAllowed($this->denormalizer->denormalize($data['issuing_country_allowed'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
-        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
+        if ($data->isInitialized('requiredFieldsExtracted') && null !== $data->getRequiredFieldsExtracted()) {
+            $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
+        }
+        if ($data->isInitialized('photoIdTypeAccepted') && null !== $data->getPhotoIdTypeAccepted()) {
+            $dataArray['photo_id_type_accepted'] = $data->getPhotoIdTypeAccepted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getPhotoIdTypeAccepted(), 'json', $context));
+        }
+        $dataArray['issuing_country_allowed'] = $data->getIssuingCountryAllowed() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIssuingCountryAllowed(), 'json', $context));
+        if ($data->isInitialized('documentContainsFace') && null !== $data->getDocumentContainsFace()) {
+            $dataArray['document_contains_face'] = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
+        }
+        if ($data->isInitialized('dateFieldsValid') && null !== $data->getDateFieldsValid()) {
+            $dataArray['date_fields_valid'] = $data->getDateFieldsValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDateFieldsValid(), 'json', $context));
+        }
+        if ($data->isInitialized('notSampleOrInternalUse') && null !== $data->getNotSampleOrInternalUse()) {
+            $dataArray['not_sample_or_internal_use'] = $data->getNotSampleOrInternalUse() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSampleOrInternalUse(), 'json', $context));
+        }
         $dataArray['document_borders_detected'] = $data->getDocumentBordersDetected() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentBordersDetected(), 'json', $context));
         if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
             $dataArray['face_match'] = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
@@ -103,7 +130,6 @@ class PassportValidationApiNormalizer implements DenormalizerInterface, Normaliz
             $dataArray['has_not_expired'] = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
         }
         $dataArray['icao_format_valid'] = $data->getIcaoFormatValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context));
-        $dataArray['issuing_country_allowed'] = $data->getIssuingCountryAllowed() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIssuingCountryAllowed(), 'json', $context));
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

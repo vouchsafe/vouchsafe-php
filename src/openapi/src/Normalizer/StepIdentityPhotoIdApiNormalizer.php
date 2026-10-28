@@ -80,19 +80,21 @@ class StepIdentityPhotoIdApiNormalizer implements DenormalizerInterface, Normali
         }
         if (\array_key_exists('validations', $data)) {
             $value_2 = $data['validations'];
-            if (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('compound_identifiers_match', $data['validations']) and \array_key_exists('icao_format_valid', $data['validations']) and \array_key_exists('issuing_country_allowed', $data['validations'])) {
+            if (is_array($data['validations']) and \array_key_exists('issuing_country_allowed', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('compound_identifiers_match', $data['validations']) and \array_key_exists('icao_format_valid', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\PassportValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations']) and \array_key_exists('not_sample_or_internal_use', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('not_sample_or_internal_use', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\DrivingLicenceValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('compound_identifiers_match', $data['validations']) and \array_key_exists('icao_format_valid', $data['validations']) and \array_key_exists('issuing_country_allowed', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('issuing_country_allowed', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('compound_identifiers_match', $data['validations']) and \array_key_exists('icao_format_valid', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\NationalIdValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('matches_issuer_database', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('matches_issuer_database', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\CitizenCardValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\YoungScotValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations']) and \array_key_exists('identifier_format_valid', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\NecValidationApi::class, 'json', $context);
-            } elseif (is_array($data['validations']) and \array_key_exists('required_fields_extracted', $data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations'])) {
+            } elseif (is_array($data['validations']) and \array_key_exists('document_borders_detected', $data['validations'])) {
+                $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\IdCardValidationApi::class, 'json', $context);
+            } elseif (is_array($data['validations']) and \array_key_exists('document_borders_detected', $data['validations']) and \array_key_exists('security_features_present', $data['validations'])) {
                 $value_2 = $this->denormalizer->denormalize($data['validations'], \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApi::class, 'json', $context);
             }
             $object->setValidations($value_2);
@@ -131,6 +133,8 @@ class StepIdentityPhotoIdApiNormalizer implements DenormalizerInterface, Normali
         $dataArray['extracted_details'] = $value_1;
         $value_2 = $data->getValidations();
         if (is_object($data->getValidations())) {
+            $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
+        } elseif (is_object($data->getValidations())) {
             $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));
         } elseif (is_object($data->getValidations())) {
             $value_2 = $data->getValidations() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getValidations(), 'json', $context));

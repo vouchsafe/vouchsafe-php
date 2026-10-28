@@ -339,6 +339,8 @@
           "DATE_OF_BIRTH_MISMATCH",
           "PHOTO_ID_FEATURE_MISSING",
           "PHOTO_ID_SCAN_DETAILS_MISSING",
+          "PHOTO_ID_TYPE_NOT_ACCEPTED",
+          "COUNTRY_NOT_SUPPORTED",
           "WATERMARK_TEXT_DETECTED",
           "SAMPLE_DOCUMENT_NUMBER_DETECTED",
           "SAMPLE_NAME_DETECTED",
@@ -414,6 +416,7 @@
           "NO_FACE_ON_DOCUMENT",
           "SERVICE_UNAVAILABLE",
           "SYSTEM_ISSUE",
+          "REQUIRED_DATA_UNAVAILABLE",
           "DIGITAL_ID_SESSION_EXPIRED",
           "DIGITAL_ID_VERIFICATION_FAILED",
           "DIGITAL_ID_SESSION_NOT_FOUND",
@@ -3528,6 +3531,7 @@
         "type": "string",
         "enum": [
           "unfamiliar_photo_id",
+          "id_card",
           "passport",
           "driving_licence",
           "young_scot",
@@ -3883,7 +3887,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the issuing country is allowed."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -3960,14 +3984,9 @@
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
             "description": "Whether the MRZ format is valid (TD3 expected)."
-          },
-          "issuing_country_allowed": {
-            "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the issuing country is allowed."
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "compound_identifiers_match",
           "icao_format_valid",
@@ -3980,7 +3999,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's issuing country is accepted, or for a licence, supported."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document is not a sample or marked for internal use."
           },
           "document_borders_detected": {
             "properties": {
@@ -4054,17 +4093,12 @@
             "$ref": "#/components/schemas/ValidationOutcomeApi",
             "description": "Whether the licence identifier format is valid."
           },
-          "not_sample_or_internal_use": {
-            "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the document is not a sample or marked for internal use."
-          },
           "has_not_expired": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
             "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "security_features_present",
           "identifier_format_valid",
@@ -4077,7 +4111,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the issuing country is allowed."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -4154,14 +4208,9 @@
           "icao_format_valid": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
             "description": "Whether the MRZ format is valid (TD1 expected)."
-          },
-          "issuing_country_allowed": {
-            "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the issuing country is allowed."
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "compound_identifiers_match",
           "icao_format_valid",
@@ -4174,7 +4223,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's issuing country is accepted, or for a licence, supported."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -4250,7 +4319,6 @@
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "matches_issuer_database"
         ],
@@ -4261,7 +4329,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's issuing country is accepted, or for a licence, supported."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -4341,7 +4429,6 @@
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "security_features_present",
           "identifier_format_valid"
@@ -4353,7 +4440,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's issuing country is accepted, or for a licence, supported."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -4429,10 +4536,127 @@
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "security_features_present",
           "identifier_format_valid"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IdCardValidationApi": {
+        "description": "The MRZ rows are present only when the card was read from an MRZ.",
+        "properties": {
+          "required_fields_extracted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the issuing country is allowed."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
+          },
+          "document_borders_detected": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the correct document dimensions were detected (with score)."
+          },
+          "face_match": {
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "double",
+                "nullable": true
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              }
+            },
+            "required": [
+              "score",
+              "status"
+            ],
+            "type": "object",
+            "description": "Whether the photo ID face matches the video selfie (with score)."
+          },
+          "dates_of_birth_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the dates of birth matches other evidence."
+          },
+          "names_consistent": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the name matches other evidence."
+          },
+          "referee_over_18": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee is 18 or over."
+          },
+          "referee_biometrics_dissimilar": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the referee biometrics differ from the user."
+          },
+          "tampering_signals_check": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether tampering signals were found."
+          },
+          "matches_issuer_database": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the card's details match the PASS issuer's record. Only for a card read from the issuer."
+          },
+          "identifier_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the PASS card number is in a valid format. Only for a card read from the issuer."
+          },
+          "compound_identifiers_match": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the MRZ details appear in the printed text."
+          },
+          "has_not_expired": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document has not passed its expiry date (or the accepted grace window)."
+          },
+          "icao_format_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the MRZ format is valid (TD1 expected)."
+          }
+        },
+        "required": [
+          "document_borders_detected"
         ],
         "type": "object",
         "additionalProperties": false
@@ -4441,7 +4665,27 @@
         "properties": {
           "required_fields_extracted": {
             "$ref": "#/components/schemas/ValidationOutcomeApi",
-            "description": "Whether the required fields were extracted."
+            "description": "Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason."
+          },
+          "photo_id_type_accepted": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the flow accepts this type of photo ID."
+          },
+          "issuing_country_allowed": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's issuing country is accepted, or for a licence, supported."
+          },
+          "document_contains_face": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether a face was found on the document."
+          },
+          "date_fields_valid": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document's dates are real dates."
+          },
+          "not_sample_or_internal_use": {
+            "$ref": "#/components/schemas/ValidationOutcomeApi",
+            "description": "Whether the document isn't a specimen."
           },
           "document_borders_detected": {
             "properties": {
@@ -4517,7 +4761,6 @@
           }
         },
         "required": [
-          "required_fields_extracted",
           "document_borders_detected",
           "security_features_present"
         ],
@@ -4543,6 +4786,9 @@
           },
           {
             "$ref": "#/components/schemas/NecValidationApi"
+          },
+          {
+            "$ref": "#/components/schemas/IdCardValidationApi"
           },
           {
             "$ref": "#/components/schemas/UnfamiliarPhotoIdValidationApi"

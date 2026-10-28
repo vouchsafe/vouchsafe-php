@@ -234,6 +234,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\NecValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\NecValidationApiFaceMatchNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\IdCardValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\IdCardValidationApiNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\IdCardValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\IdCardValidationApiDocumentBordersDetectedNormalizer::class,
+        
+        \Vouchsafe\OpenAPI\Model\IdCardValidationApiFaceMatch::class => \Vouchsafe\OpenAPI\Normalizer\IdCardValidationApiFaceMatchNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApi::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationApiNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\UnfamiliarPhotoIdValidationApiDocumentBordersDetected::class => \Vouchsafe\OpenAPI\Normalizer\UnfamiliarPhotoIdValidationApiDocumentBordersDetectedNormalizer::class,

@@ -1,0 +1,157 @@
+<?php
+
+namespace Vouchsafe\OpenAPI\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use Vouchsafe\OpenAPI\Runtime\Normalizer\CheckArray;
+use Vouchsafe\OpenAPI\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+class IdCardValidationApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use CheckArray;
+    use ValidatorTrait;
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+    {
+        return $type === \Vouchsafe\OpenAPI\Model\IdCardValidationApi::class;
+    }
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+    {
+        return is_object($data) && get_class($data) === \Vouchsafe\OpenAPI\Model\IdCardValidationApi::class;
+    }
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        $object = new \Vouchsafe\OpenAPI\Model\IdCardValidationApi();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        if (\array_key_exists('required_fields_extracted', $data)) {
+            $object->setRequiredFieldsExtracted($this->denormalizer->denormalize($data['required_fields_extracted'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('photo_id_type_accepted', $data)) {
+            $object->setPhotoIdTypeAccepted($this->denormalizer->denormalize($data['photo_id_type_accepted'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('issuing_country_allowed', $data)) {
+            $object->setIssuingCountryAllowed($this->denormalizer->denormalize($data['issuing_country_allowed'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('document_contains_face', $data)) {
+            $object->setDocumentContainsFace($this->denormalizer->denormalize($data['document_contains_face'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('date_fields_valid', $data)) {
+            $object->setDateFieldsValid($this->denormalizer->denormalize($data['date_fields_valid'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('not_sample_or_internal_use', $data)) {
+            $object->setNotSampleOrInternalUse($this->denormalizer->denormalize($data['not_sample_or_internal_use'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('document_borders_detected', $data)) {
+            $object->setDocumentBordersDetected($this->denormalizer->denormalize($data['document_borders_detected'], \Vouchsafe\OpenAPI\Model\IdCardValidationApiDocumentBordersDetected::class, 'json', $context));
+        }
+        if (\array_key_exists('face_match', $data)) {
+            $object->setFaceMatch($this->denormalizer->denormalize($data['face_match'], \Vouchsafe\OpenAPI\Model\IdCardValidationApiFaceMatch::class, 'json', $context));
+        }
+        if (\array_key_exists('dates_of_birth_consistent', $data)) {
+            $object->setDatesOfBirthConsistent($this->denormalizer->denormalize($data['dates_of_birth_consistent'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('names_consistent', $data)) {
+            $object->setNamesConsistent($this->denormalizer->denormalize($data['names_consistent'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('referee_over_18', $data)) {
+            $object->setRefereeOver18($this->denormalizer->denormalize($data['referee_over_18'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('referee_biometrics_dissimilar', $data)) {
+            $object->setRefereeBiometricsDissimilar($this->denormalizer->denormalize($data['referee_biometrics_dissimilar'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('tampering_signals_check', $data)) {
+            $object->setTamperingSignalsCheck($this->denormalizer->denormalize($data['tampering_signals_check'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('matches_issuer_database', $data)) {
+            $object->setMatchesIssuerDatabase($this->denormalizer->denormalize($data['matches_issuer_database'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('identifier_format_valid', $data)) {
+            $object->setIdentifierFormatValid($this->denormalizer->denormalize($data['identifier_format_valid'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('compound_identifiers_match', $data)) {
+            $object->setCompoundIdentifiersMatch($this->denormalizer->denormalize($data['compound_identifiers_match'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('has_not_expired', $data)) {
+            $object->setHasNotExpired($this->denormalizer->denormalize($data['has_not_expired'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        if (\array_key_exists('icao_format_valid', $data)) {
+            $object->setIcaoFormatValid($this->denormalizer->denormalize($data['icao_format_valid'], \Vouchsafe\OpenAPI\Model\ValidationOutcomeApi::class, 'json', $context));
+        }
+        return $object;
+    }
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('requiredFieldsExtracted') && null !== $data->getRequiredFieldsExtracted()) {
+            $dataArray['required_fields_extracted'] = $data->getRequiredFieldsExtracted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRequiredFieldsExtracted(), 'json', $context));
+        }
+        if ($data->isInitialized('photoIdTypeAccepted') && null !== $data->getPhotoIdTypeAccepted()) {
+            $dataArray['photo_id_type_accepted'] = $data->getPhotoIdTypeAccepted() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getPhotoIdTypeAccepted(), 'json', $context));
+        }
+        if ($data->isInitialized('issuingCountryAllowed') && null !== $data->getIssuingCountryAllowed()) {
+            $dataArray['issuing_country_allowed'] = $data->getIssuingCountryAllowed() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIssuingCountryAllowed(), 'json', $context));
+        }
+        if ($data->isInitialized('documentContainsFace') && null !== $data->getDocumentContainsFace()) {
+            $dataArray['document_contains_face'] = $data->getDocumentContainsFace() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentContainsFace(), 'json', $context));
+        }
+        if ($data->isInitialized('dateFieldsValid') && null !== $data->getDateFieldsValid()) {
+            $dataArray['date_fields_valid'] = $data->getDateFieldsValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDateFieldsValid(), 'json', $context));
+        }
+        if ($data->isInitialized('notSampleOrInternalUse') && null !== $data->getNotSampleOrInternalUse()) {
+            $dataArray['not_sample_or_internal_use'] = $data->getNotSampleOrInternalUse() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNotSampleOrInternalUse(), 'json', $context));
+        }
+        $dataArray['document_borders_detected'] = $data->getDocumentBordersDetected() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDocumentBordersDetected(), 'json', $context));
+        if ($data->isInitialized('faceMatch') && null !== $data->getFaceMatch()) {
+            $dataArray['face_match'] = $data->getFaceMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getFaceMatch(), 'json', $context));
+        }
+        if ($data->isInitialized('datesOfBirthConsistent') && null !== $data->getDatesOfBirthConsistent()) {
+            $dataArray['dates_of_birth_consistent'] = $data->getDatesOfBirthConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getDatesOfBirthConsistent(), 'json', $context));
+        }
+        if ($data->isInitialized('namesConsistent') && null !== $data->getNamesConsistent()) {
+            $dataArray['names_consistent'] = $data->getNamesConsistent() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getNamesConsistent(), 'json', $context));
+        }
+        if ($data->isInitialized('refereeOver18') && null !== $data->getRefereeOver18()) {
+            $dataArray['referee_over_18'] = $data->getRefereeOver18() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeOver18(), 'json', $context));
+        }
+        if ($data->isInitialized('refereeBiometricsDissimilar') && null !== $data->getRefereeBiometricsDissimilar()) {
+            $dataArray['referee_biometrics_dissimilar'] = $data->getRefereeBiometricsDissimilar() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getRefereeBiometricsDissimilar(), 'json', $context));
+        }
+        if ($data->isInitialized('tamperingSignalsCheck') && null !== $data->getTamperingSignalsCheck()) {
+            $dataArray['tampering_signals_check'] = $data->getTamperingSignalsCheck() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getTamperingSignalsCheck(), 'json', $context));
+        }
+        if ($data->isInitialized('matchesIssuerDatabase') && null !== $data->getMatchesIssuerDatabase()) {
+            $dataArray['matches_issuer_database'] = $data->getMatchesIssuerDatabase() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getMatchesIssuerDatabase(), 'json', $context));
+        }
+        if ($data->isInitialized('identifierFormatValid') && null !== $data->getIdentifierFormatValid()) {
+            $dataArray['identifier_format_valid'] = $data->getIdentifierFormatValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIdentifierFormatValid(), 'json', $context));
+        }
+        if ($data->isInitialized('compoundIdentifiersMatch') && null !== $data->getCompoundIdentifiersMatch()) {
+            $dataArray['compound_identifiers_match'] = $data->getCompoundIdentifiersMatch() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCompoundIdentifiersMatch(), 'json', $context));
+        }
+        if ($data->isInitialized('hasNotExpired') && null !== $data->getHasNotExpired()) {
+            $dataArray['has_not_expired'] = $data->getHasNotExpired() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getHasNotExpired(), 'json', $context));
+        }
+        if ($data->isInitialized('icaoFormatValid') && null !== $data->getIcaoFormatValid()) {
+            $dataArray['icao_format_valid'] = $data->getIcaoFormatValid() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getIcaoFormatValid(), 'json', $context));
+        }
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Vouchsafe\OpenAPI\Model\IdCardValidationApi::class => false];
+    }
+}
