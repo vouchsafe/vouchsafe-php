@@ -414,7 +414,7 @@ final class VouchsafeClient
    *   'last_name'     => 'Webb',
    *   'email'         => 'dwebb@example.com',
    *   'date_of_birth' => '1996-12-12',
-   *   'enrichments'   => ['CREDIT_BUREAU', 'AML'],
+   *   'enrichments'   => ['OFFICIAL_RECORDS', 'AML'],
    *   'address'       => ['residence_number' => '221B', 'street' => 'Baker Street', 'city' => 'London', 'postcode' => 'NW1 6XE', 'country_code' => 'GB'],
    *   'face_scan'     => '/path/to/selfie.jpg', // optional
    * ]);
