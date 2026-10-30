@@ -163,6 +163,9 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
             }
             $object->setEnrichments($values_1);
         }
+        if (\array_key_exists('certified_details', $data)) {
+            $object->setCertifiedDetails($this->denormalizer->denormalize($data['certified_details'], \Vouchsafe\OpenAPI\Model\CertifiedDetails::class, 'json', $context));
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -243,6 +246,9 @@ class GetVerificationResponseNormalizer implements DenormalizerInterface, Normal
             $values_1[] = $value_3;
         }
         $dataArray['enrichments'] = $values_1;
+        if ($data->isInitialized('certifiedDetails') && null !== $data->getCertifiedDetails()) {
+            $dataArray['certified_details'] = $data->getCertifiedDetails() === null ? null : new \Vouchsafe\OpenAPI\Runtime\JsonObject($this->normalizer->normalize($data->getCertifiedDetails(), 'json', $context));
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

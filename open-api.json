@@ -6644,6 +6644,85 @@
           }
         ]
       },
+      "CertifiedCheckType": {
+        "type": "string",
+        "enum": [
+          "right_to_work",
+          "right_to_rent",
+          "disclosure_and_barring_service"
+        ]
+      },
+      "ProfileState": {
+        "type": "string",
+        "enum": [
+          "met",
+          "pending",
+          "not_met",
+          "review"
+        ],
+        "description": "Whether the configured identity profile has been met: \"met\", \"pending\", \"not_met\", or \"review\" (trial account, for evaluation purposes only)."
+      },
+      "CertifiedDetails": {
+        "description": "UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications.",
+        "properties": {
+          "check_type": {
+            "$ref": "#/components/schemas/CertifiedCheckType",
+            "description": "Which certified scheme this verification was carried out under."
+          },
+          "identity_profile_state": {
+            "$ref": "#/components/schemas/ProfileState",
+            "description": "Whether the configured identity profile has been met, is pending, not met, or is a trial-account review."
+          },
+          "supplementary_code_compliant": {
+            "type": "boolean",
+            "description": "Whether the check was conducted in accordance with the relevant Supplementary Code."
+          },
+          "trust_framework_version": {
+            "type": "string",
+            "description": "The version of the UK DVS trust framework Vouchsafe was certified against at the time of the check."
+          },
+          "identity_verified": {
+            "type": "boolean",
+            "description": "Whether the identity verification step has been completed."
+          },
+          "date_of_identity_check": {
+            "type": "string",
+            "description": "When the identity check was carried out. Only present when identity_verified is true."
+          },
+          "address_verified": {
+            "type": "boolean",
+            "description": "Whether the address was verified. Only present for DBS verifications."
+          },
+          "date_of_address_check": {
+            "type": "string",
+            "description": "When the address check used for this compliance assessment was carried out. Only present when address_verified is true."
+          },
+          "evidence_checked_by": {
+            "type": "string",
+            "description": "The entity that checked the evidence."
+          },
+          "registration_confirmed": {
+            "type": "boolean",
+            "description": "Whether Vouchsafe was registered to the UK digital identity services register at the time of the check."
+          },
+          "registration_entry": {
+            "type": "string",
+            "description": "Vouchsafe's entry on the UK digital identity services register."
+          }
+        },
+        "required": [
+          "check_type",
+          "identity_profile_state",
+          "supplementary_code_compliant",
+          "trust_framework_version",
+          "identity_verified",
+          "evidence_checked_by",
+          "registration_confirmed",
+          "registration_entry"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "GetVerificationResponse": {
         "properties": {
           "id": {
@@ -6728,6 +6807,10 @@
             },
             "type": "array",
             "description": "The enrichments performed on the verification."
+          },
+          "certified_details": {
+            "$ref": "#/components/schemas/CertifiedDetails",
+            "description": "UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications."
           }
         },
         "required": [
@@ -7686,7 +7769,9 @@
             "type": "string"
           },
           "opensanctions_id": {
-            "type": "string"
+            "type": "string",
+            "nullable": true,
+            "deprecated": true
           },
           "caption": {
             "type": "string"
@@ -10563,7 +10648,7 @@
             }
           }
         },
-        "description": "Get the digital ID schemes, photo IDs, supporting documents and trusted data sources Vouchsafe covers, optionally filtered by country and/or type.\n\nEach item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.\n\nDIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.",
+        "description": "Get the digital ID schemes, photo IDs, supporting documents and trusted data sources Vouchsafe covers, optionally filtered by country and/or type.\n\nEach item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.\n\nDIGITAL_ID includes our full digital ID provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.",
         "tags": [
           "Coverage"
         ],

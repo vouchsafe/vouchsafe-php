@@ -111,6 +111,12 @@ class GetVerificationResponse
      */
     protected $enrichments;
     /**
+     * UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications.
+     *
+     * @var CertifiedDetails
+     */
+    protected $certifiedDetails;
+    /**
      * Unique ID for tracking a verification session over time.
      *
      * @return string
@@ -474,6 +480,28 @@ class GetVerificationResponse
     {
         $this->initialized['enrichments'] = true;
         $this->enrichments = $enrichments;
+        return $this;
+    }
+    /**
+     * UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications.
+     *
+     * @return CertifiedDetails
+     */
+    public function getCertifiedDetails(): CertifiedDetails
+    {
+        return $this->certifiedDetails;
+    }
+    /**
+     * UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications.
+     *
+     * @param CertifiedDetails $certifiedDetails
+     *
+     * @return self
+     */
+    public function setCertifiedDetails(CertifiedDetails $certifiedDetails): self
+    {
+        $this->initialized['certifiedDetails'] = true;
+        $this->certifiedDetails = $certifiedDetails;
         return $this;
     }
 }

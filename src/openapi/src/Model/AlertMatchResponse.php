@@ -17,7 +17,9 @@ class AlertMatchResponse
      */
     protected $id;
     /**
-     * @var string
+     * @deprecated
+     *
+     * @var string|null
      */
     protected $opensanctionsId;
     /**
@@ -55,18 +57,22 @@ class AlertMatchResponse
         return $this;
     }
     /**
-     * @return string
+     * @deprecated
+     *
+     * @return string|null
      */
-    public function getOpensanctionsId(): string
+    public function getOpensanctionsId(): ?string
     {
         return $this->opensanctionsId;
     }
     /**
-     * @param string $opensanctionsId
+     * @param string|null $opensanctionsId
+     *
+     * @deprecated
      *
      * @return self
      */
-    public function setOpensanctionsId(string $opensanctionsId): self
+    public function setOpensanctionsId(?string $opensanctionsId): self
     {
         $this->initialized['opensanctionsId'] = true;
         $this->opensanctionsId = $opensanctionsId;

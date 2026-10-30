@@ -43,8 +43,11 @@ class AlertMatchResponseNormalizer implements DenormalizerInterface, NormalizerI
         if (\array_key_exists('id', $data)) {
             $object->setId($data['id']);
         }
-        if (\array_key_exists('opensanctions_id', $data)) {
+        if (\array_key_exists('opensanctions_id', $data) && $data['opensanctions_id'] !== null) {
             $object->setOpensanctionsId($data['opensanctions_id']);
+        }
+        elseif (\array_key_exists('opensanctions_id', $data) && $data['opensanctions_id'] === null) {
+            $object->setOpensanctionsId(null);
         }
         if (\array_key_exists('caption', $data)) {
             $object->setCaption($data['caption']);

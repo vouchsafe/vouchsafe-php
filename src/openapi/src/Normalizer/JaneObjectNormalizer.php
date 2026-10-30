@@ -338,6 +338,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Vouchsafe\OpenAPI\Model\RadarCheckApiDetailsValidationsNoKnownFraudsterMatch::class => \Vouchsafe\OpenAPI\Normalizer\RadarCheckApiDetailsValidationsNoKnownFraudsterMatchNormalizer::class,
         
+        \Vouchsafe\OpenAPI\Model\CertifiedDetails::class => \Vouchsafe\OpenAPI\Normalizer\CertifiedDetailsNormalizer::class,
+        
         \Vouchsafe\OpenAPI\Model\GetVerificationResponse::class => \Vouchsafe\OpenAPI\Normalizer\GetVerificationResponseNormalizer::class,
         
         \Vouchsafe\OpenAPI\Model\CreateTeamResponse::class => \Vouchsafe\OpenAPI\Normalizer\CreateTeamResponseNormalizer::class,

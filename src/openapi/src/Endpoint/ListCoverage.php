@@ -9,7 +9,7 @@ class ListCoverage extends \Vouchsafe\OpenAPI\Runtime\Client\BaseEndpoint implem
      *
      * Each item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.
      *
-     * DIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
+     * DIGITAL_ID includes our full digital ID provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
      * @param array{
      *    "country_code"?: string, //Two-letter country code (ISO 3166-1 alpha-2) to filter by, e.g. `GB`. Case insensitive. Omit to see worldwide coverage.
      *    "type"?: string, //Evidence type to filter by. Omit to return all types.
