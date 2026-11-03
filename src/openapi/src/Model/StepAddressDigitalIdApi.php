@@ -13,7 +13,7 @@ class StepAddressDigitalIdApi
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @var string
      */
@@ -25,13 +25,13 @@ class StepAddressDigitalIdApi
      */
     protected $outcome;
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @var string
      */
     protected $createdAt;
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @var string
      */
@@ -41,13 +41,13 @@ class StepAddressDigitalIdApi
      */
     protected $evidenceType;
     /**
-     * Extracted address details.
+     * The address returned by the provider.
      *
      * @var StepAddressDigitalIdApiExtractedDetails
      */
     protected $extractedDetails;
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @return string
      */
@@ -56,7 +56,7 @@ class StepAddressDigitalIdApi
         return $this->step;
     }
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @param string $step
      *
@@ -91,7 +91,7 @@ class StepAddressDigitalIdApi
         return $this;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @return string
      */
@@ -100,7 +100,7 @@ class StepAddressDigitalIdApi
         return $this->createdAt;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @param string $createdAt
      *
@@ -113,7 +113,7 @@ class StepAddressDigitalIdApi
         return $this;
     }
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @return string
      */
@@ -122,7 +122,7 @@ class StepAddressDigitalIdApi
         return $this->method;
     }
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @param string $method
      *
@@ -153,7 +153,7 @@ class StepAddressDigitalIdApi
         return $this;
     }
     /**
-     * Extracted address details.
+     * The address returned by the provider.
      *
      * @return StepAddressDigitalIdApiExtractedDetails
      */
@@ -162,7 +162,7 @@ class StepAddressDigitalIdApi
         return $this->extractedDetails;
     }
     /**
-     * Extracted address details.
+     * The address returned by the provider.
      *
      * @param StepAddressDigitalIdApiExtractedDetails $extractedDetails
      *

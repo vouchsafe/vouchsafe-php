@@ -40,13 +40,13 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalP
      */
     protected $firstLineOfAddress;
     /**
-     * Last name that was checked against the credit bureau.
+     * Last name that was checked against the official records.
      *
      * @var string|null
      */
     protected $lastName;
     /**
-     * First name that was checked against the credit bureau.
+     * First name that was checked against the official records.
      *
      * @var string|null
      */
@@ -140,7 +140,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalP
         return $this;
     }
     /**
-     * Last name that was checked against the credit bureau.
+     * Last name that was checked against the official records.
      *
      * @return string|null
      */
@@ -149,7 +149,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalP
         return $this->lastName;
     }
     /**
-     * Last name that was checked against the credit bureau.
+     * Last name that was checked against the official records.
      *
      * @param string|null $lastName
      *
@@ -162,7 +162,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalP
         return $this;
     }
     /**
-     * First name that was checked against the credit bureau.
+     * First name that was checked against the official records.
      *
      * @return string|null
      */
@@ -171,7 +171,7 @@ class StepAddressCreditReferenceAgencyApiExtractedDetails implements AdditionalP
         return $this->firstName;
     }
     /**
-     * First name that was checked against the credit bureau.
+     * First name that was checked against the official records.
      *
      * @param string|null $firstName
      *

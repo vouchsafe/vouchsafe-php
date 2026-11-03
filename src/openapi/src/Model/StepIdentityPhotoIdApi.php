@@ -13,11 +13,17 @@ class StepIdentityPhotoIdApi
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @var string
      */
     protected $step;
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @var string
+     */
+    protected $createdAt;
     /**
      * Overall outcome of the evidence submission.
      *
@@ -25,13 +31,7 @@ class StepIdentityPhotoIdApi
      */
     protected $outcome;
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @var string
-     */
-    protected $createdAt;
-    /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @var string
      */
@@ -41,7 +41,7 @@ class StepIdentityPhotoIdApi
      */
     protected $evidenceType;
     /**
-     * Files captured or uploaded for this evidence item.
+     * The files collected, such as document images. Download each one using its `key`.
      *
      * @var list<ArtefactApi>
      */
@@ -51,11 +51,13 @@ class StepIdentityPhotoIdApi
      */
     protected $extractedDetails;
     /**
-     * @var PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi
+     * Each check run on the document, and whether it passed. Empty while `outcome` is `in_progress`.
+     *
+     * @var RecordStringNever
      */
     protected $validations;
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @return string
      */
@@ -64,7 +66,7 @@ class StepIdentityPhotoIdApi
         return $this->step;
     }
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @param string $step
      *
@@ -74,6 +76,28 @@ class StepIdentityPhotoIdApi
     {
         $this->initialized['step'] = true;
         $this->step = $step;
+        return $this;
+    }
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @param string $createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt(string $createdAt): self
+    {
+        $this->initialized['createdAt'] = true;
+        $this->createdAt = $createdAt;
         return $this;
     }
     /**
@@ -99,29 +123,7 @@ class StepIdentityPhotoIdApi
         return $this;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->createdAt;
-    }
-    /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @param string $createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $createdAt): self
-    {
-        $this->initialized['createdAt'] = true;
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-    /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @return string
      */
@@ -130,7 +132,7 @@ class StepIdentityPhotoIdApi
         return $this->method;
     }
     /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @param string $method
      *
@@ -161,7 +163,7 @@ class StepIdentityPhotoIdApi
         return $this;
     }
     /**
-     * Files captured or uploaded for this evidence item.
+     * The files collected, such as document images. Download each one using its `key`.
      *
      * @return list<ArtefactApi>
      */
@@ -170,7 +172,7 @@ class StepIdentityPhotoIdApi
         return $this->artefacts;
     }
     /**
-     * Files captured or uploaded for this evidence item.
+     * The files collected, such as document images. Download each one using its `key`.
      *
      * @param list<ArtefactApi> $artefacts
      *
@@ -201,18 +203,22 @@ class StepIdentityPhotoIdApi
         return $this;
     }
     /**
-     * @return PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi
+     * Each check run on the document, and whether it passed. Empty while `outcome` is `in_progress`.
+     *
+     * @return RecordStringNever
      */
-    public function getValidations()
+    public function getValidations(): RecordStringNever
     {
         return $this->validations;
     }
     /**
-     * @param PassportValidationApi|DrivingLicenceValidationApi|NationalIdValidationApi|CitizenCardValidationApi|YoungScotValidationApi|NecValidationApi|IdCardValidationApi|UnfamiliarPhotoIdValidationApi $validations
+     * Each check run on the document, and whether it passed. Empty while `outcome` is `in_progress`.
+     *
+     * @param RecordStringNever $validations
      *
      * @return self
      */
-    public function setValidations($validations): self
+    public function setValidations(RecordStringNever $validations): self
     {
         $this->initialized['validations'] = true;
         $this->validations = $validations;

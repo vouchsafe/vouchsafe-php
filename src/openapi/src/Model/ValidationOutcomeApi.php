@@ -17,6 +17,12 @@ class ValidationOutcomeApi
      */
     protected $status;
     /**
+     * A short, machine-readable code for why the check failed, such as `EXPIRY_DATE_PASSED`.
+     *
+     * @var string
+     */
+    protected $failedReason;
+    /**
      * @return string
      */
     public function getStatus(): string
@@ -32,6 +38,28 @@ class ValidationOutcomeApi
     {
         $this->initialized['status'] = true;
         $this->status = $status;
+        return $this;
+    }
+    /**
+     * A short, machine-readable code for why the check failed, such as `EXPIRY_DATE_PASSED`.
+     *
+     * @return string
+     */
+    public function getFailedReason(): string
+    {
+        return $this->failedReason;
+    }
+    /**
+     * A short, machine-readable code for why the check failed, such as `EXPIRY_DATE_PASSED`.
+     *
+     * @param string $failedReason
+     *
+     * @return self
+     */
+    public function setFailedReason(string $failedReason): self
+    {
+        $this->initialized['failedReason'] = true;
+        $this->failedReason = $failedReason;
         return $this;
     }
 }

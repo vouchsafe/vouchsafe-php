@@ -13,7 +13,7 @@ class StepAddressCreditReferenceAgencyApi
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @var string
      */
@@ -25,25 +25,25 @@ class StepAddressCreditReferenceAgencyApi
      */
     protected $outcome;
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @var string
      */
     protected $createdAt;
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @var string
      */
     protected $method;
     /**
-     * Extracted address details.
+     * The name and address checked with the official records.
      *
      * @var StepAddressCreditReferenceAgencyApiExtractedDetails
      */
     protected $extractedDetails;
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @return string
      */
@@ -52,7 +52,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this->step;
     }
     /**
-     * Proof of address step — only present for v2 verifications.
+     * Proof of address.
      *
      * @param string $step
      *
@@ -87,7 +87,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @return string
      */
@@ -96,7 +96,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this->createdAt;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
+     * When the user provided this evidence, in ISO 8601 format.
      *
      * @param string $createdAt
      *
@@ -109,7 +109,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this;
     }
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @return string
      */
@@ -118,7 +118,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this->method;
     }
     /**
-     * The method used to verify address.
+     * How the user proved their address.
      *
      * @param string $method
      *
@@ -131,7 +131,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this;
     }
     /**
-     * Extracted address details.
+     * The name and address checked with the official records.
      *
      * @return StepAddressCreditReferenceAgencyApiExtractedDetails
      */
@@ -140,7 +140,7 @@ class StepAddressCreditReferenceAgencyApi
         return $this->extractedDetails;
     }
     /**
-     * Extracted address details.
+     * The name and address checked with the official records.
      *
      * @param StepAddressCreditReferenceAgencyApiExtractedDetails $extractedDetails
      *

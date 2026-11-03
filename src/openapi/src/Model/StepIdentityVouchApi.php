@@ -13,11 +13,17 @@ class StepIdentityVouchApi
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @var string
      */
     protected $step;
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @var string
+     */
+    protected $createdAt;
     /**
      * Overall outcome of the evidence submission.
      *
@@ -25,13 +31,7 @@ class StepIdentityVouchApi
      */
     protected $outcome;
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @var string
-     */
-    protected $createdAt;
-    /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @var string
      */
@@ -49,7 +49,7 @@ class StepIdentityVouchApi
      */
     protected $validations;
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class StepIdentityVouchApi
         return $this->step;
     }
     /**
-     * Proof of identity step — only present for v2 verifications.
+     * Proof of identity.
      *
      * @param string $step
      *
@@ -68,6 +68,28 @@ class StepIdentityVouchApi
     {
         $this->initialized['step'] = true;
         $this->step = $step;
+        return $this;
+    }
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+    /**
+     * When the user provided this evidence, in ISO 8601 format.
+     *
+     * @param string $createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt(string $createdAt): self
+    {
+        $this->initialized['createdAt'] = true;
+        $this->createdAt = $createdAt;
         return $this;
     }
     /**
@@ -93,29 +115,7 @@ class StepIdentityVouchApi
         return $this;
     }
     /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->createdAt;
-    }
-    /**
-     * ISO 8601 timestamp for when this evidence attempt was started.
-     *
-     * @param string $createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $createdAt): self
-    {
-        $this->initialized['createdAt'] = true;
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-    /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @return string
      */
@@ -124,7 +124,7 @@ class StepIdentityVouchApi
         return $this->method;
     }
     /**
-     * The method used to verify identity.
+     * How the user proved their identity.
      *
      * @param string $method
      *

@@ -40,11 +40,11 @@ class StepIdentityDigitalIdApiNormalizer implements DenormalizerInterface, Norma
         if (\array_key_exists('step', $data)) {
             $object->setStep($data['step']);
         }
-        if (\array_key_exists('outcome', $data)) {
-            $object->setOutcome($data['outcome']);
-        }
         if (\array_key_exists('created_at', $data)) {
             $object->setCreatedAt($data['created_at']);
+        }
+        if (\array_key_exists('outcome', $data)) {
+            $object->setOutcome($data['outcome']);
         }
         if (\array_key_exists('method', $data)) {
             $object->setMethod($data['method']);
@@ -71,8 +71,8 @@ class StepIdentityDigitalIdApiNormalizer implements DenormalizerInterface, Norma
     {
         $dataArray = [];
         $dataArray['step'] = $data->getStep();
-        $dataArray['outcome'] = $data->getOutcome();
         $dataArray['created_at'] = $data->getCreatedAt();
+        $dataArray['outcome'] = $data->getOutcome();
         $dataArray['method'] = $data->getMethod();
         $dataArray['evidence_type'] = $data->getEvidenceType();
         $values = [];

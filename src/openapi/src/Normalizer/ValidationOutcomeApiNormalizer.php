@@ -40,12 +40,18 @@ class ValidationOutcomeApiNormalizer implements DenormalizerInterface, Normalize
         if (\array_key_exists('status', $data)) {
             $object->setStatus($data['status']);
         }
+        if (\array_key_exists('failed_reason', $data)) {
+            $object->setFailedReason($data['failed_reason']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
         $dataArray['status'] = $data->getStatus();
+        if ($data->isInitialized('failedReason') && null !== $data->getFailedReason()) {
+            $dataArray['failed_reason'] = $data->getFailedReason();
+        }
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array
