@@ -4,23 +4,22 @@
   "license": "MIT",
   "description": "Official PHP library for the Vouchsafe identity platform. Use it for easy KYC checks, identity verification, remote right-to-work and more.",
   "keywords": [
-    "openapitools",
-    "openapi-generator",
-    "openapi",
-    "php",
+    "vouchsafe",
+    "kyc",
+    "identity-verification",
+    "right-to-work",
     "sdk",
-    "rest",
     "api"
   ],
-  "homepage": "https://openapi-generator.tech",
+  "homepage": "https://github.com/vouchsafe/vouchsafe-php",
   "authors": [
     {
-      "name": "OpenAPI",
-      "homepage": "https://openapi-generator.tech"
+      "name": "Vouchsafe",
+      "homepage": "https://vouchsafe.id"
     }
   ],
   "require": {
-    "php": ">=7.2.5",
+    "php": ">=8.4",
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",

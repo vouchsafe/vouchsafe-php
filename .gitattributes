@@ -1,0 +1,9 @@
+# Keep repo-only files out of the package Composer installs
+/.github            export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/.jane-openapi      export-ignore
+/.php-cs-fixer.dist.php export-ignore
+/CONTRIBUTING.md    export-ignore
+/makefile           export-ignore
+/open-api.json      export-ignore

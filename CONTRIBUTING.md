@@ -6,7 +6,7 @@ For most pull requests, we request that you identify or create an associated iss
 
 ## Generated code
 
-This project has a combination of manually maintained code and code generated with [openapi-generator](https://github.com/OpenAPITools/openapi-generator). If your contribution involves changes to generated code, please call this out in the issue or pull request as we will likely need to make a change to the input OpenAPI specification before accepting the contribution.
+This project has a combination of manually maintained code and code generated with [Jane](https://github.com/janephp/janephp) from `open-api.json` (`make generate`). If your contribution involves changes to generated code, please call this out in the issue or pull request as we will likely need to make a change to the input OpenAPI specification before accepting the contribution.
 
 Everything in the `/src/openapi` subfolder is generated code.
 

@@ -4,7 +4,7 @@ The Vouchsafe PHP library provides convenient, typed access to the Vouchsafe API
 
 ## Requirements
 
-PHP 7.2.5 or better.
+PHP 8.4 or better.
 
 ## Installation
 
