@@ -330,7 +330,7 @@ final class VouchsafeClient
               ];
           }
 
-          $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+          $httpClient = new \GuzzleHttp\Client();
           $response = $httpClient->post($this->baseUri . '/verify/supporting-documents', [
               'headers'   => ['Authorization' => 'Bearer ' . $this->token],
               'multipart' => $multipart,
@@ -388,7 +388,7 @@ final class VouchsafeClient
               $multipart[] = ['name' => 'face_scan', 'contents' => fopen($facePath, 'r'), 'filename' => basename($facePath)];
           }
 
-          $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+          $httpClient = new \GuzzleHttp\Client();
           $response = $httpClient->post($this->baseUri . '/verify/photo-id', [
               'headers'   => ['Authorization' => 'Bearer ' . $this->token],
               'multipart' => $multipart,
@@ -454,7 +454,7 @@ final class VouchsafeClient
               $multipart[] = ['name' => 'face_scan', 'contents' => fopen($facePath, 'r'), 'filename' => basename($facePath)];
           }
 
-          $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+          $httpClient = new \GuzzleHttp\Client();
           $response = $httpClient->post($this->baseUriV2 . '/risk', [
               'headers'   => ['Authorization' => 'Bearer ' . $this->token],
               'multipart' => $multipart,
