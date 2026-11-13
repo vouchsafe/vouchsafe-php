@@ -21,6 +21,12 @@ class AuthenticateResponse
      */
     protected $expiresAt;
     /**
+     * Seconds until the token expires.
+     *
+     * @var int
+     */
+    protected $expiresIn;
+    /**
      * @return string
      */
     public function getAccessToken(): string
@@ -54,6 +60,28 @@ class AuthenticateResponse
     {
         $this->initialized['expiresAt'] = true;
         $this->expiresAt = $expiresAt;
+        return $this;
+    }
+    /**
+     * Seconds until the token expires.
+     *
+     * @return int
+     */
+    public function getExpiresIn(): int
+    {
+        return $this->expiresIn;
+    }
+    /**
+     * Seconds until the token expires.
+     *
+     * @param int $expiresIn
+     *
+     * @return self
+     */
+    public function setExpiresIn(int $expiresIn): self
+    {
+        $this->initialized['expiresIn'] = true;
+        $this->expiresIn = $expiresIn;
         return $this;
     }
 }

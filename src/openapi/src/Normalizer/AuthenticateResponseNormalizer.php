@@ -43,6 +43,9 @@ class AuthenticateResponseNormalizer implements DenormalizerInterface, Normalize
         if (\array_key_exists('expires_at', $data)) {
             $object->setExpiresAt($data['expires_at']);
         }
+        if (\array_key_exists('expires_in', $data)) {
+            $object->setExpiresIn($data['expires_in']);
+        }
         return $object;
     }
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -50,6 +53,7 @@ class AuthenticateResponseNormalizer implements DenormalizerInterface, Normalize
         $dataArray = [];
         $dataArray['access_token'] = $data->getAccessToken();
         $dataArray['expires_at'] = $data->getExpiresAt();
+        $dataArray['expires_in'] = $data->getExpiresIn();
         return $dataArray;
     }
     public function getSupportedTypes(?string $format = null): array

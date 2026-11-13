@@ -7631,11 +7631,17 @@
           },
           "expires_at": {
             "type": "string"
+          },
+          "expires_in": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Seconds until the token expires."
           }
         },
         "required": [
           "access_token",
-          "expires_at"
+          "expires_at",
+          "expires_in"
         ],
         "type": "object",
         "additionalProperties": false
@@ -10706,7 +10712,8 @@
                   "Example 1": {
                     "value": {
                       "access_token": "1234abcd-56de-78fg-1234-abcd12345678",
-                      "expires_at": "2025-01-01T12:00:00.000Z"
+                      "expires_at": "2025-01-01T12:00:00.000Z",
+                      "expires_in": 86400
                     }
                   }
                 }
